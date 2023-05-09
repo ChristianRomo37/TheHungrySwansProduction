@@ -19,6 +19,8 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(2, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
+    [Range(1, 10)][SerializeField] int magSize;
+    [Range(1, 10)][SerializeField] float reloadTime;
 
     private int jumpedTimes;
     private Vector3 move;
@@ -26,21 +28,34 @@ public class playerControler : MonoBehaviour, IDamage
     private bool groundedPlayer;
     private bool isSprinting;
     private bool isShooting;
+    //private int bulletsShot;
+    private int bulletsRemaining;
+    private bool isReloading;
     //private int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
-           
+        bulletsRemaining = magSize;
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
-        if (Input.GetButton("Shoot") && !isShooting)
+        if (Input.GetButtonDown("Shoot") && !isShooting)
         {
-            StartCoroutine(shoot());
+            Debug.Log("shoot");
+            if (bulletsRemaining > 0 && !isReloading)
+            {
+                StartCoroutine(shoot());
+            }
+        }
+
+        if (Input.GetButtonDown("Reload") && !isReloading)
+        {
+            Debug.Log("re");
+            StartCoroutine(reload());
         }
         sprint();
     }
@@ -85,6 +100,7 @@ public class playerControler : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        bulletsRemaining--;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDist))
@@ -96,7 +112,7 @@ public class playerControler : MonoBehaviour, IDamage
                 damageable.takeDamage(shootDamage);
             }
         }
-
+        //bulletsShot++;
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -110,6 +126,17 @@ public class playerControler : MonoBehaviour, IDamage
         {
             //gameManager.instance.youLose();
         }
+    }
+
+    IEnumerator reload()
+    {
+        isReloading = true;
+
+        bulletsRemaining = magSize;
+
+        yield return new WaitForSeconds(reloadTime);
+
+        isReloading = false;
     }
 
     //public void spaenPlayer()
