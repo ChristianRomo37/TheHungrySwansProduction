@@ -33,7 +33,7 @@ public class camerControl : MonoBehaviour
         }
         else
         {
-            xrotation -= mouseX;
+            xrotation -= mouseY;
         }
 
         xrotation = Mathf.Clamp(xrotation, lockVermin, lockVermax);
