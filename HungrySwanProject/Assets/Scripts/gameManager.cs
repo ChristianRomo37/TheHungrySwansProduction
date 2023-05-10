@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
     [Header("-----Player Stuff-----")]
     public GameObject player;
     public playerControler playerScript;
-    //public GameObject playerSpawnPos;
+    public GameObject playerSpawnPos;
 
     [Header("-----UI Stuff-----")]
     public GameObject activeMenu;

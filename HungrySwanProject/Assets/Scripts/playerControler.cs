@@ -34,7 +34,7 @@ public class playerControler : MonoBehaviour, IDamage
     private int bulletsShot;
     private int bulletsRemaining;
     private bool isReloading;
-    //private int HPOrig;
+    private int HPOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -173,11 +173,12 @@ public class playerControler : MonoBehaviour, IDamage
     {
         return bulletsRemaining;
     }
-    //public void spawnPlayer()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //    HP = HPOrig;
-    //}
+
+    public void spawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+        HP = HPOrig;
+    }
 }
