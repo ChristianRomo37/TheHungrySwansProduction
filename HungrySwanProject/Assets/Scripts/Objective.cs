@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Objective : MonoBehaviour
+public class Objective : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
     void Start()
+    {
+        gameManager.instance.updateGameGoal(1);
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void  interact(bool canInteract) 
     {
-        
+        gameManager.instance.updateGameGoal(1);
     }
 }
