@@ -23,7 +23,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
-    int enemiesRemaining;
+    int carPartsRemaining;
 
     // Start is called before the first frame update
     void Awake()
@@ -78,9 +78,9 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal(int amount)
     {
-        enemiesRemaining += amount;
+        carPartsRemaining += amount;
 
-        if (enemiesRemaining <= 0)
+        if (carPartsRemaining <= 0)
         {
             StartCoroutine(youWin());
         }
