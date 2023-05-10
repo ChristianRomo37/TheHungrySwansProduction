@@ -22,6 +22,8 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     bool isShooting;
     Color colorOrg;
+    bool playerInRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,17 +33,21 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        playerDir = gameManager.instance.player.transform.position - transform.position;
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
-            facePlayer();
-
-       agent.SetDestination(gameManager.instance.player.transform.position);
-
-        if (!isShooting)
+        if (playerInRange)
         {
-            StartCoroutine(shoot());
+            playerDir = gameManager.instance.player.transform.position - transform.position;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
+                facePlayer();
+
+           agent.SetDestination(gameManager.instance.player.transform.position);
+
+            if (!isShooting)
+            {
+                StartCoroutine(shoot());
+            }
         }
+
     }
 
     void facePlayer()
@@ -76,5 +82,21 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrg;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
     }
 }
