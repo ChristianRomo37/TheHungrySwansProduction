@@ -8,7 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    //[SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -85,7 +85,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        Instantiate(bullet, transform.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -96,7 +96,7 @@ public class enemyAI : MonoBehaviour, IDamage
         HP -= damage;
         StartCoroutine(flashColor());
 
-        //agent.SetDestination(gameManager.instance.player.transform.position);
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
