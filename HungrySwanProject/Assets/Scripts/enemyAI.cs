@@ -8,11 +8,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    //[SerializeField] Transform shootPos;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
+    [SerializeField] Transform headPos;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
@@ -32,6 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrg = model.material.color;
+        //gameManager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -57,18 +60,18 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                    agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                    facePlayer();
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                        facePlayer();
 
-                if (!isShooting && angleToPlayer <= shootAngle)
-                    StartCoroutine(shoot());
-
-                return true;
+                
+                    if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= agent.stoppingDistance)
+                        StartCoroutine(shoot());
+                
+                    return true;
             }
         }
-
         return false;
     }
 
@@ -93,7 +96,7 @@ public class enemyAI : MonoBehaviour, IDamage
         HP -= damage;
         StartCoroutine(flashColor());
 
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        //agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
