@@ -217,6 +217,7 @@ RectTransform:
   m_Children:
   - {fileID: 413219078}
   - {fileID: 361124055}
+  - {fileID: 1992054885}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -395,26 +396,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
-      propertyPath: magSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
-      propertyPath: shootDist
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
-      propertyPath: shootRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
-      propertyPath: reloadTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
-      propertyPath: shootDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8799042579026619390, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -529,7 +510,7 @@ GameObject:
   - component: {fileID: 1080007177}
   - component: {fileID: 1080007176}
   - component: {fileID: 1080007175}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Normal Zombie AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,9 +612,9 @@ MonoBehaviour:
   agent: {fileID: 1080007180}
   HP: 5
   shootDist: 1
-  shootRate: 0.15
+  shootRate: 0.5
   shootDamage: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
 --- !u!195 &1080007180
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -753,3 +734,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1992054884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1992054885}
+  - component: {fileID: 1992054887}
+  - component: {fileID: 1992054886}
+  m_Layer: 5
+  m_Name: Reticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1992054885
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992054884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 327550528}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1992054886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992054884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1992054887
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992054884}
+  m_CullTransparentMesh: 1

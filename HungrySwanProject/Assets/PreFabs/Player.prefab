@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 8799042579026619377}
   - component: {fileID: 8799042579026619376}
   - component: {fileID: 8799042579026619391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8799042579026619390}
-  m_LocalRotation: {x: 0, y: 0.34217066, z: 0, w: 0.9396379}
+  m_LocalRotation: {x: 0, y: 0.34216774, z: 0, w: 0.9396389}
   m_LocalPosition: {x: -1.9378015, y: 0.5799998, z: 2.279627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -138,7 +138,7 @@ Transform:
   - {fileID: 8799042578258906012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 40.018, z: 0}
 --- !u!114 &8799042579026619380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,11 +158,12 @@ MonoBehaviour:
   jumpHeight: 10
   gravityValue: 10
   jumpMax: 3
-  shootDist: 0
-  shootRate: 0
-  shootDamage: 0
-  magSize: 0
-  reloadTime: 0
+  shootDist: 300
+  shootRate: 0.1
+  shootDamage: 1
+  magSize: 10
+  reloadTime: 1
+  shotsFired: 1
 --- !u!143 &8799042579026619379
 CharacterController:
   m_ObjectHideFlags: 0
