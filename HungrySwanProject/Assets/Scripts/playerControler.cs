@@ -25,12 +25,13 @@ public class playerControler : MonoBehaviour, IDamage
     //[SerializeField] bool holdFire;
 
     private int jumpedTimes;
+    private int totalBulletCount;
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private bool isSprinting;
     private bool isShooting;
-    //private int bulletsShot;
+    private int bulletsShot;
     private int bulletsRemaining;
     private bool isReloading;
     //private int HPOrig;
@@ -40,30 +41,32 @@ public class playerControler : MonoBehaviour, IDamage
     {
         //HPOrig = HP;
         bulletsRemaining = magSize;
+        totalBulletCount = magSize;
+        gameManager.instance.updateBulletCounter();
         //spawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(gameManager.instance.activeMenu == null)
-        //{
-        movement();
-        if (Input.GetButtonDown("Shoot") && !isShooting)
+        if (gameManager.instance.activeMenu == null)
         {
-            //Debug.Log("shoot");
-            if (bulletsRemaining > 0 && !isReloading)
+            movement();
+            if (Input.GetButtonDown("Shoot") && !isShooting)
             {
-                StartCoroutine(shoot());
+                //Debug.Log("shoot");
+                if (bulletsRemaining > 0 && !isReloading)
+                {
+                    StartCoroutine(shoot());
+                }
+            }
+
+            if (Input.GetButtonDown("Reload") && !isReloading || Input.GetButtonDown("Reload") && bulletsRemaining != magSize || Input.GetButtonDown("Reload") && totalBulletCount != 0)
+            {
+                Debug.Log("re");
+                StartCoroutine(reload());
             }
         }
-
-        if (Input.GetButtonDown("Reload") && !isReloading)
-        {
-            //Debug.Log("re");
-            StartCoroutine(reload());
-        }
-        //}
         sprint();
     }
 
@@ -108,6 +111,8 @@ public class playerControler : MonoBehaviour, IDamage
     {
         isShooting = true;
         bulletsRemaining--;
+        //bulletsShot++;
+        gameManager.instance.updateBulletCounter();
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDist))
@@ -134,7 +139,7 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //gameManager.instance.youLose();
+            gameManager.instance.youLose();
         }
     }
 
@@ -142,13 +147,32 @@ public class playerControler : MonoBehaviour, IDamage
     {
         isReloading = true;
 
-        bulletsRemaining = magSize;
+        int bullestToReload = magSize - bulletsRemaining;
 
+        if (totalBulletCount > 0 && bulletsRemaining < magSize)
+        {
+            int reservedAmmo = (int)Mathf.Min(totalBulletCount, bullestToReload);
+            bulletsRemaining += reservedAmmo;
+            totalBulletCount -= reservedAmmo;
+        }
+        //Debug.Log("reload");
+        gameManager.instance.updateBulletCounter();
+
+        //bulletsShot = 0;
         yield return new WaitForSeconds(reloadTime);
 
         isReloading = false;
     }
 
+    public int getMagSize()
+    {
+        return totalBulletCount;
+    }
+
+    public int getBulletsRemaining()
+    {
+        return bulletsRemaining;
+    }
     //public void spawnPlayer()
     //{
     //    controller.enabled = false;
