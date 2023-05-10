@@ -615,10 +615,12 @@ MonoBehaviour:
   model: {fileID: 1080007176}
   agent: {fileID: 1080007180}
   HP: 5
-  playerFaceSpeed: 5
+  playerFaceSpeed: 1
+  viewCone: 90
   shootDist: 1
   shootRate: 0.5
   shootDamage: 1
+  shootAngle: 20
   bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
 --- !u!195 &1080007180
 NavMeshAgent:
