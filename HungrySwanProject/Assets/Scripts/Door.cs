@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
     [SerializeField] Renderer model;
     [SerializeField] Collider col;
     
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -28,6 +27,5 @@ public class Door : MonoBehaviour
     {
         model.enabled = state;
         col.enabled = state;
-        
     }
 }

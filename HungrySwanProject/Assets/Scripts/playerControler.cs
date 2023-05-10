@@ -21,6 +21,8 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int shootDamage;
     [Range(1, 10)][SerializeField] int magSize;
     [Range(1, 10)][SerializeField] float reloadTime;
+    [Range(1, 10)][SerializeField] int shotsFired;
+    //[SerializeField] bool holdFire;
 
     private int jumpedTimes;
     private Vector3 move;
@@ -36,16 +38,20 @@ public class playerControler : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        //HPOrig = HP;
         bulletsRemaining = magSize;
+        //spawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if(gameManager.instance.activeMenu == null)
+        //{
         movement();
         if (Input.GetButtonDown("Shoot") && !isShooting)
         {
-            Debug.Log("shoot");
+            //Debug.Log("shoot");
             if (bulletsRemaining > 0 && !isReloading)
             {
                 StartCoroutine(shoot());
@@ -54,9 +60,10 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (Input.GetButtonDown("Reload") && !isReloading)
         {
-            Debug.Log("re");
+            //Debug.Log("re");
             StartCoroutine(reload());
         }
+        //}
         sprint();
     }
 
@@ -109,7 +116,10 @@ public class playerControler : MonoBehaviour, IDamage
 
             if (damageable != null)
             {
-                damageable.takeDamage(shootDamage);
+                for (int i = 0; i < shotsFired; i++)
+                {
+                    damageable.takeDamage(shootDamage);
+                }
             }
         }
         //bulletsShot++;
@@ -139,12 +149,11 @@ public class playerControler : MonoBehaviour, IDamage
         isReloading = false;
     }
 
-    //public void spaenPlayer()
+    //public void spawnPlayer()
     //{
     //    controller.enabled = false;
     //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
     //    controller.enabled = true;
-    //    HP = HPOrig;
     //    HP = HPOrig;
     //}
 }
