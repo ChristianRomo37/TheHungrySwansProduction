@@ -11,11 +11,11 @@ public class gameManager : MonoBehaviour
     public playerControler playerScript;
     //public GameObject playerSpawnPos;
 
-    //[Header("-----UI Stuff-----")]
+    [Header("-----UI Stuff-----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
-    //public GameObject loseMenu;
-    //public GameObject winMenu;
+    public GameObject loseMenu;
+    public GameObject winMenu;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -60,28 +60,28 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    //public void youLose()
-    //{
-    //    pauseState();
-    //    activeMenu = loseMenu;
-    //    activeMenu.SetActive(true);
-    //}
+    public void youLose()
+    {
+        pauseState();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(true);
+    }
 
-    //public void updateGameGoal(int amount)
-    //{
-    //    enemiesRemaining += amount;
+    public void updateGameGoal(int amount)
+    {
+        enemiesRemaining += amount;
 
-    //    if (enemiesRemaining <= 0)
-    //    {
-    //        StartCoroutine(youWin());
-    //    }
-    //}
+        if (enemiesRemaining <= 0)
+        {
+            StartCoroutine(youWin());
+        }
+    }
 
-    //IEnumerator youWin()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //    activeMenu = winMenu;
-    //    activeMenu.SetActive(true);
-    //    pauseState();
-    //}
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(3);
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        pauseState();
+    }
 }
