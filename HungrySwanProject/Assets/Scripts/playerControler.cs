@@ -39,10 +39,10 @@ public class playerControler : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        //HPOrig = HP;
+        HPOrig = HP;
         bulletsRemaining = magSize;
         gameManager.instance.updateBulletCounter();
-        //spawnPlayer();
+        spawnPlayer();
     }
 
     // Update is called once per frame

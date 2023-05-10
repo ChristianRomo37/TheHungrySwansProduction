@@ -33,7 +33,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerControler>();
         timeScaleOrig = Time.timeScale;
         updateBulletCounter();
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
     }
 
     // Update is called once per frame
