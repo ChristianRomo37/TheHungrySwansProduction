@@ -60,15 +60,16 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                    agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                    facePlayer();
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                        facePlayer();
 
-                if (!isShooting && angleToPlayer <= shootAngle)
-                    StartCoroutine(shoot());
-
-                return true;
+                
+                    if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= agent.stoppingDistance)
+                        StartCoroutine(shoot());
+                
+                    return true;
             }
         }
         return false;
