@@ -92,6 +92,8 @@ public class enemyAI : MonoBehaviour, IDamage
         HP -= damage;
         StartCoroutine(flashColor());
 
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
         if (HP <= 0)
         {
             Destroy(gameObject);
