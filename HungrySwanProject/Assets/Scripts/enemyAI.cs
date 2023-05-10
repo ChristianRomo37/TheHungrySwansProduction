@@ -12,17 +12,20 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
+    [SerializeField] int viewCone;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
     [SerializeField] GameObject bullet;
+     
 
     Vector3 playerDir;
     bool isShooting;
     Color colorOrg;
     bool playerInRange;
+    float angleToPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -33,21 +36,39 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && canSeePlayer())
         {
-            playerDir = gameManager.instance.player.transform.position - transform.position;
+            
+        }
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-                facePlayer();
+    }
 
-           agent.SetDestination(gameManager.instance.player.transform.position);
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-            if (!isShooting)
+        Debug.DrawRay(transform.position, playerDir);
+        Debug.Log(angleToPlayer);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                StartCoroutine(shoot());
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                    facePlayer();
+
+                if (!isShooting)
+                    StartCoroutine(shoot());
+
+                return true;
             }
         }
 
+        return false;
     }
 
     void facePlayer()
