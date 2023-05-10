@@ -12,10 +12,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
+    [SerializeField] int playerFaceSpeed;
+    [SerializeField] int viewCone;
+    [SerializeField] Transform headPos;
 
     //[Header("-----Enemy Weapon-----")]
     //[Range(2, 300)][SerializeField] int shootDist;
     //[Range(0.1f, 3f)][SerializeField] float shootRate;
+    [SerializeField] int shootAngle;
     //[Range(1, 10)][SerializeField] int shootDamage;
     //[SerializeField] GameObject bullet;
 
