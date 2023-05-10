@@ -7,18 +7,18 @@ public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
-    //[SerializeField] NavMeshAgent agent;
+    [SerializeField] NavMeshAgent agent;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
 
-    //[Header("-----Enemy Weapon-----")]
-    //[Range(2, 300)][SerializeField] int shootDist;
-    //[Range(0.1f, 3f)][SerializeField] float shootRate;
-    //[Range(1, 10)][SerializeField] int shootDamage;
-    //[SerializeField] GameObject bullet;
+    [Header("-----Enemy Weapon-----")]
+    [Range(1, 300)][SerializeField] int shootDist;
+    [Range(0.1f, 3f)][SerializeField] float shootRate;
+    [Range(1, 10)][SerializeField] int shootDamage;
+    [SerializeField] GameObject bullet;
 
-    //bool isShooting;
+    bool isShooting;
     Color colorOrg;
     // Start is called before the first frame update
     void Start()
@@ -29,23 +29,23 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        //agent.SetDestination(gameManager.instance.player.transform.position);
+       agent.SetDestination(gameManager.instance.player.transform.position);
 
-        //if (!isShooting)
-        //{
-        //    StartCoroutine(shoot());
-        //}
+        if (!isShooting)
+        {
+            StartCoroutine(shoot());
+        }
     }
 
-    //IEnumerator shoot()
-    //{
-    //    isShooting = true;
+    IEnumerator shoot()
+    {
+        isShooting = true;
 
-    //    Instantiate(bullet, transform.position, transform.rotation);
-    //    yield return new WaitForSeconds(shootRate);
+        Instantiate(bullet, transform.position, transform.rotation);
+        yield return new WaitForSeconds(shootRate);
 
-    //    isShooting = false;
-    //}
+        isShooting = false;
+    }
 
     public void takeDamage(int damage)
     {
