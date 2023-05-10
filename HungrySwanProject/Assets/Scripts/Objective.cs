@@ -14,8 +14,17 @@ public class Objective : MonoBehaviour, IInteractable
         
     }
 
-    public void  interact(bool canInteract) 
+    public void interact(bool canInteract) 
     {
-        gameManager.instance.updateGameGoal(1);
+        gameManager.instance.updateGameGoal(-1);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interact(true);
+        }
     }
 }
