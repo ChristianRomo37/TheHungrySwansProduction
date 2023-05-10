@@ -18,6 +18,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
+    [SerializeField] int shootAngle; 
     [SerializeField] GameObject bullet;
      
 
@@ -61,7 +62,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
 
-                if (!isShooting)
+                if (!isShooting && angleToPlayer <= shootAngle)
                     StartCoroutine(shoot());
 
                 return true;
