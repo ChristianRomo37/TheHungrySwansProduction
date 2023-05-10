@@ -15,9 +15,11 @@ public class gameManager : MonoBehaviour
     //public GameObject activeMenu;
     //public GameObject pauseMenu;
     //public GameObject loseMenu;
+    //public GameObject winMenu;
 
     //public bool isPaused;
     //float timeScaleOrig;
+    int enemiesRemaining;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,5 +65,23 @@ public class gameManager : MonoBehaviour
     //    pauseState();
     //    activeMenu = loseMenu;
     //    activeMenu.SetActive(true);
+    //}
+
+    //public void updateGameGoal(int amount)
+    //{
+    //    enemiesRemaining += amount;
+
+    //    if (enemiesRemaining <= 0)
+    //    {
+    //        StartCoroutine(youWin());
+    //    }
+    //}
+
+    //IEnumerator youWin()
+    //{
+    //    yield return new WaitForSeconds(3);
+    //    activeMenu = winMenu;
+    //    activeMenu.SetActive(true);
+    //    pauseState();
     //}
 }
