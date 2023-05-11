@@ -49,27 +49,29 @@ public class enemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        playerDir = gameManager.instance.player.transform.position - transform.position;
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(transform.position, playerDir);
         Debug.Log(angleToPlayer);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                     agent.SetDestination(gameManager.instance.player.transform.position);
 
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                        facePlayer();
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePlayer();
 
-                
-                    if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= agent.stoppingDistance)
-                        StartCoroutine(shoot());
-                
-                    return true;
+                }
+                if (!isShooting && angleToPlayer <= shootAngle)
+                {
+                    StartCoroutine(shoot());
+                }
+                return true;
             }
         }
         return false;
@@ -98,6 +100,8 @@ public class enemyAI : MonoBehaviour, IDamage
         StartCoroutine(flashColor());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
+
+        playerInRange = true;
 
         if (HP <= 0)
         {

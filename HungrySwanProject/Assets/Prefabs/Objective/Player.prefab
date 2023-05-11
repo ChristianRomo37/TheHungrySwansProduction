@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 8799042579026619379}
   - component: {fileID: 8799042579026619377}
   - component: {fileID: 8799042579026619376}
-  - component: {fileID: 2173506499789691833}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -166,6 +165,7 @@ MonoBehaviour:
   reloadTime: 1
   shotsFired: 1
   totalBulletCount: 154
+  healthBar: {fileID: 0}
 --- !u!143 &8799042579026619379
 CharacterController:
   m_ObjectHideFlags: 0
@@ -234,20 +234,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2173506499789691833
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799042579026619390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &365313940
 PrefabInstance:
   m_ObjectHideFlags: 0
