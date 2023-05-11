@@ -406,6 +406,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1858604792}
+    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+      propertyPath: shootDist
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799042579026619380, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+      propertyPath: shootRate
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8799042579026619390, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1275,8 +1283,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 639626826640172254, guid: b613b60e0fe595c478c92e9c587bf0f5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b613b60e0fe595c478c92e9c587bf0f5, type: 3}
 --- !u!1001 &1258880858406888977
 PrefabInstance:
@@ -1343,6 +1350,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1037324996368717259, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1055214466048820887, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -1393,11 +1404,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1455454540340897153, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
       propertyPath: m_StoppingDistance
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693335163153668612, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693335163153668615, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693335163153668615, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020337404511712912, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020337404571476142, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300543768899926035, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7263884109088272771, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: m_Speed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8169331407084669566, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
       propertyPath: m_Name
       value: Zombie Locations
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941020546217540, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941020546217540, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021124607564, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021124607564, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021187284319, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021187284319, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021362289287, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066941021362289287, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
+      propertyPath: shootAngle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0861bcf3a1b891b4a8789628fb2f88ce, type: 3}
