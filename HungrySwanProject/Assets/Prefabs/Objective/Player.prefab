@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd7fba49001f3e4e8c7adbb0945d09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 100
-  sensVert: 100
+  sensHor: 300
+  sensVert: 300
   lockVermin: -90
   lockVermax: 90
   invertY: 0
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 8799042579026619379}
   - component: {fileID: 8799042579026619377}
   - component: {fileID: 8799042579026619376}
+  - component: {fileID: 2173506499789691833}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -232,6 +233,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &2173506499789691833
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799042579026619390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &365313940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,15 +272,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e97017e8ea32f7b4eb78cd918a58ca5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.21049444
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e97017e8ea32f7b4eb78cd918a58ca5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.10136631
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e97017e8ea32f7b4eb78cd918a58ca5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.91075367
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e97017e8ea32f7b4eb78cd918a58ca5a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -14,6 +14,7 @@ public class ButtonFunctions : MonoBehaviour
     public void restart()
     {
         gameManager.instance.unPauseState();
+        gameManager.instance.updateBulletCounter();
         // not good code if you decide to make a bigger game since it will take time to reload back to restart
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -29,5 +30,6 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.playerScript.spawnPlayer();
         gameManager.instance.enemyAIscript.spawnEnemy();
+
     }
 }

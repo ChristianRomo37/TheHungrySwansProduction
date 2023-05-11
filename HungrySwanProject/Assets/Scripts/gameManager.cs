@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public TextMeshProUGUI totalMagSize;
+    public TextMeshProUGUI bulletsLeft;
+    
 
     public bool isPaused;
     float timeScaleOrig;
@@ -43,6 +47,7 @@ public class gameManager : MonoBehaviour
         enemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
         enemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         enemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
+        updateBulletCounter();
     }
 
     // Update is called once per frame
@@ -55,6 +60,10 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
             pauseState();
         }
+        //if (playerScript.getMagSize() < 0)
+        //{
+        //    totalMagSize.text = "0";
+        //}
     }
 
     public void pauseState()
@@ -97,5 +106,11 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         activeMenu.SetActive(true);
         pauseState();
+    }
+
+    public void updateBulletCounter()
+    {
+        totalMagSize.text = playerScript.getMagSize().ToString();
+        bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
     }
 }
