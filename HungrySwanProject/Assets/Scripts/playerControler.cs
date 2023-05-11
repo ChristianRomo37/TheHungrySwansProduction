@@ -22,10 +22,10 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int magSize;
     [Range(1, 10)][SerializeField] float reloadTime;
     [Range(1, 10)][SerializeField] int shotsFired;
+    [Range(1, 500)][SerializeField] int totalBulletCount;
     //[SerializeField] bool holdFire;
 
     private int jumpedTimes;
-    private int totalBulletCount;
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -41,7 +41,6 @@ public class playerControler : MonoBehaviour, IDamage
     {
         //HPOrig = HP;
         bulletsRemaining = magSize;
-        totalBulletCount = magSize;
         gameManager.instance.updateBulletCounter();
         //spawnPlayer();
     }
@@ -63,7 +62,7 @@ public class playerControler : MonoBehaviour, IDamage
 
             if (Input.GetButtonDown("Reload") && !isReloading || Input.GetButtonDown("Reload") && bulletsRemaining != magSize || Input.GetButtonDown("Reload") && totalBulletCount != 0)
             {
-                Debug.Log("re");
+                //Debug.Log("re");
                 StartCoroutine(reload());
             }
         }
