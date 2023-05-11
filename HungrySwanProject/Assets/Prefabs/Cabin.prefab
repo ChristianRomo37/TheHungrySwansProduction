@@ -221,8 +221,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412153397516907299}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 76.48, y: 96.34, z: -44.69}
-  m_LocalScale: {x: 4.9454155, y: 0.85374, z: 11.770228}
+  m_LocalPosition: {x: 76.48, y: 96.55, z: -44.69}
+  m_LocalScale: {x: 4.1238832, y: 0.85374, z: 11.770228}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5412153397656609497}
@@ -557,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412153397831593002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83.350174, y: 87.41454, z: -44.640747}
+  m_LocalPosition: {x: 83.350174, y: 86.86, z: -44.640747}
   m_LocalScale: {x: 13.068, y: 0.85374, z: 11.770228}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -946,7 +946,7 @@ Transform:
   m_GameObject: {fileID: 5412153398741889101}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 76.48, y: 92.79, z: -48.81}
-  m_LocalScale: {x: 4.9454155, y: 0.85374, z: 11.770228}
+  m_LocalScale: {x: 3.9683003, y: 0.85374, z: 11.770228}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5412153397656609497}
@@ -1127,11 +1127,11 @@ GameObject:
   - component: {fileID: 5412153398938422813}
   - component: {fileID: 5412153398938422814}
   m_Layer: 0
-  m_Name: Door (1)
+  m_Name: Cabin Door
   m_TagString: Door
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5412153398938422815
 Transform:
@@ -1141,8 +1141,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412153398938422800}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 75.960175, y: 90.72455, z: -44.67}
-  m_LocalScale: {x: 6.187914, y: 0.030000014, z: 2.9593604}
+  m_LocalPosition: {x: 76.38, y: 90.76, z: -44.96}
+  m_LocalScale: {x: 7.818444, y: 0.030000014, z: 3.9022613}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5412153397656609497}
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 5412153398938422812}
-  col: {fileID: 5412153398938422814}
+  col: {fileID: 5412153398938422813}
 --- !u!33 &5412153398938422811
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1223,7 +1223,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &5412153398938422814
 BoxCollider:
