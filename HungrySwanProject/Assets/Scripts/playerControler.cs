@@ -35,6 +35,7 @@ public class playerControler : MonoBehaviour, IDamage
     private int bulletsRemaining;
     private bool isReloading;
     private int HPOrig;
+    private int OrigBullet;
 
     public HealthBar healthBar;
 
@@ -42,6 +43,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        OrigBullet = totalBulletCount;
         healthBar.SetMaxHealth(HPOrig);
         bulletsRemaining = magSize;
         gameManager.instance.updateBulletCounter();
@@ -189,6 +191,9 @@ public class playerControler : MonoBehaviour, IDamage
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
         HP = HPOrig;
+        totalBulletCount = OrigBullet;
+        bulletsRemaining = magSize;
         healthBar.SetHealth(HP);
+        gameManager.instance.updateBulletCounter();
     }
 }
