@@ -8,7 +8,7 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
 
     [Header("-----Player Stats-----")]
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(1, 20)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] float playerSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
     [Range(1, 10)][SerializeField] float jumpHeight;
@@ -33,14 +33,14 @@ public class playerControler : MonoBehaviour, IDamage
     //private int bulletsShot;
     private int bulletsRemaining;
     private bool isReloading;
-    //private int HPOrig;
+    private int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
-        //HPOrig = HP;
+        HPOrig = HP;
         bulletsRemaining = magSize;
-        //spawnPlayer();
+        spawnPlayer();
     }
 
     // Update is called once per frame
@@ -134,7 +134,7 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            //gameManager.instance.youLose();
+            gameManager.instance.youLose();
         }
     }
 
@@ -149,11 +149,11 @@ public class playerControler : MonoBehaviour, IDamage
         isReloading = false;
     }
 
-    //public void spawnPlayer()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //    HP = HPOrig;
-    //}
+    public void spawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+        HP = HPOrig;
+    }
 }

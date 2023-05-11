@@ -23,9 +23,11 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-    //public void respawnPlayer()
-    //{
-    //    gameManager.instance.unPauseState();
-    //    gameManager.instance.playerScript.spawnPlayer();
-    //}
+    public void respawnPlayer()
+    {
+        gameManager.instance.unPauseState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.playerScript.spawnPlayer();
+        gameManager.instance.enemyAIscript.spawnEnemy();
+    }
 }

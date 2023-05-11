@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 5558819359397060712}
   m_Layer: 6
   m_Name: Spitter Zombie Model AI
-  m_TagString: Normal Zombie
+  m_TagString: Spitter Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1075,7 +1075,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3072644604151196540}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -5, y: -0.5, z: 4.7813344}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1084,7 +1084,7 @@ Transform:
   - {fileID: 3072644604151230494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!114 &3072644604151232282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   model: {fileID: 3072644604154306616}
   agent: {fileID: 3728566188301056213}
   shootPos: {fileID: 3072644604151232274}
-  HP: 5
+  HP: 3
   playerFaceSpeed: 5
   viewCone: 90
   headPos: {fileID: 0}

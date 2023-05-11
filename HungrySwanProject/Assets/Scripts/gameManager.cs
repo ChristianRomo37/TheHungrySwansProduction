@@ -8,8 +8,11 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
+    public GameObject enemy;
     public playerControler playerScript;
-    //public GameObject playerSpawnPos;
+    public enemyAI enemyAIscript;
+    public GameObject playerSpawnPos;
+    public GameObject enemySpawnPos;
 
     [Header("-----UI Stuff-----")]
     public GameObject activeMenu;
@@ -25,10 +28,21 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        timeScaleOrig = Time.timeScale;
+       
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
-        timeScaleOrig = Time.timeScale;
-        //playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        
+        enemy = GameObject.FindGameObjectWithTag("Normal Zombie");
+        enemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
+        enemy = GameObject.FindGameObjectWithTag("Fast Zombie");
+        enemy = GameObject.FindGameObjectWithTag("Tank Zombie");
+        enemyAIscript = enemy.GetComponent<enemyAI>();
+        enemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
+        enemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
+        enemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
+        enemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
     }
 
     // Update is called once per frame

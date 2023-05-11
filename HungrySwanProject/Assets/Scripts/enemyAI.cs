@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,11 +30,14 @@ public class enemyAI : MonoBehaviour, IDamage
     Color colorOrg;
     bool playerInRange;
     float angleToPlayer;
+    private int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
         colorOrg = model.material.color;
+        spawnEnemy();
         //gameManager.instance.updateGameGoal(1);
     }
 
@@ -125,5 +129,11 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
         }
+    }
+
+    public void spawnEnemy()
+    {
+        transform.position = gameManager.instance.enemySpawnPos.transform.position;
+        HP = HPOrig;
     }
 }
