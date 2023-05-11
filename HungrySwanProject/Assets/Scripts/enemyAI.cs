@@ -65,7 +65,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     facePlayer();
-
                 }
                 if (!isShooting && angleToPlayer <= shootAngle)
                 {
@@ -88,7 +87,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = true;
 
         Instantiate(bullet, shootPos.position, transform.rotation);
-        
+
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;

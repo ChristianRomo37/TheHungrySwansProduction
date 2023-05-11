@@ -189,5 +189,6 @@ public class playerControler : MonoBehaviour, IDamage
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
         HP = HPOrig;
+        healthBar.SetHealth(HP);
     }
 }
