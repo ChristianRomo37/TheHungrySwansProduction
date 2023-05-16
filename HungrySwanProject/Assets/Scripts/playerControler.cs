@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class playerControler : MonoBehaviour, IDamage
@@ -16,6 +18,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int jumpMax;
 
     [Header("-----Weapon Stats-----")]
+    public List<gunStats> gunList = new List<gunStats>();
     [Range(2, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
@@ -23,7 +26,8 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float reloadTime;
     [Range(1, 10)][SerializeField] int shotsFired;
     [Range(1, 500)][SerializeField] int totalBulletCount;
-    //[SerializeField] bool holdFire;
+    [SerializeField] MeshFilter gunModel;
+    [SerializeField] MeshRenderer gunMat;
 
     private int jumpedTimes;
     private Vector3 move;
@@ -31,11 +35,12 @@ public class playerControler : MonoBehaviour, IDamage
     private bool groundedPlayer;
     private bool isSprinting;
     private bool isShooting;
+    private int HPOrig;
     private int bulletsShot;
     private int bulletsRemaining;
     private bool isReloading;
-    private int HPOrig;
     private int OrigBullet;
+    int selectedGun;
 
     public HealthBar healthBar;
 
@@ -61,16 +66,18 @@ public class playerControler : MonoBehaviour, IDamage
         if (gameManager.instance.activeMenu == null)
         {
             movement();
+            changeGun();
+
             if (Input.GetButtonDown("Shoot") && !isShooting)
             {
                 //Debug.Log("shoot");
-                if (bulletsRemaining > 0 && !isReloading)
+                if (gunList.Count > 0 && bulletsRemaining > 0 && !isReloading)
                 {
                     StartCoroutine(shoot());
                 }
             }
 
-            if (Input.GetButtonDown("Reload") && !isReloading || Input.GetButtonDown("Reload") && bulletsRemaining != magSize || Input.GetButtonDown("Reload") && totalBulletCount != 0)
+            if (gunList.Count > 0 && Input.GetButtonDown("Reload") && !isReloading || gunList.Count > 0 && Input.GetButtonDown("Reload") && bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && totalBulletCount != 0)
             {
                 //Debug.Log("re");
                 StartCoroutine(reload());
@@ -145,13 +152,16 @@ public class playerControler : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        
+
         if (HP <= 0)
         {
             healthBar.SetHealth(0);
             gameManager.instance.youLose();
         }
-        else healthBar.SetHealth(HP);
+        else
+        {
+            healthBar.SetHealth(HP);
+        }
     }
 
     IEnumerator reload()
@@ -195,5 +205,56 @@ public class playerControler : MonoBehaviour, IDamage
         bulletsRemaining = magSize;
         healthBar.SetHealth(HP);
         gameManager.instance.updateBulletCounter();
+    }
+
+    public void gunPickup(gunStats gunStat)
+    {
+        gunList.Add(gunStat);
+
+        shootDamage = gunStat.shootDamage;
+        shootDist = gunStat.shootDist;
+        shootRate = gunStat.shootRate;
+        magSize = gunStat.magSize;
+        reloadTime = gunStat.reloadTime;
+        shotsFired = gunStat.shotsFired;
+        totalBulletCount = gunStat.totalBulletCount;
+
+        gameManager.instance.updateBulletCounter();
+
+        gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
+        gunMat.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        selectedGun = gunList.Count - 1;
+    }
+
+    void changeGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+            changeGunStats();
+            gameManager.instance.updateBulletCounter();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            changeGunStats();
+            gameManager.instance.updateBulletCounter();
+        }
+    }
+
+    void changeGunStats()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootDist = gunList[selectedGun].shootDist;
+        shootRate = gunList[selectedGun].shootRate;
+        magSize = gunList[selectedGun].magSize;
+        reloadTime = gunList[selectedGun].reloadTime;
+        shotsFired = gunList[selectedGun].shotsFired;
+        totalBulletCount = gunList[selectedGun].totalBulletCount;
+        gameManager.instance.updateBulletCounter();
+
+        gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
