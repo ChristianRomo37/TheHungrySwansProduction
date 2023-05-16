@@ -9,8 +9,17 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
+    public GameObject Nenemy;
+    public GameObject Senemy;
+    public GameObject Fenemy;
+    public GameObject Tenemy;
     public playerControler playerScript;
+    public enemyAI enemyAIscript;
     public GameObject playerSpawnPos;
+    public GameObject NEnemySpawnPos;
+    public GameObject SEnemySpawnPos;
+    public GameObject FEnemySpawnPos;
+    public GameObject TEnemySpawnPos;
 
     [Header("-----UI Stuff-----")]
     public GameObject activeMenu;
@@ -29,11 +38,23 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        timeScaleOrig = Time.timeScale;
+       
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
-        timeScaleOrig = Time.timeScale;
-        updateBulletCounter();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        
+        Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
+        Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
+        Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
+        Tenemy = GameObject.FindGameObjectWithTag("Tank Zombie");
+        enemyAIscript = Nenemy.GetComponent<enemyAI>();
+        NEnemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
+        SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
+        FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
+        TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
+        updateBulletCounter();
+
     }
 
     // Update is called once per frame

@@ -10,7 +10,7 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
 
     [Header("-----Player Stats-----")]
-    [Range(1, 10)][SerializeField] int HP;
+    [Range(1, 20)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] float playerSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
     [Range(1, 10)][SerializeField] float jumpHeight;
@@ -48,10 +48,13 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+
         OrigBullet = totalBulletCount;
         healthBar.SetMaxHealth(HPOrig);
         bulletsRemaining = magSize;
+
         gameManager.instance.updateBulletCounter();
+
         spawnPlayer();
     }
 
@@ -184,6 +187,7 @@ public class playerControler : MonoBehaviour, IDamage
 
         isReloading = false;
     }
+
 
     public int getMagSize()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,11 +30,14 @@ public class enemyAI : MonoBehaviour, IDamage
     Color colorOrg;
     bool playerInRange;
     float angleToPlayer;
+    private int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
         colorOrg = model.material.color;
+        spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
 
@@ -129,5 +133,27 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
         }
+    }
+
+    public void spawnEnemys()
+    {
+        if (this.CompareTag("Normal Zombie"))
+        {
+            transform.position = gameManager.instance.NEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Spitter Zombie"))
+        {
+            transform.position = gameManager.instance.SEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Fast Zombie"))
+        {
+            transform.position = gameManager.instance.FEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Tank Zombie"))
+        {
+            transform.position = gameManager.instance.TEnemySpawnPos.transform.position;
+        }
+        
+        HP = HPOrig;
     }
 }
