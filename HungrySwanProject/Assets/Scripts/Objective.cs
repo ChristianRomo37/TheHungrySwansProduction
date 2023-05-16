@@ -9,11 +9,6 @@ public class Objective : MonoBehaviour, IInteractable
         gameManager.instance.updateGameGoal(1);
     }
 
-    void Update()
-    {
-        
-    }
-
     public void interact(bool canInteract) 
     {
         gameManager.instance.updateGameGoal(-1);

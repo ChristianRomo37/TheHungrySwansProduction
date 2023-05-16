@@ -35,20 +35,32 @@ public class playerControler : MonoBehaviour, IDamage
     private int bulletsRemaining;
     private bool isReloading;
     private int HPOrig;
+    private int OrigBullet;
+
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
+
+        OrigBullet = totalBulletCount;
+        healthBar.SetMaxHealth(HPOrig);
         bulletsRemaining = magSize;
-        spawnPlayer();
 
         gameManager.instance.updateBulletCounter();
+<
+        spawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Please leave this here for testing purposes
+        //Damages the player if you hit "/"
+        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(5);
+
+
         if (gameManager.instance.activeMenu == null)
         {
             movement();
@@ -136,11 +148,13 @@ public class playerControler : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        
         if (HP <= 0)
         {
+            healthBar.SetHealth(0);
             gameManager.instance.youLose();
         }
+        else healthBar.SetHealth(HP);
     }
 
     IEnumerator reload()
@@ -181,5 +195,9 @@ public class playerControler : MonoBehaviour, IDamage
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
         HP = HPOrig;
+        totalBulletCount = OrigBullet;
+        bulletsRemaining = magSize;
+        healthBar.SetHealth(HP);
+        gameManager.instance.updateBulletCounter();
     }
 }

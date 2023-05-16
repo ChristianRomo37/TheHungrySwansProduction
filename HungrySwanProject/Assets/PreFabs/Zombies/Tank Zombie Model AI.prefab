@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948866130553435168}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.50891, y: 0.4909283, z: 0.4909283, w: 0.50891}
+  m_LocalPosition: {x: 0.01423209, y: 0, z: -0.0137290945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 948866130553792322}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 87.939}
 --- !u!137 &948866130567098470
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ Transform:
   m_GameObject: {fileID: 948866130553436962}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0.18, y: -0.5, z: 4.7813344}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 948866130553792230}
@@ -1037,10 +1037,10 @@ MonoBehaviour:
   model: {fileID: 948866130567098470}
   agent: {fileID: 1455140394010273931}
   shootPos: {fileID: 948866130553792332}
-  HP: 10
+  HP: 20
   playerFaceSpeed: 5
   viewCone: 90
-  headPos: {fileID: 0}
+  headPos: {fileID: 948866130553792224}
   shootDist: 5
   shootRate: 1
   shootDamage: 4
@@ -1055,12 +1055,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 948866130553436962}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 3
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

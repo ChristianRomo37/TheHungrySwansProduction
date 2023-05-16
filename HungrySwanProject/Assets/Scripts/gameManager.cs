@@ -54,6 +54,7 @@ public class gameManager : MonoBehaviour
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
         updateBulletCounter();
+
     }
 
     // Update is called once per frame
