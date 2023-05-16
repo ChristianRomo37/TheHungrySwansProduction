@@ -29,7 +29,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.unPauseState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.playerScript.spawnPlayer();
-        gameManager.instance.enemyAIscript.spawnEnemy();
+        //gameManager.instance.enemyAIscript.spawnEnemys();
 
     }
 }

@@ -37,7 +37,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         colorOrg = model.material.color;
-        spawnEnemy();
+        spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
 
@@ -132,9 +132,25 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void spawnEnemy()
+    public void spawnEnemys()
     {
-        transform.position = gameManager.instance.enemySpawnPos.transform.position;
+        if (this.CompareTag("Normal Zombie"))
+        {
+            transform.position = gameManager.instance.NEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Spitter Zombie"))
+        {
+            transform.position = gameManager.instance.SEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Fast Zombie"))
+        {
+            transform.position = gameManager.instance.FEnemySpawnPos.transform.position;
+        }
+        if (this.CompareTag("Tank Zombie"))
+        {
+            transform.position = gameManager.instance.TEnemySpawnPos.transform.position;
+        }
+        
         HP = HPOrig;
     }
 }

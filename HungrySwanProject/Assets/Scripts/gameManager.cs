@@ -9,11 +9,17 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
-    public GameObject enemy;
+    public GameObject Nenemy;
+    public GameObject Senemy;
+    public GameObject Fenemy;
+    public GameObject Tenemy;
     public playerControler playerScript;
     public enemyAI enemyAIscript;
     public GameObject playerSpawnPos;
-    public GameObject enemySpawnPos;
+    public GameObject NEnemySpawnPos;
+    public GameObject SEnemySpawnPos;
+    public GameObject FEnemySpawnPos;
+    public GameObject TEnemySpawnPos;
 
     [Header("-----UI Stuff-----")]
     public GameObject activeMenu;
@@ -38,15 +44,15 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerControler>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         
-        enemy = GameObject.FindGameObjectWithTag("Normal Zombie");
-        enemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
-        enemy = GameObject.FindGameObjectWithTag("Fast Zombie");
-        enemy = GameObject.FindGameObjectWithTag("Tank Zombie");
-        enemyAIscript = enemy.GetComponent<enemyAI>();
-        enemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
-        enemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
-        enemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
-        enemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
+        Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
+        Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
+        Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
+        Tenemy = GameObject.FindGameObjectWithTag("Tank Zombie");
+        enemyAIscript = Nenemy.GetComponent<enemyAI>();
+        NEnemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
+        SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
+        FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
+        TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
         updateBulletCounter();
     }
 
