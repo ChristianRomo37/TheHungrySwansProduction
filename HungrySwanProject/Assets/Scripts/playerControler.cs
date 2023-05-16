@@ -49,7 +49,7 @@ public class playerControler : MonoBehaviour, IDamage
         bulletsRemaining = magSize;
 
         gameManager.instance.updateBulletCounter();
-<
+
         spawnPlayer();
     }
 
