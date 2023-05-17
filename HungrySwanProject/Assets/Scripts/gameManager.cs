@@ -48,15 +48,15 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
         
-        //Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
-        //Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
-        //Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
-        //Tenemy = GameObject.FindGameObjectWithTag("Tank Zombie");
-        //enemyAIscript = Nenemy.GetComponent<enemyAI>();
-        //NEnemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
-        //SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
-        //FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
-        //TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
+        Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
+        Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
+        Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
+        Tenemy = GameObject.FindGameObjectWithTag("Tank Zombie");
+        enemyAIscript = Nenemy.GetComponent<enemyAI>();
+        NEnemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
+        SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
+        FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
+        TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
         updateBulletCounter();
 
     }
