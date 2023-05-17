@@ -9,13 +9,16 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
+    public playerControler playerScript;
+    public GameObject playerSpawnPos;
+    //public GameObject currentWeapon;
+
+    [Header("-----Enemy Stuff-----")]
+    public enemyAI enemyAIscript;
     public GameObject Nenemy;
     public GameObject Senemy;
     public GameObject Fenemy;
     public GameObject Tenemy;
-    public playerControler playerScript;
-    public enemyAI enemyAIscript;
-    public GameObject playerSpawnPos;
     public GameObject NEnemySpawnPos;
     public GameObject SEnemySpawnPos;
     public GameObject FEnemySpawnPos;
@@ -43,6 +46,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
         
         //Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
         //Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");

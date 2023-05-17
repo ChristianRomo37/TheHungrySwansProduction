@@ -19,13 +19,13 @@ public class playerControler : MonoBehaviour, IDamage
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
-    [Range(2, 300)][SerializeField] int shootDist;
-    [Range(0.1f, 3f)][SerializeField] float shootRate;
+    [Range(0, 300)][SerializeField] int shootDist;
+    [Range(0, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
-    [Range(1, 10)][SerializeField] int magSize;
-    [Range(1, 10)][SerializeField] float reloadTime;
-    [Range(1, 10)][SerializeField] int shotsFired;
-    [Range(1, 500)][SerializeField] int totalBulletCount;
+    [Range(0, 10)][SerializeField] int magSize;
+    [Range(0, 10)][SerializeField] float reloadTime;
+    [Range(0, 10)][SerializeField] int shotsFired;
+    [Range(0, 500)][SerializeField] int totalBulletCount;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
 
@@ -216,6 +216,7 @@ public class playerControler : MonoBehaviour, IDamage
         if (gunList.Count == 2)
         {
             gunList.RemoveAt(selectedGun);
+            
             gunList.Add(gunStat);
         }
         else
