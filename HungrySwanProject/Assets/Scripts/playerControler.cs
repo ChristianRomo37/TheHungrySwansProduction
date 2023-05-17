@@ -213,7 +213,15 @@ public class playerControler : MonoBehaviour, IDamage
 
     public void gunPickup(gunStats gunStat)
     {
-        gunList.Add(gunStat);
+        if (gunList.Count == 2)
+        {
+            gunList.RemoveAt(selectedGun);
+            gunList.Add(gunStat);
+        }
+        else
+        {
+            gunList.Add(gunStat);
+        }
 
         shootDamage = gunStat.shootDamage;
         shootDist = gunStat.shootDist;
