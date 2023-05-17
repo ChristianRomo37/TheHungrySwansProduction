@@ -32,4 +32,9 @@ public class ButtonFunctions : MonoBehaviour
         //gameManager.instance.enemyAIscript.spawnEnemys();
 
     }
+
+    public void promptE()
+    {
+        
+    }
 }

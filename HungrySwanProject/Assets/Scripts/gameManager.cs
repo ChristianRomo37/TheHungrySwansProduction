@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject ePrompt;
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     
@@ -52,7 +53,7 @@ public class gameManager : MonoBehaviour
         Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
         Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
         Tenemy = GameObject.FindGameObjectWithTag("Tank Zombie");
-        enemyAIscript = Nenemy.GetComponent<enemyAI>();
+        //enemyAIscript = Nenemy.GetComponent<enemyAI>();
         NEnemySpawnPos = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos");
         SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
@@ -89,7 +90,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        isPaused = !isPaused;
+        isPaused = false;
         activeMenu.SetActive(false);
         activeMenu = null;
     }
@@ -123,5 +124,17 @@ public class gameManager : MonoBehaviour
     {
         totalMagSize.text = playerScript.getMagSize().ToString();
         bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
+    }
+
+    public void promptEOn()
+    {
+        activeMenu = ePrompt;
+        activeMenu.SetActive(true);
+    }
+
+    public void promptEOff()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = null;
     }
 }

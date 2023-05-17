@@ -242,17 +242,18 @@ public class playerControler : MonoBehaviour, IDamage
 
     void changeGun()
     {
+        isReloading = false;
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             changeGunStats();
-            gameManager.instance.updateBulletCounter();
+            //gameManager.instance.updateBulletCounter();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
             changeGunStats();
-            gameManager.instance.updateBulletCounter();
+            //gameManager.instance.updateBulletCounter();
         }
     }
 

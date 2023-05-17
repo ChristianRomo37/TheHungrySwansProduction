@@ -26,10 +26,10 @@ public class enemyAI : MonoBehaviour, IDamage
      
 
     Vector3 playerDir;
+    float angleToPlayer;
     bool isShooting;
     Color colorOrg;
     bool playerInRange;
-    float angleToPlayer;
     private int HPOrig;
 
     // Start is called before the first frame update
