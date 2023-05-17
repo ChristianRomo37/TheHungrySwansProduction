@@ -29,7 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
-    public GameObject ePrompt;
+    public TextMeshProUGUI ePrompt;
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     
@@ -83,6 +83,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        promptEOff();
     }
 
     public void unPauseState()
@@ -100,6 +101,7 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
+        promptEOff();
     }
 
     public void updateGameGoal(int amount)
@@ -117,6 +119,7 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         activeMenu = winMenu;
         activeMenu.SetActive(true);
+        promptEOff();
         pauseState();
     }
 
@@ -128,13 +131,12 @@ public class gameManager : MonoBehaviour
 
     public void promptEOn()
     {
-        activeMenu = ePrompt;
-        activeMenu.SetActive(true);
+        ePrompt.enabled = true;
+        ePrompt.text = "Press E To Pick Up Gun";
     }
 
     public void promptEOff()
     {
-        activeMenu.SetActive(false);
-        activeMenu = null;
+        ePrompt.enabled = false;
     }
 }

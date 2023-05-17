@@ -24,7 +24,10 @@ public class GunPickup : MonoBehaviour
 
     void Update()
     {
-        pickUp();
+        if (playerInRange)
+        {
+            pickUp();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +36,7 @@ public class GunPickup : MonoBehaviour
         {
             //gameManager.instance.playerScript.gunPickup(gun);
             playerInRange = true;
+            gameManager.instance.promptEOn();
             //Destroy(gameObject);
         }
     }
@@ -63,23 +67,25 @@ public class GunPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            gameManager.instance.promptEOff();
         }
     }
 
     void pickUp()
     {
-       if (playerInRange)
+        if (playerInRange)
         {
-            //Debug.Log("on");
-            gameManager.instance.promptEOn();
-            if (Input.GetButtonDown("Interact"))
-            {
-                //yield return new WaitForSeconds(pickUpTimer);
-                gameManager.instance.playerScript.gunPickup(gun);
-                playerInRange = false;
-                gameManager.instance.promptEOff();
-                Destroy(gameObject);
-            }
+             //Debug.Log("on");
+             //gameManager.instance.promptEOn();
+             if (Input.GetButtonDown("Interact"))
+             {
+                 //yield return new WaitForSeconds(pickUpTimer);
+                 gameManager.instance.playerScript.gunPickup(gun);
+                 playerInRange = false;
+                 gameManager.instance.promptEOff();
+                 Destroy(gameObject);
+             }
         }
+        
     }
 }
