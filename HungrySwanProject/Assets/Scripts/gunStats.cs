@@ -14,6 +14,7 @@ public class gunStats : ScriptableObject
     [Range(1, 10)]public float reloadTime;
     [Range(1, 10)]public int shotsFired;
     [Range(1, 500)]public int totalBulletCount;
+    [Range(0, 500)]public int bulletsRemaining;
     public GameObject model;
     public AudioClip gunShotAud;
     [Range(0, 1)] public float gunShotAudVol;

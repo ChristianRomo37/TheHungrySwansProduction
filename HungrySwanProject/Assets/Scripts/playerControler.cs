@@ -26,6 +26,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] float reloadTime;
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
+    [Range(0,500)][SerializeField] int bulletsRemaining;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
 
@@ -37,10 +38,10 @@ public class playerControler : MonoBehaviour, IDamage
     private bool isShooting;
     private int HPOrig;
     private int bulletsShot;
-    private int bulletsRemaining;
     private bool isReloading;
     private int OrigBullet;
     int selectedGun;
+    //int bulletsRemaining;
 
     public HealthBar healthBar;
 
@@ -175,10 +176,12 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (totalBulletCount > 0 && bulletsRemaining < magSize)
         {
+            //Debug.Log("re");
             int reservedAmmo = (int)Mathf.Min(totalBulletCount, bullestToReload);
-            bulletsRemaining += reservedAmmo;
-            totalBulletCount -= reservedAmmo;
+            gunList[selectedGun].bulletsRemaining += reservedAmmo;
+            gunList[selectedGun].totalBulletCount -= reservedAmmo;
         }
+
         //Debug.Log("reload");
         gameManager.instance.updateBulletCounter();
 
@@ -265,6 +268,7 @@ public class playerControler : MonoBehaviour, IDamage
         magSize = gunList[selectedGun].magSize;
         reloadTime = gunList[selectedGun].reloadTime;
         shotsFired = gunList[selectedGun].shotsFired;
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
         totalBulletCount = gunList[selectedGun].totalBulletCount;
         gameManager.instance.updateBulletCounter();
 
