@@ -50,11 +50,10 @@ public class playerControler : MonoBehaviour, IDamage
     {
         HPOrig = HP;
 
-        OrigBullet = totalBulletCount;
+        //OrigBullet = totalBulletCount;
         healthBar.SetMaxHealth(HPOrig);
-        bulletsRemaining = magSize;
-
-        gameManager.instance.updateBulletCounter();
+        //bulletsRemaining = magSize;
+        //write an if statement for if you hae a gun
 
         spawnPlayer();
     }
@@ -74,18 +73,24 @@ public class playerControler : MonoBehaviour, IDamage
 
             if (Input.GetButtonDown("Shoot") && !isShooting)
             {
-                //Debug.Log("shoot");
-                if (gunList.Count > 0 && bulletsRemaining > 0 && !isReloading)
+                Debug.Log("pressed");
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
                 {
+                    Debug.Log("shooing");
                     StartCoroutine(shoot());
                 }
             }
 
-            if (gunList.Count > 0 && Input.GetButtonDown("Reload") && !isReloading || gunList.Count > 0 && Input.GetButtonDown("Reload") && bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && totalBulletCount != 0)
+            if (gunList.Count > 0 && Input.GetButtonDown("Reload") && !isReloading || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
             {
                 //Debug.Log("re");
                 StartCoroutine(reload());
             }
+        }
+
+        if (gunList.Count == 0)
+        {
+            gameManager.instance.updateBulletCounter();
         }
         sprint();
     }
@@ -130,7 +135,7 @@ public class playerControler : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        bulletsRemaining--;
+        gunList[selectedGun].bulletsRemaining--;
         //bulletsShot++;
         gameManager.instance.updateBulletCounter();
 
@@ -172,12 +177,12 @@ public class playerControler : MonoBehaviour, IDamage
     {
         isReloading = true;
 
-        int bullestToReload = magSize - bulletsRemaining;
+        int bullestToReload = gunList[selectedGun].magSize - gunList[selectedGun].bulletsRemaining;
 
-        if (totalBulletCount > 0 && bulletsRemaining < magSize)
+        if (gunList[selectedGun].totalBulletCount > 0 && gunList[selectedGun].bulletsRemaining < gunList[selectedGun].magSize)
         {
             //Debug.Log("re");
-            int reservedAmmo = (int)Mathf.Min(totalBulletCount, bullestToReload);
+            int reservedAmmo = (int)Mathf.Min(gunList[selectedGun].totalBulletCount, bullestToReload);
             gunList[selectedGun].bulletsRemaining += reservedAmmo;
             gunList[selectedGun].totalBulletCount -= reservedAmmo;
         }
@@ -194,12 +199,12 @@ public class playerControler : MonoBehaviour, IDamage
 
     public int getMagSize()
     {
-        return totalBulletCount;
+        return gunList[selectedGun].totalBulletCount;
     }
 
     public int getBulletsRemaining()
     {
-        return bulletsRemaining;
+        return gunList[selectedGun].bulletsRemaining;
     }
 
     public void spawnPlayer()
@@ -235,12 +240,13 @@ public class playerControler : MonoBehaviour, IDamage
         shotsFired = gunStat.shotsFired;
         totalBulletCount = gunStat.totalBulletCount;
 
-        gameManager.instance.updateBulletCounter();
 
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
 
         selectedGun = gunList.Count - 1;
+        
+        gameManager.instance.updateBulletCounter();
     }
 
     void changeGun()
@@ -270,9 +276,10 @@ public class playerControler : MonoBehaviour, IDamage
         shotsFired = gunList[selectedGun].shotsFired;
         bulletsRemaining = gunList[selectedGun].bulletsRemaining;
         totalBulletCount = gunList[selectedGun].totalBulletCount;
-        gameManager.instance.updateBulletCounter();
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+        
+        gameManager.instance.updateBulletCounter();
     }
 }

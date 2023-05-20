@@ -125,8 +125,11 @@ public class gameManager : MonoBehaviour
 
     public void updateBulletCounter()
     {
-        totalMagSize.text = playerScript.getMagSize().ToString();
-        bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
+        if (instance.playerScript.gunList.Count > 0)
+        {
+           totalMagSize.text = playerScript.getMagSize().ToString();
+           bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
+        }
     }
 
     public void promptEOn()

@@ -20,6 +20,8 @@ public class GunPickup : MonoBehaviour
     {
         model = gun.model.GetComponent<MeshFilter>();
         mat = gun.model.GetComponent<MeshRenderer>();
+        gun.bulletsRemaining = 0;
+        gun.totalBulletCount = gun.OrigtotalBulletCount;
     }
 
     void Update()
