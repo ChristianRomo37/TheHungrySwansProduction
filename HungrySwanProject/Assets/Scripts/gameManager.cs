@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -29,9 +30,12 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+
+    [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
+    public Image HPBar;
     
 
     public bool isPaused;

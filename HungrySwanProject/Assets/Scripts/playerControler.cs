@@ -63,7 +63,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
-        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(5);
+        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
 
 
         if (gameManager.instance.activeMenu == null)
@@ -132,6 +132,12 @@ public class playerControler : MonoBehaviour, IDamage
         }
     }
 
+    void updateUI()
+    {
+        gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
+       
+
+    }
     IEnumerator shoot()
     {
         isShooting = true;
@@ -161,15 +167,11 @@ public class playerControler : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        updateUI();
         if (HP <= 0)
         {
             healthBar.SetHealth(0);
             gameManager.instance.youLose();
-        }
-        else
-        {
-            healthBar.SetHealth(HP);
         }
     }
 
@@ -215,7 +217,7 @@ public class playerControler : MonoBehaviour, IDamage
         HP = HPOrig;
         totalBulletCount = OrigBullet;
         bulletsRemaining = magSize;
-        healthBar.SetHealth(HP);
+        updateUI();
         gameManager.instance.updateBulletCounter();
     }
 
