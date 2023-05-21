@@ -141,7 +141,7 @@ public class playerControler : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        gunList[selectedGun].bulletsRemaining--;
+        gunList[selectedGun].bulletsRemaining -= gunList[selectedGun].shotsFired;
         //bulletsShot++;
         gameManager.instance.updateBulletCounter();
 
