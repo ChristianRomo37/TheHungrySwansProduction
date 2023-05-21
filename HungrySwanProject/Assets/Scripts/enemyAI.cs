@@ -10,12 +10,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
-    [SerializeField] Transform headPos;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
@@ -38,10 +40,15 @@ public class enemyAI : MonoBehaviour, IDamage
     Color colorOrg;
     bool playerInRange;
     private int HPOrig;
+    Vector3 startingPos;
+    bool destinatoinChosen;
+    float stoppingDistOrig;
 
     // Start is called before the first frame update
     void Start()
     {
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
         spawnEnemys();
@@ -51,11 +58,32 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if (playerInRange && !canSeePlayer())
         {
-            
+            StartCoroutine(roam());
         }
+        else if (agent.destination != gameManager.instance.player.transform.position)
+            StartCoroutine(roam());
 
+    }
+
+    IEnumerator roam()
+    {
+        if (!destinatoinChosen && agent.remainingDistance < 0.05f)
+        {
+            destinatoinChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
+            destinatoinChosen = false;
+
+            Vector3 ranPos = Random.insideUnitSphere * roamDist;
+            ranPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+
+            agent.SetDestination(hit.position);
+        }
     }
 
     bool canSeePlayer()
@@ -71,7 +99,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                    agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.stoppingDistance = stoppingDistOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
