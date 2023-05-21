@@ -88,7 +88,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        promptEOff();
+        //promptEOff();
     }
 
     public void unPauseState()
