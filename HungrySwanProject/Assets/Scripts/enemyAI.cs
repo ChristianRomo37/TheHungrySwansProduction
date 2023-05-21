@@ -30,9 +30,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audDamage;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip[] audAttack;
+    [SerializeField] AudioClip[] audIdle;
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
     [SerializeField][Range(0, 1)] float audAttackVol;
+    [SerializeField][Range(0, 1)] float audIdleVol;
 
     Vector3 playerDir;
     float angleToPlayer;
