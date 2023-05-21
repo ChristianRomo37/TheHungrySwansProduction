@@ -88,7 +88,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        promptEOff();
+        //promptEOff();
     }
 
     public void unPauseState()
@@ -106,7 +106,7 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
-        promptEOff();
+        //promptEOff();
     }
 
     public void updateGameGoal(int amount)
@@ -124,7 +124,7 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         activeMenu = winMenu;
         activeMenu.SetActive(true);
-        promptEOff();
+        //promptEOff();
         pauseState();
     }
 
