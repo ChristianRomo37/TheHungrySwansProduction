@@ -50,6 +50,7 @@ public class gameManager : MonoBehaviour
        
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
+        
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
         

@@ -18,7 +18,13 @@ public class gunStats : ScriptableObject
     [Range(0, 500)]public int bulletsRemaining;
     public GameObject model;
     public AudioClip gunShotAud;
+    public AudioClip gunPickupAud;
+    public AudioClip gunReloadAud;
+    public AudioClip gunNoAmmoAud;
     [Range(0, 1)] public float gunShotAudVol;
+    [Range(0, 1)] public float gunPickupAudVol;
+    [Range(0, 1)] public float gunReloadAudVol;
+    [Range(0, 1)] public float gunNoAmmoAudVol;
     public GameObject hitEffect;
     public GameObject muzzleFlash;
 }

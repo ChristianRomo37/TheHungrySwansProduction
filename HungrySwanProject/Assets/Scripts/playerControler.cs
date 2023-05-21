@@ -8,6 +8,7 @@ public class playerControler : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource audioSource;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] int HP;
@@ -29,6 +30,14 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0,500)][SerializeField] int bulletsRemaining;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField] AudioClip[] audDamage;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField][Range(0, 1)] float audJumpVol;
+    [SerializeField][Range(0, 1)] float audDamageVol;
+    [SerializeField][Range(0, 1)] float audStepsVol;
 
     private int jumpedTimes;
     private Vector3 move;

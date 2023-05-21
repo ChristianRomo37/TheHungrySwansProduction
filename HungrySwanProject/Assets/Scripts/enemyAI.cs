@@ -23,7 +23,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int shootDamage;
     [SerializeField] int shootAngle; 
     [SerializeField] GameObject bullet;
-     
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] audDamage;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip[] audAttack;
+    [SerializeField][Range(0, 1)] float audDamageVol;
+    [SerializeField][Range(0, 1)] float audStepsVol;
+    [SerializeField][Range(0, 1)] float audAttackVol;
 
     Vector3 playerDir;
     float angleToPlayer;
