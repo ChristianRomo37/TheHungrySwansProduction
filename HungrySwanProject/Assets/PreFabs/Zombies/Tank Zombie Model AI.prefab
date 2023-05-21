@@ -1037,15 +1037,23 @@ MonoBehaviour:
   model: {fileID: 948866130567098470}
   agent: {fileID: 1455140394010273931}
   shootPos: {fileID: 948866130553792332}
+  headPos: {fileID: 948866130553792224}
   HP: 20
   playerFaceSpeed: 5
   viewCone: 90
-  headPos: {fileID: 948866130553792224}
+  roamDist: 25
+  roamPauseTime: 2
   shootDist: 5
   shootRate: 1
   shootDamage: 4
   shootAngle: 20
   bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
+  audDamage: []
+  audSteps: []
+  audAttack: []
+  audDamageVol: 0
+  audStepsVol: 0
+  audAttackVol: 0
 --- !u!195 &1455140394010273931
 NavMeshAgent:
   m_ObjectHideFlags: 0
