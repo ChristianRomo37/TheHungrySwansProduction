@@ -52,7 +52,7 @@ public class playerControler : MonoBehaviour, IDamage
     int selectedGun;
     //int bulletsRemaining;
 
-    public HealthBar healthBar;
+    //public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +60,9 @@ public class playerControler : MonoBehaviour, IDamage
         HPOrig = HP;
 
         //OrigBullet = totalBulletCount;
-        healthBar.SetMaxHealth(HPOrig);
+
+        //healthBar.SetMaxHealth(HPOrig);
+
         //bulletsRemaining = magSize;
         //write an if statement for if you hae a gun
 
