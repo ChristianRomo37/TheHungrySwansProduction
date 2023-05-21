@@ -74,7 +74,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
-        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(10);
+        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
 
 
         if (gameManager.instance.activeMenu == null)
