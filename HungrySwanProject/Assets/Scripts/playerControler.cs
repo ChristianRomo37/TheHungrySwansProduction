@@ -72,7 +72,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
-        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
+        if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(10);
 
 
         if (gameManager.instance.activeMenu == null)
@@ -179,7 +179,6 @@ public class playerControler : MonoBehaviour, IDamage
         updateUI();
         if (HP <= 0)
         {
-            healthBar.SetHealth(0);
             gameManager.instance.youLose();
         }
     }
