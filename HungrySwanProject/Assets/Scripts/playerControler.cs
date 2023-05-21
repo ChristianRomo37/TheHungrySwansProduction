@@ -50,6 +50,7 @@ public class playerControler : MonoBehaviour, IDamage
     private bool isReloading;
     private int OrigBullet;
     int selectedGun;
+    bool stepIsPlaying;
     //int bulletsRemaining;
 
     //public HealthBar healthBar;
@@ -85,6 +86,12 @@ public class playerControler : MonoBehaviour, IDamage
             if (Input.GetButtonDown("Shoot") && !isShooting)
             {
                 Debug.Log("pressed");
+
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                {
+                    audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                }
+
                 if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
                 {
                     Debug.Log("shooing");
@@ -109,10 +116,18 @@ public class playerControler : MonoBehaviour, IDamage
     void movement()
     {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+
+        if (groundedPlayer )
         {
-            playerVelocity.y = 0f;
-            jumpedTimes = 0;
+            if (!stepIsPlaying && move.normalized.magnitude > 0.5f)
+            {
+                StartCoroutine(playSteps());
+            }
+            if (playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+                jumpedTimes = 0;
+            }
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) +
@@ -121,6 +136,7 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         {
+            audioSource.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -143,6 +159,24 @@ public class playerControler : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+
+        audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        stepIsPlaying = false;
+    }
+
     void updateUI()
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
@@ -153,6 +187,10 @@ public class playerControler : MonoBehaviour, IDamage
     {
         isShooting = true;
         gunList[selectedGun].bulletsRemaining -= gunList[selectedGun].shotsFired;
+        
+        
+        audioSource.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+
         //bulletsShot++;
         gameManager.instance.updateBulletCounter();
 
@@ -178,6 +216,9 @@ public class playerControler : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)]);
+
         updateUI();
         if (HP <= 0)
         {
@@ -188,6 +229,8 @@ public class playerControler : MonoBehaviour, IDamage
     IEnumerator reload()
     {
         isReloading = true;
+
+        gameManager.instance.promptReloadOn();
 
         int bullestToReload = gunList[selectedGun].magSize - gunList[selectedGun].bulletsRemaining;
 
@@ -200,10 +243,12 @@ public class playerControler : MonoBehaviour, IDamage
         }
 
         //Debug.Log("reload");
-        gameManager.instance.updateBulletCounter();
 
         //bulletsShot = 0;
         yield return new WaitForSeconds(reloadTime);
+        gameManager.instance.promptReloadOff();
+        audioSource.PlayOneShot(gunList[selectedGun].gunReloadAud, gunList[selectedGun].gunReloadAudVol);
+        gameManager.instance.updateBulletCounter();
 
         isReloading = false;
     }
@@ -257,7 +302,8 @@ public class playerControler : MonoBehaviour, IDamage
         gunMat.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
 
         selectedGun = gunList.Count - 1;
-        
+
+        audioSource.PlayOneShot(gunList[selectedGun].gunPickupAud, gunList[selectedGun].gunPickupAudVol);
         gameManager.instance.updateBulletCounter();
     }
 

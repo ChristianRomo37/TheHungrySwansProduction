@@ -36,6 +36,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
+    public TextMeshProUGUI reloadPrompt;
     
 
     public bool isPaused;
@@ -146,5 +147,16 @@ public class gameManager : MonoBehaviour
     public void promptEOff()
     {
         ePrompt.enabled = false;
+    }
+
+    public void promptReloadOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "Reloading!!!";
+    }
+
+    public void promptReloadOff()
+    {
+        reloadPrompt.enabled = false;
     }
 }
