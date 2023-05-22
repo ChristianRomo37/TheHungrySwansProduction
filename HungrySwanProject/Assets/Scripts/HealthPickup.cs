@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickup : MonoBehaviour, IInteractable
 {
+    [SerializeField] int AddHP;
+
     void Start()
     {
 
@@ -11,6 +13,7 @@ public class HealthPickup : MonoBehaviour
 
     public void interact(bool canInteract)
     {
+        gameManager.instance.playerScript.SetHP(AddHP);
         Destroy(gameObject);
     }
 
