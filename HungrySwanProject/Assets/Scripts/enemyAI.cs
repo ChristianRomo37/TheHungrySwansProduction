@@ -10,12 +10,15 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform headPos;
+    [SerializeField] AudioSource audioSource;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
-    [SerializeField] Transform headPos;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
@@ -23,7 +26,16 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int shootDamage;
     [SerializeField] int shootAngle; 
     [SerializeField] GameObject bullet;
-     
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] audDamage;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip[] audAttack;
+    [SerializeField] AudioClip[] audIdle;
+    [SerializeField][Range(0, 1)] float audDamageVol;
+    [SerializeField][Range(0, 1)] float audStepsVol;
+    [SerializeField][Range(0, 1)] float audAttackVol;
+    [SerializeField][Range(0, 1)] float audIdleVol;
 
     Vector3 playerDir;
     float angleToPlayer;
@@ -31,10 +43,16 @@ public class enemyAI : MonoBehaviour, IDamage
     Color colorOrg;
     bool playerInRange;
     private int HPOrig;
+    Vector3 startingPos;
+    bool destinatoinChosen;
+    float stoppingDistOrig;
+    bool stepIsPlaying;
 
     // Start is called before the first frame update
     void Start()
     {
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
         spawnEnemys();
@@ -44,11 +62,38 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if (playerInRange && !canSeePlayer())
         {
-            
+            zombieSpeak();
+            StartCoroutine(roam());
+        }
+        else if (agent.destination != gameManager.instance.player.transform.position)
+        {
+            zombieSpeak();
+            StartCoroutine(roam());
         }
 
+    }
+
+    IEnumerator roam()
+    {
+        if (!destinatoinChosen && agent.remainingDistance < 0.05f)
+        {
+            destinatoinChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
+            destinatoinChosen = false;
+
+            Vector3 ranPos = Random.insideUnitSphere * roamDist;
+            ranPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+
+            playSteps();
+
+            agent.SetDestination(hit.position);
+        }
     }
 
     bool canSeePlayer()
@@ -64,7 +109,9 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                    agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.stoppingDistance = stoppingDistOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                playSteps();
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -90,6 +137,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
+        audioSource.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+
         Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
@@ -100,6 +149,8 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int damage)
     {
         HP -= damage;
+
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -155,5 +206,23 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         
         HP = HPOrig;
+    }
+
+    IEnumerator zombieSpeak()
+    {
+        audioSource.PlayOneShot(audIdle[Random.Range(0, audIdle.Length)], audIdleVol);
+        yield return new WaitForSeconds(2.0f);
+    }
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+
+        zombieSpeak();
+        audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        yield return new WaitForSeconds(0.3f);
+        
+        stepIsPlaying = false;
     }
 }

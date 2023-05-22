@@ -36,6 +36,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
+    public TextMeshProUGUI reloadPrompt;
     
 
     public bool isPaused;
@@ -50,6 +51,7 @@ public class gameManager : MonoBehaviour
        
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
+        
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
         
@@ -87,7 +89,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        promptEOff();
+        //promptEOff();
     }
 
     public void unPauseState()
@@ -105,7 +107,7 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
-        promptEOff();
+        //promptEOff();
     }
 
     public void updateGameGoal(int amount)
@@ -123,7 +125,7 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         activeMenu = winMenu;
         activeMenu.SetActive(true);
-        promptEOff();
+        //promptEOff();
         pauseState();
     }
 
@@ -145,5 +147,16 @@ public class gameManager : MonoBehaviour
     public void promptEOff()
     {
         ePrompt.enabled = false;
+    }
+
+    public void promptReloadOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "Reloading!!!";
+    }
+
+    public void promptReloadOff()
+    {
+        reloadPrompt.enabled = false;
     }
 }

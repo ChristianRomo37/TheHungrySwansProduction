@@ -1004,7 +1004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1692382661516879697
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,15 +1037,51 @@ MonoBehaviour:
   model: {fileID: 1692382661511311477}
   agent: {fileID: 1037573788503206040}
   shootPos: {fileID: 1692382661516879711}
+  headPos: {fileID: 1692382661516879603}
+  audioSource: {fileID: 0}
   HP: 2
   playerFaceSpeed: 8
   viewCone: 90
-  headPos: {fileID: 1692382661516879603}
+  roamDist: 25
+  roamPauseTime: 2
   shootDist: 1
   shootRate: 1
   shootDamage: 2
   shootAngle: 1
   bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
+  audDamage:
+  - {fileID: 8300000, guid: bdb798b20d5ac2f438f3a562f4150019, type: 3}
+  - {fileID: 8300000, guid: 0547b940dba4d964e9e447af1dc0759a, type: 3}
+  - {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
+  - {fileID: 8300000, guid: fc1882cb9cb0d474c95537bbdb4c48bd, type: 3}
+  audSteps:
+  - {fileID: 8300000, guid: bedaf2a9e0359384ab13672d3cb5ffbd, type: 3}
+  - {fileID: 8300000, guid: bda7da4e48fd0174a9f8ccfa619c4ea7, type: 3}
+  - {fileID: 8300000, guid: 97298a2e8b5f18145b485d8e5c1f85ee, type: 3}
+  - {fileID: 8300000, guid: bf080e4e54df74347860c657639207b8, type: 3}
+  - {fileID: 8300000, guid: 8ed0d462bfe84b84eb3c1f5d47c2fb1a, type: 3}
+  - {fileID: 8300000, guid: 5d4f4080c307b6f42b08920e06a8203f, type: 3}
+  - {fileID: 8300000, guid: 758d98b6fe63a63429cd147140618d52, type: 3}
+  - {fileID: 8300000, guid: 7c6224e4db296924abd25881f63d5448, type: 3}
+  - {fileID: 8300000, guid: 87f38713d8737ff41a329857eed4caa8, type: 3}
+  audAttack:
+  - {fileID: 8300000, guid: 5ce6bb262e363834db2b5cdef8a21155, type: 3}
+  - {fileID: 8300000, guid: 4fb45f9472f5e554c82a5a9c7ba4c739, type: 3}
+  - {fileID: 8300000, guid: 24b617db03a924c4ab49c13feb18c10d, type: 3}
+  - {fileID: 8300000, guid: 9f8a1e6741a342647b9c0055e1e0a7b8, type: 3}
+  - {fileID: 8300000, guid: 83041cb4dc7766b48a4342db7511819d, type: 3}
+  - {fileID: 8300000, guid: 1225b0f997026d64fa600c3fd93f1a74, type: 3}
+  - {fileID: 8300000, guid: 8b9826c915109c446be0c38d54721a2d, type: 3}
+  audIdle:
+  - {fileID: 8300000, guid: 10732d0c2b844ae4c9ce62eab3a4c9b3, type: 3}
+  - {fileID: 8300000, guid: d108e9ae3908d4d479e1e41cca0188a3, type: 3}
+  - {fileID: 8300000, guid: ff8240148ee026c4babb53949381e1cd, type: 3}
+  - {fileID: 8300000, guid: e29d35a3561cf964e9c39f5b99c2696c, type: 3}
+  - {fileID: 8300000, guid: 1fb023a333ca93a40a9c968a37e6f739, type: 3}
+  audDamageVol: 0.5
+  audStepsVol: 0.5
+  audAttackVol: 0.5
+  audIdleVol: 0.5
 --- !u!195 &1037573788503206040
 NavMeshAgent:
   m_ObjectHideFlags: 0
