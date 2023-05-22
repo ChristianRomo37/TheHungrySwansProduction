@@ -85,7 +85,7 @@ public class playerControler : MonoBehaviour, IDamage
 
             if (Input.GetButtonDown("Shoot") && !isShooting)
             {
-                Debug.Log("pressed");
+                //Debug.Log("pressed");
 
                 if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
                 {
@@ -94,15 +94,18 @@ public class playerControler : MonoBehaviour, IDamage
 
                 if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
                 {
-                    Debug.Log("shooing");
+                    Debug.Log("shooting");
                     StartCoroutine(shoot());
                 }
             }
 
-            if (gunList.Count > 0 && Input.GetButtonDown("Reload") && !isReloading || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
+            if (!isReloading)
             {
-                //Debug.Log("re");
-                StartCoroutine(reload());
+                if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
+                {
+                    //Debug.Log("re");
+                    StartCoroutine(reload());
+                }
             }
         }
 
@@ -205,6 +208,8 @@ public class playerControler : MonoBehaviour, IDamage
                 {
                     damageable.takeDamage(shootDamage);
                 }
+
+                Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
         //bulletsShot++;
@@ -231,6 +236,7 @@ public class playerControler : MonoBehaviour, IDamage
         isReloading = true;
 
         gameManager.instance.promptReloadOn();
+        yield return new WaitForSeconds(reloadTime);
 
         int bullestToReload = gunList[selectedGun].magSize - gunList[selectedGun].bulletsRemaining;
 
@@ -245,7 +251,6 @@ public class playerControler : MonoBehaviour, IDamage
         //Debug.Log("reload");
 
         //bulletsShot = 0;
-        yield return new WaitForSeconds(reloadTime);
         gameManager.instance.promptReloadOff();
         audioSource.PlayOneShot(gunList[selectedGun].gunReloadAud, gunList[selectedGun].gunReloadAudVol);
         gameManager.instance.updateBulletCounter();
