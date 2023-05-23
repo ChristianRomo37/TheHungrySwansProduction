@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu]
 
@@ -27,5 +28,8 @@ public class gunStats : ScriptableObject
     [Range(0, 1)] public float gunReloadAudVol;
     [Range(0, 1)] public float gunNoAmmoAudVol;
     public GameObject hitEffect;
-    public GameObject muzzleFlash;
+    public Sprite muzzleFlash;
+    public bool sniper;
+    public bool rifle;
+    public bool pistol;
 }
