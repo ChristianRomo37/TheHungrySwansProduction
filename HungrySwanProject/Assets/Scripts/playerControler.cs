@@ -20,6 +20,7 @@ public class playerControler : MonoBehaviour, IDamage
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] Transform shootPos;
     [Range(0, 300)][SerializeField] int shootDist;
     [Range(0, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
@@ -183,8 +184,6 @@ public class playerControler : MonoBehaviour, IDamage
     void updateUI()
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
-       
-
     }
     IEnumerator shoot()
     {
@@ -193,6 +192,7 @@ public class playerControler : MonoBehaviour, IDamage
         
         
         audioSource.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+        Instantiate(gunList[selectedGun].muzzleFlash, gunList[selectedGun].shootPos.position, gunList[selectedGun].shootPos.transform.rotation);
 
         //bulletsShot++;
         gameManager.instance.updateBulletCounter();
@@ -294,6 +294,7 @@ public class playerControler : MonoBehaviour, IDamage
             gunList.Add(gunStat);
         }
 
+        shootPos = gunStat.shootPos;
         shootDamage = gunStat.shootDamage;
         shootDist = gunStat.shootDist;
         shootRate = gunStat.shootRate;
@@ -331,6 +332,7 @@ public class playerControler : MonoBehaviour, IDamage
 
     void changeGunStats()
     {
+        shootPos = gunList[selectedGun].shootPos;
         shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
         shootRate = gunList[selectedGun].shootRate;
