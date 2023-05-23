@@ -41,7 +41,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
-    int carPartsRemaining;
+    public int carPartsRemaining;
 
     // Start is called before the first frame update
     void Awake()
@@ -114,10 +114,10 @@ public class gameManager : MonoBehaviour
     {
         carPartsRemaining += amount;
 
-        if (carPartsRemaining <= 0)
-        {
-            StartCoroutine(youWin());
-        }
+        //if (carPartsRemaining <= 0)
+        //{
+        //    StartCoroutine(youWin());
+        //}
     }
 
     IEnumerator youWin()

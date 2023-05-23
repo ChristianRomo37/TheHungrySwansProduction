@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletPickup : MonoBehaviour
+public class BulletPickup : MonoBehaviour, IInteractable
 {
+    [SerializeField] int AddBullet;
+
     void Start()
     {
 
@@ -11,6 +14,7 @@ public class BulletPickup : MonoBehaviour
 
     public void interact(bool canInteract)
     {
+        gameManager.instance.playerScript.SetBullets(AddBullet);
         Destroy(gameObject);
     }
 

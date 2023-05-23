@@ -347,4 +347,19 @@ public class playerControler : MonoBehaviour, IDamage
         
         gameManager.instance.updateBulletCounter();
     }
+
+    public int SetHP(int amount)
+    {
+        return HP += amount;
+    }
+
+    public float SetSpeed(int amount)
+    {
+        return playerSpeed += amount;
+    }
+    public int SetBullets(int amount)
+    {
+        return totalBulletCount += amount;
+    }
+
 }

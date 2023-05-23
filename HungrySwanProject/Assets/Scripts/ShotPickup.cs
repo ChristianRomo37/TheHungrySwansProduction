@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotPickup : MonoBehaviour
+public class ShotPickup : MonoBehaviour, IInteractable
 {
+    [SerializeField] int AddSpeed;
+
     void Start()
     {
 
@@ -11,6 +13,7 @@ public class ShotPickup : MonoBehaviour
 
     public void interact(bool canInteract)
     {
+        gameManager.instance.playerScript.SetSpeed(AddSpeed);
         Destroy(gameObject);
     }
 
