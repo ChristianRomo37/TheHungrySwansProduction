@@ -9,11 +9,12 @@ public class EngineDrop : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptEngineOn();
+            gameManager.instance.promptEngineOn();
         }
     }
 
@@ -21,7 +22,7 @@ public class EngineDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptEngineOff();
+            gameManager.instance.promptEngineOff();
         }
     }
 

@@ -14,7 +14,7 @@ public class KeyDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptKeyOn();
+            gameManager.instance.promptKeyOn();
         }
     }
 
@@ -22,7 +22,7 @@ public class KeyDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptKeyOff();
+            gameManager.instance.promptKeyOff();
         }
     }
 

@@ -14,7 +14,7 @@ public class TireDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptTireOn();
+            gameManager.instance.promptTireOn();
         }
     }
 
@@ -22,7 +22,7 @@ public class TireDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptTireOff();
+            gameManager.instance.promptTireOff();
         }
     }
 

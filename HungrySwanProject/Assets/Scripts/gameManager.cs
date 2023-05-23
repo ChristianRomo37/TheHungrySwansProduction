@@ -168,4 +168,69 @@ public class gameManager : MonoBehaviour
         reloadPrompt.enabled = false;
     }
 
+    public void promptBatteryOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptBatteryOff()
+    {
+        reloadPrompt.enabled = false;
+    }
+
+    public void promptEngineOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptEngineOff()
+    {
+        reloadPrompt.enabled = false;
+    }
+
+    public void promptGasOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptGasOff()
+    {
+        reloadPrompt.enabled = false;
+    }
+
+    public void promptKeyOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptKeyOff()
+    {
+        reloadPrompt.enabled = false;
+    }
+
+    public void promptTireOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptTireOff()
+    {
+        reloadPrompt.enabled = false;
+    }
+
+    public void promptLeaveOn()
+    {
+        reloadPrompt.enabled = true;
+        reloadPrompt.text = "";
+    }
+
+    public void promptLeaveOff()
+    {
+        reloadPrompt.enabled = false;
+    }
 }
