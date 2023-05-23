@@ -10,6 +10,22 @@ public class TireDrop : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptTireOn();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptTireOff();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

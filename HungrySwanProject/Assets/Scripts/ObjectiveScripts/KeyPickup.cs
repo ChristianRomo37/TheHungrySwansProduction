@@ -2,23 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotPickup : MonoBehaviour, IInteractable
+public class KeyPickup : MonoBehaviour
 {
-    [SerializeField] int AddSpeed;
-    [SerializeField] int Timer;
-
-    bool hasMoreSpeed;
-
     void Start()
     {
-        hasMoreSpeed = false;
+        gameManager.instance.updateGameGoal(1);
     }
 
     public void interact(bool canInteract)
     {
-        gameManager.instance.playerScript.SetSpeed(AddSpeed);
+        gameManager.instance.updateGameGoal(-1);
         Destroy(gameObject);
-        hasMoreSpeed = true;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,6 +9,21 @@ public class EngineDrop : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptEngineOn();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptEngineOff();
+        }
+    }
 
     // Update is called once per frame
     void Update()

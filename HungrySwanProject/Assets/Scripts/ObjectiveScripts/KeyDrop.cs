@@ -10,6 +10,22 @@ public class KeyDrop : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptKeyOn();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //gameManager.instance.promptKeyOff();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

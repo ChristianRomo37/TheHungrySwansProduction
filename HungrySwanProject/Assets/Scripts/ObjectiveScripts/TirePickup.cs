@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Objective : MonoBehaviour, IInteractable
+public class TirePickup : MonoBehaviour
 {
     void Start()
     {
         gameManager.instance.updateGameGoal(1);
     }
 
-    public void interact(bool canInteract) 
+    public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
         Destroy(gameObject);
