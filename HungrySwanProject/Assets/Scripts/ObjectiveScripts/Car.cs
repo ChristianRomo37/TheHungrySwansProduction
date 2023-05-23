@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyDrop : MonoBehaviour
+public class Car : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -12,9 +11,9 @@ public class KeyDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.hasKey)
+        if (other.CompareTag("Player") && gameManager.instance.carPartsRemaining <= 0 && gameManager.instance.carPartsInserted == 5)
         {
-            //gameManager.instance.promptKeyOn();
+            //gameManager.instance.promptLeaveOn();
         }
     }
 
@@ -22,22 +21,21 @@ public class KeyDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptKeyOff();
+            //gameManager.instance.promptLeaveOff();
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    void itemPlace()
+    void leave()
     {
         if (Input.GetButtonDown("Interact"))
         {
-            gameManager.instance.hasKey = false;
-            gameManager.instance.carPartsInserted++;
+            gameManager.instance.left = true;
+            gameManager.instance.updateGameGoal(0);
         }
     }
 }

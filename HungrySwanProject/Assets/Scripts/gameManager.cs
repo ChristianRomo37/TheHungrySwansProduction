@@ -43,8 +43,6 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
-<<<<<<< Updated upstream
-=======
     public int carPartsInserted;
     public bool hasBattery;
     public bool hasEngine;
@@ -52,7 +50,7 @@ public class gameManager : MonoBehaviour
     public bool hasKey;
     public bool hasTire;
     public bool left;
->>>>>>> Stashed changes
+
 
     // Start is called before the first frame update
     void Awake()
