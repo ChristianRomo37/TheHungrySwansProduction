@@ -37,20 +37,12 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
-    public GameObject playerDamageFlash;
     public TextMeshProUGUI reloadPrompt;
     
 
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
-    public int carPartsInserted;
-    public bool battery;
-    public bool engine;
-    public bool gas;
-    public bool key;
-    public bool tire;
-    public bool left;
 
     // Start is called before the first frame update
     void Awake()
