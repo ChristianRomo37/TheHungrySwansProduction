@@ -548,6 +548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943188491260910703}
+  - component: {fileID: 4911078591730315611}
   - component: {fileID: 943188491260910705}
   - component: {fileID: 943188491260910704}
   m_Layer: 0
@@ -573,6 +574,20 @@ Transform:
   m_Father: {fileID: 943188491758994522}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4911078591730315611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943188491260910702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57132ca1a285d0948a8b55c9d94b63e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 0
+  explosion: {fileID: 4502385721255466012, guid: 1ecf9ae1feadd5b47ae3214199b08149, type: 3}
 --- !u!54 &943188491260910705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1346,6 +1361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943188493015500053}
+  - component: {fileID: 8679089233503113427}
   - component: {fileID: 943188493015500055}
   - component: {fileID: 943188493015500054}
   m_Layer: 0
@@ -1371,6 +1387,20 @@ Transform:
   m_Father: {fileID: 943188491758994522}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8679089233503113427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943188493015500052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57132ca1a285d0948a8b55c9d94b63e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 0
+  explosion: {fileID: 4502385721255466012, guid: 1ecf9ae1feadd5b47ae3214199b08149, type: 3}
 --- !u!54 &943188493015500055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2003,6 +2033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7852447978484022531}
+  - component: {fileID: 4933325497805614936}
   - component: {fileID: 7742750610989734634}
   - component: {fileID: 7742750610989734635}
   m_Layer: 0
@@ -2028,6 +2059,20 @@ Transform:
   m_Father: {fileID: 943188491758994522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4933325497805614936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472227668343547833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57132ca1a285d0948a8b55c9d94b63e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 0
+  explosion: {fileID: 4502385721255466012, guid: 1ecf9ae1feadd5b47ae3214199b08149, type: 3}
 --- !u!54 &7742750610989734634
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2149,7 +2194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8927856416656926589}
-  - component: {fileID: 7080080906565504119}
+  - component: {fileID: 5893059520441605655}
   - component: {fileID: 8965725017102499988}
   - component: {fileID: 8965725017102499989}
   - component: {fileID: 1945173117015998926}
@@ -2176,7 +2221,7 @@ Transform:
   m_Father: {fileID: 943188491758994522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7080080906565504119
+--- !u!114 &5893059520441605655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2185,14 +2230,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8119372990375230919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafdb24e5367cfd489ae2597853deb4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57132ca1a285d0948a8b55c9d94b63e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 3
-  pushAmount: 0
-  audExplosion: 0
-  explosiionAud: []
-  audioSource: {fileID: 1945173117015998926}
+  explosion: {fileID: 4502385721255466012, guid: 1ecf9ae1feadd5b47ae3214199b08149, type: 3}
 --- !u!54 &8965725017102499988
 Rigidbody:
   m_ObjectHideFlags: 0
