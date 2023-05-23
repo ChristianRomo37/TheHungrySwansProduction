@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4270175184324022040}
   - component: {fileID: 931521789846962365}
   - component: {fileID: 3101178490415592567}
-  - component: {fileID: 931521789846962364}
   - component: {fileID: 931521789846962367}
+  - component: {fileID: 4009491147639862703}
   m_Layer: 0
   m_Name: Gun Pickup - Rifle
-  m_TagString: Untagged
+  m_TagString: Ground Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &931521789846962364
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3461408943251789218}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 4
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
 --- !u!114 &931521789846962367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +98,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 35c06836401b09141ac9a924292adcda, type: 2}
+--- !u!135 &4009491147639862703
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461408943251789218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.8060398
+  m_Center: {x: 0, y: 0.1963807, z: 0.43729442}
