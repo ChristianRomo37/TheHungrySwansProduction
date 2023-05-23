@@ -38,11 +38,18 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
     public TextMeshProUGUI reloadPrompt;
-    
+    public TextMeshProUGUI objectivePrompt;
+
 
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
+    public bool hasBattery;
+    public bool hasEngine;
+    public bool hasGas;
+    public bool hasKey;
+    public bool hasTire;
+    public bool left;
 
     // Start is called before the first frame update
     void Awake()
@@ -114,7 +121,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
+        carPartsRemainingText.text = carPartsRemaining.ToString("F0");
 
         if (carPartsRemaining <= 0)
         {
@@ -160,5 +167,71 @@ public class gameManager : MonoBehaviour
     public void promptReloadOff()
     {
         reloadPrompt.enabled = false;
+    }
+
+    public void promptBatteryOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Battery";
+    }
+
+    public void promptBatteryOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    public void promptEngineOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Engine";
+    }
+
+    public void promptEngineOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    public void promptGasOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Fill Gas";
+    }
+
+    public void promptGasOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    public void promptKeyOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Insert Key";
+    }
+
+    public void promptKeyOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    public void promptTireOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Tire";
+    }
+
+    public void promptTireOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    public void promptLeaveOn()
+    {
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Leave";
+    }
+
+    public void promptLeaveOff()
+    {
+        objectivePrompt.enabled = false;
     }
 }

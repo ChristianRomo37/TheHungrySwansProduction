@@ -3,19 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviour, IDamage
 {
-    [SerializeField] AudioSource audioSource;
-
+    [SerializeField] int Hp;
 
     [Header("-----Audio-----")]
-    [SerializeField] AudioClip[] audExplosion;
-    [SerializeField][Range(0, 1)] float audExplosionVol;
+    [SerializeField][Range(0, 1)] float audExplosion;
+    [SerializeField] AudioClip[] explosiionAud;
+    [SerializeField] AudioSource audioSource;
 
-
-    public void explosion()
+    void Start()
     {
-        audioSource.PlayOneShot(audExplosion[Random.Range(0, audExplosion.Length)], audExplosionVol);
+
+    }
+    void Update()
+    {
+
     }
 
+    public void takeDamage(int damage)
+    {
+        Hp -= damage;
+
+
+        if (Hp <= 0)
+        {
+            audioSource.PlayOneShot(explosiionAud[Random.Range(0, explosiionAud.Length)], audExplosion);
+            Destroy(gameObject);
+        }
+
+    }
 }
