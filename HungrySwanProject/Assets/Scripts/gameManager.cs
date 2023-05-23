@@ -37,6 +37,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
+    public GameObject playerDamageFlash;
     public TextMeshProUGUI reloadPrompt;
     
 
