@@ -27,4 +27,7 @@ public class gunStats : ScriptableObject
     [Range(0, 1)] public float gunNoAmmoAudVol;
     public GameObject hitEffect;
     public GameObject muzzleFlash;
+    public bool sniper;
+    public bool pistol;
+    public bool rifle;
 }
