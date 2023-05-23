@@ -13,7 +13,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Collider meleeCol;
-    [SerializeField] AudioSource audioSource;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -34,11 +33,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audDamage;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip[] audAttack;
-    [SerializeField] AudioClip[] audIdle;
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
     [SerializeField][Range(0, 1)] float audAttackVol;
-    [SerializeField][Range(0, 1)] float audIdleVol;
 
     Vector3 playerDir;
     float angleToPlayer;
@@ -50,7 +47,6 @@ public class enemyAI : MonoBehaviour, IDamage
     bool destinatoinChosen;
     float stoppingDistOrig;
     float speed; //for animation ~ Colyn
-    bool stepIsPlaying;
 
     // Start is called before the first frame update
     void Start()
@@ -71,14 +67,10 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (playerInRange && !canSeePlayer())
         {
-            zombieSpeak();
             StartCoroutine(roam());
         }
         else if (agent.destination != gameManager.instance.player.transform.position)
-        {
-            zombieSpeak();
             StartCoroutine(roam());
-        }
 
     }
 
@@ -96,8 +88,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
             NavMeshHit hit;
             NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-
-            playSteps();
 
             agent.SetDestination(hit.position);
         }
@@ -118,7 +108,6 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                playSteps();
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -148,9 +137,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             isShooting = true;
 
-            audioSource.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-
-
             anim.SetTrigger("Melee"); //for animation ~ Colyn
 
             //Instantiate(bullet, shootPos.position, transform.rotation);
@@ -174,8 +160,6 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int damage)
     {
         HP -= damage;
-
-        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -232,23 +216,5 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         
         HP = HPOrig;
-    }
-
-    IEnumerator zombieSpeak()
-    {
-        audioSource.PlayOneShot(audIdle[Random.Range(0, audIdle.Length)], audIdleVol);
-        yield return new WaitForSeconds(2.0f);
-    }
-
-    IEnumerator playSteps()
-    {
-        stepIsPlaying = true;
-
-        zombieSpeak();
-        audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
-
-        yield return new WaitForSeconds(0.3f);
-        
-        stepIsPlaying = false;
     }
 }

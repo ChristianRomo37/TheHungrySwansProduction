@@ -30,28 +30,17 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
-    public TextMeshProUGUI carPartsRemainingText;
 
     [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
-    public GameObject playerDamageFlash;
-    public TextMeshProUGUI reloadPrompt;
     
 
     public bool isPaused;
     float timeScaleOrig;
-    public int carPartsRemaining;
-    public int carPartsInserted;
-    public bool hasBattery;
-    public bool hasEngine;
-    public bool hasGas;
-    public bool hasKey;
-    public bool hasTire;
-    public bool left;
-
+    int carPartsRemaining;
 
     // Start is called before the first frame update
     void Awake()
@@ -123,9 +112,8 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
 
-        if (left == true)
+        if (carPartsRemaining <= 0)
         {
             StartCoroutine(youWin());
         }
@@ -158,16 +146,5 @@ public class gameManager : MonoBehaviour
     public void promptEOff()
     {
         ePrompt.enabled = false;
-    }
-
-    public void promptReloadOn()
-    {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "Reloading!!!";
-    }
-
-    public void promptReloadOff()
-    {
-        reloadPrompt.enabled = false;
     }
 }

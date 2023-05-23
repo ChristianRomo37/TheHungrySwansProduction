@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu]
 
 public class gunStats : ScriptableObject
 {
     [Header("-----Weapon Stats-----")]
-    [SerializeField] public Transform shootPos;
     [Range(2, 300)]public int shootDist;
     [Range(0.1f, 50f)]public float shootRate;
     [Range(1, 500)]public int shootDamage;
@@ -28,8 +26,5 @@ public class gunStats : ScriptableObject
     [Range(0, 1)] public float gunReloadAudVol;
     [Range(0, 1)] public float gunNoAmmoAudVol;
     public GameObject hitEffect;
-    public Sprite muzzleFlash;
-    public bool sniper;
-    public bool rifle;
-    public bool pistol;
+    public GameObject muzzleFlash;
 }
