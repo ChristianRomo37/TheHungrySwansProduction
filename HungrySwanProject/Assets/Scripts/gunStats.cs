@@ -7,6 +7,7 @@ using UnityEngine;
 public class gunStats : ScriptableObject
 {
     [Header("-----Weapon Stats-----")]
+    [SerializeField] public Transform shootPos;
     [Range(2, 300)]public int shootDist;
     [Range(0.1f, 50f)]public float shootRate;
     [Range(1, 500)]public int shootDamage;
