@@ -114,7 +114,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
+        carPartsRemainingText.text = carPartsRemaining.ToString("F0");
 
         if (carPartsRemaining <= 0)
         {
