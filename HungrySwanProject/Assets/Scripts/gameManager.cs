@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject playerDamageFlash;
     public TextMeshProUGUI carPartsRemainingText;
 
     [Header("----- HUD Stuff-----")]
