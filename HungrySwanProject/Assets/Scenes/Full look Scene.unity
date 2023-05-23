@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boundry
       objectReference: {fileID: 0}
+    - target: {fileID: 5956107317083769163, guid: 72401d4f38b7a14449547e4d12920ad0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 318.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72401d4f38b7a14449547e4d12920ad0, type: 3}
 --- !u!1 &347607968
@@ -1753,6 +1757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Spawn Pos
       objectReference: {fileID: 0}
+    - target: {fileID: 287026457589503883, guid: c175c2f8ebf365d4e872269457db7580, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7966762555180656711, guid: c175c2f8ebf365d4e872269457db7580, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -2248,6 +2256,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1945173117015998926, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7742750610989734634, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -2256,7 +2268,8 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7080080906565504119, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
 --- !u!1001 &927625017
 PrefabInstance:
@@ -5626,6 +5639,7 @@ MonoBehaviour:
   HPBar: {fileID: 927731396}
   reloadPrompt: {fileID: 0}
   isPaused: 0
+  carPartsRemaining: 0
 --- !u!224 &1743779431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9181,6 +9195,7 @@ MonoBehaviour:
   HPBar: {fileID: 736988398}
   reloadPrompt: {fileID: 0}
   isPaused: 0
+  carPartsRemaining: 0
 --- !u!114 &2986588037458776931
 MonoBehaviour:
   m_ObjectHideFlags: 0
