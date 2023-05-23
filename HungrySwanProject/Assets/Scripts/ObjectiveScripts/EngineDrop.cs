@@ -14,7 +14,7 @@ public class EngineDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.hasEngine)
         {
-            //gameManager.instance.promptEngineOn();
+            gameManager.instance.promptEngineOn();
         }
     }
 
@@ -22,7 +22,7 @@ public class EngineDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptEngineOff();
+            gameManager.instance.promptEngineOff();
         }
     }
 

@@ -14,7 +14,7 @@ public class GasDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.hasGas)
         {
-            //gameManager.instance.promptGasOn();
+            gameManager.instance.promptGasOn();
         }
     }
 
@@ -22,7 +22,7 @@ public class GasDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptGasOff();
+            gameManager.instance.promptGasOff();
         }
     }
 

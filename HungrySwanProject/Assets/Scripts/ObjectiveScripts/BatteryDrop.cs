@@ -14,7 +14,7 @@ public class BatteryDrop : MonoBehaviour
     {
        if (other.CompareTag("Player") && gameManager.instance.hasBattery && !gameManager.instance.hasEngine)
        {
-            //gameManager.instance.promptBatteryOn();
+            gameManager.instance.promptBatteryOn();
        }
     }
 
@@ -22,7 +22,7 @@ public class BatteryDrop : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptBatteryOff();
+            gameManager.instance.promptBatteryOff();
         }
     }
 
