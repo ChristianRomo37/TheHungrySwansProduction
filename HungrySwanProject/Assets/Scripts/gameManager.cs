@@ -168,29 +168,4 @@ public class gameManager : MonoBehaviour
         reloadPrompt.enabled = false;
     }
 
-    public void GotBattery()
-    {
-        hasBattery = true;
-    }
-    public void GotEngine()
-    {
-        hasEngine = true;
-    }
-
-    public void GotGas()
-    {
-        hasGas = true;
-    }
-    public void GotKey()
-    {
-        hasKey = true;
-    }
-    public void GotTire()
-    {
-        hasTire = true;
-    }
-    public void LeftGame()
-    {
-        left = true;
-    }
 }
