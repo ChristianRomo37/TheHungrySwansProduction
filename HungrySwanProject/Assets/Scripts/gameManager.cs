@@ -43,6 +43,12 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
+    public bool hasBattery;
+    public bool hasEngine;
+    public bool hasGas;
+    public bool hasKey;
+    public bool hasTire;
+    public bool left;
 
     // Start is called before the first frame update
     void Awake()
@@ -160,5 +166,31 @@ public class gameManager : MonoBehaviour
     public void promptReloadOff()
     {
         reloadPrompt.enabled = false;
+    }
+
+    public void GotBattery()
+    {
+        hasBattery = true;
+    }
+    public void GotEngine()
+    {
+        hasEngine = true;
+    }
+
+    public void GotGas()
+    {
+        hasGas = true;
+    }
+    public void GotKey()
+    {
+        hasKey = true;
+    }
+    public void GotTire()
+    {
+        hasTire = true;
+    }
+    public void LeftGame()
+    {
+        left = true;
     }
 }
