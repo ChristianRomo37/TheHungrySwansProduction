@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerControler : MonoBehaviour, IDamage
 {
@@ -20,7 +21,6 @@ public class playerControler : MonoBehaviour, IDamage
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
-    [SerializeField] Transform shootPos;
     [Range(0, 300)][SerializeField] int shootDist;
     [Range(0, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
@@ -31,6 +31,12 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0,500)][SerializeField] int bulletsRemaining;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
+    [SerializeField] GameObject rifleFlash;
+    [SerializeField] GameObject sniperFlash;
+    [SerializeField] GameObject pistolFlash;
+    public bool rifle;
+    public bool sniper;
+    public bool pistol;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
@@ -95,7 +101,7 @@ public class playerControler : MonoBehaviour, IDamage
 
                 if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
                 {
-                    Debug.Log("shooting");
+                    //Debug.Log("shooting");
                     StartCoroutine(shoot());
                 }
             }
@@ -189,10 +195,9 @@ public class playerControler : MonoBehaviour, IDamage
     {
         isShooting = true;
         gunList[selectedGun].bulletsRemaining -= gunList[selectedGun].shotsFired;
-        
-        
+                
         audioSource.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
-        Instantiate(gunList[selectedGun].muzzleFlash, gunList[selectedGun].shootPos.position, gunList[selectedGun].shootPos.transform.rotation);
+        StartCoroutine(flashMuzzel());
 
         //bulletsShot++;
         gameManager.instance.updateBulletCounter();
@@ -212,10 +217,36 @@ public class playerControler : MonoBehaviour, IDamage
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
+        
+
         //bulletsShot++;
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+    }
+
+    IEnumerator flashMuzzel()
+    {
+        Debug.Log("flash");
+        if (pistol == true)
+        {
+            pistolFlash.SetActive(true);
+        }
+        else if (rifle == true)
+        {
+            rifleFlash.SetActive(true);
+        }
+        else if (sniper == true)
+        {
+            sniperFlash.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(.5f);
+
+        Debug.Log("noFlash");
+        pistolFlash.SetActive(false);
+        rifleFlash.SetActive(false);
+        sniperFlash.SetActive(false);
     }
 
     public void takeDamage(int amount)
@@ -294,7 +325,9 @@ public class playerControler : MonoBehaviour, IDamage
             gunList.Add(gunStat);
         }
 
-        shootPos = gunStat.shootPos;
+        sniper = gunStat.sniper;
+        pistol = gunStat.pistol;
+        rifle = gunStat.rifle;
         shootDamage = gunStat.shootDamage;
         shootDist = gunStat.shootDist;
         shootRate = gunStat.shootRate;
@@ -332,7 +365,9 @@ public class playerControler : MonoBehaviour, IDamage
 
     void changeGunStats()
     {
-        shootPos = gunList[selectedGun].shootPos;
+        sniper = gunList[selectedGun].sniper;
+        pistol = gunList[selectedGun].pistol;
+        rifle = gunList[selectedGun].rifle;
         shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
         shootRate = gunList[selectedGun].shootRate;
