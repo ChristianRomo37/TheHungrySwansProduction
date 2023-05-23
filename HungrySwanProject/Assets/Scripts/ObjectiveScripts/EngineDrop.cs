@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public class EngineDrop : MonoBehaviour
 {
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -11,9 +12,9 @@ public class Car : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.carPartsRemaining <= 0 && gameManager.instance.carPartsInserted == 5)
+        if (other.CompareTag("Player") && gameManager.instance.hasEngine)
         {
-            //gameManager.instance.promptCarOn();
+            //gameManager.instance.promptEngineOn();
         }
     }
 
@@ -21,21 +22,22 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptCarOff();
+            //gameManager.instance.promptEngineOff();
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         
     }
 
-    void leave()
+    void itemPlace()
     {
         if (Input.GetButtonDown("Interact"))
         {
-            gameManager.instance.left = true;
-            gameManager.instance.updateGameGoal(0);
+            gameManager.instance.hasEngine = false;
+            gameManager.instance.carPartsInserted++;
         }
     }
 }

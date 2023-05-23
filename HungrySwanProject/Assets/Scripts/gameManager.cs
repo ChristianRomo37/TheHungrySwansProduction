@@ -43,6 +43,14 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
+    public int carPartsInserted;
+    public bool hasBattery;
+    public bool hasEngine;
+    public bool hasGas;
+    public bool hasKey;
+    public bool hasTire;
+    public bool left;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -116,7 +124,7 @@ public class gameManager : MonoBehaviour
         carPartsRemaining += amount;
         carPartsRemainingText.text = carPartsRemaining.ToString();
 
-        if (carPartsRemaining <= 0)
+        if (left == true)
         {
             StartCoroutine(youWin());
         }
