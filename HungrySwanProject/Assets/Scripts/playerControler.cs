@@ -68,8 +68,6 @@ public class playerControler : MonoBehaviour, IDamage
 
         //OrigBullet = totalBulletCount;
 
-        //healthBar.SetMaxHealth(HPOrig);
-
         //bulletsRemaining = magSize;
         //write an if statement for if you hae a gun
 
@@ -152,6 +150,13 @@ public class playerControler : MonoBehaviour, IDamage
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    IEnumerator damageFlash()
+    {
+        gameManager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
     void sprint()
@@ -248,9 +253,11 @@ public class playerControler : MonoBehaviour, IDamage
     {
         HP -= amount;
 
+        StartCoroutine(damageFlash());
+        updateUI();
+
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)]);
 
-        updateUI();
         if (HP <= 0)
         {
             gameManager.instance.youLose();
