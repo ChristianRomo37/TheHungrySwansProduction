@@ -36,7 +36,6 @@ public class playerControler : MonoBehaviour, IDamage
     public bool sniper;
     public bool rifle;
     public bool pistol;
-    public bool isReloading;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
@@ -54,6 +53,7 @@ public class playerControler : MonoBehaviour, IDamage
     private bool isShooting;
     private int HPOrig;
     private int bulletsShot;
+    private bool isReloading;
     private int OrigBullet;
     int selectedGun;
     bool stepIsPlaying;
@@ -89,7 +89,7 @@ public class playerControler : MonoBehaviour, IDamage
             movement();
             changeGun();
 
-            if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
+            if (Input.GetButtonDown("Shoot") && !isShooting)
             {
                 //Debug.Log("pressed");
 
@@ -110,7 +110,6 @@ public class playerControler : MonoBehaviour, IDamage
                 if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
                 {
                     //Debug.Log("re");
-                    //isReloading = true;
                     StartCoroutine(reload());
                 }
             }
@@ -197,10 +196,9 @@ public class playerControler : MonoBehaviour, IDamage
         gunList[selectedGun].bulletsRemaining -= gunList[selectedGun].shotsFired;
         
         audioSource.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+        StartCoroutine(flashMuzzel());
 
-        for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
-            StartCoroutine(flashMuzzel());
-
+        //bulletsShot++;
         gameManager.instance.updateBulletCounter();
 
         RaycastHit hit;
@@ -210,14 +208,13 @@ public class playerControler : MonoBehaviour, IDamage
 
             if (damageable != null)
             {
-                for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+                for (int i = 0; i < shotsFired; i++)
                 {
                     damageable.takeDamage(shootDamage);
                 }
-            }
 
-            for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            }
         }
         //bulletsShot++;
         yield return new WaitForSeconds(shootRate);
@@ -266,9 +263,6 @@ public class playerControler : MonoBehaviour, IDamage
 
         gameManager.instance.promptReloadOn();
         yield return new WaitForSeconds(reloadTime);
-        gameManager.instance.promptReloadOff();
-
-        audioSource.PlayOneShot(gunList[selectedGun].gunReloadAud, gunList[selectedGun].gunReloadAudVol);
 
         int bullestToReload = gunList[selectedGun].magSize - gunList[selectedGun].bulletsRemaining;
 
@@ -283,6 +277,8 @@ public class playerControler : MonoBehaviour, IDamage
         //Debug.Log("reload");
 
         //bulletsShot = 0;
+        gameManager.instance.promptReloadOff();
+        audioSource.PlayOneShot(gunList[selectedGun].gunReloadAud, gunList[selectedGun].gunReloadAudVol);
         gameManager.instance.updateBulletCounter();
 
         isReloading = false;
@@ -347,14 +343,14 @@ public class playerControler : MonoBehaviour, IDamage
 
     void changeGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !isReloading)
+        isReloading = false;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             changeGunStats();
-
             //gameManager.instance.updateBulletCounter();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !isReloading)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
             changeGunStats();
