@@ -13,7 +13,7 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.carPartsRemaining <= 0)
         {
-            //gameManager.instance.promptCarOn();
+            //gameManager.instance.promptLeaveOn();
         }
     }
 
@@ -21,7 +21,7 @@ public class Car : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.promptCarOff();
+            //gameManager.instance.promptLeaveOff();
         }
     }
 
