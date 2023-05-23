@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boundry
       objectReference: {fileID: 0}
+    - target: {fileID: 5956107317083769163, guid: 72401d4f38b7a14449547e4d12920ad0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 318.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72401d4f38b7a14449547e4d12920ad0, type: 3}
 --- !u!1 &347607968
@@ -1757,6 +1761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Spawn Pos
       objectReference: {fileID: 0}
+    - target: {fileID: 287026457589503883, guid: c175c2f8ebf365d4e872269457db7580, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7966762555180656711, guid: c175c2f8ebf365d4e872269457db7580, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -2252,15 +2260,32 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1945173117015998926, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4911078591730315611, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
+      propertyPath: Hp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933325497805614936, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
+      propertyPath: Hp
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7742750610989734634, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679089233503113427, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
+      propertyPath: Hp
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8965725017102499988, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7080080906565504119, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f1a88059f88b4f044a7d975c06d29f2f, type: 3}
 --- !u!1001 &927625017
 PrefabInstance:
@@ -5624,6 +5649,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1059571206}
   loseMenu: {fileID: 669210696}
   winMenu: {fileID: 1759616735}
+  carPartsRemainingText: {fileID: 0}
   ePrompt: {fileID: 0}
   totalMagSize: {fileID: 1301984370}
   bulletsLeft: {fileID: 453607247}
@@ -9180,6 +9206,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 2986588038561004225}
   loseMenu: {fileID: 2520393232566893668}
   winMenu: {fileID: 2094771891759743898}
+  carPartsRemainingText: {fileID: 0}
   ePrompt: {fileID: 0}
   totalMagSize: {fileID: 2101053574}
   bulletsLeft: {fileID: 347607970}
