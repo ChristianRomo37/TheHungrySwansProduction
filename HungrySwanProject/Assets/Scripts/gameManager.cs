@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public TextMeshProUGUI carPartsRemainingText;
 
     [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
@@ -113,11 +114,12 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
+        carPartsRemainingText.text = carPartsRemaining.ToString();
 
-        //if (carPartsRemaining <= 0)
-        //{
-        //    StartCoroutine(youWin());
-        //}
+        if (carPartsRemaining <= 0)
+        {
+            StartCoroutine(youWin());
+        }
     }
 
     IEnumerator youWin()
