@@ -38,7 +38,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
     public TextMeshProUGUI reloadPrompt;
-    
+    public TextMeshProUGUI objectivePrompt;
+
 
     public bool isPaused;
     float timeScaleOrig;
@@ -170,67 +171,67 @@ public class gameManager : MonoBehaviour
 
     public void promptBatteryOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Battery";
     }
 
     public void promptBatteryOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 
     public void promptEngineOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Engine";
     }
 
     public void promptEngineOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 
     public void promptGasOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Fill Gas";
     }
 
     public void promptGasOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 
     public void promptKeyOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Insert Key";
     }
 
     public void promptKeyOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 
     public void promptTireOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Install Tire";
     }
 
     public void promptTireOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 
     public void promptLeaveOn()
     {
-        reloadPrompt.enabled = true;
-        reloadPrompt.text = "";
+        objectivePrompt.enabled = true;
+        objectivePrompt.text = "Press E To Leave";
     }
 
     public void promptLeaveOff()
     {
-        reloadPrompt.enabled = false;
+        objectivePrompt.enabled = false;
     }
 }
