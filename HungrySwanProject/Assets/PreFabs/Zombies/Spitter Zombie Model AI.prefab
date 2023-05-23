@@ -1056,7 +1056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3072644604151232284}
-  - component: {fileID: 3072644604151232282}
+  - component: {fileID: 1561436992758285428}
   - component: {fileID: 3728566188301056213}
   - component: {fileID: 3072644604158450010}
   - component: {fileID: 3072644604151232281}
@@ -1085,7 +1085,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
---- !u!114 &3072644604151232282
+--- !u!114 &1561436992758285428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1094,11 +1094,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3072644604151196540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426660d6f492e644396d4bc104098828, type: 3}
+  m_Script: {fileID: 11500000, guid: 30362545a74746744a986bfe759c7d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3072644604154306616}
   agent: {fileID: 3728566188301056213}
+  anim: {fileID: 3072644604158450010}
   shootPos: {fileID: 3072644604151232274}
   headPos: {fileID: 3072644604151232190}
   HP: 3
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   shootDamage: 2
   shootAngle: 20
   bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
+  animTransSpeed: 1
   audDamage: []
   audSteps: []
   audAttack: []
@@ -1149,7 +1151,7 @@ Animator:
   m_GameObject: {fileID: 3072644604151196540}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f88c8301226fd194cbbc64e25b20d567, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bcf9c3c9e6ffb864ebbdd381be79ee11, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class spitterZombie : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -12,7 +12,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim; //for animation ~ Colyn
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] Collider meleeCol;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -25,8 +24,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [Range(1, 10)][SerializeField] int shootDamage;
-    [SerializeField] int shootAngle; 
-    //[SerializeField] GameObject bullet;
+    [SerializeField] int shootAngle;
+    [SerializeField] GameObject bullet;
     [SerializeField] float animTransSpeed; //for animation ~ Colyn
 
     [Header("-----Audio-----")]
@@ -62,8 +61,8 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-       speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //for animation ~ Colyn
-       anim.SetFloat("Speed", speed); //for animation ~ Colyn
+        speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //for animation ~ Colyn
+        anim.SetFloat("Speed", speed); //for animation ~ Colyn
 
         if (playerInRange && !canSeePlayer())
         {
@@ -137,24 +136,15 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             isShooting = true;
 
-            anim.SetTrigger("Melee"); //for animation ~ Colyn
+            anim.SetTrigger("Shoot"); //for animation ~ Colyn
 
-            //Instantiate(bullet, shootPos.position, transform.rotation);
+
+            Instantiate(bullet, shootPos.position, transform.rotation);
 
             yield return new WaitForSeconds(shootRate);
 
             isShooting = false;
         }
-    }
-
-    public void meleeColOn()
-    {
-        meleeCol.enabled = true;
-    }
-
-    public void meleeColOff()
-    {
-        meleeCol.enabled = false;
     }
 
     public void takeDamage(int damage)
@@ -214,7 +204,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             transform.position = gameManager.instance.TEnemySpawnPos.transform.position;
         }
-        
+
         HP = HPOrig;
     }
 }
