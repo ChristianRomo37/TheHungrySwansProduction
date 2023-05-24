@@ -51,6 +51,7 @@ public class gameManager : MonoBehaviour
     public bool gas;
     public bool key;
     public bool tire;
+    public bool left;
 
     // Start is called before the first frame update
     void Awake()
@@ -124,7 +125,7 @@ public class gameManager : MonoBehaviour
         carPartsRemaining += amount;
         carPartsRemainingText.text = carPartsRemaining.ToString();
 
-        if (carPartsRemaining <= 0)
+        if (left == true)
         {
             StartCoroutine(youWin());
         }

@@ -10,9 +10,17 @@ public class tirePickup : MonoBehaviour
         gameManager.instance.updateGameGoal(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void interact(bool canInteract)
     {
-        
+        gameManager.instance.updateGameGoal(-1);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interact(true);
+        }
     }
 }
