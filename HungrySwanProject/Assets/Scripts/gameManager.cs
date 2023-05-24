@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,6 +45,12 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
     public int carPartsRemaining;
+    public int carPartsPlaced;
+    public bool battery;
+    public bool engine;
+    public bool gas;
+    public bool key;
+    public bool tire;
 
     // Start is called before the first frame update
     void Awake()
