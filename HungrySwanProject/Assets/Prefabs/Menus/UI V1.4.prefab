@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: Respawn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2867,8 +2867,16 @@ MonoBehaviour:
   bulletsLeft: {fileID: 8469702371108737894}
   HPBar: {fileID: 6854011364422908363}
   reloadPrompt: {fileID: 0}
+  objectivePrompt: {fileID: 0}
   isPaused: 0
   carPartsRemaining: 0
+  carPartsPlaced: 0
+  battery: 0
+  engine: 0
+  gas: 0
+  key: 0
+  tire: 0
+  left: 0
 --- !u!114 &6699122663298241447
 MonoBehaviour:
   m_ObjectHideFlags: 0
