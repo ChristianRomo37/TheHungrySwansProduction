@@ -22,6 +22,7 @@ public class tireDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.tire)
         {
             gameManager.instance.promptTireOn();
+            interact();
         }
     }
 
@@ -33,7 +34,7 @@ public class tireDrop : MonoBehaviour
         }
     }
 
-    void pickUp()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {

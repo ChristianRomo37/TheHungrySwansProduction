@@ -16,9 +16,10 @@ public class batteryDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.battery)
+        if (other.CompareTag("Player") && gameManager.instance.battery && !gameManager.instance.engine)
         {
             gameManager.instance.promptBatteryOn();
+            interact();
         }
     }
 
@@ -30,7 +31,7 @@ public class batteryDrop : MonoBehaviour
         }
     }
 
-    void pickUp()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {

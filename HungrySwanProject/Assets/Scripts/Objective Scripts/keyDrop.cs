@@ -19,6 +19,7 @@ public class keyDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.key)
         {
             gameManager.instance.promptKeyOn();
+            interact();
         }
     }
 
@@ -30,7 +31,7 @@ public class keyDrop : MonoBehaviour
         }
     }
 
-    void pickUp()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {

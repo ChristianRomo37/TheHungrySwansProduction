@@ -19,6 +19,7 @@ public class gasDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.gas)
         {
             gameManager.instance.promptGasOn();
+            interact();
         }
     }
 
@@ -30,7 +31,7 @@ public class gasDrop : MonoBehaviour
         }
     }
 
-    void pickUp()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {

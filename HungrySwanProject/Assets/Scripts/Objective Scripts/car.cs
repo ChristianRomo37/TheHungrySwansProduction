@@ -19,6 +19,7 @@ public class car : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.carPartsRemaining <= 0)
         {
             gameManager.instance.promptTireOn();
+            interact();
         }
     }
 
@@ -30,7 +31,7 @@ public class car : MonoBehaviour
         }
     }
 
-    void pickUp()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {
