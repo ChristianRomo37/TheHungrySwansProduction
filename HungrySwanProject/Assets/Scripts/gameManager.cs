@@ -170,4 +170,64 @@ public class gameManager : MonoBehaviour
     {
         reloadPrompt.enabled = false;
     }
+
+    public void promptBatteryOn()
+    {
+
+    }
+
+    public void promptBatteryOff()
+    {
+
+    }
+
+    public void promptEngineOn()
+    {
+
+    }
+
+    public void promptEngineOff()
+    {
+
+    }
+
+    public void promptGasOn()
+    {
+
+    }
+
+    public void promptGasOff()
+    {
+
+    }
+
+    public void promptKeyOn()
+    {
+
+    }
+
+    public void promptKeyOff()
+    {
+
+    }
+
+    public void promptTireOn()
+    {
+
+    }
+
+    public void promptTireOff()
+    {
+
+    }
+    
+    public void promptLeaveOn()
+    {
+
+    }
+
+    public void promptLeaveOff()
+    {
+
+    }
 }

@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class keyDrop : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && gameManager.instance.key)
+        {
+            gameManager.instance.promptKeyOn();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.promptKeyOff();
+        }
+    }
+
+    void pickUp()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            gameManager.instance.key = false;
+        }
     }
 }
