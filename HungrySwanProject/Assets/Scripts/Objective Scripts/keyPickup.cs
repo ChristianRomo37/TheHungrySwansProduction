@@ -13,6 +13,7 @@ public class keyPickup : MonoBehaviour
     public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
+        gameManager.instance.key = true;
         Destroy(gameObject);
     }
 

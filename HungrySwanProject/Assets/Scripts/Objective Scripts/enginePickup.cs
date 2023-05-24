@@ -13,6 +13,7 @@ public class enginePickup : MonoBehaviour
     public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
+        gameManager.instance.engine = true;
         Destroy(gameObject);
     }
 

@@ -13,6 +13,7 @@ public class tirePickup : MonoBehaviour
     public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
+        gameManager.instance.tire = true;
         Destroy(gameObject);
     }
 

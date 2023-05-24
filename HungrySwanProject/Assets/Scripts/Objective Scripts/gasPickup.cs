@@ -13,6 +13,7 @@ public class gasPickup : MonoBehaviour
     public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
+        gameManager.instance.gas = true;
         Destroy(gameObject);
     }
 

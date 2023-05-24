@@ -13,6 +13,7 @@ public class batteryPickup : MonoBehaviour
     public void interact(bool canInteract)
     {
         gameManager.instance.updateGameGoal(-1);
+        gameManager.instance.battery = true;
         Destroy(gameObject);
     }
 
