@@ -252,12 +252,20 @@ public class playerControler : MonoBehaviour, IDamage
         HP -= amount;
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)]);
-
+        
         updateUI();
         if (HP <= 0)
         {
             gameManager.instance.youLose();
         }
+        else StartCoroutine(DamageFlash());
+    }
+
+    IEnumerator DamageFlash()
+    {
+        gameManager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageFlash.SetActive(false);
     }
 
     IEnumerator reload()
