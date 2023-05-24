@@ -32,6 +32,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject winMenu;
     public GameObject playerDamageFlash;
+    public TextMeshProUGUI carPartsRemainingLabel;
     public TextMeshProUGUI carPartsRemainingText;
 
     [Header("----- HUD Stuff-----")]
@@ -125,7 +126,11 @@ public class gameManager : MonoBehaviour
     {
         carPartsRemaining += amount;
         carPartsRemainingText.text = carPartsRemaining.ToString();
-
+        if (carPartsRemaining < 1)
+        {
+            carPartsRemainingLabel.SetText("");
+            carPartsRemainingText.SetText("");
+        }
         if (left == true)
         {
             StartCoroutine(youWin());
