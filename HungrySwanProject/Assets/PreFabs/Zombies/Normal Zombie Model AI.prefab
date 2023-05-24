@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &507134397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 507134398}
+  - component: {fileID: 507134400}
+  - component: {fileID: 507134399}
+  m_Layer: 0
+  m_Name: Melee Col
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &507134398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507134397}
+  m_LocalRotation: {x: -0.04707471, y: -0.14104536, z: -0.6783058, w: 0.71957725}
+  m_LocalPosition: {x: -0.228, y: -0.002, z: -0.029}
+  m_LocalScale: {x: 0.26638, y: 0.5528801, z: 0.26638}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7458204240786954661}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -15.016, y: -8.282, z: -85.524}
+--- !u!114 &507134400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507134397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615aa775700bb1c46a8b0c67fa581d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!136 &507134399
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507134397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7458204240787047489
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7458204240786954273
 Transform:
   m_ObjectHideFlags: 0
@@ -55,7 +115,9 @@ MonoBehaviour:
   agent: {fileID: 9122713879819327464}
   shootPos: {fileID: 7458204240786954287}
   headPos: {fileID: 7458204240786954627}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1384573202}
+  anim: {fileID: 7458204240796579431}
+  meleeCol: {fileID: 507134399}
   HP: 4
   playerFaceSpeed: 5
   viewCone: 90
@@ -65,7 +127,7 @@ MonoBehaviour:
   shootRate: 0.2
   shootDamage: 1
   shootAngle: 20
-  bullet: {fileID: 6453536051078020338, guid: 4804495f1943fa14c8fb3ecb6ffa0278, type: 3}
+  animTransSpeed: 2
   audDamage:
   - {fileID: 8300000, guid: bdb798b20d5ac2f438f3a562f4150019, type: 3}
   - {fileID: 8300000, guid: 0547b940dba4d964e9e447af1dc0759a, type: 3}
@@ -114,7 +176,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 7
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -132,7 +194,7 @@ Animator:
   m_GameObject: {fileID: 7458204240787047489}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f88c8301226fd194cbbc64e25b20d567, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 298419b3dd24fa04e9daa33c1fceba97, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -905,6 +967,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7458204240786954287}
+  - {fileID: 507134398}
   m_Father: {fileID: 7458204240786954663}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
