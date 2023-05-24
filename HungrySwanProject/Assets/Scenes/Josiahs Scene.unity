@@ -289,10 +289,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 222090018}
     m_Modifications:
-    - target: {fileID: 1384573202, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7458204240786954273, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -337,96 +333,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7458204240786954279, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1732270764}
-    - target: {fileID: 7458204240786954279, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: meleeCol
-      value: 
-      objectReference: {fileID: 507134399}
-    - target: {fileID: 7458204240786954279, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: animTransSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7458204240787047489, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
       propertyPath: m_Name
       value: Normal Zombie Model AI
       objectReference: {fileID: 0}
-    - target: {fileID: 7458204240787047489, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7458204240796579431, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 298419b3dd24fa04e9daa33c1fceba97, type: 2}
-    - target: {fileID: 9122713879819327464, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
---- !u!1 &507134397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 507134398}
-  - component: {fileID: 507134400}
-  - component: {fileID: 507134399}
-  m_Layer: 0
-  m_Name: Melee Col
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &507134398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507134397}
-  m_LocalRotation: {x: -0.04707471, y: -0.14104536, z: -0.6783058, w: 0.71957725}
-  m_LocalPosition: {x: -0.228, y: -0.002, z: -0.029}
-  m_LocalScale: {x: 0.26638, y: 0.5528801, z: 0.26638}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2103028802}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -15.016, y: -8.282, z: -85.524}
---- !u!136 &507134399
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507134397}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &507134400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507134397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 615aa775700bb1c46a8b0c67fa581d16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!1001 &514421940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,11 +826,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7458204240786954273, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
   m_PrefabInstance: {fileID: 428505639}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1732270764 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7458204240796579431, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-  m_PrefabInstance: {fileID: 428505639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1869174599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,11 +927,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 948866130553792322, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
   m_PrefabInstance: {fileID: 7686467581466251488}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2103028802 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7458204240786954661, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-  m_PrefabInstance: {fileID: 428505639}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &997516348938042654
 PrefabInstance:
