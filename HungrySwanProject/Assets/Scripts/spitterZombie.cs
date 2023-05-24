@@ -9,6 +9,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] Animator anim; //animation
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
@@ -32,9 +33,11 @@ public class spitterZombie : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audDamage;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip[] audAttack;
+    [SerializeField] AudioClip[] audIdle;
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
     [SerializeField][Range(0, 1)] float audAttackVol;
+    [SerializeField][Range(0, 1)] float audIdleVol;
 
     Vector3 playerDir;
     float angleToPlayer;
@@ -45,6 +48,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
+    bool stepIsPlaying;
     float speed; //animation
 
     // Start is called before the first frame update
@@ -66,10 +70,14 @@ public class spitterZombie : MonoBehaviour, IDamage
 
         if (playerInRange && !canSeePlayer())
         {
+            zombieSpeak();
             StartCoroutine(roam());
         }
         else if (agent.destination != gameManager.instance.player.transform.position)
+        {
+            zombieSpeak();
             StartCoroutine(roam());
+        }
 
     }
 
@@ -87,6 +95,8 @@ public class spitterZombie : MonoBehaviour, IDamage
 
             NavMeshHit hit;
             NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+
+            playSteps();
 
             agent.SetDestination(hit.position);
         }
@@ -137,7 +147,7 @@ public class spitterZombie : MonoBehaviour, IDamage
             isShooting = true;
 
             anim.SetTrigger("Shoot"); //animation
-
+            audioSource.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
             Instantiate(bullet, shootPos.position, transform.rotation);
 
@@ -150,6 +160,8 @@ public class spitterZombie : MonoBehaviour, IDamage
     public void takeDamage(int damage)
     {
         HP -= damage;
+
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -206,5 +218,23 @@ public class spitterZombie : MonoBehaviour, IDamage
         }
 
         HP = HPOrig;
+    }
+
+    IEnumerator zombieSpeak()
+    {
+        // audioSource.PlayOneShot(audIdle[Random.Range(0, audIdle.Length)], audIdleVol);
+        yield return new WaitForSeconds(2.0f);
+    }
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+
+        zombieSpeak();
+        // audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        yield return new WaitForSeconds(0.3f);
+
+        stepIsPlaying = false;
     }
 }
