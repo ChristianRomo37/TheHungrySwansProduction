@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playerControler : MonoBehaviour, IDamage
 {
@@ -82,6 +83,7 @@ public class playerControler : MonoBehaviour, IDamage
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
+        
 
 
         if (gameManager.instance.activeMenu == null)
