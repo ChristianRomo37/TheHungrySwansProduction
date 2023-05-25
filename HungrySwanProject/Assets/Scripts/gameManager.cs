@@ -16,7 +16,7 @@ public class gameManager : MonoBehaviour
     //public GameObject currentWeapon;
 
     [Header("-----Enemy Stuff-----")]
-    public enemyAI enemyAIscript;
+    //public enemyAI enemyAIscript;
     public GameObject Nenemy;
     public GameObject Senemy;
     public GameObject Fenemy;
@@ -128,7 +128,7 @@ public class gameManager : MonoBehaviour
         carPartsRemainingText.text = carPartsRemaining.ToString();
         if (carPartsRemaining < 1)
         {
-            carPartsRemainingLabel.SetText("");
+            carPartsRemainingLabel.SetText("Fix the Car");
             carPartsRemainingText.SetText("");
         }
         if (left == true)
