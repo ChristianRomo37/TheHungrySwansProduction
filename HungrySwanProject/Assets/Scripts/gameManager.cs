@@ -128,7 +128,7 @@ public class gameManager : MonoBehaviour
         carPartsRemainingText.text = carPartsRemaining.ToString();
         if (carPartsRemaining < 1)
         {
-            carPartsRemainingLabel.SetText("");
+            carPartsRemainingLabel.SetText("Fix the Car");
             carPartsRemainingText.SetText("");
         }
         if (left == true)
