@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 5998859901010958057}
   - component: {fileID: 5569188451095439112}
   - component: {fileID: 6919930879383415310}
+  - component: {fileID: 580309012}
   m_Layer: 0
   m_Name: Suburb House Yellow
   m_TagString: Untagged
@@ -222,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362076119667682145}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 26.9, y: 23, z: 26.3}
+  m_LocalPosition: {x: 26.9, y: 22, z: 26.3}
   m_LocalScale: {x: 14.390869, y: 15.01144, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -279,6 +280,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &580309012
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362076119667682145}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e69748a4f24d78f4e9df2a161f448895, type: 3}
 --- !u!1 &8071333405425415460
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +305,7 @@ GameObject:
   - component: {fileID: 2489201011814183128}
   - component: {fileID: 3082615823280451499}
   - component: {fileID: 4326435718993042932}
+  - component: {fileID: 1094368493}
   m_Layer: 0
   m_Name: Suburb House Grey
   m_TagString: Untagged
@@ -362,6 +378,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1094368493
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071333405425415460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e69748a4f24d78f4e9df2a161f448895, type: 3}
 --- !u!1 &8549405373106394113
 GameObject:
   m_ObjectHideFlags: 0
