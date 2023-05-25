@@ -117,6 +117,8 @@ public class gameManager : MonoBehaviour
     public void youLose()
     {
         pauseState();
+        carPartsRemainingLabel.SetText("");
+        carPartsRemainingText.SetText("");
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
         //promptEOff();
