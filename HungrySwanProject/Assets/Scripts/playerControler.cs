@@ -158,7 +158,7 @@ public class playerControler : MonoBehaviour, IDamage
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        StartCoroutine(resetSpeed());
+        //StartCoroutine(resetSpeed());
     }
 
     void sprint()
@@ -403,22 +403,22 @@ public class playerControler : MonoBehaviour, IDamage
         return HP += amount;
     }
 
-    public float SetSpeed(float amount)
-    {
-        //playerSpeed += amount;
-        //yield return new WaitForSeconds(shotTimer);
-        //playerSpeed -= amount;
-        return playerSpeed += amount;
-    }
+    //public float SetSpeed(float amount)
+    //{
+    //    //playerSpeed += amount;
+    //    //yield return new WaitForSeconds(shotTimer);
+    //    //playerSpeed -= amount;
+    //    return playerSpeed += amount;
+    //}
 
-    IEnumerator resetSpeed()
-    {
-        if (playerSpeed >= 10)
-        {
-            yield return new WaitForSeconds(10);
-            playerSpeed = 10;
-        }
-    }
+    //IEnumerator resetSpeed()
+    //{
+    //    if (playerSpeed >= 10)
+    //    {
+    //        yield return new WaitForSeconds(10);
+    //        playerSpeed = 10;
+    //    }
+    //}
 
     public void SetBullets(int amount)
     {

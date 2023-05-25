@@ -14,7 +14,7 @@ public class ShotPickup : MonoBehaviour, IInteractable
 
     public void interact(bool canInteract)
     {
-        gameManager.instance.playerScript.SetSpeed(AddSpeed);
+        //gameManager.instance.playerScript.SetSpeed(AddSpeed);
         Destroy(gameObject);
     }
 
