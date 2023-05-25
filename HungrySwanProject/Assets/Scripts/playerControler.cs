@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -155,6 +156,8 @@ public class playerControler : MonoBehaviour, IDamage
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        StartCoroutine(resetSpeed());
     }
 
     void sprint()
@@ -193,6 +196,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
     }
+
     IEnumerator shoot()
     {
         isShooting = true;
@@ -394,16 +398,31 @@ public class playerControler : MonoBehaviour, IDamage
 
     public int SetHP(int amount)
     {
+        gameManager.instance.HPBar.fillAmount = (float)(HP + amount) / HPOrig;
         return HP += amount;
     }
 
-    public float SetSpeed(int amount)
+    public float SetSpeed(float amount)
     {
+        //playerSpeed += amount;
+        //yield return new WaitForSeconds(shotTimer);
+        //playerSpeed -= amount;
         return playerSpeed += amount;
     }
-    public int SetBullets(int amount)
+
+    IEnumerator resetSpeed()
     {
-        return totalBulletCount += amount;
+        if (playerSpeed >= 10)
+        {
+            yield return new WaitForSeconds(10);
+            playerSpeed = 10;
+        }
+    }
+
+    public void SetBullets(int amount)
+    {
+        gunList[selectedGun].totalBulletCount += amount;
+        gameManager.instance.updateBulletCounter();
     }
 
 }
