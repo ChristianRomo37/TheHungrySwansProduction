@@ -25,10 +25,6 @@ public class gameManager : MonoBehaviour
     public GameObject SEnemySpawnPos;
     public GameObject FEnemySpawnPos;
     public GameObject TEnemySpawnPos;
-    public GameObject NEnemySpawnPosGrave;
-    public GameObject SEnemySpawnPosGrave;
-    public GameObject FEnemySpawnPosGrave;
-    public GameObject TEnemySpawnPosGrave;
 
     [Header("-----UI Stuff-----")]
     public GameObject activeMenu;
@@ -80,10 +76,6 @@ public class gameManager : MonoBehaviour
         SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
-        NEnemySpawnPosGrave = GameObject.FindGameObjectWithTag("NEnemy Spawn Pos GraveYard");
-        SEnemySpawnPosGrave = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos GraveYard");
-        FEnemySpawnPosGrave = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos GraveYard");
-        TEnemySpawnPosGrave = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos GraveYard");
         updateBulletCounter();
 
     }
@@ -255,5 +247,16 @@ public class gameManager : MonoBehaviour
     public void promptLeaveOff()
     {
         objectivePrompt.enabled = false;
+    }
+
+    public void promptCarOn()
+    {
+        objectivePrompt.text = "Press E To Leave";
+        objectivePrompt.enabled = true;
+    }
+
+    public void promptCarOff()
+    {
+        objectivePrompt.enabled= false;
     }
 }
