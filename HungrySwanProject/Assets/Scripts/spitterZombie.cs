@@ -59,7 +59,7 @@ public class spitterZombie : MonoBehaviour, IDamage
         HPOrig = HP;
         colorOrg = model.material.color;
         //spawnEnemys();
-        gameManager.instance.updateGameGoal(1);
+        //gameManager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
