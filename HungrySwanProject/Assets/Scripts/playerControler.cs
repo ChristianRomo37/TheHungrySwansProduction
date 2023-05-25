@@ -247,7 +247,7 @@ public class playerControler : MonoBehaviour, IDamage
             pistolFlashPos.SetActive(true);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         sniperFlashPos.SetActive(false);
         rifleFlashPos.SetActive(false);
