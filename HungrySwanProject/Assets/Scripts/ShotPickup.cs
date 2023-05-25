@@ -7,10 +7,10 @@ public class ShotPickup : MonoBehaviour, IInteractable
     [SerializeField] int AddSpeed;
     [SerializeField] public float Timer;
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
 
     public void interact(bool canInteract)
     {
