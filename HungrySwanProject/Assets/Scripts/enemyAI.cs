@@ -58,7 +58,7 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
-        spawnEnemys();
+        //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
 
@@ -216,27 +216,27 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void spawnEnemys()
-    {
-        if (this.CompareTag("Normal Zombie"))
-        {
-            transform.position = gameManager.instance.NEnemySpawnPos.transform.position;
-        }
-        if (this.CompareTag("Spitter Zombie"))
-        {
-            transform.position = gameManager.instance.SEnemySpawnPos.transform.position;
-        }
-        if (this.CompareTag("Fast Zombie"))
-        {
-            transform.position = gameManager.instance.FEnemySpawnPos.transform.position;
-        }
-        if (this.CompareTag("Tank Zombie"))
-        {
-            transform.position = gameManager.instance.TEnemySpawnPos.transform.position;
-        }
+    //public void spawnEnemys()
+    //{
+    //    if (this.CompareTag("Normal Zombie"))
+    //    {
+    //        transform.position = gameManager.instance.NEnemySpawnPos.transform.position;
+    //    }
+    //    if (this.CompareTag("Spitter Zombie"))
+    //    {
+    //        transform.position = gameManager.instance.SEnemySpawnPos.transform.position;
+    //    }
+    //    if (this.CompareTag("Fast Zombie"))
+    //    {
+    //        transform.position = gameManager.instance.FEnemySpawnPos.transform.position;
+    //    }
+    //    if (this.CompareTag("Tank Zombie"))
+    //    {
+    //        transform.position = gameManager.instance.TEnemySpawnPos.transform.position;
+    //    }
         
-        HP = HPOrig;
-    }
+    //    HP = HPOrig;
+    //}
 
     IEnumerator zombieSpeak()
     {
