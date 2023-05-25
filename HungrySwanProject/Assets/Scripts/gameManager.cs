@@ -91,6 +91,10 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug Command
+        //Automatically Triggers Win State on pressing * button
+        if (Input.GetKeyDown(KeyCode.KeypadMultiply)) StartCoroutine(youWin());
+
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;

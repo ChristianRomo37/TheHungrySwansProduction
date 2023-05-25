@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playerControler : MonoBehaviour, IDamage
 {
@@ -82,6 +85,7 @@ public class playerControler : MonoBehaviour, IDamage
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
+        
 
 
         if (gameManager.instance.activeMenu == null)
@@ -153,6 +157,8 @@ public class playerControler : MonoBehaviour, IDamage
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        StartCoroutine(resetSpeed());
     }
 
     void sprint()
@@ -191,6 +197,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
     }
+
     IEnumerator shoot()
     {
         isShooting = true;
@@ -392,16 +399,34 @@ public class playerControler : MonoBehaviour, IDamage
 
     public int SetHP(int amount)
     {
+        gameManager.instance.HPBar.fillAmount = (float)(HP + amount) / HPOrig;
         return HP += amount;
     }
 
-    public float SetSpeed(int amount)
+    public float SetSpeed(float amount)
     {
+        //playerSpeed += amount;
+        //yield return new WaitForSeconds(shotTimer);
+        //playerSpeed -= amount;
         return playerSpeed += amount;
     }
-    public int SetBullets(int amount)
+
+    IEnumerator resetSpeed()
     {
-        return totalBulletCount += amount;
+        if (playerSpeed >= 10)
+        {
+            yield return new WaitForSeconds(10);
+            playerSpeed = 10;
+        }
+    }
+
+    public void SetBullets(int amount)
+    {
+        if (gunList.Count > 0)
+        {
+            gunList[selectedGun].totalBulletCount += amount;
+            gameManager.instance.updateBulletCounter();
+        }
     }
 
 }

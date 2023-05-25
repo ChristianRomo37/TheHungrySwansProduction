@@ -6,10 +6,10 @@ public class HealthPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] int AddHP;
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
 
     public void interact(bool canInteract)
     {

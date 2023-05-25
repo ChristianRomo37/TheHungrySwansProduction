@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    void Start()
-    {
+    //void Start()
+    //{
         
-    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,8 +25,8 @@ public class Car : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 }

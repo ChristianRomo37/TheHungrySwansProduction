@@ -7,10 +7,10 @@ public class BulletPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] int AddBullet;
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
 
     public void interact(bool canInteract)
     {
