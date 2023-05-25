@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4a11c1af8f1454a99a452fa1579c7c, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
-  shootDist: 100
+  shootDist: 70
   shootRate: 0.1
-  shootDamage: 2
+  shootDamage: 1
   magSize: 15
   reloadTime: 3
   shotsFired: 3
   OrigtotalBulletCount: 30
-  totalBulletCount: 0
+  totalBulletCount: 30
   bulletsRemaining: 0
   model: {fileID: 919132149155446097, guid: e525d5c90c0df01498dca09570cfb5ec, type: 3}
   gunShotAud: {fileID: 8300000, guid: 611f65b2aba4a4af7b4ab3d6ddb5b546, type: 3}
@@ -31,7 +31,6 @@ MonoBehaviour:
   gunReloadAudVol: 0.5
   gunNoAmmoAudVol: 0.5
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
-  muzzleFlash: {fileID: 0}
   sniper: 0
   pistol: 0
   rifle: 1
