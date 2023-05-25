@@ -65,20 +65,22 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
-        anim.SetFloat("Speed", speed); //Anim
-
-        if (playerInRange && !canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
-           zombieSpeak();
-            StartCoroutine(roam());
-        }
-        else if (agent.destination != gameManager.instance.player.transform.position)
-        {
-           zombieSpeak();
-            StartCoroutine(roam());
-        }
+            speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
+            anim.SetFloat("Speed", speed); //Anim
 
+            if (playerInRange && !canSeePlayer())
+            {
+                zombieSpeak();
+                StartCoroutine(roam());
+            }
+            else if (agent.destination != gameManager.instance.player.transform.position)
+            {
+                zombieSpeak();
+                StartCoroutine(roam());
+            }
+        }
     }
 
     IEnumerator roam()
@@ -178,8 +180,17 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(deadAI());
         }
+    }
+
+    IEnumerator deadAI()
+    {
+        anim.SetBool("Dead", true);
+        agent.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 
     IEnumerator flashColor()
