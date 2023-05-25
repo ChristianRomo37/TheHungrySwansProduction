@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -421,8 +422,11 @@ public class playerControler : MonoBehaviour, IDamage
 
     public void SetBullets(int amount)
     {
-        gunList[selectedGun].totalBulletCount += amount;
-        gameManager.instance.updateBulletCounter();
+        if (gunList.Count > 0)
+        {
+            gunList[selectedGun].totalBulletCount += amount;
+            gameManager.instance.updateBulletCounter();
+        }
     }
 
 }
