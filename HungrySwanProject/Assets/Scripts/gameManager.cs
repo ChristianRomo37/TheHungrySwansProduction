@@ -16,7 +16,7 @@ public class gameManager : MonoBehaviour
     //public GameObject currentWeapon;
 
     [Header("-----Enemy Stuff-----")]
-    public enemyAI enemyAIscript;
+    //public enemyAI enemyAIscript;
     public GameObject Nenemy;
     public GameObject Senemy;
     public GameObject Fenemy;
