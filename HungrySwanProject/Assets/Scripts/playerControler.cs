@@ -20,6 +20,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float jumpHeight;
     [Range(1, 10)][SerializeField] float gravityValue;
     [Range(1, 10)][SerializeField] int jumpMax;
+    [Range(1, 10)][SerializeField] float sprintTimer;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -58,6 +59,7 @@ public class playerControler : MonoBehaviour, IDamage
     private int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
+    private float OrigSpeed;
     int selectedGun;
     bool stepIsPlaying;
     //int bulletsRemaining;
@@ -68,6 +70,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        OrigSpeed = playerSpeed;
 
         //OrigBullet = totalBulletCount;
 
@@ -124,7 +127,7 @@ public class playerControler : MonoBehaviour, IDamage
         {
             gameManager.instance.updateBulletCounter();
         }
-        sprint();
+        StartCoroutine(sprint());
     }
 
     void movement()
@@ -146,6 +149,26 @@ public class playerControler : MonoBehaviour, IDamage
 
         move = (transform.right * Input.GetAxis("Horizontal")) +
             (transform.forward * Input.GetAxis("Vertical"));
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            playerSpeed = OrigSpeed;
+            playerSpeed /= 2;
+        }
+        else if (Input.GetButtonUp("Horizontal"))
+        {
+            playerSpeed = OrigSpeed;
+        }
+
+        if (Input.GetButtonDown("BackStep"))
+        {
+            playerSpeed = OrigSpeed;
+            playerSpeed /= 2;
+        }
+        else if (Input.GetButtonUp("BackStep"))
+        {
+            playerSpeed = OrigSpeed;
+        }
+
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
@@ -161,17 +184,20 @@ public class playerControler : MonoBehaviour, IDamage
         //StartCoroutine(resetSpeed());
     }
 
-    void sprint()
+    IEnumerator sprint()
     {
         if (Input.GetButtonDown("Sprint"))
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
+            yield return new WaitForSeconds(sprintTimer);
+            playerSpeed = OrigSpeed;
+            isSprinting = false;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             isSprinting = false;
-            playerSpeed /= sprintMod;
+            playerSpeed = OrigSpeed;
         }
     }
 
@@ -429,4 +455,13 @@ public class playerControler : MonoBehaviour, IDamage
         }
     }
 
+    public int GetHP(int health)
+    {
+        return health = HP;
+    }
+
+    public int GetMaxHP(int health)
+    {
+        return health = HPOrig;
+    }
 }

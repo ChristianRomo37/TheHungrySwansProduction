@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] int AddHP;
+    int HP;
+    int OrigHP;
 
     //void Start()
     //{
@@ -13,8 +15,13 @@ public class HealthPickup : MonoBehaviour, IInteractable
 
     public void interact(bool canInteract)
     {
-        gameManager.instance.playerScript.SetHP(AddHP);
-        Destroy(gameObject);
+        gameManager.instance.playerScript.GetHP(HP);
+        gameManager.instance.playerScript.GetMaxHP(OrigHP);
+        if (HP > OrigHP)
+        {
+            gameManager.instance.playerScript.SetHP(AddHP);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
