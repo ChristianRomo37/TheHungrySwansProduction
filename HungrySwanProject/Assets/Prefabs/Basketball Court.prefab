@@ -1382,7 +1382,6 @@ GameObject:
   - component: {fileID: 4801026716946146441}
   - component: {fileID: 4801026716946146438}
   - component: {fileID: 4801026716946146439}
-  - component: {fileID: 4801026716946146440}
   m_Layer: 0
   m_Name: Hoop Base
   m_TagString: Untagged
@@ -1455,19 +1454,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4801026716946146440
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801026716946146442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4801026717013860388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1465,6 @@ GameObject:
   - component: {fileID: 4801026717013860387}
   - component: {fileID: 4801026717013860384}
   - component: {fileID: 4801026717013860385}
-  - component: {fileID: 4801026717013860386}
   m_Layer: 0
   m_Name: Hoop Base (1)
   m_TagString: Untagged
@@ -1552,19 +1537,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4801026717013860386
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801026717013860388}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4801026717187590251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1660,7 @@ Transform:
   m_GameObject: {fileID: 4801026717795329528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -86.39383, y: -44.498405, z: -117.037125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4801026717187590250}
