@@ -37,9 +37,11 @@ public class playerControler : MonoBehaviour, IDamage
     public GameObject sniperFlashPos;
     public GameObject rifleFlashPos;
     public GameObject pistolFlashPos;
+    public GameObject uziFlashPos;
     public bool sniper;
     public bool rifle;
     public bool pistol;
+    public bool uzi;
     public bool isReloading;
 
     [Header("-----Audio-----")]
@@ -62,6 +64,7 @@ public class playerControler : MonoBehaviour, IDamage
     private float OrigSpeed;
     int selectedGun;
     bool stepIsPlaying;
+    bool Holdfire;
     //int bulletsRemaining;
 
     //public HealthBar healthBar;
@@ -88,41 +91,59 @@ public class playerControler : MonoBehaviour, IDamage
         //Please leave this here for testing purposes
         //Damages the player if you hit "/"
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
-        
+
 
 
         if (gameManager.instance.activeMenu == null)
         {
             movement();
             changeGun();
-
-            if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
+            if (gunList.Count > 0)
             {
-                //Debug.Log("pressed");
-
-                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
                 {
-                    audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                    if (Input.GetMouseButton(0))
+                    {
+                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                        {
+                            audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                        }
+
+                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+                        {
+                            Debug.Log("shooting");
+                            StartCoroutine(shoot());
+                        }
+                    }
+                }
+                else if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
+                {
+                    //Debug.Log("pressed");
+
+                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                    {
+                        audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                    }
+
+                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+                    {
+                        Debug.Log("shooting");
+                        StartCoroutine(shoot());
+                    }
                 }
 
-                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+                if (!isReloading)
                 {
-                    Debug.Log("shooting");
-                    StartCoroutine(shoot());
-                }
-            }
-
-            if (!isReloading)
-            {
-                if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
-                {
-                    //Debug.Log("re");
-                    //isReloading = true;
-                    StartCoroutine(reload());
+                    if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
+                    {
+                        //Debug.Log("re");
+                        //isReloading = true;
+                        StartCoroutine(reload());
+                    }
                 }
             }
         }
-
+        
         if (gunList.Count == 0)
         {
             gameManager.instance.updateBulletCounter();
@@ -272,12 +293,17 @@ public class playerControler : MonoBehaviour, IDamage
         {
             pistolFlashPos.SetActive(true);
         }
+        else if (uzi == true)
+        {
+            uziFlashPos.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.2f);
 
         sniperFlashPos.SetActive(false);
         rifleFlashPos.SetActive(false);
         pistolFlashPos.SetActive(false);
+        uziFlashPos.SetActive(false);
     }
 
     public void takeDamage(int amount)
@@ -375,6 +401,9 @@ public class playerControler : MonoBehaviour, IDamage
         sniper = gunStat.sniper;
         rifle = gunStat.rifle;
         pistol = gunStat.pistol;
+        uzi = gunStat.uzi;
+        Holdfire = gunStat.HoldFire;
+
 
 
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
@@ -416,6 +445,8 @@ public class playerControler : MonoBehaviour, IDamage
         sniper = gunList[selectedGun].sniper;
         rifle = gunList[selectedGun].rifle;
         pistol = gunList[selectedGun].pistol;
+        uzi = gunList[selectedGun].uzi;
+        Holdfire = gunList[selectedGun].HoldFire;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
