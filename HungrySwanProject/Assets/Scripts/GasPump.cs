@@ -7,7 +7,7 @@ public class GasPump : MonoBehaviour, IDamage
     [SerializeField] int Hp;
 
     [SerializeField] GameObject explosion;
-
+    [Range(1, 500)] public int explDamage;
 
     public void takeDamage(int damage)
     {
@@ -19,6 +19,7 @@ public class GasPump : MonoBehaviour, IDamage
             if (explosion != null)
             {
                 Instantiate(explosion, transform.position, Quaternion.identity);
+
             }
             Destroy(gameObject);
         }
