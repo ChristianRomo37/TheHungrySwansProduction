@@ -17,6 +17,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 20)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] float playerSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
+    [Range(1, 10)][SerializeField] float speedTimer;
     [Range(1, 10)][SerializeField] float jumpHeight;
     [Range(1, 10)][SerializeField] float gravityValue;
     [Range(1, 10)][SerializeField] int jumpMax;
@@ -310,7 +311,7 @@ public class playerControler : MonoBehaviour, IDamage
     {
         HP -= amount;
 
-        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)]);
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         
         updateUI();
         if (HP <= 0)
@@ -460,25 +461,25 @@ public class playerControler : MonoBehaviour, IDamage
         return HP += amount;
     }
 
-    //public float SetSpeed(float amount)
+    //public IEnumerator SetSpeed(float amount)
     //{
-    //    //playerSpeed += amount;
-    //    //yield return new WaitForSeconds(shotTimer);
-    //    //playerSpeed -= amount;
-    //    return playerSpeed += amount;
-    //}
-
-    //IEnumerator resetSpeed()
-    //{
-    //    if (playerSpeed >= 10)
-    //    {
-    //        yield return new WaitForSeconds(10);
-    //        playerSpeed = 10;
-    //    }
+    //    playerSpeed += amount;
+    //    yield return new WaitForSeconds(speedTimer);
+    //    playerSpeed = OrigSpeed;
     //}
 
     public void SetBullets(int amount)
     {
+        if (gunList.Count > 0)
+        {
+            gunList[selectedGun].totalBulletCount += amount;
+            gameManager.instance.updateBulletCounter();
+        }
+    }
+
+    public void SetAmmoCrate(int amount)
+    {
+        amount = gunList[selectedGun].magSize;
         if (gunList.Count > 0)
         {
             gunList[selectedGun].totalBulletCount += amount;
@@ -495,4 +496,9 @@ public class playerControler : MonoBehaviour, IDamage
     {
         return health = HPOrig;
     }
+
+    //public float GetSpeed(float speed)
+    //{
+    //    return speed = playerSpeed;
+    //}
 }
