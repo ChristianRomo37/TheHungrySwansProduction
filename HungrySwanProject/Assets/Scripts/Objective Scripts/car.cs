@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class car : MonoBehaviour
 {
+
+    bool playerInRange;
+
+
     void Start()
-    {
-
-    }
-
-    void Update()
     {
 
     }
@@ -18,7 +17,7 @@ public class car : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.carPartsRemaining <= 0)
         {
-            gameManager.instance.promptTireOn();
+            gameManager.instance.promptLeaveOn();
             interact();
         }
     }
@@ -27,8 +26,13 @@ public class car : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.promptTireOff();
+            gameManager.instance.promptLeaveOff();
         }
+    }
+
+    void Update()
+    {
+
     }
 
     void interact()
@@ -38,5 +42,4 @@ public class car : MonoBehaviour
             gameManager.instance.left = true;
         }
     }
-
 }

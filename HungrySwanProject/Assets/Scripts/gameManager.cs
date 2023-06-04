@@ -34,6 +34,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public TextMeshProUGUI carPartsRemainingLabel;
     public TextMeshProUGUI carPartsRemainingText;
+    public GameObject ret;
 
     [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
@@ -48,12 +49,14 @@ public class gameManager : MonoBehaviour
     float timeScaleOrig;
     public int carPartsRemaining;
     public int carPartsPlaced;
+    public bool hasPart;
     public bool battery;
     public bool engine;
     public bool gas;
     public bool key;
     public bool tire;
     public bool left;
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -167,7 +170,18 @@ public class gameManager : MonoBehaviour
         ePrompt.text = "Press E To Pick Up Gun";
     }
 
+    public void promptEOnBox()
+    {
+        ePrompt.enabled = true;
+        ePrompt.text = "Press E To Pick Up Ammo";
+    }
+
     public void promptEOff()
+    {
+        ePrompt.enabled = false;
+    }
+
+    public void promptEOffBox()
     {
         ePrompt.enabled = false;
     }

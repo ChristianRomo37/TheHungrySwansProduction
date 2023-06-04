@@ -22,6 +22,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float gravityValue;
     [Range(1, 10)][SerializeField] int jumpMax;
     [Range(1, 10)][SerializeField] float sprintTimer;
+    [SerializeField] GameObject flashlight;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -33,17 +34,23 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
     [Range(0,500)][SerializeField] int bulletsRemaining;
+    public GameObject primaryGunPOS;
+    public GameObject secondaryGunPOS;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
     public GameObject sniperFlashPos;
     public GameObject rifleFlashPos;
     public GameObject pistolFlashPos;
     public GameObject uziFlashPos;
+    public GameObject shotgunFlashPos;
+    public GameObject ADSsniperFlashPos;
     public bool sniper;
     public bool rifle;
     public bool pistol;
     public bool uzi;
+    public bool shotgun;
     public bool isReloading;
+    public float spread;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
@@ -57,8 +64,11 @@ public class playerControler : MonoBehaviour, IDamage
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private bool isSprinting;
-    private bool isShooting;
+
+    public bool isSprinting;
+    public bool isShooting;
+    public bool isAiming;
+
     private int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
@@ -66,6 +76,7 @@ public class playerControler : MonoBehaviour, IDamage
     int selectedGun;
     bool stepIsPlaying;
     bool Holdfire;
+    ReticalSpread ret;
     //int bulletsRemaining;
 
     //public HealthBar healthBar;
@@ -93,7 +104,35 @@ public class playerControler : MonoBehaviour, IDamage
         //Damages the player if you hit "/"
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
 
+        ret = gameManager.instance.ret.GetComponent<ReticalSpread>();
 
+        if (Input.GetButtonDown("FlashLight"))
+        {
+            if(flashlight.activeSelf)
+            {
+                flashlight.SetActive(false);
+            }
+            else
+            {
+                flashlight.SetActive(true);
+            }
+        }
+
+        if (sniper)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                primaryGunPOS.SetActive(false);
+                secondaryGunPOS.SetActive(true);
+                isAiming = true;
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                primaryGunPOS.SetActive(true);
+                secondaryGunPOS.SetActive(false);
+                isAiming = false;
+            }
+        }
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -139,6 +178,7 @@ public class playerControler : MonoBehaviour, IDamage
                     {
                         //Debug.Log("re");
                         //isReloading = true;
+                        if (gunList[selectedGun].totalBulletCount != 0)
                         StartCoroutine(reload());
                     }
                 }
@@ -259,22 +299,40 @@ public class playerControler : MonoBehaviour, IDamage
         gameManager.instance.updateBulletCounter();
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDist))
-        {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            if (damageable != null)
+        Vector3 middle = new Vector3(0.5f,0.5f,0);
+
+        Ray ray = Camera.main.ViewportPointToRay(middle);
+
+        for (int i = 0; i < gunList[selectedGun].shotsFired; ++i)
+        {
+            float x;
+            float y;
+            if (!isAiming)
             {
-                for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
-                {
-                    damageable.takeDamage(shootDamage);
-                }
+                x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+                y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+            }
+            else
+            {
+                x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+                y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
             }
 
-            for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+            Vector3 spreaddirect = ray.direction + new Vector3(x, y, 0);
+            if (Physics.Raycast(ray.origin, spreaddirect, out hit, shootDist))
+            {
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+
+                if (damageable != null)
+                {
+                    //for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+                    damageable.takeDamage(shootDamage);
+                }
+                //for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            }
         }
-        //bulletsShot++;
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -284,7 +342,14 @@ public class playerControler : MonoBehaviour, IDamage
     {
         if (sniper == true)
         {
-            sniperFlashPos.SetActive(true);
+            if (isAiming)
+            {
+                ADSsniperFlashPos.SetActive(true);
+            }
+            else
+            {
+                sniperFlashPos.SetActive(true);
+            }
         }
         else if (rifle  == true)
         {
@@ -298,13 +363,19 @@ public class playerControler : MonoBehaviour, IDamage
         {
             uziFlashPos.SetActive(true);
         }
+        else if (shotgun == true)
+        {
+            shotgunFlashPos.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.2f);
 
         sniperFlashPos.SetActive(false);
+        ADSsniperFlashPos.SetActive(false);
         rifleFlashPos.SetActive(false);
         pistolFlashPos.SetActive(false);
         uziFlashPos.SetActive(false);
+        shotgunFlashPos.SetActive(false);
     }
 
     public void takeDamage(int amount)
@@ -403,7 +474,9 @@ public class playerControler : MonoBehaviour, IDamage
         rifle = gunStat.rifle;
         pistol = gunStat.pistol;
         uzi = gunStat.uzi;
+        shotgun = gunStat.shotgun;
         Holdfire = gunStat.HoldFire;
+        spread = gunStat.Spread;
 
 
 
@@ -447,7 +520,9 @@ public class playerControler : MonoBehaviour, IDamage
         rifle = gunList[selectedGun].rifle;
         pistol = gunList[selectedGun].pistol;
         uzi = gunList[selectedGun].uzi;
+        shotgun = gunList[selectedGun].shotgun;
         Holdfire = gunList[selectedGun].HoldFire;
+        spread = gunList[selectedGun].Spread;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
