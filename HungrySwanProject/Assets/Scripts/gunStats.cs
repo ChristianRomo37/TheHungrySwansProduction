@@ -32,5 +32,6 @@ public class gunStats : ScriptableObject
     public bool pistol;
     public bool rifle;
     public bool uzi;
+    public bool shotgun;
     public bool HoldFire;
 }

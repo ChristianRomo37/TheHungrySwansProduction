@@ -39,10 +39,12 @@ public class playerControler : MonoBehaviour, IDamage
     public GameObject rifleFlashPos;
     public GameObject pistolFlashPos;
     public GameObject uziFlashPos;
+    public GameObject shotgunFlashPos;
     public bool sniper;
     public bool rifle;
     public bool pistol;
     public bool uzi;
+    public bool shotgun;
     public bool isReloading;
     public float spread;
 
@@ -309,6 +311,10 @@ public class playerControler : MonoBehaviour, IDamage
         {
             uziFlashPos.SetActive(true);
         }
+        else if (shotgun == true)
+        {
+            shotgunFlashPos.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.2f);
 
@@ -316,6 +322,7 @@ public class playerControler : MonoBehaviour, IDamage
         rifleFlashPos.SetActive(false);
         pistolFlashPos.SetActive(false);
         uziFlashPos.SetActive(false);
+        shotgunFlashPos.SetActive(false);
     }
 
     public void takeDamage(int amount)
@@ -414,6 +421,7 @@ public class playerControler : MonoBehaviour, IDamage
         rifle = gunStat.rifle;
         pistol = gunStat.pistol;
         uzi = gunStat.uzi;
+        shotgun = gunStat.shotgun;
         Holdfire = gunStat.HoldFire;
         spread = gunStat.Spread;
 
@@ -459,6 +467,7 @@ public class playerControler : MonoBehaviour, IDamage
         rifle = gunList[selectedGun].rifle;
         pistol = gunList[selectedGun].pistol;
         uzi = gunList[selectedGun].uzi;
+        shotgun = gunList[selectedGun].shotgun;
         Holdfire = gunList[selectedGun].HoldFire;
         spread = gunList[selectedGun].Spread;
 
