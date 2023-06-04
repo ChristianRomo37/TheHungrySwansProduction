@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class onFire : MonoBehaviour, IDamage
+public class PoisonDamage : MonoBehaviour, IDamage
 {
-    [SerializeField] VisualEffect fire;
     [SerializeField] int damage;
     [SerializeField] int duration;
     [SerializeField] int damagedHP;
@@ -22,10 +21,8 @@ public class onFire : MonoBehaviour, IDamage
         for (int i = 0; i < duration; i++)
         {
             fireOn();
-            fire.Play();
             takeDamage(damage);
         }
-        fire.Stop();
     }
 
     public void takeDamage(int damage)
