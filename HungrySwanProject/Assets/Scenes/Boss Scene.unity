@@ -993,9 +993,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971713987}
+  - component: {fileID: 971713988}
   - component: {fileID: 971713986}
   - component: {fileID: 971713985}
   - component: {fileID: 971713984}
+  - component: {fileID: 971713989}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1083,6 +1085,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -181.444, z: 0}
+--- !u!114 &971713988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971713983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb08f64e00a22db43a5ac6c26686fd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 971713989}
+  audioSource: {fileID: 0}
+  HP: 5
+  playerSpeed: 0
+  sprintMod: 0
+  speedTimer: 0
+  jumpHeight: 0
+  gravityValue: 0
+  jumpMax: 0
+  sprintTimer: 0
+  flashlight: {fileID: 0}
+  gunList: []
+  shootDist: 0
+  shootRate: 0
+  shootDamage: 0
+  magSize: 0
+  reloadTime: 0
+  shotsFired: 0
+  totalBulletCount: 0
+  bulletsRemaining: 0
+  primaryGunPOS: {fileID: 0}
+  secondaryGunPOS: {fileID: 0}
+  gunModel: {fileID: 0}
+  gunMat: {fileID: 0}
+  sniperFlashPos: {fileID: 0}
+  rifleFlashPos: {fileID: 0}
+  pistolFlashPos: {fileID: 0}
+  uziFlashPos: {fileID: 0}
+  shotgunFlashPos: {fileID: 0}
+  ADSsniperFlashPos: {fileID: 0}
+  sniper: 0
+  rifle: 0
+  pistol: 0
+  uzi: 0
+  shotgun: 0
+  isReloading: 0
+  spread: 0
+  sniperPre: {fileID: 0}
+  pistolPre: {fileID: 0}
+  RiflePre: {fileID: 0}
+  ShotGunPre: {fileID: 0}
+  UziPre: {fileID: 0}
+  audJump: []
+  audDamage: []
+  audSteps: []
+  audJumpVol: 0
+  audDamageVol: 0
+  audStepsVol: 0
+  isSprinting: 0
+  isShooting: 0
+  isAiming: 0
+--- !u!143 &971713989
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971713983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000003
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1237268802
 GameObject:
   m_ObjectHideFlags: 0
