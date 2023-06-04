@@ -35,7 +35,7 @@ public class Ammobox : MonoBehaviour
         {
             //gameManager.instance.playerScript.gunPickup(gun);
             playerInRange = true;
-            gameManager.instance.promptEOn();
+            gameManager.instance.promptEOnBox();
             //Destroy(gameObject);
         }
     }
@@ -45,7 +45,7 @@ public class Ammobox : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            gameManager.instance.promptEOff();
+            gameManager.instance.promptEOffBox();
         }
     }
 
@@ -54,13 +54,13 @@ public class Ammobox : MonoBehaviour
         if (playerInRange)
         {
             //Debug.Log("on");
-            gameManager.instance.promptEOn();
+            gameManager.instance.promptEOnBox();
             if (Input.GetButtonDown("Interact") && counter <= 3)
             {
                 counter++;
                 gameManager.instance.playerScript.SetAmmoCrate(ammo);
                 audioSource.PlayOneShot(Pickup[Random.Range(0, Pickup.Length)], PickupVol);
-                gameManager.instance.promptEOff();
+                gameManager.instance.promptEOffBox();
                 if (counter == 3)
                 {
                     playerInRange = false;

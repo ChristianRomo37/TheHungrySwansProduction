@@ -44,6 +44,7 @@ public class playerControler : MonoBehaviour, IDamage
     public bool pistol;
     public bool uzi;
     public bool isReloading;
+    public float spread;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
@@ -57,8 +58,8 @@ public class playerControler : MonoBehaviour, IDamage
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private bool isSprinting;
-    private bool isShooting;
+    public bool isSprinting;
+    public bool isShooting;
     private int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
@@ -66,6 +67,7 @@ public class playerControler : MonoBehaviour, IDamage
     int selectedGun;
     bool stepIsPlaying;
     bool Holdfire;
+    ReticalSpread ret;
     //int bulletsRemaining;
 
     //public HealthBar healthBar;
@@ -93,7 +95,7 @@ public class playerControler : MonoBehaviour, IDamage
         //Damages the player if you hit "/"
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
 
-
+        ret = gameManager.instance.ret.GetComponent<ReticalSpread>();
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -139,6 +141,7 @@ public class playerControler : MonoBehaviour, IDamage
                     {
                         //Debug.Log("re");
                         //isReloading = true;
+                        if (gunList[selectedGun].totalBulletCount != 0)
                         StartCoroutine(reload());
                     }
                 }
@@ -259,22 +262,30 @@ public class playerControler : MonoBehaviour, IDamage
         gameManager.instance.updateBulletCounter();
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDist))
-        {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
 
-            if (damageable != null)
+        Vector3 middle = new Vector3(0.5f,0.5f,0);
+
+        Ray ray = Camera.main.ViewportPointToRay(middle);
+
+        for (int i = 0; i < gunList[selectedGun].shotsFired; ++i)
+        {
+            float x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+            float y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+
+            Vector3 spreaddirect = ray.direction + new Vector3(x, y, 0);
+            if (Physics.Raycast(ray.origin, spreaddirect, out hit, shootDist))
             {
-                for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+
+                if (damageable != null)
                 {
+                    //for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
                     damageable.takeDamage(shootDamage);
                 }
-            }
-
-            for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+                //for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            }
         }
-        //bulletsShot++;
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -404,6 +415,7 @@ public class playerControler : MonoBehaviour, IDamage
         pistol = gunStat.pistol;
         uzi = gunStat.uzi;
         Holdfire = gunStat.HoldFire;
+        spread = gunStat.Spread;
 
 
 
@@ -448,6 +460,7 @@ public class playerControler : MonoBehaviour, IDamage
         pistol = gunList[selectedGun].pistol;
         uzi = gunList[selectedGun].uzi;
         Holdfire = gunList[selectedGun].HoldFire;
+        spread = gunList[selectedGun].Spread;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
