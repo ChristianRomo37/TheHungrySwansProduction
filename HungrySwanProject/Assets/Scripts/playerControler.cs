@@ -14,7 +14,7 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioSource;
 
     [Header("-----Player Stats-----")]
-    [Range(1, 20)][SerializeField] int HP;
+    [Range(1, 20)][SerializeField] public int HP;
     [Range(1, 10)][SerializeField] float playerSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
     [Range(1, 10)][SerializeField] float speedTimer;
