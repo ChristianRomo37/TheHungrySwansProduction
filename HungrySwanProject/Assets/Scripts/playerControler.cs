@@ -22,6 +22,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] float gravityValue;
     [Range(1, 10)][SerializeField] int jumpMax;
     [Range(1, 10)][SerializeField] float sprintTimer;
+    [SerializeField] GameObject flashlight;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -98,6 +99,19 @@ public class playerControler : MonoBehaviour, IDamage
         if (Input.GetKeyDown(KeyCode.KeypadDivide)) takeDamage(1);
 
         ret = gameManager.instance.ret.GetComponent<ReticalSpread>();
+
+        if (Input.GetButtonDown("FlashLight"))
+        {
+            if(flashlight.activeSelf)
+            {
+                flashlight.SetActive(false);
+            }
+            else
+            {
+                flashlight.SetActive(true);
+            }
+        }
+
 
         if (gameManager.instance.activeMenu == null)
         {
