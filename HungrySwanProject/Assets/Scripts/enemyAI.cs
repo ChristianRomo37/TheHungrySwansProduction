@@ -50,6 +50,8 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool stepIsPlaying;
     float speed; //Anim
+    bool sink = false;
+    float roamPauseTime2;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +83,13 @@ public class enemyAI : MonoBehaviour, IDamage
                 StartCoroutine(roam());
             }
         }
+        else
+        {
+            if (sink)
+            {
+                transform.Translate(-Vector3.up * 2f * Time.deltaTime);
+            }
+        }
     }
 
     IEnumerator roam()
@@ -89,6 +98,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             destinatoinChosen = true;
             agent.stoppingDistance = 0;
+            roamPauseTime2 = Random.Range(0f, 5f);
             yield return new WaitForSeconds(roamPauseTime);
             destinatoinChosen = false;
 
@@ -189,6 +199,8 @@ public class enemyAI : MonoBehaviour, IDamage
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        sink = true;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
