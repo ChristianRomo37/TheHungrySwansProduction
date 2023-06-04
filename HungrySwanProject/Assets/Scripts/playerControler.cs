@@ -34,6 +34,8 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
     [Range(0,500)][SerializeField] int bulletsRemaining;
+    public GameObject primaryGunPOS;
+    public GameObject secondaryGunPOS;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
     public GameObject sniperFlashPos;
@@ -41,6 +43,7 @@ public class playerControler : MonoBehaviour, IDamage
     public GameObject pistolFlashPos;
     public GameObject uziFlashPos;
     public GameObject shotgunFlashPos;
+    public GameObject ADSsniperFlashPos;
     public bool sniper;
     public bool rifle;
     public bool pistol;
@@ -61,8 +64,11 @@ public class playerControler : MonoBehaviour, IDamage
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
+
     public bool isSprinting;
     public bool isShooting;
+    public bool isAiming;
+
     private int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
@@ -112,6 +118,21 @@ public class playerControler : MonoBehaviour, IDamage
             }
         }
 
+        if (sniper)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                primaryGunPOS.SetActive(false);
+                secondaryGunPOS.SetActive(true);
+                isAiming = true;
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                primaryGunPOS.SetActive(true);
+                secondaryGunPOS.SetActive(false);
+                isAiming = false;
+            }
+        }
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -285,8 +306,18 @@ public class playerControler : MonoBehaviour, IDamage
 
         for (int i = 0; i < gunList[selectedGun].shotsFired; ++i)
         {
-            float x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
-            float y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+            float x;
+            float y;
+            if (!isAiming)
+            {
+                x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+                y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+            }
+            else
+            {
+                x = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+                y = Random.Range((-ret.curSize / ret.maxSize) / 15, (ret.curSize / ret.maxSize) / 15);
+            }
 
             Vector3 spreaddirect = ray.direction + new Vector3(x, y, 0);
             if (Physics.Raycast(ray.origin, spreaddirect, out hit, shootDist))
@@ -311,7 +342,14 @@ public class playerControler : MonoBehaviour, IDamage
     {
         if (sniper == true)
         {
-            sniperFlashPos.SetActive(true);
+            if (isAiming)
+            {
+                ADSsniperFlashPos.SetActive(true);
+            }
+            else
+            {
+                sniperFlashPos.SetActive(true);
+            }
         }
         else if (rifle  == true)
         {
@@ -333,6 +371,7 @@ public class playerControler : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.2f);
 
         sniperFlashPos.SetActive(false);
+        ADSsniperFlashPos.SetActive(false);
         rifleFlashPos.SetActive(false);
         pistolFlashPos.SetActive(false);
         uziFlashPos.SetActive(false);
