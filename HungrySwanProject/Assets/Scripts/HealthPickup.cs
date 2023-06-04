@@ -17,7 +17,7 @@ public class HealthPickup : MonoBehaviour, IInteractable
     {
         gameManager.instance.playerScript.GetHP(HP);
         gameManager.instance.playerScript.GetMaxHP(OrigHP);
-        if (HP > OrigHP)
+        if (HP < OrigHP)
         {
             gameManager.instance.playerScript.SetHP(AddHP);
             Destroy(gameObject);

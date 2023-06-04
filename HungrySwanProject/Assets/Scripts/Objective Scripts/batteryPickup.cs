@@ -14,9 +14,9 @@ public class batteryPickup : MonoBehaviour
     {
         if (!gameManager.instance.hasPart)
         {
+            Destroy(gameObject);
             gameManager.instance.updateGameGoal(-1);
             gameManager.instance.tire = true;
-            Destroy(gameObject);
             gameManager.instance.hasPart = true;
         }
     }

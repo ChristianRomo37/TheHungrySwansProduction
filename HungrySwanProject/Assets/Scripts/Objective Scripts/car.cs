@@ -40,6 +40,7 @@ public class car : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.left = true;
+            gameManager.instance.updateGameGoal(0);
         }
     }
 }

@@ -164,6 +164,11 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void setBool(bool toSet, bool setTo)
+    {
+        toSet = setTo;
+    }
+
     public void promptEOn()
     {
         ePrompt.enabled = true;
