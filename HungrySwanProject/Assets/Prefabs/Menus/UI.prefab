@@ -2462,6 +2462,7 @@ MonoBehaviour:
   playerDamageFlash: {fileID: 0}
   carPartsRemainingLabel: {fileID: 0}
   carPartsRemainingText: {fileID: 0}
+  ret: {fileID: 5116090622937498484}
   ePrompt: {fileID: 4152459007926566519}
   totalMagSize: {fileID: 8255146}
   bulletsLeft: {fileID: 1778281870}
@@ -2975,7 +2976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3005,7 +3006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  resting: 75
+  resting: 10
   maxSize: 250
   speed: 2
   curSize: 0
@@ -4276,6 +4277,10 @@ PrefabInstance:
     - target: {fileID: 2654810274926601633, guid: d76538f5d0c79684391dca6ecfe531a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375162001729230375, guid: d76538f5d0c79684391dca6ecfe531a8, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6712779051882000192, guid: d76538f5d0c79684391dca6ecfe531a8, type: 3}
       propertyPath: m_Name
