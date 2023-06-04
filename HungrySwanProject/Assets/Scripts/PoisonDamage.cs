@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class onFire : MonoBehaviour, IDamage
+public class PiosonDamage : MonoBehaviour, IDamage
 {
-    [SerializeField] VisualEffect fire;
     [SerializeField] int damage;
     [SerializeField] int duration;
     [SerializeField] int damagedHP;
