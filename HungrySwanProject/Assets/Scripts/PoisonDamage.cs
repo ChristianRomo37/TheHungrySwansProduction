@@ -20,7 +20,7 @@ public class PoisonDamage : MonoBehaviour, IDamage
     {
         for (int i = 0; i < duration; i++)
         {
-            fireOn();
+            poisoned();
             takeDamage(damage);
         }
     }
@@ -30,7 +30,7 @@ public class PoisonDamage : MonoBehaviour, IDamage
         damagedHP -= damage;
     }
 
-    IEnumerator fireOn()
+    IEnumerator poisoned()
     {
         yield return new WaitForSeconds(1);
     }
