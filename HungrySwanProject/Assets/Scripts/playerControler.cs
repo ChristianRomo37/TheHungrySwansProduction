@@ -52,6 +52,13 @@ public class playerControler : MonoBehaviour, IDamage
     public bool isReloading;
     public float spread;
 
+    [Header("----- Gun Locker -----")]
+    [SerializeField] GameObject sniperPre;
+    [SerializeField] GameObject pistolPre;
+    [SerializeField] GameObject RiflePre;
+    [SerializeField] GameObject ShotGunPre;
+    [SerializeField] GameObject UziPre;
+
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
     [SerializeField] AudioClip[] audDamage;
@@ -454,6 +461,26 @@ public class playerControler : MonoBehaviour, IDamage
     {
         if (gunList.Count == 2)
         {
+            if (sniper == true)
+            {
+                Instantiate(sniperPre, transform.position, Quaternion.identity);
+            }
+            else if (rifle == true)
+            {
+                Instantiate(RiflePre, transform.position, Quaternion.identity);
+            }
+            else if (pistol == true)
+            {
+                Instantiate(pistolPre, transform.position, Quaternion.identity);
+            }
+            else if (uzi == true)
+            {
+                Instantiate(UziPre, transform.position, Quaternion.identity);
+            }
+            else if (shotgun == true)
+            {
+                Instantiate(ShotGunPre, transform.position, Quaternion.identity);
+            }
             gunList.RemoveAt(selectedGun);
             
             gunList.Add(gunStat);

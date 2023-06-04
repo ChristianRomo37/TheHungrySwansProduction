@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GasPump : MonoBehaviour, IDamage
+public class Explosion : MonoBehaviour, IDamage
 {
     [SerializeField] int Hp;
 
@@ -19,7 +19,7 @@ public class GasPump : MonoBehaviour, IDamage
             if (explosion != null)
             {
                 Instantiate(explosion, transform.position, Quaternion.identity);
-
+                gameManager.instance.playerScript.SetHP(Hp - 5);
             }
             Destroy(gameObject);
         }
