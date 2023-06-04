@@ -49,6 +49,7 @@ public class gameManager : MonoBehaviour
     float timeScaleOrig;
     public int carPartsRemaining;
     public int carPartsPlaced;
+    public bool hasPart;
     public bool battery;
     public bool engine;
     public bool gas;
