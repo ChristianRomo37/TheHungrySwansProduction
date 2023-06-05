@@ -36,10 +36,10 @@ public class GunPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.playerScript.gunPickup(gun);
+            gameManager.instance.playerScript.gunPickup(gun);
             playerInRange = true;
             gameManager.instance.promptEOn();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
