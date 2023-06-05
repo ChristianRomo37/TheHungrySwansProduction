@@ -37,4 +37,9 @@ public class ButtonFunctions : MonoBehaviour
     {
         
     }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene("Full look Scene");
+    }
 }
