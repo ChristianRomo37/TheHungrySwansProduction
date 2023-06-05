@@ -178,7 +178,7 @@ public class spitterZombie : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
-        anim.SetBool("Dead", true);
+        anim.SetBool("Dead", true); //animation
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
