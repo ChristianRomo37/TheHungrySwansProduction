@@ -42,7 +42,7 @@ public class engineDrop : MonoBehaviour
         {
             gameManager.instance.engine = false;
             gameManager.instance.hasPart = false;
-            //gameManager.instance.holding.SetActive(false);
+            gameManager.instance.holdingEngine.SetActive(false);
             gameManager.instance.promptEngineOff();
         }
     }

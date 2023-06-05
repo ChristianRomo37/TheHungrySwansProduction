@@ -44,6 +44,13 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
 
+    [Header("-----Objective-----")]
+    public GameObject holdingBattery;
+    public GameObject holdingEngine;
+    public GameObject holdingGas;
+    public GameObject holdingKey;
+    public GameObject holdingTire;
+
 
     public bool isPaused;
     float timeScaleOrig;

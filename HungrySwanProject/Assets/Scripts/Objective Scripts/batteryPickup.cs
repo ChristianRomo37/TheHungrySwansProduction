@@ -18,7 +18,7 @@ public class batteryPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.battery = true;
             gameManager.instance.hasPart = true;
-            //gameManager.instance.holding.SetActive(true);
+            gameManager.instance.holdingBattery.SetActive(true);
             gameManager.instance.updateGameGoal(-1);
         }
     }

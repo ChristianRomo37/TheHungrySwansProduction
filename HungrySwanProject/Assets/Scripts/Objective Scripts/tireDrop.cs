@@ -47,7 +47,7 @@ public class tireDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             innerTire.enabled = true;
             outerTire.enabled = true;
-            //gameManager.instance.holding.SetActive(false);
+            gameManager.instance.holdingTire.SetActive(false);
             gameManager.instance.promptTireOff();
         }
     }

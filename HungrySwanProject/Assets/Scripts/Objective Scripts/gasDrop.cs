@@ -42,7 +42,7 @@ public class gasDrop : MonoBehaviour
         {
             gameManager.instance.gas = false;
             gameManager.instance.hasPart = false;
-            //gameManager.instance.holding.SetActive(false);
+            gameManager.instance.holdingGas.SetActive(false);
             gameManager.instance.promptGasOff();
         }
     }
