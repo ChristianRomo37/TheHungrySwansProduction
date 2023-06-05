@@ -34,10 +34,10 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
     [Range(0,500)][SerializeField] int bulletsRemaining;
-    public GameObject primaryGunPOS;
-    public GameObject secondaryGunPOS;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
+    public GameObject primaryGunPOS;
+    public GameObject secondaryGunPOS;
     public GameObject sniperFlashPos;
     public GameObject rifleFlashPos;
     public GameObject pistolFlashPos;
@@ -67,22 +67,23 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
 
-    private int jumpedTimes;
     private Vector3 move;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
 
+    private bool groundedPlayer;
     public bool isSprinting;
     public bool isShooting;
     public bool isAiming;
+    bool stepIsPlaying;
+    bool Holdfire;
 
+    private int jumpedTimes;
     public int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
     private float OrigSpeed;
     int selectedGun;
-    bool stepIsPlaying;
-    bool Holdfire;
+
     ReticalSpread ret;
     //int bulletsRemaining;
 
@@ -93,14 +94,6 @@ public class playerControler : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         OrigSpeed = playerSpeed;
-
-        //OrigBullet = totalBulletCount;
-
-        //healthBar.SetMaxHealth(HPOrig);
-
-        //bulletsRemaining = magSize;
-        //write an if statement for if you hae a gun
-
         spawnPlayer();
     }
 
@@ -113,33 +106,9 @@ public class playerControler : MonoBehaviour, IDamage
 
         ret = gameManager.instance.ret.GetComponent<ReticalSpread>();
 
-        if (Input.GetButtonDown("FlashLight"))
-        {
-            if(flashlight.activeSelf)
-            {
-                flashlight.SetActive(false);
-            }
-            else
-            {
-                flashlight.SetActive(true);
-            }
-        }
+        FlashLight();
 
-        if (sniper)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                primaryGunPOS.SetActive(false);
-                secondaryGunPOS.SetActive(true);
-                isAiming = true;
-            }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                primaryGunPOS.SetActive(true);
-                secondaryGunPOS.SetActive(false);
-                isAiming = false;
-            }
-        }
+        ADS();
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -147,51 +116,12 @@ public class playerControler : MonoBehaviour, IDamage
             changeGun();
             if (gunList.Count > 0)
             {
-                if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
-                {
-                    if (Input.GetMouseButton(0))
-                    {
-                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
-                        {
-                            audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
-                        }
+                OverallFire();
 
-                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
-                        {
-                            Debug.Log("shooting");
-                            StartCoroutine(shoot());
-                        }
-                    }
-                }
-                else if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
-                {
-                    //Debug.Log("pressed");
-
-                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
-                    {
-                        audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
-                    }
-
-                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
-                    {
-                        Debug.Log("shooting");
-                        StartCoroutine(shoot());
-                    }
-                }
-
-                if (!isReloading)
-                {
-                    if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
-                    {
-                        //Debug.Log("re");
-                        //isReloading = true;
-                        if (gunList[selectedGun].totalBulletCount != 0)
-                        StartCoroutine(reload());
-                    }
-                }
+                OverallReload();
             }
         }
-        
+
         if (gunList.Count == 0)
         {
             gameManager.instance.updateBulletCounter();
@@ -473,7 +403,6 @@ public class playerControler : MonoBehaviour, IDamage
         isReloading = false;
     }
 
-
     public int getMagSize()
     {
         return gunList[selectedGun].totalBulletCount;
@@ -603,13 +532,6 @@ public class playerControler : MonoBehaviour, IDamage
         return HP += amount;
     }
 
-    //public IEnumerator SetSpeed(float amount)
-    //{
-    //    playerSpeed += amount;
-    //    yield return new WaitForSeconds(speedTimer);
-    //    playerSpeed = OrigSpeed;
-    //}
-
     public void SetBullets(int amount)
     {
         if (gunList.Count > 0)
@@ -639,8 +561,86 @@ public class playerControler : MonoBehaviour, IDamage
         return health = HPOrig;
     }
 
-    //public float GetSpeed(float speed)
-    //{
-    //    return speed = playerSpeed;
-    //}
+    public void FlashLight()
+    {
+        if (Input.GetButtonDown("FlashLight"))
+        {
+            if (flashlight.activeSelf)
+            {
+                flashlight.SetActive(false);
+            }
+            else
+            {
+                flashlight.SetActive(true);
+            }
+        }
+    }
+
+    public void ADS()
+    {
+        if (sniper)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                primaryGunPOS.SetActive(false);
+                secondaryGunPOS.SetActive(true);
+                isAiming = true;
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                primaryGunPOS.SetActive(true);
+                secondaryGunPOS.SetActive(false);
+                isAiming = false;
+            }
+        }
+    }
+
+    public void OverallFire()
+    {
+        if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                {
+                    audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                }
+
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+                {
+                    Debug.Log("shooting");
+                    StartCoroutine(shoot());
+                }
+            }
+        }
+        else if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
+        {
+            //Debug.Log("pressed");
+
+            if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+            {
+                audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+            }
+
+            if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+            {
+                Debug.Log("shooting");
+                StartCoroutine(shoot());
+            }
+        }
+    }
+
+    public void OverallReload()
+    {
+        if (!isReloading)
+        {
+            if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
+            {
+                //Debug.Log("re");
+                //isReloading = true;
+                if (gunList[selectedGun].totalBulletCount != 0)
+                    StartCoroutine(reload());
+            }
+        }
+    }
 }
