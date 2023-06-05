@@ -76,7 +76,7 @@ public class playerControler : MonoBehaviour, IDamage
     public bool isShooting;
     public bool isAiming;
 
-    private int HPOrig;
+    public int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
     private float OrigSpeed;
@@ -288,9 +288,20 @@ public class playerControler : MonoBehaviour, IDamage
         stepIsPlaying = false;
     }
 
-    void updateUI()
+    public void updateUI()
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
+        //carPartsRemainingText.text = carPartsRemaining.ToString();
+        if (gameManager.instance.carPartsRemaining > 0)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
+            gameManager.instance.carPartsRemainingText.SetText(gameManager.instance.carPartsRemaining.ToString());
+        }
+        else if (gameManager.instance.carPartsRemaining < 1)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
+            gameManager.instance.carPartsRemainingText.SetText("");
+        }
     }
 
     IEnumerator shoot()
