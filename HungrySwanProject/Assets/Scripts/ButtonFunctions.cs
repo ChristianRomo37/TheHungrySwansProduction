@@ -44,25 +44,8 @@ public class ButtonFunctions : MonoBehaviour
         
     }
 
-    //Main Menu Buttons
     public void NewGame()
     {
         SceneManager.LoadScene("Full look Scene");
-    }
-
-    public void LSelect()
-    {
-        if (gameManager.instance.levelSelect.activeSelf) gameManager.instance.levelSelect.SetActive(false);
-        else gameManager.instance.levelSelect.SetActive(true);
-    }
-
-    public void L1Mob()
-    {
-        SceneManager.LoadScene("Full look Scene");
-    }
-
-    public void L1Boss()
-    {
-        SceneManager.LoadScene("Boss Scene");
     }
 }

@@ -6,7 +6,7 @@ public class FireDamage : MonoBehaviour
 {
     int hp;
     [SerializeField] int timer;
-    public bool onFire;
+    bool onFire;
     int ticks;
 
     // Start is called before the first frame update
@@ -44,19 +44,7 @@ public class FireDamage : MonoBehaviour
         for (int i = 0; i < ticks; i++)
         {
             gameManager.instance.playerScript.SetHP(hp - 1);
-            StartCoroutine(DamageFlash());
-            if (gameManager.instance.playerScript.HP == 0 )
-            {
-                gameManager.instance.youLose();
-            }
             yield return new WaitForSeconds(timer);
         }
-    }
-
-    IEnumerator DamageFlash()
-    {
-        gameManager.instance.playerDamageFlash.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.instance.playerDamageFlash.SetActive(false);
     }
 }
