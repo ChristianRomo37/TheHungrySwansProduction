@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class tirePickup : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,10 @@ public class tirePickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.tire = true;
             gameManager.instance.hasPart = true;
+            gameManager.instance.holdingTire.SetActive(true);
+            gameManager.instance.carPartsPlaced++;
             gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.playerScript.updateUI();
         }
     }
 

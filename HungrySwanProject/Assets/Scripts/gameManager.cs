@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject TEnemySpawnPos;
 
     [Header("-----UI Stuff-----")]
+    public UIElements ui;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject loseMenu;
@@ -43,6 +44,13 @@ public class gameManager : MonoBehaviour
     public Image HPBar;
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
+
+    [Header("-----Objective-----")]
+    public GameObject holdingBattery;
+    public GameObject holdingEngine;
+    public GameObject holdingGas;
+    public GameObject holdingKey;
+    public GameObject holdingTire;
 
 
     public bool isPaused;
@@ -137,12 +145,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (carPartsRemaining < 1)
-        {
-            carPartsRemainingLabel.SetText("Fix the Car");
-            carPartsRemainingText.SetText("");
-        }
+        
         if (left == true)
         {
             StartCoroutine(youWin());
@@ -158,15 +161,7 @@ public class gameManager : MonoBehaviour
         pauseState();
     }
 
-    public void updateBulletCounter()
-    {
-        
-        if (playerScript && instance.playerScript.gunList.Count > 0)
-        {
-           totalMagSize.text = playerScript.getMagSize().ToString();
-           bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
-        }
-    }
+    
 
     public void setBool(bool toSet, bool setTo)
     {

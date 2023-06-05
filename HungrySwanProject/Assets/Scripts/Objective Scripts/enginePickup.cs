@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enginePickup : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,9 @@ public class enginePickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.engine = true;
             gameManager.instance.hasPart = true;
+            gameManager.instance.holdingEngine.SetActive(true);
             gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.playerScript.updateUI();
         }
     }
 
