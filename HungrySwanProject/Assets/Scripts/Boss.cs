@@ -22,6 +22,12 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int shootAngle;
     [SerializeField] GameObject bullet;
 
+    [Header("-----Necromancy-----")]
+    [SerializeField] GameObject[] ObjectToSpawn;
+    [SerializeField] Transform SpawnRange;
+    [SerializeField] int MaxMinions;
+    [SerializeField] float timeBetweenSpawns;
+
     bool playerInRange;
     Color colorOrg;
     private int HPOrig;
@@ -29,6 +35,8 @@ public class Boss : MonoBehaviour, IDamage
     float angleToPlayer;
     bool isShooting;
     float stoppingDistOrig;
+    int minionsSpawned;
+    static public int minionsAlive;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +50,36 @@ public class Boss : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
+            if (minionsAlive == 0)
+            {
+                minionsSpawned = minionsAlive;
+            }
 
+            if (minionsSpawned < MaxMinions)
+            {
+                StartCoroutine(spawnMinions());
+            }
         }
+    }
+
+    IEnumerator spawnMinions()
+    {
+        Vector3 spawnPos = GetRandomSpawnPos();
+        Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
+        minionsSpawned++;
+        minionsAlive++;
+
+        yield return new WaitForSeconds(timeBetweenSpawns);
+
+
+    }
+
+    Vector3 GetRandomSpawnPos()
+    {
+        Vector3 randomSpot = Random.insideUnitSphere * SpawnRange.localScale.x;
+        Vector3 spawnPostion = SpawnRange.position + randomSpot;
+        spawnPostion.y = 0f;
+        return spawnPostion;
     }
 
     bool canSeePlayer()

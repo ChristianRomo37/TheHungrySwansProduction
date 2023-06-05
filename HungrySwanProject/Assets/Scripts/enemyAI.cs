@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
@@ -196,6 +197,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
@@ -203,6 +205,7 @@ public class enemyAI : MonoBehaviour, IDamage
         sink = true;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+        Boss.minionsAlive--;
     }
 
     IEnumerator flashColor()
