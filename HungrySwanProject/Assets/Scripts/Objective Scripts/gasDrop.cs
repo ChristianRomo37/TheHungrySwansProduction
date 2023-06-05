@@ -44,6 +44,7 @@ public class gasDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             gameManager.instance.holdingGas.SetActive(false);
             gameManager.instance.promptGasOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

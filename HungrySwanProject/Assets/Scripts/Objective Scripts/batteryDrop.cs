@@ -44,6 +44,7 @@ public class batteryDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             gameManager.instance.holdingBattery.SetActive(false);
             gameManager.instance.promptBatteryOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

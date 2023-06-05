@@ -25,6 +25,7 @@ public class engineDrop : MonoBehaviour
         {
             gameManager.instance.promptEngineOn();
             playerInRange = true;
+            gameManager.instance.playerScript.updateUI();
         }
     }
 
@@ -44,6 +45,7 @@ public class engineDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             gameManager.instance.holdingEngine.SetActive(false);
             gameManager.instance.promptEngineOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }
