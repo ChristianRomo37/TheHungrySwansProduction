@@ -27,7 +27,9 @@ public class ButtonFunctions : MonoBehaviour
     public void respawnPlayer()
     {
         gameManager.instance.unPauseState();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
+        gameManager.instance.playerScript.updateUI();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.playerScript.spawnPlayer();
         //gameManager.instance.enemyAIscript.spawnEnemys();
 
