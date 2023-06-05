@@ -15,6 +15,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
+    [SerializeField] Collider headShot;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -53,9 +54,10 @@ public class enemyAI : MonoBehaviour, IDamage
     float speed; //Anim
     bool sink = false;
     float roamPauseTime2;
+    int damageGlob;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -154,7 +156,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance && agent.isActiveAndEnabled)
         {
             isShooting = true;
 
@@ -180,6 +182,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        damageGlob = damage;
+
         HP -= damage;
 
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
@@ -194,18 +198,26 @@ public class enemyAI : MonoBehaviour, IDamage
             StartCoroutine(deadAI());
         }
     }
+    public void takeHeadshot()
+    {
+        if (headShot)
+        {
+            int damage = damageGlob * 2;
+            takeDamage(damage);
+        }
+    }
 
     IEnumerator deadAI()
     {
-
-        anim.SetBool("Dead", true);
-        agent.enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-        yield return new WaitForSeconds(2);
-        sink = true;
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
-        Boss.minionsAlive--;
+        
+            anim.SetBool("Dead", true);
+            agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+            yield return new WaitForSeconds(2);
+            sink = true;
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
+            Boss.minionsAlive--;
     }
 
     IEnumerator flashColor()
@@ -220,6 +232,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            agent.stoppingDistance = stoppingDistOrig;
         }
     }
 

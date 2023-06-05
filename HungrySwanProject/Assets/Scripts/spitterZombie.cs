@@ -13,6 +13,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     [SerializeField] Animator anim; //animation
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Collider headShot;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -50,6 +51,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool stepIsPlaying;
     float speed; //animation
+    int damageGlob;
 
     // Start is called before the first frame update
     void Start()
@@ -173,6 +175,15 @@ public class spitterZombie : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(deadAI());
+        }
+    }
+
+    public void takeHeadshot()
+    {
+        if (headShot)
+        {
+            int damage = damageGlob * 2;
+            takeDamage(damage);
         }
     }
 

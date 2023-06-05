@@ -37,27 +37,37 @@ public class Boss : MonoBehaviour, IDamage
     float stoppingDistOrig;
     int minionsSpawned;
     static public int minionsAlive;
+    bool stunned;
+    int damageGlob;
+    float speedOrig;
 
     // Start is called before the first frame update
     void Start()
     {
         colorOrg = model.material.color;
+        speedOrig = agent.speed;
         HPOrig = HP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && !stunned)
         {
-            if (minionsAlive == 0)
-            {
-                minionsSpawned = minionsAlive;
-            }
+            canSeePlayer(); 
+
+
 
             if (minionsSpawned < MaxMinions)
             {
                 StartCoroutine(spawnMinions());
+            }
+
+            StartCoroutine(stun());
+
+            if (minionsAlive == 0)
+            {
+                minionsSpawned = minionsAlive;
             }
         }
     }
@@ -95,7 +105,6 @@ public class Boss : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -109,7 +118,6 @@ public class Boss : MonoBehaviour, IDamage
                 return true;
             }
         }
-        agent.stoppingDistance = 0;
         return false;
     }
 
@@ -136,17 +144,34 @@ public class Boss : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
-        HP -= damage;
+        if (stunned)
+        {
+            damageGlob = damage;
+            HP -= damage;
 
-        StartCoroutine(flashColor());
+            StartCoroutine(flashColor());
+        }
 
         agent.SetDestination(gameManager.instance.player.transform.position);
-
         playerInRange = true;
 
         if (HP <= 0)
         {
             StartCoroutine(deadAI());
+        }
+    }
+    
+    IEnumerator stun()
+    {
+        if (minionsAlive == 0)
+        {
+            stunned = true;
+            agent.speed = 0;
+
+            yield return new WaitForSeconds(10);
+
+            agent.speed = speedOrig;
+            stunned = false;
         }
     }
 
@@ -163,5 +188,21 @@ public class Boss : MonoBehaviour, IDamage
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
     }
 }
