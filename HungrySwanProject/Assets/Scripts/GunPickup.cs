@@ -77,16 +77,19 @@ public class GunPickup : MonoBehaviour
     {
         if (playerInRange)
         {
-             //Debug.Log("on");
-             //gameManager.instance.promptEOn();
-             if (Input.GetButtonDown("Interact"))
-             {
-                 //yield return new WaitForSeconds(pickUpTimer);
-                 gameManager.instance.playerScript.gunPickup(gun);
-                 playerInRange = false;
-                 gameManager.instance.promptEOff();
-                 Destroy(gameObject);
-             }
+            //Debug.Log("on");
+            //gameManager.instance.promptEOn();
+            if (gameManager.instance.playerScript.isReloading == false)
+            {
+                if (Input.GetButtonDown("Interact"))
+                {
+                    //yield return new WaitForSeconds(pickUpTimer);
+                    gameManager.instance.playerScript.gunPickup(gun);
+                    playerInRange = false;
+                    gameManager.instance.promptEOff();
+                    Destroy(gameObject);
+                }
+            }
         }
         
     }
