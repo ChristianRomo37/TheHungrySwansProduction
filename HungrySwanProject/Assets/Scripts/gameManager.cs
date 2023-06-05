@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
         SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
-        updateBulletCounter();
+        instance.ui.updateBulletCounter();
 
     }
 

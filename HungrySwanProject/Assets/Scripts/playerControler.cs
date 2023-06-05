@@ -124,7 +124,7 @@ public class playerControler : MonoBehaviour, IDamage
 
         if (gunList.Count == 0)
         {
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
         StartCoroutine(sprint());
     }
@@ -235,7 +235,7 @@ public class playerControler : MonoBehaviour, IDamage
         for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
             StartCoroutine(flashMuzzel());
 
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
 
         RaycastHit hit;
 
@@ -361,7 +361,7 @@ public class playerControler : MonoBehaviour, IDamage
         //Debug.Log("reload");
 
         //bulletsShot = 0;
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
 
         isReloading = false;
     }
@@ -385,7 +385,7 @@ public class playerControler : MonoBehaviour, IDamage
         totalBulletCount = OrigBullet;
         bulletsRemaining = magSize;
         updateUI();
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     public void gunPickup(gunStats gunStat)
@@ -445,7 +445,7 @@ public class playerControler : MonoBehaviour, IDamage
         selectedGun = gunList.Count - 1;
 
         audioSource.PlayOneShot(gunList[selectedGun].gunPickupAud, gunList[selectedGun].gunPickupAudVol);
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     void changeGun()
@@ -486,7 +486,7 @@ public class playerControler : MonoBehaviour, IDamage
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
         
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     public int SetHP(int amount)
@@ -500,7 +500,7 @@ public class playerControler : MonoBehaviour, IDamage
         if (gunList.Count > 0)
         {
             gunList[selectedGun].totalBulletCount += amount;
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
     }
 
@@ -510,7 +510,7 @@ public class playerControler : MonoBehaviour, IDamage
         if (gunList.Count > 0)
         {
             gunList[selectedGun].totalBulletCount += amount;
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
     }
 
