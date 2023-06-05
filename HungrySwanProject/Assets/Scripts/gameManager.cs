@@ -80,7 +80,7 @@ public class gameManager : MonoBehaviour
         }
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
-        
+        ui = GetComponent<UIElements>();
         Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
         Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
         Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
