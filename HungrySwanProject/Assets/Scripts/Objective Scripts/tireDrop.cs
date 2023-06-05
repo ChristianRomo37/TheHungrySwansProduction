@@ -19,6 +19,7 @@ public class tireDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
+            
         }
     }
 
@@ -28,6 +29,7 @@ public class tireDrop : MonoBehaviour
         {
             gameManager.instance.promptTireOn();
             playerInRange = true;
+            
         }
     }
 
@@ -49,6 +51,7 @@ public class tireDrop : MonoBehaviour
             outerTire.enabled = true;
             gameManager.instance.holdingTire.SetActive(false);
             gameManager.instance.promptTireOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

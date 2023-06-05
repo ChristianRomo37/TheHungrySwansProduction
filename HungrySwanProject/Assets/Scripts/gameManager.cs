@@ -144,12 +144,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (carPartsRemaining < 1)
-        {
-            carPartsRemainingLabel.SetText("Fix the Car");
-            carPartsRemainingText.SetText("");
-        }
+        
         if (left == true)
         {
             StartCoroutine(youWin());
@@ -260,7 +255,6 @@ public class gameManager : MonoBehaviour
     public void promptTireOn()
     {
         objectivePrompt.text = "Press E To Install Tire";
-        objectivePrompt.enabled = true;
     }
 
     public void promptTireOff()
