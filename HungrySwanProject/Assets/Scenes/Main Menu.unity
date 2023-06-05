@@ -1128,7 +1128,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1285634149}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2573742004949155333}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1285634149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,6 +2247,7 @@ MonoBehaviour:
   playerDamageFlash: {fileID: 0}
   carPartsRemainingLabel: {fileID: 0}
   carPartsRemainingText: {fileID: 0}
+  ret: {fileID: 0}
   ePrompt: {fileID: 0}
   totalMagSize: {fileID: 0}
   bulletsLeft: {fileID: 0}
@@ -2244,6 +2257,7 @@ MonoBehaviour:
   isPaused: 0
   carPartsRemaining: 0
   carPartsPlaced: 0
+  hasPart: 0
   battery: 0
   engine: 0
   gas: 0

@@ -24,6 +24,10 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     public void respawnPlayer()
     {
         gameManager.instance.unPauseState();
