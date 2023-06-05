@@ -3,36 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class PoisonDamage : MonoBehaviour, IDamage
+public class PoisonDamage : MonoBehaviour
 {
-    [SerializeField] int damage;
-    [SerializeField] int duration;
-    [SerializeField] int damagedHP;
+    [SerializeField] ParticleSystem poisonEffect;
+    [SerializeField] int timer;
+    int hp;
+    int ticks;
+    bool poisoned;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < duration; i++)
+        if (ticks == 0)
         {
-            poisoned();
-            takeDamage(damage);
+            poisoned = false;
         }
     }
 
-    public void takeDamage(int damage)
+    private void OnTriggerEnter(Collider other)
     {
-        damagedHP -= damage;
+        poisoned = true;
+        ticks = 5;
+        StartCoroutine(poisonDuration());
     }
 
-    IEnumerator poisoned()
+    private void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(1);
+        poisoned = false;
     }
 
+    IEnumerator poisonDuration()
+    {
+        for (int i = 0; i < ticks; i++)
+        {
+            gameManager.instance.playerScript.SetHP(hp - 1);
+            yield return new WaitForSeconds(timer);
+        }
+        ticks = 0;
+    }
 }

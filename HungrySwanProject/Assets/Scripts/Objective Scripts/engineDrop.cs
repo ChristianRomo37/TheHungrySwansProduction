@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class engineDrop : MonoBehaviour
 {
+    bool playerInRange;
+
     void Start()
     {
 
@@ -11,7 +13,10 @@ public class engineDrop : MonoBehaviour
 
     void Update()
     {
-
+        if (playerInRange)
+        {
+            interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +24,7 @@ public class engineDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.engine)
         {
             gameManager.instance.promptEngineOn();
-            interact();
+            playerInRange = true;
         }
     }
 
@@ -36,6 +41,8 @@ public class engineDrop : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.engine = false;
+            gameManager.instance.hasPart = false;
+            gameManager.instance.promptEngineOff();
         }
     }
 }

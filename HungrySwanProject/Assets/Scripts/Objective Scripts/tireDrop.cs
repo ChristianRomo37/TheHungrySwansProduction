@@ -6,6 +6,7 @@ public class tireDrop : MonoBehaviour
 {
     [SerializeField] MeshRenderer innerTire;
     [SerializeField] MeshRenderer outerTire;
+    bool playerInRange;
 
     void Start()
     {
@@ -14,7 +15,10 @@ public class tireDrop : MonoBehaviour
 
     void Update()
     {
-        
+        if (playerInRange)
+        {
+            interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +26,7 @@ public class tireDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.tire)
         {
             gameManager.instance.promptTireOn();
-            interact();
+            playerInRange = true;
         }
     }
 
@@ -39,8 +43,10 @@ public class tireDrop : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.tire = false;
+            gameManager.instance.hasPart = false;
             innerTire.enabled = true;
             outerTire.enabled = true;
+            gameManager.instance.promptTireOff();
         }
     }
 }

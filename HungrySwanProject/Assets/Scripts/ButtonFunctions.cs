@@ -24,10 +24,16 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     public void respawnPlayer()
     {
         gameManager.instance.unPauseState();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
+        gameManager.instance.playerScript.updateUI();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.playerScript.spawnPlayer();
         //gameManager.instance.enemyAIscript.spawnEnemys();
 
@@ -36,5 +42,10 @@ public class ButtonFunctions : MonoBehaviour
     public void promptE()
     {
         
+    }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene("Full look Scene");
     }
 }

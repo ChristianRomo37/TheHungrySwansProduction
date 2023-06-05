@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class batteryDrop : MonoBehaviour
 {
+    bool playerInRange;
+
     void Start()
     {
 
@@ -11,15 +13,18 @@ public class batteryDrop : MonoBehaviour
 
     void Update()
     {
-
+        if (playerInRange)
+        {
+            interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.battery && !gameManager.instance.engine)
+        if (other.CompareTag("Player") && gameManager.instance.battery)
         {
             gameManager.instance.promptBatteryOn();
-            interact();
+            playerInRange = true;
         }
     }
 
@@ -36,6 +41,8 @@ public class batteryDrop : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.battery = false;
+            gameManager.instance.hasPart = false;
+            gameManager.instance.promptBatteryOff();
         }
     }
 }

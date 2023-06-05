@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class keyDrop : MonoBehaviour
 {
+    bool playerInRange;
+
     void Start()
     {
         
@@ -11,7 +13,10 @@ public class keyDrop : MonoBehaviour
 
     void Update()
     {
-        
+        if (playerInRange)
+        {
+            interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +24,7 @@ public class keyDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.key)
         {
             gameManager.instance.promptKeyOn();
-            interact();
+            playerInRange = true;
         }
     }
 
@@ -36,6 +41,8 @@ public class keyDrop : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.key = false;
+            gameManager.instance.hasPart = false;
+            gameManager.instance.promptKeyOff();
         }
     }
 }
