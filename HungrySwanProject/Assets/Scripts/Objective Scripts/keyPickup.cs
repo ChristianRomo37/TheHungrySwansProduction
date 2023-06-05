@@ -16,7 +16,7 @@ public class keyPickup : MonoBehaviour
         {
             Destroy(gameObject);
             gameManager.instance.updateGameGoal(-1);
-            gameManager.instance.tire = true;
+            gameManager.instance.key = true;
             gameManager.instance.hasPart = true;
         }
     }
