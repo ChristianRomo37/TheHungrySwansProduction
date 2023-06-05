@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject TEnemySpawnPos;
 
     [Header("-----UI Stuff-----")]
+    public UIElements ui;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject loseMenu;
@@ -160,15 +161,7 @@ public class gameManager : MonoBehaviour
         pauseState();
     }
 
-    public void updateBulletCounter()
-    {
-        
-        if (playerScript && instance.playerScript.gunList.Count > 0)
-        {
-           totalMagSize.text = playerScript.getMagSize().ToString();
-           bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
-        }
-    }
+    
 
     public void setBool(bool toSet, bool setTo)
     {
