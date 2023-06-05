@@ -51,6 +51,7 @@ public class playerControler : MonoBehaviour, IDamage
     public bool shotgun;
     public bool isReloading;
     public float spread;
+    FireDamage fire;
 
     [Header("----- Gun Locker -----")]
     [SerializeField] GameObject sniperPre;
@@ -408,13 +409,20 @@ public class playerControler : MonoBehaviour, IDamage
             gameManager.instance.youLose();
         }
         else StartCoroutine(DamageFlash());
+        
     }
 
-    IEnumerator DamageFlash()
+    public IEnumerator DamageFlash()
     {
         gameManager.instance.playerDamageFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageFlash.SetActive(false);
+        if (fire.onFire == true)
+        {
+            gameManager.instance.playerDamageFlash.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            gameManager.instance.playerDamageFlash.SetActive(false);
+        }
     }
 
     IEnumerator reload()
