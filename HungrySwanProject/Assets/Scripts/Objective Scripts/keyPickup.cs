@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class keyPickup : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class keyPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.key = true;
             gameManager.instance.hasPart = true;
+            //gameManager.instance.holding.SetActive(true);
             gameManager.instance.updateGameGoal(-1);
         }
     }

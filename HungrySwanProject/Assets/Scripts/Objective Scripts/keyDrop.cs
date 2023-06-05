@@ -42,6 +42,7 @@ public class keyDrop : MonoBehaviour
         {
             gameManager.instance.key = false;
             gameManager.instance.hasPart = false;
+            //gameManager.instance.holding.SetActive(false);
             gameManager.instance.promptKeyOff();
         }
     }
