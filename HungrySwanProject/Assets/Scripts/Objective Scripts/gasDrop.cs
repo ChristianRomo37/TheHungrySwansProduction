@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class gasDrop : MonoBehaviour
 {
+    bool playerInRange;
+
     void Start()
     {
 
@@ -11,7 +13,10 @@ public class gasDrop : MonoBehaviour
 
     void Update()
     {
-
+        if (playerInRange)
+        {
+            interact();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +24,7 @@ public class gasDrop : MonoBehaviour
         if (other.CompareTag("Player") && gameManager.instance.gas)
         {
             gameManager.instance.promptGasOn();
-            interact();
+            playerInRange = true;
         }
     }
 
@@ -36,6 +41,8 @@ public class gasDrop : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             gameManager.instance.gas = false;
+            gameManager.instance.hasPart = false;
+            gameManager.instance.promptGasOff();
         }
     }
 }

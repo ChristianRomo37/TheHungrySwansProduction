@@ -15,9 +15,9 @@ public class gasPickup : MonoBehaviour
         if (!gameManager.instance.hasPart)
         {
             Destroy(gameObject);
-            gameManager.instance.updateGameGoal(-1);
             gameManager.instance.gas = true;
             gameManager.instance.hasPart = true;
+            gameManager.instance.updateGameGoal(-1);
         }
     }
 
