@@ -44,6 +44,10 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
 
+    [Header("----- Main Menu -----")]
+    public GameObject levelSelect;
+    public GameObject settings;
+
 
     public bool isPaused;
     float timeScaleOrig;
