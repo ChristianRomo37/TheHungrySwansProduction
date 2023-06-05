@@ -255,6 +255,7 @@ public class gameManager : MonoBehaviour
     public void promptTireOn()
     {
         objectivePrompt.text = "Press E To Install Tire";
+        objectivePrompt.enabled = true;
     }
 
     public void promptTireOff()
