@@ -65,8 +65,11 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
        
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerControler>();
         
+        if (player)
+        {
+            playerScript = player.GetComponent<playerControler>();
+        }
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
         
@@ -157,7 +160,8 @@ public class gameManager : MonoBehaviour
 
     public void updateBulletCounter()
     {
-        if (instance.playerScript.gunList.Count > 0)
+        
+        if (playerScript && instance.playerScript.gunList.Count > 0)
         {
            totalMagSize.text = playerScript.getMagSize().ToString();
            bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
