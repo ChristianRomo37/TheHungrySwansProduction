@@ -292,15 +292,43 @@ public class playerControler : MonoBehaviour, IDamage
     {
         gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
         //carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (gameManager.instance.carPartsRemaining > 0)
+        if (gameManager.instance.key && gameManager.instance.hasPart)
         {
-            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
-            gameManager.instance.carPartsRemainingText.SetText(gameManager.instance.carPartsRemaining.ToString());
-        }
-        else if (gameManager.instance.carPartsRemaining < 1)
-        {
-            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
+            gameManager.instance.carPartsRemainingLabel.SetText("Put the Key in the car");
             gameManager.instance.carPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.battery && gameManager.instance.hasPart)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Put the Battery in the car");
+            gameManager.instance.carPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.engine && gameManager.instance.hasPart)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Put the Engine in the car");
+            gameManager.instance.carPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.tire && gameManager.instance.hasPart)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Put the Tire on the car");
+            gameManager.instance.carPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.gas && gameManager.instance.hasPart)
+        {
+            gameManager.instance.carPartsRemainingLabel.SetText("Put Gas in the car");
+            gameManager.instance.carPartsRemainingText.SetText("");
+        }
+        else
+        {
+            if (gameManager.instance.carPartsRemaining > 0)
+            {
+                gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
+                gameManager.instance.carPartsRemainingText.SetText(gameManager.instance.carPartsRemaining.ToString());
+            }
+            else if (gameManager.instance.carPartsRemaining < 1)
+            {
+                gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
+                
+            }
         }
     }
 
@@ -408,7 +436,6 @@ public class playerControler : MonoBehaviour, IDamage
             gameManager.instance.youLose();
         }
         else StartCoroutine(DamageFlash());
-        
     }
 
     IEnumerator DamageFlash()

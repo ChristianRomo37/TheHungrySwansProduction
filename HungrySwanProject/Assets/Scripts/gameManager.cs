@@ -44,6 +44,13 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
 
+    [Header("-----Objective-----")]
+    public GameObject holdingBattery;
+    public GameObject holdingEngine;
+    public GameObject holdingGas;
+    public GameObject holdingKey;
+    public GameObject holdingTire;
+
 
     public bool isPaused;
     float timeScaleOrig;
@@ -137,12 +144,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (carPartsRemaining < 1)
-        {
-            carPartsRemainingLabel.SetText("Fix the Car");
-            carPartsRemainingText.SetText("");
-        }
+        
         if (left == true)
         {
             StartCoroutine(youWin());
