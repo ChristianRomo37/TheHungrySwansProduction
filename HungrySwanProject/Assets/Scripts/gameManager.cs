@@ -56,6 +56,10 @@ public class gameManager : MonoBehaviour
     public GameObject holdingKey;
     public GameObject holdingTire;
 
+    [Header("-----Drop-----")]
+    public GameObject heart;
+    public GameObject bullet;
+
     [Header("----- Main Menu -----")]
     public GameObject levelSelect;
     public GameObject settings;
