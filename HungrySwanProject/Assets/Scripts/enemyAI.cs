@@ -54,6 +54,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float speed; //Anim
     bool sink = false;
     float roamPauseTime2;
+    bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -186,6 +187,7 @@ public class enemyAI : MonoBehaviour, IDamage
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
+        if(!dead)
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         playerInRange = true;
@@ -198,6 +200,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+        dead = true;
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
