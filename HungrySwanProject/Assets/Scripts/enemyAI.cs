@@ -198,7 +198,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
-
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
@@ -207,6 +206,7 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
         Boss.minionsAlive--;
+        StopAllCoroutines();
     }
 
     IEnumerator flashColor()

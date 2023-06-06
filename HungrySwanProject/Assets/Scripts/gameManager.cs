@@ -152,7 +152,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    IEnumerator youWin()
+    public IEnumerator youWin()
     {
         yield return new WaitForSeconds(3);
         activeMenu = winMenu;

@@ -8,6 +8,8 @@ public class FireDamage : MonoBehaviour
     [SerializeField] int timer;
     bool onFire;
     int ticks;
+    public int dmg;
+    public int interval;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +30,14 @@ public class FireDamage : MonoBehaviour
     {
         onFire = true;
         ticks = 5;
-        if (onFire)
+        IDamage dam = other.GetComponent<IDamage>();
+        if (dam != null)
         {
-            StartCoroutine(lastingFire());
+            for (int i = 0; i < ticks; i++)
+            {
+                StartCoroutine(tickDam());
+                dam.takeDamage(dmg);
+            }
         }
     }
 
@@ -39,12 +46,8 @@ public class FireDamage : MonoBehaviour
         onFire = false;
     }
 
-    IEnumerator lastingFire()
+    IEnumerator tickDam()
     {
-        for (int i = 0; i < ticks; i++)
-        {
-            gameManager.instance.playerScript.SetHP(hp - 1);
-            yield return new WaitForSeconds(timer);
-        }
+        yield return new WaitForSeconds(interval);
     }
 }

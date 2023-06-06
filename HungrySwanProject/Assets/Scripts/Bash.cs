@@ -35,13 +35,30 @@ public class Bash : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        IDamage damagable = other.GetComponent<IDamage>();
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    IDamage damagable = other.GetComponent<IDamage>();
+    //    Rigidbody rb = other.GetComponent<Rigidbody>();
 
-        if (damagable != null)
+    //    if (damagable != null)
+    //    {
+    //        damagable.takeDamage(dmg);
+
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Normal Zombie"))
         {
-            damagable.takeDamage(dmg);
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            IDamage dam = collision.gameObject.GetComponent<IDamage>();
+
+            if (dam != null)
+            {
+                dam.takeDamage(dmg);
+                //rb.AddForce();
+            }
         }
     }
 }
