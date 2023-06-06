@@ -39,4 +39,13 @@ public class Stone : MonoBehaviour
         yield return new WaitForSeconds(decay);
         Destroy(gameObject);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        IDamage damage = other.GetComponent<IDamage>();
+        if (damage != null && other.CompareTag("Player"))
+        {
+            damage.takeDamage(2);
+        }
+    }
 }
