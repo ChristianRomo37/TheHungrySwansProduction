@@ -612,4 +612,25 @@ public class playerControler : MonoBehaviour, IDamage
             }
         }
     }
+
+    //public IEnumerator fireDame(int damage)
+    //{
+    //    HP -= damage;
+
+    //    audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+
+    //    updateUI();
+    //    if (HP <= 0)
+    //    {
+    //        gameManager.instance.youLose();
+    //    }
+    //    else StartCoroutine(DamageFlash());
+
+    //    yield return new WaitForSeconds(2);
+    //}
+
+    //public IEnumerator fireTimer(float timer)
+    //{
+    //    yield return new WaitForSeconds(timer);
+    //}
 }

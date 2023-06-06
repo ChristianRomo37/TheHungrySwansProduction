@@ -20,11 +20,11 @@ public class FireDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ticks == 0)
-        {
-            onFire = false;
-        }
-        timer -= Time.deltaTime;
+        //if (ticks == 0)
+        //{
+        //    onFire = false;
+        //}
+        //timer -= Time.deltaTime;
 
         
     }
@@ -43,6 +43,18 @@ public class FireDamage : MonoBehaviour
                 dam.takeDamage(dmg);
             }
         }
+
+        //IFire fire = other.GetComponent<IFire>();
+        //if (fire != null)
+        //{
+        //    fire.fireDame(dmg, ticks);
+        //    fire.fireTimer(timer);
+        //}
+
+        //while (onFire)
+        //{
+        //    //StartCoroutine(fire.fireDame(dmg));
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -52,6 +64,7 @@ public class FireDamage : MonoBehaviour
 
     IEnumerator wait()
     {
+        ticks-=1;
         yield return new WaitForSeconds(timer);
     }
 }

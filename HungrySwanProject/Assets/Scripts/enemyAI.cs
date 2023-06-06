@@ -273,4 +273,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
         stepIsPlaying = false;
     }
+
+    //public IEnumerator fireDame(int damage)
+    //{
+    //    yield return new WaitForSeconds(damage);
+    //}
+
+    //public IEnumerator fireTimer(float timer)
+    //{
+    //    yield return new WaitForSeconds(timer);
+    //}
 }
