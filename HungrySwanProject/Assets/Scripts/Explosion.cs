@@ -48,16 +48,4 @@ public class Explosion : MonoBehaviour, IDamage
             }
         }
     }
-
-
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    IDamage damage = other.GetComponent<IDamage>();
-
-    //    if (damage != null)
-    //    {
-    //        damage.takeDamage(dmg);
-    //    }
-    //}
-
 }
