@@ -42,7 +42,10 @@ public class batteryDrop : MonoBehaviour
         {
             gameManager.instance.battery = false;
             gameManager.instance.hasPart = false;
+            gameManager.instance.holdingBattery.SetActive(false);
+            gameManager.instance.carPartsPlaced++;
             gameManager.instance.promptBatteryOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

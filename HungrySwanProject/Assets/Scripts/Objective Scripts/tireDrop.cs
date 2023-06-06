@@ -7,6 +7,7 @@ public class tireDrop : MonoBehaviour
     [SerializeField] MeshRenderer innerTire;
     [SerializeField] MeshRenderer outerTire;
     bool playerInRange;
+    
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class tireDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
+            
         }
     }
 
@@ -27,6 +29,7 @@ public class tireDrop : MonoBehaviour
         {
             gameManager.instance.promptTireOn();
             playerInRange = true;
+            
         }
     }
 
@@ -46,7 +49,9 @@ public class tireDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             innerTire.enabled = true;
             outerTire.enabled = true;
+            gameManager.instance.holdingTire.SetActive(false);
             gameManager.instance.promptTireOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

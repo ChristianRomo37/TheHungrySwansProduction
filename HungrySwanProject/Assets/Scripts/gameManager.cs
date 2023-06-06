@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject TEnemySpawnPos;
 
     [Header("-----UI Stuff-----")]
+    public UIElements ui;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject loseMenu;
@@ -43,6 +44,13 @@ public class gameManager : MonoBehaviour
     public Image HPBar;
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
+
+    [Header("-----Objective-----")]
+    public GameObject holdingBattery;
+    public GameObject holdingEngine;
+    public GameObject holdingGas;
+    public GameObject holdingKey;
+    public GameObject holdingTire;
 
 
     public bool isPaused;
@@ -65,11 +73,14 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
        
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerControler>();
         
+        if (player)
+        {
+            playerScript = player.GetComponent<playerControler>();
+        }
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
         //currentWeapon = GameObject.FindGameObjectWithTag("Player Weapon");
-        
+        ui = GetComponent<UIElements>();
         Nenemy = GameObject.FindGameObjectWithTag("Normal Zombie");
         Senemy = GameObject.FindGameObjectWithTag("Spitter Zombie");
         Fenemy = GameObject.FindGameObjectWithTag("Fast Zombie");
@@ -79,7 +90,7 @@ public class gameManager : MonoBehaviour
         SEnemySpawnPos = GameObject.FindGameObjectWithTag("SEnemy Spawn Pos");
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
-        updateBulletCounter();
+        instance.ui.updateBulletCounter();
 
     }
 
@@ -134,12 +145,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (carPartsRemaining < 1)
-        {
-            carPartsRemainingLabel.SetText("Fix the Car");
-            carPartsRemainingText.SetText("");
-        }
+        
         if (left == true)
         {
             StartCoroutine(youWin());
@@ -155,14 +161,7 @@ public class gameManager : MonoBehaviour
         pauseState();
     }
 
-    public void updateBulletCounter()
-    {
-        if (instance.playerScript.gunList.Count > 0)
-        {
-           totalMagSize.text = playerScript.getMagSize().ToString();
-           bulletsLeft.text = playerScript.getBulletsRemaining().ToString();
-        }
-    }
+    
 
     public void setBool(bool toSet, bool setTo)
     {

@@ -42,7 +42,10 @@ public class keyDrop : MonoBehaviour
         {
             gameManager.instance.key = false;
             gameManager.instance.hasPart = false;
+            gameManager.instance.holdingKey.SetActive(false);
+            gameManager.instance.carPartsPlaced++;
             gameManager.instance.promptKeyOff();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

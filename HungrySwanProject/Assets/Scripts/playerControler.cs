@@ -12,6 +12,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource audioSource;
+    camerControl cameracon;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
@@ -34,10 +35,10 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
     [Range(0,500)][SerializeField] int bulletsRemaining;
-    public GameObject primaryGunPOS;
-    public GameObject secondaryGunPOS;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
+    public GameObject primaryGunPOS;
+    public GameObject secondaryGunPOS;
     public GameObject sniperFlashPos;
     public GameObject rifleFlashPos;
     public GameObject pistolFlashPos;
@@ -51,6 +52,7 @@ public class playerControler : MonoBehaviour, IDamage
     public bool shotgun;
     public bool isReloading;
     public float spread;
+    public float Recoil;
 
     [Header("----- Gun Locker -----")]
     [SerializeField] GameObject sniperPre;
@@ -67,22 +69,23 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
 
-    private int jumpedTimes;
     private Vector3 move;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
 
+    private bool groundedPlayer;
     public bool isSprinting;
     public bool isShooting;
     public bool isAiming;
+    bool stepIsPlaying;
+    bool Holdfire;
 
+    private int jumpedTimes;
     public int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
     private float OrigSpeed;
     int selectedGun;
-    bool stepIsPlaying;
-    bool Holdfire;
+
     ReticalSpread ret;
     //int bulletsRemaining;
 
@@ -93,15 +96,8 @@ public class playerControler : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         OrigSpeed = playerSpeed;
-
-        //OrigBullet = totalBulletCount;
-
-        //healthBar.SetMaxHealth(HPOrig);
-
-        //bulletsRemaining = magSize;
-        //write an if statement for if you hae a gun
-
         spawnPlayer();
+        cameracon = GetComponentInChildren<camerControl>();
     }
 
     // Update is called once per frame
@@ -113,33 +109,9 @@ public class playerControler : MonoBehaviour, IDamage
 
         ret = gameManager.instance.ret.GetComponent<ReticalSpread>();
 
-        if (Input.GetButtonDown("FlashLight"))
-        {
-            if(flashlight.activeSelf)
-            {
-                flashlight.SetActive(false);
-            }
-            else
-            {
-                flashlight.SetActive(true);
-            }
-        }
+        FlashLight();
 
-        if (sniper)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                primaryGunPOS.SetActive(false);
-                secondaryGunPOS.SetActive(true);
-                isAiming = true;
-            }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                primaryGunPOS.SetActive(true);
-                secondaryGunPOS.SetActive(false);
-                isAiming = false;
-            }
-        }
+        ADS();
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -147,54 +119,15 @@ public class playerControler : MonoBehaviour, IDamage
             changeGun();
             if (gunList.Count > 0)
             {
-                if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
-                {
-                    if (Input.GetMouseButton(0))
-                    {
-                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
-                        {
-                            audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
-                        }
+                OverallFire();
 
-                        if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
-                        {
-                            Debug.Log("shooting");
-                            StartCoroutine(shoot());
-                        }
-                    }
-                }
-                else if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
-                {
-                    //Debug.Log("pressed");
-
-                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
-                    {
-                        audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
-                    }
-
-                    if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
-                    {
-                        Debug.Log("shooting");
-                        StartCoroutine(shoot());
-                    }
-                }
-
-                if (!isReloading)
-                {
-                    if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
-                    {
-                        //Debug.Log("re");
-                        //isReloading = true;
-                        if (gunList[selectedGun].totalBulletCount != 0)
-                        StartCoroutine(reload());
-                    }
-                }
+                OverallReload();
             }
         }
-        
+
         if (gunList.Count == 0)
         {
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
         StartCoroutine(sprint());
     }
@@ -290,18 +223,9 @@ public class playerControler : MonoBehaviour, IDamage
 
     public void updateUI()
     {
-        gameManager.instance.HPBar.fillAmount = (float)HP / HPOrig;
-        //carPartsRemainingText.text = carPartsRemaining.ToString();
-        if (gameManager.instance.carPartsRemaining > 0)
-        {
-            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
-            gameManager.instance.carPartsRemainingText.SetText(gameManager.instance.carPartsRemaining.ToString());
-        }
-        else if (gameManager.instance.carPartsRemaining < 1)
-        {
-            gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
-            gameManager.instance.carPartsRemainingText.SetText("");
-        }
+        gameManager.instance.ui.HealthControl();
+
+        gameManager.instance.ui.Level1Missions();
     }
 
     IEnumerator shoot()
@@ -314,7 +238,7 @@ public class playerControler : MonoBehaviour, IDamage
         for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
             StartCoroutine(flashMuzzel());
 
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
 
         RaycastHit hit;
 
@@ -351,6 +275,7 @@ public class playerControler : MonoBehaviour, IDamage
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
+        cameracon.ApplyRecoil(gunList[selectedGun].Recoil);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -440,11 +365,10 @@ public class playerControler : MonoBehaviour, IDamage
         //Debug.Log("reload");
 
         //bulletsShot = 0;
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
 
         isReloading = false;
     }
-
 
     public int getMagSize()
     {
@@ -465,7 +389,7 @@ public class playerControler : MonoBehaviour, IDamage
         totalBulletCount = OrigBullet;
         bulletsRemaining = magSize;
         updateUI();
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     public void gunPickup(gunStats gunStat)
@@ -493,13 +417,14 @@ public class playerControler : MonoBehaviour, IDamage
                 Instantiate(ShotGunPre, transform.position, Quaternion.identity);
             }
             gunList.RemoveAt(selectedGun);
-            
+
             gunList.Add(gunStat);
         }
         else
         {
             gunList.Add(gunStat);
         }
+        
 
         shootDamage = gunStat.shootDamage;
         shootDist = gunStat.shootDist;
@@ -515,6 +440,7 @@ public class playerControler : MonoBehaviour, IDamage
         shotgun = gunStat.shotgun;
         Holdfire = gunStat.HoldFire;
         spread = gunStat.Spread;
+        Recoil = gunStat.Recoil;
 
 
 
@@ -524,7 +450,7 @@ public class playerControler : MonoBehaviour, IDamage
         selectedGun = gunList.Count - 1;
 
         audioSource.PlayOneShot(gunList[selectedGun].gunPickupAud, gunList[selectedGun].gunPickupAudVol);
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     void changeGun()
@@ -561,11 +487,12 @@ public class playerControler : MonoBehaviour, IDamage
         shotgun = gunList[selectedGun].shotgun;
         Holdfire = gunList[selectedGun].HoldFire;
         spread = gunList[selectedGun].Spread;
+        Recoil = gunList[selectedGun].Recoil;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
         
-        gameManager.instance.updateBulletCounter();
+        gameManager.instance.ui.updateBulletCounter();
     }
 
     public int SetHP(int amount)
@@ -574,19 +501,12 @@ public class playerControler : MonoBehaviour, IDamage
         return HP += amount;
     }
 
-    //public IEnumerator SetSpeed(float amount)
-    //{
-    //    playerSpeed += amount;
-    //    yield return new WaitForSeconds(speedTimer);
-    //    playerSpeed = OrigSpeed;
-    //}
-
     public void SetBullets(int amount)
     {
         if (gunList.Count > 0)
         {
             gunList[selectedGun].totalBulletCount += amount;
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
     }
 
@@ -596,7 +516,7 @@ public class playerControler : MonoBehaviour, IDamage
         if (gunList.Count > 0)
         {
             gunList[selectedGun].totalBulletCount += amount;
-            gameManager.instance.updateBulletCounter();
+            gameManager.instance.ui.updateBulletCounter();
         }
     }
 
@@ -610,8 +530,86 @@ public class playerControler : MonoBehaviour, IDamage
         return health = HPOrig;
     }
 
-    //public float GetSpeed(float speed)
-    //{
-    //    return speed = playerSpeed;
-    //}
+    public void FlashLight()
+    {
+        if (Input.GetButtonDown("FlashLight"))
+        {
+            if (flashlight.activeSelf)
+            {
+                flashlight.SetActive(false);
+            }
+            else
+            {
+                flashlight.SetActive(true);
+            }
+        }
+    }
+
+    public void ADS()
+    {
+        if (sniper)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                primaryGunPOS.SetActive(false);
+                secondaryGunPOS.SetActive(true);
+                isAiming = true;
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                primaryGunPOS.SetActive(true);
+                secondaryGunPOS.SetActive(false);
+                isAiming = false;
+            }
+        }
+    }
+
+    public void OverallFire()
+    {
+        if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                {
+                    audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+                }
+
+                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+                {
+                    Debug.Log("shooting");
+                    StartCoroutine(shoot());
+                }
+            }
+        }
+        else if (Input.GetButtonDown("Shoot") && !isShooting && !isReloading)
+        {
+            //Debug.Log("pressed");
+
+            if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+            {
+                audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+            }
+
+            if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+            {
+                Debug.Log("shooting");
+                StartCoroutine(shoot());
+            }
+        }
+    }
+
+    public void OverallReload()
+    {
+        if (!isReloading)
+        {
+            if (gunList.Count > 0 && Input.GetButtonDown("Reload") || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].bulletsRemaining != magSize || gunList.Count > 0 && Input.GetButtonDown("Reload") && gunList[selectedGun].totalBulletCount != 0)
+            {
+                //Debug.Log("re");
+                //isReloading = true;
+                if (gunList[selectedGun].totalBulletCount != 0)
+                    StartCoroutine(reload());
+            }
+        }
+    }
 }

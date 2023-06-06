@@ -42,4 +42,22 @@ public class camerControl : MonoBehaviour
 
         transform.parent.Rotate(Vector3.up * mouseX);
     }
+
+    public void ApplyRecoil(float recoilAmount)
+    {
+        float recoilRotation = -recoilAmount * Time.deltaTime * sensVert;
+
+        if (invertY)
+        {
+            xrotation -= recoilRotation;
+        }
+        else
+        {
+            xrotation += recoilRotation;
+        }
+
+        xrotation = Mathf.Clamp(xrotation, lockVermin, lockVermax);
+
+        transform.localRotation = Quaternion.Euler(xrotation, 0, 0);
+    }
 }
