@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,6 +41,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField][Range(0, 1)] float audStepsVol;
     [SerializeField][Range(0, 1)] float audAttackVol;
     [SerializeField][Range(0, 1)] float audIdleVol;
+
+    [Header("-----Drop-----")]
+    [SerializeField] GameObject heart;
+    [SerializeField] GameObject bullet;
+
 
     Vector3 playerDir;
     float angleToPlayer;
@@ -209,6 +215,21 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
         Boss.minionsAlive--;
+
+        int rand = Random.Range(0, 1);
+        if (rand == 1)
+        {
+            int rand1 = Random.Range(0, 1);
+            if (rand1 == 0)
+            {
+                heart.SetActive(true);
+            }
+            else
+            {
+                bullet.SetActive(true);
+            }
+        }
+
         StopAllCoroutines();
     }
 
