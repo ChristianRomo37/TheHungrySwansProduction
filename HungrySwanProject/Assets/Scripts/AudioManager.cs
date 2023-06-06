@@ -17,6 +17,16 @@ public class AudioManager : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(HandleSlider);
     }
 
+    public void Start()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat(volumeParameter, volumeSlider.value);
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat(volumeParameter, volumeSlider.value);
+    }
+
     private void HandleSlider(float value)
     {
         mixer.SetFloat(volumeParameter, MathF.Log10(value) * multiplier);
