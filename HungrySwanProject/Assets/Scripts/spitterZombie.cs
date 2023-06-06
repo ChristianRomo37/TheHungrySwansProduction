@@ -182,8 +182,27 @@ public class spitterZombie : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            StartCoroutine(deadAI());
+            if (Boss.minionsAlive == 1)
+            {
+                StartCoroutine(deadAI());
+            }
+            else
+            {
+                StartCoroutine(minionDeath());
+            }
         }
+    }
+
+    IEnumerator minionDeath()
+    {
+
+        Boss.bossShoot = true;
+
+        StartCoroutine(deadAI());
+
+        yield return new WaitForSeconds(2);
+
+        Boss.bossShoot = false;
     }
 
     public void takeHeadshot()

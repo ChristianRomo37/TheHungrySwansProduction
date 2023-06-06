@@ -10,6 +10,8 @@ public class Bullets : MonoBehaviour
 
     [SerializeField] Rigidbody rb;
 
+    int damageCrit;
+
     // Start is called before the first frame update
     void Start()
     {

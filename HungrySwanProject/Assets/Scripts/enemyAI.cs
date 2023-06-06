@@ -55,8 +55,8 @@ public class enemyAI : MonoBehaviour, IDamage
     float speed; //Anim
     bool sink;
     float roamPauseTime2;
+    int damageOrig;
     int damageGlob;
-    Boss boss;
 
     // Start is called before the first frame update
     void Awake()
@@ -186,11 +186,23 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+
+        //damageOrig = damage;
         damageGlob = damage;
+
+        //if(headShot is BoxCollider)
+        //{
+        //    damage = damage * 2;
+        //}
+        //else
+        //{
+        //    damage = damageOrig;
+        //}
+
 
         HP -= damage;
 
-       audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -220,15 +232,6 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2);
 
         Boss.bossShoot = false;
-    }
-
-    public void takeHeadshot()
-    {
-        if (headShot)
-        {
-            int damage = damageGlob * 2;
-            takeDamage(damage);
-        }
     }
 
     IEnumerator deadAI()
