@@ -12,6 +12,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource audioSource;
+    camerControl camera;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
@@ -51,6 +52,7 @@ public class playerControler : MonoBehaviour, IDamage
     public bool shotgun;
     public bool isReloading;
     public float spread;
+    public float Recoil;
 
     [Header("----- Gun Locker -----")]
     [SerializeField] GameObject sniperPre;
@@ -95,6 +97,7 @@ public class playerControler : MonoBehaviour, IDamage
         HPOrig = HP;
         OrigSpeed = playerSpeed;
         spawnPlayer();
+        camera = GetComponentInChildren<camerControl>();
     }
 
     // Update is called once per frame
@@ -272,6 +275,7 @@ public class playerControler : MonoBehaviour, IDamage
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
+        camera.ApplyRecoil(gunList[selectedGun].Recoil);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
@@ -436,6 +440,7 @@ public class playerControler : MonoBehaviour, IDamage
         shotgun = gunStat.shotgun;
         Holdfire = gunStat.HoldFire;
         spread = gunStat.Spread;
+        Recoil = gunStat.Recoil;
 
 
 
@@ -482,6 +487,7 @@ public class playerControler : MonoBehaviour, IDamage
         shotgun = gunList[selectedGun].shotgun;
         Holdfire = gunList[selectedGun].HoldFire;
         spread = gunList[selectedGun].Spread;
+        Recoil = gunList[selectedGun].Recoil;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;

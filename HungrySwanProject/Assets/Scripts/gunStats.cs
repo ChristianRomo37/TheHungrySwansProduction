@@ -17,6 +17,7 @@ public class gunStats : ScriptableObject
     [Range(1, 500)]public int totalBulletCount;
     [Range(0, 500)]public int bulletsRemaining;
     [Range(0, 500)]public float Spread;
+    [Range(0, 500)]public float Recoil;
     public GameObject model;
     public AudioClip gunShotAud;
     public AudioClip gunPickupAud;
