@@ -53,6 +53,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     float speed; //animation
     int damageGlob = 0;
     bool sink;
+    bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -176,6 +177,7 @@ public class spitterZombie : MonoBehaviour, IDamage
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
+        if(!dead)
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         playerInRange = true;
@@ -216,6 +218,7 @@ public class spitterZombie : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+        dead = true;
         Boss.minionsAlive--;
         anim.SetBool("Dead", true); //animation
         agent.enabled = false;

@@ -24,15 +24,18 @@ public class Bash : MonoBehaviour
 
     public void melee()
     {
-        if (Input.GetButtonDown("Melee"))
+        if (gameManager.instance.playerScript.gunList.Count > 0)
         {
-            anie.SetBool("Bashing", true);
-            box.enabled = true;
-        }
-        else if (Input.GetButtonUp("Melee"))
-        {
-            anie.SetBool("Bashing", false);
-            box.enabled = false;
+            if (Input.GetButtonDown("Melee"))
+            {
+                anie.SetBool("Bashing", true);
+                box.enabled = true;
+            }
+            else if (Input.GetButtonUp("Melee"))
+            {
+                anie.SetBool("Bashing", false);
+                box.enabled = false;
+            }
         }
     }
 
