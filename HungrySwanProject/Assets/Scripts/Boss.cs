@@ -43,6 +43,7 @@ public class Boss : MonoBehaviour, IDamage
     float speedOrig;
     static public bool bossShoot;
     static public bool doubleMinions;
+    public bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class Boss : MonoBehaviour, IDamage
         colorOrg = model.material.color;
         speedOrig = agent.speed;
         HPOrig = HP;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -165,6 +167,9 @@ public class Boss : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(deadAI());
+            gameManager.instance.activeMenu = gameManager.instance.winMenu;
+            gameManager.instance.activeMenu.SetActive(true);
+            gameManager.instance.pauseState();
         }
     }
     
@@ -193,11 +198,11 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+        dead = true;
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
-        StartCoroutine(gameManager.instance.youWin());
     }
 
     public void OnTriggerEnter(Collider other)
