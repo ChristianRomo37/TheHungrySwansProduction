@@ -52,6 +52,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     bool stepIsPlaying;
     float speed; //animation
     int damageGlob;
+    bool sink;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +82,13 @@ public class spitterZombie : MonoBehaviour, IDamage
             {
                 zombieSpeak();
                 StartCoroutine(roam());
+            }
+        }
+        else
+        {
+            if (sink)
+            {
+                transform.Translate(-Vector3.up * 2f * Time.deltaTime);
             }
         }
     }
@@ -189,9 +197,12 @@ public class spitterZombie : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+        Boss.minionsAlive--;
         anim.SetBool("Dead", true); //animation
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        sink = true;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }

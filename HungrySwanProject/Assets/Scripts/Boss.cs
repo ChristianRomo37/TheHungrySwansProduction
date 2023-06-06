@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,6 +41,8 @@ public class Boss : MonoBehaviour, IDamage
     bool stunned;
     int damageGlob;
     float speedOrig;
+    static public bool bossShoot;
+    static public bool doubleMinions;
 
     // Start is called before the first frame update
     void Start()
@@ -55,12 +58,17 @@ public class Boss : MonoBehaviour, IDamage
         if (agent.isActiveAndEnabled && !stunned)
         {
             canSeePlayer(); 
-
-
+            
+            if (doubleMinions)
+            {
+                MaxMinions = MaxMinions * 2;
+            }
 
             if (minionsSpawned < MaxMinions)
             {
                 StartCoroutine(spawnMinions());
+                bossShoot = false;
+                doubleMinions = false;
             }
 
             StartCoroutine(stun());
@@ -68,6 +76,7 @@ public class Boss : MonoBehaviour, IDamage
             if (minionsAlive == 0)
             {
                 minionsSpawned = minionsAlive;
+                doubleMinions = true;
             }
         }
     }
@@ -80,7 +89,6 @@ public class Boss : MonoBehaviour, IDamage
         minionsAlive++;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
-
 
     }
 
@@ -129,8 +137,7 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (bossShoot)
         {
             isShooting = true;
 
@@ -163,6 +170,8 @@ public class Boss : MonoBehaviour, IDamage
     
     IEnumerator stun()
     {
+        yield return new WaitForSeconds(2);
+
         if (minionsAlive == 0)
         {
             stunned = true;

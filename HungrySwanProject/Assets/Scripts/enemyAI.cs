@@ -16,6 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
     [SerializeField] Collider headShot;
+    //[SerializeField] GameObject boss;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -52,9 +53,10 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool stepIsPlaying;
     float speed; //Anim
-    bool sink = false;
+    bool sink;
     float roamPauseTime2;
     int damageGlob;
+    Boss boss;
 
     // Start is called before the first frame update
     void Awake()
@@ -112,8 +114,10 @@ public class enemyAI : MonoBehaviour, IDamage
             NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
 
             playSteps();
-
-            agent.SetDestination(hit.position);
+            if (agent.isActiveAndEnabled)
+            {
+                agent.SetDestination(hit.position);
+            }
         }
     }
 
@@ -195,9 +199,29 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            StartCoroutine(deadAI());
+            if (Boss.minionsAlive == 1)
+            {
+                StartCoroutine(deadAI());
+            }
+            else
+            {
+                StartCoroutine(minionDeath());
+            }
         }
     }
+
+    IEnumerator minionDeath()
+    {
+
+        Boss.bossShoot = true;
+
+        StartCoroutine(deadAI());
+
+        yield return new WaitForSeconds(2);
+
+        Boss.bossShoot = false;
+    }
+
     public void takeHeadshot()
     {
         if (headShot)
@@ -209,7 +233,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
-        
+            Boss.minionsAlive--;
             anim.SetBool("Dead", true);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
@@ -217,7 +241,6 @@ public class enemyAI : MonoBehaviour, IDamage
             sink = true;
             yield return new WaitForSeconds(5);
             Destroy(gameObject);
-            Boss.minionsAlive--;
     }
 
     IEnumerator flashColor()
