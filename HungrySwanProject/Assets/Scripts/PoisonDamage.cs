@@ -45,6 +45,5 @@ public class PoisonDamage : MonoBehaviour
             gameManager.instance.playerScript.SetHP(hp - 1);
             yield return new WaitForSeconds(timer);
         }
-        ticks = 0;
     }
 }
