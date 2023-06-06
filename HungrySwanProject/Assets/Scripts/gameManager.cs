@@ -52,6 +52,10 @@ public class gameManager : MonoBehaviour
     public GameObject holdingKey;
     public GameObject holdingTire;
 
+    [Header("----- Main Menu -----")]
+    public GameObject levelSelect;
+    public GameObject settings;
+
 
     public bool isPaused;
     float timeScaleOrig;

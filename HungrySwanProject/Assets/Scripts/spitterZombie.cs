@@ -13,6 +13,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     [SerializeField] Animator anim; //animation
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Collider headShot;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -50,6 +51,8 @@ public class spitterZombie : MonoBehaviour, IDamage
     float stoppingDistOrig;
     bool stepIsPlaying;
     float speed; //animation
+    int damageGlob;
+    bool sink;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,13 @@ public class spitterZombie : MonoBehaviour, IDamage
             {
                 zombieSpeak();
                 StartCoroutine(roam());
+            }
+        }
+        else
+        {
+            if (sink)
+            {
+                transform.Translate(-Vector3.up * 2f * Time.deltaTime);
             }
         }
     }
@@ -172,15 +182,46 @@ public class spitterZombie : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            StartCoroutine(deadAI());
+            if (Boss.minionsAlive == 1)
+            {
+                StartCoroutine(deadAI());
+            }
+            else
+            {
+                StartCoroutine(minionDeath());
+            }
+        }
+    }
+
+    IEnumerator minionDeath()
+    {
+
+        Boss.bossShoot = true;
+
+        StartCoroutine(deadAI());
+
+        yield return new WaitForSeconds(2);
+
+        Boss.bossShoot = false;
+    }
+
+    public void takeHeadshot()
+    {
+        if (headShot)
+        {
+            int damage = damageGlob * 2;
+            takeDamage(damage);
         }
     }
 
     IEnumerator deadAI()
     {
+        Boss.minionsAlive--;
         anim.SetBool("Dead", true); //animation
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        sink = true;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
