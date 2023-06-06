@@ -1484,6 +1484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3cf65d366bb54aa9d427f1e2642d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
+  box: {fileID: 1658489556}
 --- !u!114 &1151273941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,6 +1524,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843e38337a80d21488f66d1d8bf46d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1658489556
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148745182492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2719086, y: 1.206634, z: 3.61208}
+  m_Center: {x: 0, y: 0.19638047, z: 0.43729448}
 --- !u!23 &1711813856347995337 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
