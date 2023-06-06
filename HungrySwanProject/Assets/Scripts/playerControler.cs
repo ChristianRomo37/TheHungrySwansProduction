@@ -12,7 +12,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource audioSource;
-    camerControl camera;
+    camerControl cameracon;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
@@ -97,7 +97,7 @@ public class playerControler : MonoBehaviour, IDamage
         HPOrig = HP;
         OrigSpeed = playerSpeed;
         spawnPlayer();
-        camera = GetComponentInChildren<camerControl>();
+        cameracon = GetComponentInChildren<camerControl>();
     }
 
     // Update is called once per frame
@@ -275,7 +275,7 @@ public class playerControler : MonoBehaviour, IDamage
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
-        camera.ApplyRecoil(gunList[selectedGun].Recoil);
+        cameracon.ApplyRecoil(gunList[selectedGun].Recoil);
         yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
