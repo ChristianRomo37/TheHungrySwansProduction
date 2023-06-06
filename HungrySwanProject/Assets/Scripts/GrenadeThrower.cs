@@ -8,16 +8,18 @@ public class GrenadeThrower : MonoBehaviour
 
     public GameObject grenadePre;
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
+    public int thorws;
+
+    //Start is called before the first frame update
+    void Start()
+    {
+        thorws = 2;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Grenade"))
+        if (Input.GetButtonDown("Grenade") && thorws > 0)
         {
             ThrowGrenade();
         }
@@ -25,6 +27,7 @@ public class GrenadeThrower : MonoBehaviour
 
     void ThrowGrenade()
     {
+        thorws--;
         GameObject grenade = Instantiate(grenadePre, transform.position, transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
