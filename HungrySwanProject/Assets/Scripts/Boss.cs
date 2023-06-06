@@ -29,7 +29,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int MaxMinions;
     [SerializeField] float timeBetweenSpawns;
 
-    bool playerInRange;
+    bool playerInRange = false;
     Color colorOrg;
     private int HPOrig;
     Vector3 playerDir;
@@ -167,9 +167,6 @@ public class Boss : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(deadAI());
-            gameManager.instance.activeMenu = gameManager.instance.winMenu;
-            gameManager.instance.activeMenu.SetActive(true);
-            gameManager.instance.pauseState();
         }
     }
     
@@ -203,6 +200,9 @@ public class Boss : MonoBehaviour, IDamage
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+        gameManager.instance.activeMenu = gameManager.instance.winMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseState();
     }
 
     public void OnTriggerEnter(Collider other)

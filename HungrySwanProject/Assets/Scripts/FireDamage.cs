@@ -5,17 +5,17 @@ using UnityEngine;
 public class FireDamage : MonoBehaviour
 {
     int hp;
-    [SerializeField] int timer;
-    bool onFire;
+    [SerializeField] float timer;
+    bool onFire = false;
     int ticks;
     public int dmg;
     public int interval;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    //void Start()
+    //{
         
-    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -24,18 +24,22 @@ public class FireDamage : MonoBehaviour
         {
             onFire = false;
         }
+        timer -= Time.deltaTime;
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         onFire = true;
         ticks = 5;
+
         IDamage dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
+            StartCoroutine(wait());
             for (int i = 0; i < ticks; i++)
             {
-                StartCoroutine(tickDam());
                 dam.takeDamage(dmg);
             }
         }
@@ -46,8 +50,8 @@ public class FireDamage : MonoBehaviour
         onFire = false;
     }
 
-    IEnumerator tickDam()
+    IEnumerator wait()
     {
-        yield return new WaitForSeconds(interval);
+        yield return new WaitForSeconds(timer);
     }
 }

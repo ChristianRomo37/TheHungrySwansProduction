@@ -50,7 +50,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying;
+    bool stepIsPlaying = false;
     float speed; //Anim
     bool sink = false;
     float roamPauseTime2;

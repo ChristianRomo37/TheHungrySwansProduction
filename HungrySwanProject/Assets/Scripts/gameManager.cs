@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+
+    [Header("----- Scene -----")]
+    public Scene context;
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
@@ -96,6 +100,7 @@ public class gameManager : MonoBehaviour
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
         instance.ui.updateBulletCounter();
 
+        context = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -105,7 +110,8 @@ public class gameManager : MonoBehaviour
         //Automatically Triggers Win State on pressing * button
         if (Input.GetKeyDown(KeyCode.KeypadMultiply)) StartCoroutine(youWin());
 
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        string stringname = context.name;
+        if (Input.GetButtonDown("Cancel") && activeMenu == null && stringname != ("Main Menu"))
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;

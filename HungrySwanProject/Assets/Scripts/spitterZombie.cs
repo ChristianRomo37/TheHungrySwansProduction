@@ -49,9 +49,9 @@ public class spitterZombie : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying;
+    bool stepIsPlaying = false;
     float speed; //animation
-    int damageGlob;
+    int damageGlob = 0;
     bool sink;
 
     // Start is called before the first frame update

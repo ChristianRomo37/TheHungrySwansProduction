@@ -12,7 +12,7 @@ public class Ammobox : MonoBehaviour
 
     bool playerInRange;
     public int counter;
-    int ammo;
+    int ammo = 0;
 
     // Start is called before the first frame update
     //void Start()

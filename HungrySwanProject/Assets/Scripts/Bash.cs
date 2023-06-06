@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Bash : MonoBehaviour
 {
@@ -35,30 +36,16 @@ public class Bash : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    IDamage damagable = other.GetComponent<IDamage>();
-    //    Rigidbody rb = other.GetComponent<Rigidbody>();
-
-    //    if (damagable != null)
-    //    {
-    //        damagable.takeDamage(dmg);
-
-    //    }
-    //}
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Normal Zombie"))
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            IDamage dam = collision.gameObject.GetComponent<IDamage>();
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        IDamage dam = other.GetComponent<IDamage>();
 
-            if (dam != null)
-            {
-                dam.takeDamage(dmg);
-                //rb.AddForce();
-            }
+
+        if (dam != null)
+        {
+            dam.takeDamage(dmg);
+            rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
         }
     }
 }
