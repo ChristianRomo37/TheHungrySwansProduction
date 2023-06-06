@@ -71,6 +71,6 @@ public class ButtonFunctions : MonoBehaviour
     //Credits
     public void Credits()
     {
-        SceneManager.LoadScene("Credit Scene")
+        SceneManager.LoadScene("Credit Scene");
     }
 }
