@@ -212,6 +212,20 @@ public class enemyAI : MonoBehaviour, IDamage
         Destroy(gameObject);
         Boss.minionsAlive--;
 
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            int rand1 = Random.Range(0, 2);
+            if (rand1 == 0)
+            {
+                gameManager.instance.heart.SetActive(true);
+            }
+            else
+            {
+                gameManager.instance.bullet.SetActive(true);
+            }
+        }
+
         StopAllCoroutines();
     }
 
