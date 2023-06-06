@@ -50,6 +50,7 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene("Full look Scene");
     }
 
+    //Level Select
     public void LSelect()
     {
         if (gameManager.instance.levelSelect.activeSelf) gameManager.instance.levelSelect.SetActive(false);
@@ -64,5 +65,12 @@ public class ButtonFunctions : MonoBehaviour
     public void L1Boss()
     {
         SceneManager.LoadScene("Boss Scene");
+    }
+
+    //Settings
+    //Credits
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credit Scene")
     }
 }
