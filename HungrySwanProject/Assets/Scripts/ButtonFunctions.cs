@@ -68,6 +68,11 @@ public class ButtonFunctions : MonoBehaviour
     }
 
     //Settings
+    public void SSelect()
+    {
+        if (gameManager.instance.settings.activeSelf) gameManager.instance.settings.SetActive(false);
+        else gameManager.instance.settings.SetActive(true);
+    }
     //Credits
     public void Credits()
     {
