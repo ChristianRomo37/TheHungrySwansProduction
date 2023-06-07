@@ -197,7 +197,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        transform.position -= transform.forward * 3;
+        transform.position -= transform.forward * 1;
         //anim.SetTrigger("Damage");
 
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
