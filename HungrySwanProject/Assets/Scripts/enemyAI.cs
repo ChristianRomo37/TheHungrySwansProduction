@@ -121,7 +121,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             playSteps();
 
-            if (!dead)
+            //if (!dead)
             agent.SetDestination(hit.position);
         }
     }
@@ -197,7 +197,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        transform.position -= transform.forward * 1;
+        transform.position -= transform.forward * 0.5f;
         //anim.SetTrigger("Damage");
 
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
