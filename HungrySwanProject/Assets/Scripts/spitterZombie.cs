@@ -182,7 +182,7 @@ public class spitterZombie : MonoBehaviour, IDamage
 
         HP -= damage;
         Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 3;
+        transform.position += forceDirection * 1;
         //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
