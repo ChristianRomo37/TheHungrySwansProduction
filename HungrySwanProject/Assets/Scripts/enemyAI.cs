@@ -61,7 +61,7 @@ public class enemyAI : MonoBehaviour, IDamage
     int damageGlob;
     Collision headShot;
     bool takeHS;
-    //bool spawned;
+    bool spanwed = true;
     bool dead;
 
     // Start is called before the first frame update
@@ -71,7 +71,6 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
-        //spawned = true;
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
@@ -81,13 +80,6 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled)
         {
-            //if (spawned)
-            //{
-            //    Vector3 rise = new Vector3(0f, -5f, 0f);
-            //    Vector3.Lerp(rise, startingPos, 3);
-            //    spawned = false;
-            //}
-
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
 
@@ -129,7 +121,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             playSteps();
 
-            if (!dead)
+            //if (!dead)
             agent.SetDestination(hit.position);
         }
     }
@@ -205,11 +197,10 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 1;
+        transform.position -= transform.forward * 0.5f;
         //anim.SetTrigger("Damage");
 
-        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+       audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         if(!dead)
@@ -219,14 +210,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            if (Boss.minionsAlive == 1)
-            {
-                StartCoroutine(deadAI());
-            }
-            else
-            {
-                StartCoroutine(minionDeath());
-            }
+            StartCoroutine(deadAI());
         }
     }
 
@@ -243,15 +227,15 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
-        Boss.minionsAlive--;
         dead = true;
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(2);
         sink = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
+        Boss.minionsAlive--;
 
         int rand = Random.Range(0, 2);
         if (rand == 1)
