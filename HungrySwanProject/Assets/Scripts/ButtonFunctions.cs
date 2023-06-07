@@ -57,6 +57,11 @@ public class ButtonFunctions : MonoBehaviour
     public void LSelect()
     {
         if (gameManager.instance.levelSelect.activeSelf) gameManager.instance.levelSelect.SetActive(false);
+        else if (gameManager.instance.settings.activeSelf)
+        {
+            gameManager.instance.settings.SetActive(false);
+            gameManager.instance.levelSelect.SetActive(true);
+        }
         else gameManager.instance.levelSelect.SetActive(true);
     }
 
@@ -74,6 +79,11 @@ public class ButtonFunctions : MonoBehaviour
     public void SSelect()
     {
         if (gameManager.instance.settings.activeSelf) gameManager.instance.settings.SetActive(false);
+        else if (gameManager.instance.levelSelect.activeSelf)
+        {
+            gameManager.instance.levelSelect.SetActive(false);
+            gameManager.instance.settings.SetActive(true);
+        } 
         else gameManager.instance.settings.SetActive(true);
     }
     //Credits
