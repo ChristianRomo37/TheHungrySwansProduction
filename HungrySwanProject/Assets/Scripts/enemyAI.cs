@@ -121,6 +121,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             playSteps();
 
+            if (!dead)
             agent.SetDestination(hit.position);
         }
     }
