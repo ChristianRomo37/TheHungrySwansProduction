@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &125389129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 125389130}
+  - component: {fileID: 125389131}
+  m_Layer: 6
+  m_Name: Head
+  m_TagString: Head
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &125389130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125389129}
+  m_LocalRotation: {x: -0.7071063, y: 0.0000005364418, z: 0.0000005426125, w: 0.70710737}
+  m_LocalPosition: {x: 0, y: 1.3039124, z: 0.050108533}
+  m_LocalScale: {x: 0.53602254, y: 0.80528194, z: 0.5950078}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1692382661516879697}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &125389131
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125389129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1399188750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1127,7 @@ Transform:
   m_Children:
   - {fileID: 1692382661516879605}
   - {fileID: 1692382661516877907}
+  - {fileID: 125389130}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -1104,6 +1150,7 @@ MonoBehaviour:
   audioSource: {fileID: 9120156495486611267}
   anim: {fileID: 1692382661507057943}
   meleeCol: {fileID: 1399188752}
+  Head: {fileID: 125389129}
   HP: 2
   playerFaceSpeed: 8
   viewCone: 90

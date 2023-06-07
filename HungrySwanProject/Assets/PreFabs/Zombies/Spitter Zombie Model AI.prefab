@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1397414275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1397414276}
+  - component: {fileID: 1397414277}
+  m_Layer: 6
+  m_Name: Head
+  m_TagString: Head
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1397414276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397414275}
+  m_LocalRotation: {x: -0.7071063, y: 0.0000005364418, z: 0.0000005426125, w: 0.70710737}
+  m_LocalPosition: {x: 0, y: 1.2879124, z: 0.022108397}
+  m_LocalScale: {x: 0.57137334, y: 0.8583905, z: 0.6342487}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3072644604151232284}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1397414277
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397414275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3072644604151194624
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,8 +928,7 @@ Transform:
   m_LocalPosition: {x: -0.1380071, y: 0, z: 0.00000009689331}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3072644604151232274}
+  m_Children: []
   m_Father: {fileID: 3072644604151232154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1007,13 +1051,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3072644604151196530}
-  m_LocalRotation: {x: 0.74032545, y: 0.023411764, z: -0.6707637, w: -0.03802957}
-  m_LocalPosition: {x: 0.685, y: 0.034, z: 0.445}
-  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1}
+  m_LocalRotation: {x: -0.67085326, y: -0.6339603, z: -0.24136542, w: -0.29965487}
+  m_LocalPosition: {x: 0.0018293525, y: -0.31132075, z: -0.14218666}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3072644604151232152}
-  m_RootOrder: 0
+  m_Father: {fileID: 3072644604151232280}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3072644604151196536
 GameObject:
@@ -1044,6 +1088,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3072644604151230492}
+  - {fileID: 3072644604151232274}
   m_Father: {fileID: 3072644604151232190}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1062,7 +1107,6 @@ GameObject:
   - component: {fileID: 3072644604151232281}
   - component: {fileID: 5558819359397060712}
   - component: {fileID: 5558819359014856525}
-  - component: {fileID: 1864911900}
   m_Layer: 6
   m_Name: Spitter Zombie Model AI
   m_TagString: Spitter Zombie
@@ -1084,6 +1128,7 @@ Transform:
   m_Children:
   - {fileID: 3072644604151232184}
   - {fileID: 3072644604151230494}
+  - {fileID: 1397414276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -1105,7 +1150,7 @@ MonoBehaviour:
   anim: {fileID: 3072644604158450010}
   shootPos: {fileID: 3072644604151232274}
   headPos: {fileID: 3072644604151232190}
-  headShot: {fileID: 0}
+  Head: {fileID: 1397414275}
   HP: 3
   playerFaceSpeed: 5
   viewCone: 90
@@ -1225,7 +1270,7 @@ AudioSource:
   m_GameObject: {fileID: 3072644604151196540}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5786235312031375855, guid: 5fb58ddb2aaad3047841a828920d70a5, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1312,19 +1357,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &1864911900
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072644604151196540}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

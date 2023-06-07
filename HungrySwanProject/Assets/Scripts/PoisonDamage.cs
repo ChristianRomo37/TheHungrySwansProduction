@@ -5,28 +5,25 @@ using UnityEngine.VFX;
 
 public class PoisonDamage : MonoBehaviour
 {
-    //[SerializeField] ParticleSystem poisonEffect;
+    [SerializeField] ParticleSystem poisonEffect;
     [SerializeField] int timer;
+    int hp;
     int ticks;
     bool poisoned;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ticks == 0)
+       if (ticks == 0)
         {
             poisoned = false;
         }
-        //if (poisoned == true)
-        //{
-        //    poisonEffect.Play(true);
-        //}
     }
 
     private void OnTriggerEnter(Collider other)

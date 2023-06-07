@@ -60,6 +60,51 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1043536038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043536039}
+  - component: {fileID: 1043536040}
+  m_Layer: 6
+  m_Name: Head
+  m_TagString: Tank Zombie
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043536039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043536038}
+  m_LocalRotation: {x: -0.7071063, y: 0.0000005364418, z: 0.0000005426125, w: 0.70710737}
+  m_LocalPosition: {x: 0, y: 1.2849126, z: 0.042108398}
+  m_LocalScale: {x: 0.52592057, y: 0.79010534, z: 0.5837942}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 948866130553792322}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1043536040
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043536038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &948866130553435168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,6 +1126,7 @@ Transform:
   m_Children:
   - {fileID: 948866130553792230}
   - {fileID: 948866130553790528}
+  - {fileID: 1043536039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -1103,6 +1149,7 @@ MonoBehaviour:
   audioSource: {fileID: 7686467581466251492}
   anim: {fileID: 948866130562779396}
   meleeCol: {fileID: 363794179}
+  Head: {fileID: 1043536038}
   HP: 20
   playerFaceSpeed: 5
   viewCone: 90

@@ -18,6 +18,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
+    [SerializeField] GameObject Head;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -57,6 +58,10 @@ public class enemyAI : MonoBehaviour, IDamage
     float speed; //Anim
     bool sink = false;
     float roamPauseTime2;
+    int damageGlob;
+    Collision headShot;
+    bool takeHS;
+    bool spanwed = true;
     bool dead;
 
     // Start is called before the first frame update
@@ -185,7 +190,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        //if (headShot.collider.gameObject == Head)
+        //{
+        //    damage *= 2;
+        //}
+
         HP -= damage;
+        transform.position -= transform.forward * 3;
+        //anim.SetTrigger("Damage");
 
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
@@ -199,6 +211,17 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             StartCoroutine(deadAI());
         }
+    }
+
+    IEnumerator minionDeath()
+    {
+        Boss.bossShoot = true;
+
+        StartCoroutine(deadAI());
+
+        yield return new WaitForSeconds(2);
+
+        Boss.bossShoot = false;
     }
 
     IEnumerator deadAI()

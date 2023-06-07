@@ -13,7 +13,8 @@ public class spitterZombie : MonoBehaviour, IDamage
     [SerializeField] Animator anim; //animation
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] Collider headShot;
+    [SerializeField] GameObject Head;
+
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -49,10 +50,12 @@ public class spitterZombie : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying = false;
+    bool stepIsPlaying;
     float speed; //animation
-    int damageGlob = 0;
+    int damageGlob;
     bool sink;
+    Collision headShot;
+    bool takeHS;
     bool dead;
 
     // Start is called before the first frame update
@@ -172,12 +175,18 @@ public class spitterZombie : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        //if (headShot.gameObject == Head)
+        //{
+        //    damage *= 2;
+        //}
+
         HP -= damage;
+        transform.position -= transform.forward * 3;
+        //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
-        if(!dead)
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         playerInRange = true;
@@ -207,18 +216,8 @@ public class spitterZombie : MonoBehaviour, IDamage
         Boss.bossShoot = false;
     }
 
-    public void takeHeadshot()
-    {
-        if (headShot)
-        {
-            int damage = damageGlob * 2;
-            takeDamage(damage);
-        }
-    }
-
     IEnumerator deadAI()
     {
-        dead = true;
         Boss.minionsAlive--;
         anim.SetBool("Dead", true); //animation
         agent.enabled = false;
