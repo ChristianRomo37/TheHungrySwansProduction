@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.FilePathAttribute;
 
 
 public class enemyAI : MonoBehaviour, IDamage
@@ -212,7 +213,27 @@ public class enemyAI : MonoBehaviour, IDamage
         Destroy(gameObject);
         Boss.minionsAlive--;
 
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            int rand1 = Random.Range(0, 2);
+            if (rand1 == 0)
+            {
+                objectSpawn(gameManager.instance.heart, transform.position);
+            }
+            else
+            {
+                objectSpawn(gameManager.instance.bullet, transform.position);
+            }
+        }
+
         StopAllCoroutines();
+    }
+
+    public void objectSpawn(GameObject spawned, Vector3 location)
+    {
+
+        spawned.transform.position = location;
     }
 
     IEnumerator flashColor()
