@@ -211,7 +211,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            StartCoroutine(deadAI());
+            if (Boss.minionsAlive == 1)
+            {
+                StartCoroutine(deadAI());
+            }
+            else
+            {
+                StartCoroutine(minionDeath());
+            }
         }
     }
 
