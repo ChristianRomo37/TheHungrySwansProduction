@@ -248,7 +248,7 @@ public class enemyAI : MonoBehaviour, IDamage
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         sink = true;
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
