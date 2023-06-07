@@ -44,7 +44,6 @@ public class Bash : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         IDamage dam = other.GetComponent<IDamage>();
 
-
         if (dam != null)
         {
             dam.takeDamage(dmg);
