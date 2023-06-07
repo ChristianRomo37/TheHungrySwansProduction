@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Bash : MonoBehaviour
 {
@@ -23,25 +24,44 @@ public class Bash : MonoBehaviour
 
     public void melee()
     {
-        if (Input.GetButtonDown("Melee"))
+        if (gameManager.instance.playerScript.gunList.Count > 0)
         {
-            anie.SetBool("Bashing", true);
-            box.enabled = true;
-        }
-        else if (Input.GetButtonUp("Melee"))
-        {
-            anie.SetBool("Bashing", false);
-            box.enabled = false;
+            if (Input.GetButtonDown("Melee"))
+            {
+                anie.SetBool("Bashing", true);
+                box.enabled = true;
+            }
+            else if (Input.GetButtonUp("Melee"))
+            {
+                anie.SetBool("Bashing", false);
+                box.enabled = false;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamage damagable = other.GetComponent<IDamage>();
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        IDamage dam = other.GetComponent<IDamage>();
 
-        if (damagable != null)
+
+        if (dam != null)
         {
-            damagable.takeDamage(dmg);
+            dam.takeDamage(dmg);
+            rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+    //    IDamage dam = collision.gameObject.GetComponent<IDamage>();
+    //    //SphereCollider sphere = collision.gameObject.GetComponentInChildren<SphereCollider>();
+
+    //    if (collision.collider.gameObject.tag == "Melee Hit Box")
+    //    {
+    //        dam.takeDamage(dmg);
+    //        rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
+    //    }
+    //}
 }

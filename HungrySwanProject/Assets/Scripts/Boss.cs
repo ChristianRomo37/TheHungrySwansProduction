@@ -29,7 +29,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int MaxMinions;
     [SerializeField] float timeBetweenSpawns;
 
-    bool playerInRange;
+    bool playerInRange = false;
     Color colorOrg;
     private int HPOrig;
     Vector3 playerDir;
@@ -43,6 +43,7 @@ public class Boss : MonoBehaviour, IDamage
     float speedOrig;
     static public bool bossShoot;
     static public bool doubleMinions;
+    public bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class Boss : MonoBehaviour, IDamage
         colorOrg = model.material.color;
         speedOrig = agent.speed;
         HPOrig = HP;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -193,10 +195,14 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator deadAI()
     {
+        dead = true;
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+        gameManager.instance.activeMenu = gameManager.instance.winMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseState();
     }
 
     public void OnTriggerEnter(Collider other)

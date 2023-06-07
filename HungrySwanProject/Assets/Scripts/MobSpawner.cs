@@ -16,7 +16,7 @@ public class MobSpawner : MonoBehaviour, IDamage
     bool isSpawning;
     Color colorOrg;
     private int HPOrig;
-    bool isAlive;
+    bool isAlive = false;
 
     void Start()
     {

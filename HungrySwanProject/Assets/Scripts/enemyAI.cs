@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.FilePathAttribute;
 
 
 public class enemyAI : MonoBehaviour, IDamage
@@ -16,7 +18,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
-    [SerializeField] GameObject Head;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -42,6 +43,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField][Range(0, 1)] float audAttackVol;
     [SerializeField][Range(0, 1)] float audIdleVol;
 
+
     Vector3 playerDir;
     float angleToPlayer;
     bool isShooting;
@@ -51,40 +53,28 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying;
+    bool stepIsPlaying = false;
     float speed; //Anim
-    bool sink;
+    bool sink = false;
     float roamPauseTime2;
-    int damageGlob;
-    Collision headShot;
-    bool takeHS;
-    Vector3 initPos;
-    bool spawned = true;
+    bool dead;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
-        damageGlob = Bullets.damage;
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
-    }
-
-    void Start()
-    {
-        StartCoroutine(riseUp());
     }
 
     // Update is called once per frame
     void Update()
     {
-            
         if (agent.isActiveAndEnabled)
         {
-
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
 
@@ -125,20 +115,9 @@ public class enemyAI : MonoBehaviour, IDamage
             NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
 
             playSteps();
-            if (agent.isActiveAndEnabled)
-            {
-                agent.SetDestination(hit.position);
-            }
+
+            agent.SetDestination(hit.position);
         }
-    }
-
-    IEnumerator riseUp()
-    {
-        transform.Translate(-Vector3.up * 2f * Time.deltaTime);
-
-        yield return new WaitForSeconds(10);
-
-        transform.Translate(Vector3.up * 2f * Time.deltaTime);
     }
 
     bool canSeePlayer()
@@ -180,7 +159,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance && agent.isActiveAndEnabled)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             isShooting = true;
 
@@ -202,74 +181,59 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         meleeCol.enabled = false;
     }
-    public void OnCollisionEnter(Collision collision)
-    {
-        int damage = damageGlob;
-        if (collision.collider.gameObject == Head)
-        {
-            takeDamage(damage * 2);
-        }
-        else
-        {
-            takeDamage(damage);
-        }
-    }
 
 
     public void takeDamage(int damage)
     {
-
-        //if (headShot.collider.gameObject == Head)
-        //{
-        //    damage *= 2;
-        //}
-
         HP -= damage;
-        anim.SetTrigger("Damage");
 
-            audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-            StartCoroutine(flashColor());
+       audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        StartCoroutine(flashColor());
 
-            agent.SetDestination(gameManager.instance.player.transform.position);
+        if(!dead)
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
-            playerInRange = true;
+        playerInRange = true;
 
         if (HP <= 0)
         {
-            if (Boss.minionsAlive == 1)
-            {
-                StartCoroutine(deadAI());
-            }
-            else
-            {
-                StartCoroutine(minionDeath());
-            }
+            StartCoroutine(deadAI());
         }
-    }
-
-
-    IEnumerator minionDeath()
-    {
-
-        Boss.bossShoot = true;
-
-        StartCoroutine(deadAI());
-
-        yield return new WaitForSeconds(2);
-
-        Boss.bossShoot = false;
     }
 
     IEnumerator deadAI()
     {
-            Boss.minionsAlive--;
-            anim.SetBool("Dead", true);
-            agent.enabled = false;
-            GetComponent<CapsuleCollider>().enabled = false;
-            yield return new WaitForSeconds(2);
-            sink = true;
-            yield return new WaitForSeconds(5);
-            Destroy(gameObject);
+        dead = true;
+        anim.SetBool("Dead", true);
+        agent.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        sink = true;
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+        Boss.minionsAlive--;
+
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            int rand1 = Random.Range(0, 2);
+            if (rand1 == 0)
+            {
+                objectSpawn(gameManager.instance.heart, transform.position);
+            }
+            else
+            {
+                objectSpawn(gameManager.instance.bullet, transform.position);
+            }
+        }
+
+        StopAllCoroutines();
+    }
+
+    public void objectSpawn(GameObject spawned, Vector3 location)
+    {
+
+        spawned.transform.position = location;
     }
 
     IEnumerator flashColor()
@@ -284,7 +248,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            agent.stoppingDistance = stoppingDistOrig;
         }
     }
 
@@ -337,4 +300,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
         stepIsPlaying = false;
     }
+
+    //public IEnumerator fireDame(int damage)
+    //{
+    //    yield return new WaitForSeconds(damage);
+    //}
+
+    //public IEnumerator fireTimer(float timer)
+    //{
+    //    yield return new WaitForSeconds(timer);
+    //}
 }

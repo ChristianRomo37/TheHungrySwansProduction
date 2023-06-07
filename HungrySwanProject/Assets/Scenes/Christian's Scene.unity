@@ -218,7 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &286272455
 PrefabInstance:
@@ -227,6 +227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 746161251302094595, guid: c52f063592566594fb559aadf13f9888, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3944852616029856283, guid: c52f063592566594fb559aadf13f9888, type: 3}
       propertyPath: m_Name
       value: Gun Pickup - Shotgun
@@ -372,7 +376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &712740134
 GameObject:
@@ -578,6 +582,10 @@ PrefabInstance:
     - target: {fileID: 5902168408869312987, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
       propertyPath: m_Name
       value: Grenade holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902168408869312987, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6669978463620298552, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
       propertyPath: m_RootOrder
@@ -851,10 +859,6 @@ PrefabInstance:
     - target: {fileID: 3072644604151196540, guid: 582aae8b621390347be662689ac73f2b, type: 3}
       propertyPath: m_Name
       value: Spitter Zombie Model AI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3072644604151196540, guid: 582aae8b621390347be662689ac73f2b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3072644604151232284, guid: 582aae8b621390347be662689ac73f2b, type: 3}
       propertyPath: m_RootOrder
@@ -1189,10 +1193,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fast Zombie Model AI
       objectReference: {fileID: 0}
-    - target: {fileID: 1692382661516589873, guid: 4d791b9735e5be240b431b40537602e4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1692382661516879697, guid: 4d791b9735e5be240b431b40537602e4, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1294,10 +1294,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Normal Zombie Model AI
       objectReference: {fileID: 0}
-    - target: {fileID: 7458204240787047489, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58a3e2e07445b24a956b8c6fb2f86c6, type: 3}
 --- !u!1001 &1665389031
@@ -1378,7 +1374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6699122664507076112, guid: 0eb27dcf7d628e24bade1f717ae3b11c, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 6699122664507076112, guid: 0eb27dcf7d628e24bade1f717ae3b11c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1469,6 +1465,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1066878957, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4436305371562579547, guid: 5fb58ddb2aaad3047841a828920d70a5, type: 2}
     - target: {fileID: 885048031418642646, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2462,7 +2462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9215682902817685595, guid: 2aa92773c1b9b5e48b7d1c741a0f5886, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 9215682902817685595, guid: 2aa92773c1b9b5e48b7d1c741a0f5886, type: 3}
       propertyPath: m_LocalPosition.x

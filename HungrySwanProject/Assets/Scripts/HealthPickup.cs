@@ -5,8 +5,9 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] int AddHP;
-    int HP;
-    int OrigHP;
+    int HP = 0;
+    int OrigHP = 0;
+    [SerializeField] AudioSource sound;
 
     //void Start()
     //{
@@ -20,6 +21,7 @@ public class HealthPickup : MonoBehaviour, IInteractable
         if (HP < OrigHP)
         {
             gameManager.instance.playerScript.SetHP(AddHP);
+            sound.Play();
             Destroy(gameObject);
         }
     }
