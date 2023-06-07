@@ -121,6 +121,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             playSteps();
 
+            if (!dead)
             agent.SetDestination(hit.position);
         }
     }
@@ -196,8 +197,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 3;
+        transform.position -= transform.forward * 1;
         //anim.SetTrigger("Damage");
 
        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
