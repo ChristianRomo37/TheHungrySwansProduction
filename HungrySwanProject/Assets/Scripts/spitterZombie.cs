@@ -13,7 +13,8 @@ public class spitterZombie : MonoBehaviour, IDamage
     [SerializeField] Animator anim; //animation
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
-    [SerializeField] Collider headShot;
+    [SerializeField] GameObject Head;
+
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -53,6 +54,8 @@ public class spitterZombie : MonoBehaviour, IDamage
     float speed; //animation
     int damageGlob;
     bool sink;
+    Collision headShot;
+    bool takeHS;
 
     // Start is called before the first frame update
     void Start()
@@ -171,6 +174,11 @@ public class spitterZombie : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        //if (headShot.gameObject == Head)
+        //{
+        //    damage *= 2;
+        //}
+
         HP -= damage;
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
@@ -203,15 +211,6 @@ public class spitterZombie : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2);
 
         Boss.bossShoot = false;
-    }
-
-    public void takeHeadshot()
-    {
-        if (headShot)
-        {
-            int damage = damageGlob * 2;
-            takeDamage(damage);
-        }
     }
 
     IEnumerator deadAI()

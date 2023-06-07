@@ -16,8 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioSource;
     [SerializeField] Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
-    [SerializeField] Collider headShot;
-    //[SerializeField] GameObject boss;
+    [SerializeField] GameObject Head;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -56,8 +55,11 @@ public class enemyAI : MonoBehaviour, IDamage
     float speed; //Anim
     bool sink;
     float roamPauseTime2;
-    int damageOrig;
     int damageGlob;
+    Collision headShot;
+    bool takeHS;
+    Vector3 initPos;
+    bool spawned = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,15 +68,23 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
+        damageGlob = Bullets.damage;
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
+    }
+
+    void Start()
+    {
+        StartCoroutine(riseUp());
     }
 
     // Update is called once per frame
     void Update()
     {
+            
         if (agent.isActiveAndEnabled)
         {
+
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
 
@@ -120,6 +130,15 @@ public class enemyAI : MonoBehaviour, IDamage
                 agent.SetDestination(hit.position);
             }
         }
+    }
+
+    IEnumerator riseUp()
+    {
+        transform.Translate(-Vector3.up * 2f * Time.deltaTime);
+
+        yield return new WaitForSeconds(10);
+
+        transform.Translate(Vector3.up * 2f * Time.deltaTime);
     }
 
     bool canSeePlayer()
@@ -183,32 +202,37 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         meleeCol.enabled = false;
     }
+    public void OnCollisionEnter(Collision collision)
+    {
+        int damage = damageGlob;
+        if (collision.collider.gameObject == Head)
+        {
+            takeDamage(damage * 2);
+        }
+        else
+        {
+            takeDamage(damage);
+        }
+    }
 
 
     public void takeDamage(int damage)
     {
 
-        //damageOrig = damage;
-        damageGlob = damage;
-
-        //if(headShot is BoxCollider)
+        //if (headShot.collider.gameObject == Head)
         //{
-        //    damage = damage * 2;
+        //    damage *= 2;
         //}
-        //else
-        //{
-        //    damage = damageOrig;
-        //}
-
 
         HP -= damage;
+        anim.SetTrigger("Damage");
 
-        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-        StartCoroutine(flashColor());
+            audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+            StartCoroutine(flashColor());
 
-        agent.SetDestination(gameManager.instance.player.transform.position);
+            agent.SetDestination(gameManager.instance.player.transform.position);
 
-        playerInRange = true;
+            playerInRange = true;
 
         if (HP <= 0)
         {
@@ -222,6 +246,7 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
     }
+
 
     IEnumerator minionDeath()
     {

@@ -20,7 +20,7 @@ public class PoisonDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ticks == 0)
+       if (ticks == 0)
         {
             poisoned = false;
         }
@@ -42,7 +42,8 @@ public class PoisonDamage : MonoBehaviour
     {
         for (int i = 0; i < ticks; i++)
         {
-            gameManager.instance.playerScript.SetHP(hp - 1);
+            //gameManager.instance.playerScript.SetHP(hp - 1);
+            gameManager.instance.playerScript.HP -= 1;
             yield return new WaitForSeconds(timer);
         }
     }

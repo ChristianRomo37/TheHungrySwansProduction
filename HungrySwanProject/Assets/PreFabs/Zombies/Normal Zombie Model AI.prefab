@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 1488091326}
   m_Layer: 6
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,13 +84,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488091324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.012, z: 0.08}
-  m_LocalScale: {x: 0.5713736, y: 0.85839075, z: 0.6342488}
+  m_LocalRotation: {x: -0.7071063, y: 0.0000005364418, z: 0.0000005426125, w: 0.70710737}
+  m_LocalPosition: {x: 0, y: 1.3169125, z: 0.040108364}
+  m_LocalScale: {x: 0.57137334, y: 0.8583905, z: 0.6342488}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7458204240786954277}
-  m_RootOrder: 1
+  m_Father: {fileID: 7458204240786954273}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1488091326
 SphereCollider:
@@ -141,6 +141,7 @@ Transform:
   m_Children:
   - {fileID: 7458204240786954629}
   - {fileID: 7458204240786956067}
+  - {fileID: 1488091325}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -163,7 +164,7 @@ MonoBehaviour:
   audioSource: {fileID: 1384573202}
   anim: {fileID: 7458204240796579431}
   meleeCol: {fileID: 507134399}
-  headShot: {fileID: 1488091326}
+  Head: {fileID: 1488091324}
   HP: 4
   playerFaceSpeed: 5
   viewCone: 90
@@ -403,7 +404,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7458204240786956065}
-  - {fileID: 1488091325}
   m_Father: {fileID: 7458204240786954627}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
