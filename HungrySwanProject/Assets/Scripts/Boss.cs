@@ -172,8 +172,6 @@ public class Boss : MonoBehaviour, IDamage
     
     IEnumerator stun()
     {
-        yield return new WaitForSeconds(2);
-
         if (minionsAlive == 0)
         {
             stunned = true;

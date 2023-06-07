@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.FilePathAttribute;
+
 
 
 public class enemyAI : MonoBehaviour, IDamage
@@ -197,10 +197,11 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        transform.position -= transform.forward * 0.5f;
+        Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
+        transform.position += forceDirection * 1;
         //anim.SetTrigger("Damage");
 
-       audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
         if(!dead)

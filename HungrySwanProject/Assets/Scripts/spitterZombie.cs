@@ -182,7 +182,7 @@ public class spitterZombie : MonoBehaviour, IDamage
 
         HP -= damage;
         Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 3;
+        transform.position += forceDirection * 1;
         //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
@@ -225,7 +225,7 @@ public class spitterZombie : MonoBehaviour, IDamage
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(2);
         sink = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 

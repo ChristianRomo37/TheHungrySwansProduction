@@ -1,30 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadingScreenManager : MonoBehaviour
 {
-    public string sceneToLoad;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject mainMenu;
 
-    private void Start()
+    [SerializeField] private Image loadingBar;
+
+    public void LoadLevelBtn(string levelToLoad)
     {
-        StartCoroutine(LoadSceneAsync());
+        mainMenu.SetActive(false);
+        loadingScreen.SetActive(true);
+
+        StartCoroutine(LoadLevelAsync(levelToLoad));
     }
 
-    IEnumerator LoadSceneAsync()
+    IEnumerator LoadLevelAsync(string levelToLoad)
     {
-        AsyncOperation pleaseWork = SceneManager.LoadSceneAsync(sceneToLoad);
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelToLoad);
 
-        pleaseWork.allowSceneActivation = false;
-
-        while (!pleaseWork.isDone)
+        while (!loadOperation.isDone)
         {
-            if (pleaseWork.progress >= 0.9f)
-            {
-                pleaseWork.allowSceneActivation = true;
-            }
-
+            float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
+            loadingBar.fillAmount = progressValue;
             yield return null;
         }
     }
