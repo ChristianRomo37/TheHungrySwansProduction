@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.FilePathAttribute;
+
 
 
 public class enemyAI : MonoBehaviour, IDamage
