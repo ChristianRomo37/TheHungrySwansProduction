@@ -56,6 +56,7 @@ public class spitterZombie : MonoBehaviour, IDamage
     bool sink;
     Collision headShot;
     bool takeHS;
+    bool dead;
 
     // Start is called before the first frame update
     void Start()
@@ -180,6 +181,8 @@ public class spitterZombie : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
+        transform.position -= transform.forward * 3;
+        //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
