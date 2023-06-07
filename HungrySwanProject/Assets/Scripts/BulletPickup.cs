@@ -22,7 +22,7 @@ public class BulletPickup : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.playerScript.gunList.Count > 0)
         {
             interact(true);
         }

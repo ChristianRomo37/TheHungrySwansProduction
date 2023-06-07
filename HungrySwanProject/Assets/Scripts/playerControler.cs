@@ -82,7 +82,7 @@ public class playerControler : MonoBehaviour, IDamage
     private int jumpedTimes;
     public int HPOrig;
     private int bulletsShot;
-    private int OrigBullet = 0;
+    private int OrigBullet;
     private float OrigSpeed;
     int selectedGun;
 
