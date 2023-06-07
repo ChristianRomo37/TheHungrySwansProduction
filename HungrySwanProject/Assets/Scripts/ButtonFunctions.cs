@@ -26,7 +26,10 @@ public class ButtonFunctions : MonoBehaviour
 
     public void EndGame()
     {
-        SceneManager.LoadScene("Main Menu");
+        gameManager.instance.unPauseState();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
     public void respawnPlayer()
     {
@@ -59,12 +62,12 @@ public class ButtonFunctions : MonoBehaviour
 
     public void L1Mob()
     {
-        SceneManager.LoadScene("Full look Scene");
+        SceneManager.LoadScene("Full look Scene", LoadSceneMode.Single);
     }
 
     public void L1Boss()
     {
-        SceneManager.LoadScene("Boss Scene");
+        SceneManager.LoadScene("Boss Scene", LoadSceneMode.Single);
     }
 
     //Settings
@@ -76,6 +79,6 @@ public class ButtonFunctions : MonoBehaviour
     //Credits
     public void Credits()
     {
-        SceneManager.LoadScene("Credit Scene");
+        SceneManager.LoadScene("Credit Scene", LoadSceneMode.Single);
     }
 }
