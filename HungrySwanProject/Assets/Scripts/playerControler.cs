@@ -172,12 +172,12 @@ public class playerControler : MonoBehaviour, IDamage
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
-        {
-            audioSource.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
-            jumpedTimes++;
-            playerVelocity.y = jumpHeight;
-        }
+        //if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
+        //{
+        //    audioSource.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+        //    jumpedTimes++;
+        //    playerVelocity.y = jumpHeight;
+        //}
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
