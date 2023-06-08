@@ -135,7 +135,6 @@ public class playerControler : MonoBehaviour, IDamage
     void movement()
     {
         groundedPlayer = controller.isGrounded;
-
         if (groundedPlayer )
         {
             if (!stepIsPlaying && move.normalized.magnitude > 0.5f)

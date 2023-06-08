@@ -26,7 +26,10 @@ public class ButtonFunctions : MonoBehaviour
 
     public void EndGame()
     {
-        SceneManager.LoadScene("Main Menu");
+        gameManager.instance.unPauseState();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
     public void respawnPlayer()
     {
@@ -54,28 +57,38 @@ public class ButtonFunctions : MonoBehaviour
     public void LSelect()
     {
         if (gameManager.instance.levelSelect.activeSelf) gameManager.instance.levelSelect.SetActive(false);
+        else if (gameManager.instance.settings.activeSelf)
+        {
+            gameManager.instance.settings.SetActive(false);
+            gameManager.instance.levelSelect.SetActive(true);
+        }
         else gameManager.instance.levelSelect.SetActive(true);
     }
 
     public void L1Mob()
     {
-        SceneManager.LoadScene("Full look Scene");
+        SceneManager.LoadScene("Full look Scene", LoadSceneMode.Single);
     }
 
     public void L1Boss()
     {
-        SceneManager.LoadScene("Boss Scene");
+        SceneManager.LoadScene("Boss Scene", LoadSceneMode.Single);
     }
 
     //Settings
     public void SSelect()
     {
         if (gameManager.instance.settings.activeSelf) gameManager.instance.settings.SetActive(false);
+        else if (gameManager.instance.levelSelect.activeSelf)
+        {
+            gameManager.instance.levelSelect.SetActive(false);
+            gameManager.instance.settings.SetActive(true);
+        } 
         else gameManager.instance.settings.SetActive(true);
     }
     //Credits
     public void Credits()
     {
-        SceneManager.LoadScene("Credit Scene");
+        SceneManager.LoadScene("Credit Scene", LoadSceneMode.Single);
     }
 }
