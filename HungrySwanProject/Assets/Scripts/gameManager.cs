@@ -57,6 +57,11 @@ public class gameManager : MonoBehaviour
     public GameObject holdingGas;
     public GameObject holdingKey;
     public GameObject holdingTire;
+    public GameObject holdingBlade;
+    public GameObject holdingHGas;
+    public GameObject holdingHKey;
+    public GameObject holdingRotor;
+    public GameObject holdingSkid;
 
     [Header("-----Drop-----")]
     public GameObject heart;
@@ -78,7 +83,12 @@ public class gameManager : MonoBehaviour
     public bool key;
     public bool tire;
     public bool left;
-    
+    public bool blade;
+    public bool hgas;
+    public bool hkey;
+    public bool rotor;
+    public bool skid;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -293,4 +303,59 @@ public class gameManager : MonoBehaviour
     {
         objectivePrompt.enabled= false;
     }
+
+    public void promptSkidOn()
+    {
+        objectivePrompt.text = "Press E To Place Landing Skid";
+        objectivePrompt.enabled = true;
+    }
+
+    public void promptSkidOff()
+    {
+        objectivePrompt.enabled = false;
+    }
+
+    //public void promptBatteryOn()
+    //{
+    //    objectivePrompt.text = "Press E To Install Battery";
+    //    objectivePrompt.enabled = true;
+    //}
+
+    //public void promptBatteryOff()
+    //{
+    //    objectivePrompt.enabled = false;
+    //}
+    
+    //public void promptBatteryOn()
+    //{
+    //    objectivePrompt.text = "Press E To Install Battery";
+    //    objectivePrompt.enabled = true;
+    //}
+
+    //public void promptBatteryOff()
+    //{
+    //    objectivePrompt.enabled = false;
+    //}
+    
+    //public void promptBatteryOn()
+    //{
+    //    objectivePrompt.text = "Press E To Install Battery";
+    //    objectivePrompt.enabled = true;
+    //}
+
+    //public void promptBatteryOff()
+    //{
+    //    objectivePrompt.enabled = false;
+    //}
+    
+    //public void promptBatteryOn()
+    //{
+    //    objectivePrompt.text = "Press E To Install Battery";
+    //    objectivePrompt.enabled = true;
+    //}
+
+    //public void promptBatteryOff()
+    //{
+    //    objectivePrompt.enabled = false;
+    //}
 }
