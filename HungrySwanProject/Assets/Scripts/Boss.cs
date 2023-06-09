@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
+    [SerializeField] float stunTime;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
@@ -177,7 +178,7 @@ public class Boss : MonoBehaviour, IDamage
             stunned = true;
             agent.speed = 0;
 
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(stunTime);
 
             agent.speed = speedOrig;
             stunned = false;
