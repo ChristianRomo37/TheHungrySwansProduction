@@ -15,13 +15,16 @@ public class ReloadingAni : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Reload"))
+        if (!gameManager.instance.playerScript.magFull)
         {
-            anie.SetBool("Reloading", true);
-        }
-        else if (Input.GetButtonUp("Reload"))
-        {
-            anie.SetBool("Reloading", false);
+            if (Input.GetButtonDown("Reload"))
+            {
+                anie.SetBool("Reloading", true);
+            }
+            else if (Input.GetButtonUp("Reload"))
+            {
+                anie.SetBool("Reloading", false);
+            }
         }
     }
 }

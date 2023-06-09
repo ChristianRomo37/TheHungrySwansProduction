@@ -18,7 +18,8 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 20)][SerializeField] public int HP;
     [Range(1, 10)][SerializeField] float playerSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
-    [Range(1, 10)][SerializeField] float speedTimer;
+    [Range(0, 10)][SerializeField] float Stamina;
+    [Range(1, 10)][SerializeField] float StaminaMax;
     [Range(1, 10)][SerializeField] float jumpHeight;
     [Range(1, 10)][SerializeField] float gravityValue;
     [Range(1, 10)][SerializeField] int jumpMax;
@@ -51,8 +52,10 @@ public class playerControler : MonoBehaviour, IDamage
     public bool uzi;
     public bool shotgun;
     public bool isReloading;
+    public bool magFull;
     public float spread;
     public float Recoil;
+    public int throws;
 
     [Header("----- Gun Locker -----")]
     [SerializeField] GameObject sniperPre;
@@ -65,9 +68,11 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [SerializeField] AudioClip[] audDamage;
     [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip audThrow;
     [SerializeField][Range(0, 1)] float audJumpVol;
     [SerializeField][Range(0, 1)] float audDamageVol;
     [SerializeField][Range(0, 1)] float audStepsVol;
+    [SerializeField][Range(0, 1)] float audThrowVol;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -84,9 +89,10 @@ public class playerControler : MonoBehaviour, IDamage
     private int bulletsShot;
     private int OrigBullet;
     private float OrigSpeed;
-    int selectedGun;
+    public int selectedGun;
 
     ReticalSpread ret;
+    GrenadeThrower gre;
     //int bulletsRemaining;
 
     //public HealthBar healthBar;
@@ -98,6 +104,9 @@ public class playerControler : MonoBehaviour, IDamage
         OrigSpeed = playerSpeed;
         spawnPlayer();
         cameracon = GetComponentInChildren<camerControl>();
+        gre = GetComponentInChildren<GrenadeThrower>();
+        throws = gre.thorwsMax;
+        Stamina = StaminaMax;
     }
 
     // Update is called once per frame
@@ -112,6 +121,8 @@ public class playerControler : MonoBehaviour, IDamage
         FlashLight();
 
         ADS();
+
+        playThrow();
 
         if (gameManager.instance.activeMenu == null)
         {
@@ -187,18 +198,21 @@ public class playerControler : MonoBehaviour, IDamage
 
     IEnumerator sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint") && Stamina == 10)
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
+            StartCoroutine(staminaDrain());
             yield return new WaitForSeconds(sprintTimer);
             playerSpeed = OrigSpeed;
+            StartCoroutine(staminaReg());
             isSprinting = false;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") || Stamina == 0)
         {
             isSprinting = false;
             playerSpeed = OrigSpeed;
+            StartCoroutine(staminaReg());
         }
     }
 
@@ -230,12 +244,16 @@ public class playerControler : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+
         gunList[selectedGun].bulletsRemaining -= gunList[selectedGun].shotsFired;
         
         audioSource.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
 
         for (int i = 0; i < gunList[selectedGun].shotsFired; i++)
+        {
             StartCoroutine(flashMuzzel());
+        }
+        
 
         gameManager.instance.ui.updateBulletCounter();
 
@@ -277,6 +295,7 @@ public class playerControler : MonoBehaviour, IDamage
         cameracon.ApplyRecoil(gunList[selectedGun].Recoil);
         yield return new WaitForSeconds(shootRate);
 
+        magFull = false;
         isShooting = false;
     }
 
@@ -366,6 +385,7 @@ public class playerControler : MonoBehaviour, IDamage
         //bulletsShot = 0;
         gameManager.instance.ui.updateBulletCounter();
 
+        magFull = true;
         isReloading = false;
     }
 
@@ -607,11 +627,39 @@ public class playerControler : MonoBehaviour, IDamage
                 //Debug.Log("re");
                 //isReloading = true;
                 if (gunList[selectedGun].totalBulletCount != 0)
+                    if (gunList[selectedGun].bulletsRemaining != gunList[selectedGun].magSize)
                     StartCoroutine(reload());
             }
         }
     }
 
+    public IEnumerator playNoAmmo()
+    {
+        audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
+        yield return new WaitForSeconds(2);
+    }
+
+    public void playThrow()
+    {
+        if (Input.GetButtonDown("Grenade") && throws > 0)
+        {
+            throws--;
+            audioSource.PlayOneShot(audThrow, audThrowVol);
+        }
+    }
+
+    public IEnumerator staminaDrain()
+    {
+        Stamina = 1;
+        yield return new WaitForSeconds(2);
+        Stamina = 0;
+    }
+
+    public IEnumerator staminaReg()
+    {
+       yield return new WaitForSeconds(5);
+        Stamina = StaminaMax;
+    }
     //public IEnumerator fireDame(int damage)
     //{
     //    HP -= damage;

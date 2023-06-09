@@ -48,6 +48,8 @@ public class gameManager : MonoBehaviour
     public Image HPBar;
     public TextMeshProUGUI reloadPrompt;
     public TextMeshProUGUI objectivePrompt;
+    public GameObject Grenade;
+    public TextMeshProUGUI grenadePrompt;
 
     [Header("-----Objective-----")]
     public GameObject holdingBattery;

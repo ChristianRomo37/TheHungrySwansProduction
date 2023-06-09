@@ -10,10 +10,14 @@ public class GrenadeThrower : MonoBehaviour
 
     public int thorws;
 
+    public int thorwsMax;
+
     //Start is called before the first frame update
     void Start()
     {
-        thorws = 2;
+        thorwsMax = 2;
+        thorws = thorwsMax;
+        gameManager.instance.grenadePrompt.text = thorws.ToString() + " / " + thorwsMax;
     }
 
     // Update is called once per frame
@@ -31,5 +35,6 @@ public class GrenadeThrower : MonoBehaviour
         GameObject grenade = Instantiate(grenadePre, transform.position, transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        gameManager.instance.grenadePrompt.text = thorws.ToString() + " / " + thorwsMax;
     }
 }
