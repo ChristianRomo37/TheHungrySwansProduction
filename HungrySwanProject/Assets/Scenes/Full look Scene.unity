@@ -636,6 +636,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+--- !u!1 &554778903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8399292988479129346, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+  m_PrefabInstance: {fileID: 554778902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &554778904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6504320677411507875, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+  m_PrefabInstance: {fileID: 554778902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &554778905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4660489564600098140, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+  m_PrefabInstance: {fileID: 554778902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &554778906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3117598953253749150, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+  m_PrefabInstance: {fileID: 554778902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &554778907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6858461617180955158, guid: a77021c2970e5534aa16a6472327ea5e, type: 3}
+  m_PrefabInstance: {fileID: 554778902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &620826342
 Light:
   m_ObjectHideFlags: 0
@@ -1766,6 +1791,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 885048030745759072, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: holdingGas
+      value: 
+      objectReference: {fileID: 554778905}
+    - target: {fileID: 885048030745759072, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: holdingKey
+      value: 
+      objectReference: {fileID: 554778904}
+    - target: {fileID: 885048030745759072, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: holdingTire
+      value: 
+      objectReference: {fileID: 554778903}
+    - target: {fileID: 885048030745759072, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: holdingEngine
+      value: 
+      objectReference: {fileID: 554778906}
+    - target: {fileID: 885048030745759072, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
+      propertyPath: holdingBattery
+      value: 
+      objectReference: {fileID: 554778907}
     - target: {fileID: 885048031418642646, guid: 58ab042e37667074fa86a482d3cb2049, type: 3}
       propertyPath: m_Pivot.x
       value: 0
