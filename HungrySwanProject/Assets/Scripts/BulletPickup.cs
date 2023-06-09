@@ -6,7 +6,9 @@ using UnityEngine;
 public class BulletPickup : MonoBehaviour, IInteractable
 {
     [SerializeField] int AddBullet;
-    [SerializeField] AudioSource sound;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip[] clip;
+    [SerializeField][Range(0, 1)] float vol;
 
     //void Start()
     //{
@@ -15,8 +17,8 @@ public class BulletPickup : MonoBehaviour, IInteractable
 
     public void interact(bool canInteract)
     {
+        source.PlayOneShot(clip[Random.Range(0, clip.Length)], vol);
         gameManager.instance.playerScript.SetBullets(AddBullet);
-        sound.Play();
         Destroy(gameObject);
     }
 
