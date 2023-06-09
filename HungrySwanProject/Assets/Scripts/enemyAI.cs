@@ -197,7 +197,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //}
 
         HP -= damage;
-        Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
+        Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
         transform.position += forceDirection * 1;
         //anim.SetTrigger("Damage");
 

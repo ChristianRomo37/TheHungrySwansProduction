@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] float stunTime;
+    [SerializeField] int runAwayDist;
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
@@ -116,7 +117,14 @@ public class Boss : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                if (agent.remainingDistance > agent.stoppingDistance)
+                {
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
+                else if (agent.remainingDistance < agent.stoppingDistance - 10)
+                {
+                    agent.SetDestination(transform.position - (playerDir * runAwayDist));
+                }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
