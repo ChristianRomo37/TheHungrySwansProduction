@@ -7,8 +7,7 @@ public class skidDrop : MonoBehaviour
     [SerializeField] MeshRenderer bottom;
     [SerializeField] MeshRenderer leg1;
     [SerializeField] MeshRenderer leg2;
-    [SerializeField] MeshRenderer stand1;
-    [SerializeField] MeshRenderer stand2;
+    [SerializeField] GameObject stand;
 
     bool playerInRange;
 
@@ -29,7 +28,7 @@ public class skidDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.tire)
+        if (other.CompareTag("Player") && gameManager.instance.skid)
         {
             gameManager.instance.promptSkidOn();
             playerInRange = true;
@@ -54,8 +53,7 @@ public class skidDrop : MonoBehaviour
             bottom.enabled = true;
             leg1.enabled = true;
             leg2.enabled = true;
-            stand1.enabled = false;
-            stand2.enabled = false;
+            Destroy(stand);
             gameManager.instance.holdingSkid.SetActive(false);
             gameManager.instance.promptSkidOff();
             //gameManager.instance.playerScript.updateUI();

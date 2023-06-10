@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class rotorPickup : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        //gameManager.instance.updateGameGoal(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            interact(true);
+        }
+    }
+
+    public void interact(bool canInteract)
+    {
+        if (!gameManager.instance.hasPart)
+        {
+            Destroy(gameObject);
+            gameManager.instance.rotor = true;
+            gameManager.instance.hasPart = true;
+            gameManager.instance.holdingRotor.SetActive(true);
+            //gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.playerScript.updateUI();
+        }
     }
 }
