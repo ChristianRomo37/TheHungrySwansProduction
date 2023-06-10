@@ -244,6 +244,7 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
         Boss.minionsAlive--;
+        Boss.specialShoot = true;
 
         int rand = Random.Range(0, 2);
         if (rand == 1)

@@ -23,7 +23,8 @@ public class Boss : MonoBehaviour, IDamage
     [Range(1, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3f)][SerializeField] float shootRate;
     [SerializeField] int shootAngle;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject specialbullet;
+    [SerializeField] GameObject normBullet;
 
     [Header("-----Necromancy-----")]
     [SerializeField] GameObject[] ObjectToSpawn;
@@ -45,7 +46,8 @@ public class Boss : MonoBehaviour, IDamage
     float speedOrig;
     static public bool bossShoot;
     static public bool doubleMinions;
-    public bool dead;
+    static public bool dead;
+    static public bool specialShoot;
 
     // Start is called before the first frame update
     void Start()
@@ -132,7 +134,8 @@ public class Boss : MonoBehaviour, IDamage
                 }
                 if (!isShooting && angleToPlayer <= shootAngle)
                 {
-                    StartCoroutine(shoot());
+                    StartCoroutine(shootNorm()); 
+                    StartCoroutine(shootSpecial());
                 }
                 return true;
             }
@@ -146,13 +149,28 @@ public class Boss : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
-    IEnumerator shoot()
+    IEnumerator shootSpecial()
     {
         if (bossShoot)
         {
             isShooting = true;
 
-            Instantiate(bullet, shootPos.position, transform.rotation);
+            Instantiate(specialbullet, shootPos.position, transform.rotation);
+
+            yield return new WaitForSeconds(5);
+
+            isShooting = false;
+            specialShoot = false;
+        }
+    }
+
+    IEnumerator shootNorm()
+    {
+        if (!specialShoot)
+        {
+            isShooting = true;
+
+            Instantiate(normBullet, shootPos.position, transform.rotation);
 
             yield return new WaitForSeconds(shootRate);
 

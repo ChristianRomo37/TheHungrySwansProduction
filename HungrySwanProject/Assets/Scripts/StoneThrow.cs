@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StoneThrow : MonoBehaviour
 {
-    public float throwForce;
+    [SerializeField] float throwForce;
     [SerializeField] float countdown;
-    [SerializeField]float interval;
+    [SerializeField] float interval;
 
     public GameObject stonePre;
 
