@@ -13,6 +13,7 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource audioSource;
     camerControl cameracon;
+    [SerializeField] CameraShake cShake;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
@@ -105,6 +106,7 @@ public class playerControler : MonoBehaviour, IDamage
         spawnPlayer();
         cameracon = GetComponentInChildren<camerControl>();
         gre = GetComponentInChildren<GrenadeThrower>();
+        cShake = GetComponentInChildren<CameraShake>();
         throws = gre.thorwsMax;
         Stamina = StaminaMax;
     }
@@ -202,14 +204,18 @@ public class playerControler : MonoBehaviour, IDamage
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
-            StartCoroutine(staminaDrain());
+            StartCoroutine(cShake.Shake(1f,0.2f));
+            
             yield return new WaitForSeconds(sprintTimer);
             playerSpeed = OrigSpeed;
             StartCoroutine(staminaReg());
             isSprinting = false;
+
+            while (Input.GetButtonDown("Sprint")) StartCoroutine(staminaDrain());
         }
         else if (Input.GetButtonUp("Sprint") || Stamina == 0)
         {
+            
             isSprinting = false;
             playerSpeed = OrigSpeed;
             StartCoroutine(staminaReg());
