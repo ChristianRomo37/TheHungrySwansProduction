@@ -18,10 +18,7 @@ public class PoisonDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (timer == 0)
-       {
-           poisoned = false;
-       }
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,6 +46,7 @@ public class PoisonDamage : MonoBehaviour
             gameManager.instance.playerScript.SetHP(-1);
             yield return new WaitForSeconds(1);
         }
+        poisoned = false;
     }
 
     IEnumerator poisonEnemy()
@@ -58,5 +56,6 @@ public class PoisonDamage : MonoBehaviour
             gameManager.instance.enemyAIscript.takeDamage(-1);
             yield return new WaitForSeconds(1);
         }
+        poisoned = false;
     }
 }
