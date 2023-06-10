@@ -48,6 +48,7 @@ public class Boss : MonoBehaviour, IDamage
     static public bool doubleMinions;
     static public bool dead;
     static public bool specialShoot;
+    static public bool bossMinion;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +94,7 @@ public class Boss : MonoBehaviour, IDamage
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         minionsSpawned++;
         minionsAlive++;
+        bossMinion = true;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 

@@ -83,16 +83,22 @@ public class enemyAI : MonoBehaviour, IDamage
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
 
-            if (playerInRange && !canSeePlayer())
+            if (Boss.bossMinion)
             {
                 zombieSpeak();
-                StartCoroutine(roam());
+                agent.SetDestination(gameManager.instance.player.transform.position);
             }
-            else if (agent.destination != gameManager.instance.player.transform.position)
-            {
-                zombieSpeak();
-                StartCoroutine(roam());
-            }
+            
+           if (playerInRange && !canSeePlayer())
+           {
+               zombieSpeak();
+               StartCoroutine(roam());
+           }
+           else if (agent.destination != gameManager.instance.player.transform.position)
+           {
+              zombieSpeak();
+              StartCoroutine(roam());
+           }
         }
         else
         {
@@ -105,7 +111,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
-        if (!destinatoinChosen && agent.remainingDistance < 0.05f && agent.isActiveAndEnabled)
+        if (!destinatoinChosen && agent.remainingDistance < 0.05f && agent.isActiveAndEnabled && !Boss.bossMinion)
         {
             destinatoinChosen = true;
             agent.stoppingDistance = 0;
@@ -343,4 +349,6 @@ public class enemyAI : MonoBehaviour, IDamage
     //{
     //    yield return new WaitForSeconds(timer);
     //}
+
+    
 }

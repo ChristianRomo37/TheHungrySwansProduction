@@ -36,6 +36,7 @@ public class spawner : MonoBehaviour
 
         Instantiate(objectToSpawn[Random.Range(0, objectToSpawn.Length)], spawnPos[Random.Range(0, spawnPos.Length)].position, transform.rotation);
         numberSpawned++;
+        Boss.bossMinion = false;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 

@@ -40,6 +40,7 @@ public class MobSpawner : MonoBehaviour, IDamage
         Vector3 spawnPos = GetRandomSpawnPos();
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         enemiesSpawned++;
+        Boss.bossMinion = false;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 
