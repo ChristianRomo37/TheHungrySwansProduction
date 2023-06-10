@@ -25,7 +25,6 @@ public class skidPickup : MonoBehaviour
             gameManager.instance.skid = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingSkid.SetActive(true);
-            gameManager.instance.carPartsPlaced++;
             //gameManager.instance.updateGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }

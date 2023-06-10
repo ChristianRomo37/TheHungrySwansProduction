@@ -315,16 +315,16 @@ public class gameManager : MonoBehaviour
         objectivePrompt.enabled = false;
     }
 
-    //public void promptBatteryOn()
-    //{
-    //    objectivePrompt.text = "Press E To Install Battery";
-    //    objectivePrompt.enabled = true;
-    //}
+    public void promptBladeOn()
+    {
+        objectivePrompt.text = "Press E To Install Blade";
+        objectivePrompt.enabled = true;
+    }
 
-    //public void promptBatteryOff()
-    //{
-    //    objectivePrompt.enabled = false;
-    //}
+    public void promptBladeOff()
+    {
+        objectivePrompt.enabled = false;
+    }
     
     //public void promptBatteryOn()
     //{
