@@ -325,37 +325,15 @@ public class gameManager : MonoBehaviour
     {
         objectivePrompt.enabled = false;
     }
-    
-    //public void promptBatteryOn()
-    //{
-    //    objectivePrompt.text = "Press E To Install Battery";
-    //    objectivePrompt.enabled = true;
-    //}
 
-    //public void promptBatteryOff()
-    //{
-    //    objectivePrompt.enabled = false;
-    //}
-    
-    //public void promptBatteryOn()
-    //{
-    //    objectivePrompt.text = "Press E To Install Battery";
-    //    objectivePrompt.enabled = true;
-    //}
+    public void promptRotorOn()
+    {
+        objectivePrompt.text = "Press E To Install Rotor";
+        objectivePrompt.enabled = true;
+    }
 
-    //public void promptBatteryOff()
-    //{
-    //    objectivePrompt.enabled = false;
-    //}
-    
-    //public void promptBatteryOn()
-    //{
-    //    objectivePrompt.text = "Press E To Install Battery";
-    //    objectivePrompt.enabled = true;
-    //}
-
-    //public void promptBatteryOff()
-    //{
-    //    objectivePrompt.enabled = false;
-    //}
+    public void promptRotorOff()
+    {
+        objectivePrompt.enabled = false;
+    }
 }
