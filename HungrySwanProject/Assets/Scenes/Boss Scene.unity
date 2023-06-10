@@ -6357,7 +6357,7 @@ Transform:
   m_GameObject: {fileID: 93209446}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -40.815, y: 0.305, z: -7.5}
-  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -13293,6 +13293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661747656}
+  - component: {fileID: 661747658}
   - component: {fileID: 661747657}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -13378,6 +13379,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &661747658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661747655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 661747657}
+  minTime: 0.45
+  maxTime: 0.8
+  timer: 0
 --- !u!1 &679255040
 GameObject:
   m_ObjectHideFlags: 0
@@ -14992,7 +15009,7 @@ Transform:
   m_GameObject: {fileID: 750980070}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 39, y: 0, z: -57.399998}
-  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -15632,7 +15649,7 @@ Transform:
   m_GameObject: {fileID: 797446176}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 66.3, y: 1.08, z: 11.65}
-  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -18439,8 +18456,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965243099}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 12.500001, y: 0, z: 55.2}
-  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
+  m_LocalPosition: {x: 13.92, y: 0, z: 55.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -25502,6 +25519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1425074060}
+  - component: {fileID: 1425074062}
   - component: {fileID: 1425074061}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -25587,6 +25605,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1425074062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425074059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1425074061}
+  minTime: 0.75
+  maxTime: 1.1
+  timer: 0
 --- !u!1 &1428227394
 GameObject:
   m_ObjectHideFlags: 0
@@ -34860,6 +34894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748129823}
+  - component: {fileID: 1748129825}
   - component: {fileID: 1748129824}
   m_Layer: 0
   m_Name: Point Light (1)
@@ -34945,6 +34980,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1748129825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748129822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1748129824}
+  minTime: 0.55
+  maxTime: 0.9
+  timer: 0
 --- !u!1 &1749511449
 GameObject:
   m_ObjectHideFlags: 0
@@ -39056,6 +39107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1961758750}
+  - component: {fileID: 1961758752}
   - component: {fileID: 1961758751}
   m_Layer: 0
   m_Name: Point Light (1)
@@ -39141,6 +39193,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1961758752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961758749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1961758751}
+  minTime: 0.6
+  maxTime: 0.9
+  timer: 0
 --- !u!1 &1965929249
 GameObject:
   m_ObjectHideFlags: 0
@@ -51821,7 +51889,7 @@ Transform:
   m_GameObject: {fileID: 2522260076787011710}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -37.3, y: 0.34, z: 58.3}
-  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000001}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -52393,7 +52461,8 @@ MonoBehaviour:
   HP: 10
   playerSpeed: 10
   sprintMod: 2
-  speedTimer: 0
+  Stamina: 0
+  StaminaMax: 0
   jumpHeight: 1
   gravityValue: 10
   jumpMax: 1
@@ -52424,8 +52493,10 @@ MonoBehaviour:
   uzi: 0
   shotgun: 0
   isReloading: 0
+  magFull: 0
   spread: 0
   Recoil: 0
+  throws: 0
   sniperPre: {fileID: 5148465332527419618, guid: 5e0c2230fa4c75542a6587af2d28ea84, type: 3}
   pistolPre: {fileID: 7933055735929049489, guid: bd6312c1375d6bd49876c07f8f047560, type: 3}
   RiflePre: {fileID: 3461408943251789218, guid: ac293a42f4c8fd049880cc236a609b6d, type: 3}
@@ -52452,13 +52523,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 758d98b6fe63a63429cd147140618d52, type: 3}
   - {fileID: 8300000, guid: 7c6224e4db296924abd25881f63d5448, type: 3}
   - {fileID: 8300000, guid: 87f38713d8737ff41a329857eed4caa8, type: 3}
+  audThrow: {fileID: 0}
   audJumpVol: 0.5
   audDamageVol: 0.5
   audStepsVol: 0.1
+  audThrowVol: 0
   isSprinting: 0
   isShooting: 0
   isAiming: 0
   HPOrig: 0
+  selectedGun: 0
 --- !u!143 &2754080869919887196
 CharacterController:
   m_ObjectHideFlags: 0
@@ -55995,6 +56069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736647459018048225}
+  - component: {fileID: 5736647459018048227}
   - component: {fileID: 5736647459018048226}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -56080,6 +56155,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &5736647459018048227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736647459018048224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 5736647459018048226}
+  minTime: 0.2
+  maxTime: 0.45
+  timer: 0
 --- !u!4 &5736647459633570144
 Transform:
   m_ObjectHideFlags: 0
@@ -56166,6 +56257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736647459633570144}
+  - component: {fileID: 5736647459633570176}
   - component: {fileID: 5736647459633570145}
   m_Layer: 0
   m_Name: Point Light (1)
@@ -56174,6 +56266,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5736647459633570176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736647459633570175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 5736647459633570145}
+  minTime: 0.4
+  maxTime: 0.6
+  timer: 0
 --- !u!1 &5744565707395172756
 GameObject:
   m_ObjectHideFlags: 0
@@ -61575,6 +61683,7 @@ MonoBehaviour:
   throwForce: 10
   grenadePre: {fileID: 5902168408869312987, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
   thorws: 0
+  thorwsMax: 0
 --- !u!108 &6639448719791349671
 Light:
   m_ObjectHideFlags: 0

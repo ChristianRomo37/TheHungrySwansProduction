@@ -161,6 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139245942}
+  - component: {fileID: 3675137237429807200}
   - component: {fileID: 139245943}
   m_Layer: 0
   m_Name: Point Light (3)
@@ -184,6 +185,22 @@ Transform:
   m_Father: {fileID: 7193032669001766213}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3675137237429807200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139245941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 139245943}
+  minTime: 0.1
+  maxTime: 0.5
+  timer: 0
 --- !u!108 &139245943
 Light:
   m_ObjectHideFlags: 0
@@ -763,6 +780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 958418804}
+  - component: {fileID: 5246522453619961460}
   - component: {fileID: 958418805}
   m_Layer: 0
   m_Name: Point Light (1)
@@ -786,6 +804,22 @@ Transform:
   m_Father: {fileID: 1946373290279093304}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5246522453619961460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958418803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 958418805}
+  minTime: 0.1
+  maxTime: 0.5
+  timer: 0
 --- !u!108 &958418805
 Light:
   m_ObjectHideFlags: 0
@@ -911,6 +945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1043268980}
+  - component: {fileID: 7994269492022469482}
   - component: {fileID: 1043268981}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -934,6 +969,22 @@ Transform:
   m_Father: {fileID: 7193032669001766213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7994269492022469482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043268979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1043268981}
+  minTime: 0.1
+  maxTime: 0.3
+  timer: 0
 --- !u!108 &1043268981
 Light:
   m_ObjectHideFlags: 0
@@ -1059,6 +1110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079491081}
+  - component: {fileID: 3555750127037188746}
   - component: {fileID: 1079491082}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -1082,6 +1134,22 @@ Transform:
   m_Father: {fileID: 1946373290279093304}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3555750127037188746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079491080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1079491082}
+  minTime: 0.1
+  maxTime: 0.3
+  timer: 0
 --- !u!108 &1079491082
 Light:
   m_ObjectHideFlags: 0
@@ -1207,6 +1275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1251369731}
+  - component: {fileID: 8024647657716757972}
   - component: {fileID: 1251369732}
   m_Layer: 0
   m_Name: Point Light (4)
@@ -1230,6 +1299,22 @@ Transform:
   m_Father: {fileID: 5392287793859969727}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8024647657716757972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251369730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1251369732}
+  minTime: 0.1
+  maxTime: 0.5
+  timer: 0
 --- !u!108 &1251369732
 Light:
   m_ObjectHideFlags: 0
@@ -1647,6 +1732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811066513}
+  - component: {fileID: 4718028002945582457}
   - component: {fileID: 1811066514}
   m_Layer: 0
   m_Name: Point Light (5)
@@ -1670,6 +1756,22 @@ Transform:
   m_Father: {fileID: 5392287793859969727}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4718028002945582457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811066512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1811066514}
+  minTime: 0.1
+  maxTime: 0.3
+  timer: 0
 --- !u!108 &1811066514
 Light:
   m_ObjectHideFlags: 0
