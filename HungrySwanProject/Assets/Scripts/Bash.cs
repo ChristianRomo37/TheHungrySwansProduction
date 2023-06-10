@@ -39,10 +39,23 @@ public class Bash : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Rigidbody rb = other.GetComponent<Rigidbody>();
+    //    IDamage dam = other.GetComponent<IDamage>();
+
+    //    if (dam != null)
+    //    {
+    //        dam.takeDamage(dmg);
+    //        rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Rigidbody rb = other.GetComponent<Rigidbody>();
-        IDamage dam = other.GetComponent<IDamage>();
+        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+        IDamage dam = collision.gameObject.GetComponent<IDamage>();
+        //SphereCollider sphere = collision.gameObject.GetComponentInChildren<SphereCollider>();
 
         if (dam != null)
         {
@@ -50,17 +63,4 @@ public class Bash : MonoBehaviour
             rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-    //    IDamage dam = collision.gameObject.GetComponent<IDamage>();
-    //    //SphereCollider sphere = collision.gameObject.GetComponentInChildren<SphereCollider>();
-
-    //    if (collision.collider.gameObject.tag == "Melee Hit Box")
-    //    {
-    //        dam.takeDamage(dmg);
-    //        rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
-    //    }
-    //}
 }

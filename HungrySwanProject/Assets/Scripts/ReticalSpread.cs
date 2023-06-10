@@ -30,6 +30,12 @@ public class ReticalSpread : MonoBehaviour
         {
             curSize = Mathf.Lerp(curSize, resting, Time.deltaTime * speed);
         }
+
+        if (isADS)
+        {
+            curSize = 0;
+        }
+
         ret.sizeDelta = new Vector2(curSize, curSize);
     }
 
@@ -38,6 +44,21 @@ public class ReticalSpread : MonoBehaviour
         get
         {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    bool isADS
+    {
+        get
+        { 
+            if (gameManager.instance.playerScript.isAiming)
             {
                 return true;
             }

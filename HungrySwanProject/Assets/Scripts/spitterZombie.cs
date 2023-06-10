@@ -188,6 +188,7 @@ public class spitterZombie : MonoBehaviour, IDamage
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
+        if(!dead)
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         playerInRange = true;
