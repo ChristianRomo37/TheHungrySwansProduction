@@ -235,12 +235,13 @@ MonoBehaviour:
   audioSource: {fileID: 4659342011745636834}
   HP: 10
   playerSpeed: 10
-  sprintMod: 2
-  speedTimer: 0
+  sprintMod: 1.5
+  Stamina: 1
+  StaminaMax: 10
   jumpHeight: 1
   gravityValue: 10
   jumpMax: 1
-  sprintTimer: 3
+  sprintTimer: 2
   flashlight: {fileID: 4659342011761882197}
   gunList: []
   shootDist: 0
@@ -267,8 +268,10 @@ MonoBehaviour:
   uzi: 0
   shotgun: 0
   isReloading: 0
+  magFull: 0
   spread: 0
   Recoil: 0
+  throws: 0
   sniperPre: {fileID: 5148465332527419618, guid: 5e0c2230fa4c75542a6587af2d28ea84, type: 3}
   pistolPre: {fileID: 7933055735929049489, guid: bd6312c1375d6bd49876c07f8f047560, type: 3}
   RiflePre: {fileID: 3461408943251789218, guid: ac293a42f4c8fd049880cc236a609b6d, type: 3}
@@ -295,13 +298,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 758d98b6fe63a63429cd147140618d52, type: 3}
   - {fileID: 8300000, guid: 7c6224e4db296924abd25881f63d5448, type: 3}
   - {fileID: 8300000, guid: 87f38713d8737ff41a329857eed4caa8, type: 3}
+  audThrow: {fileID: 8300000, guid: 53a1a8c18087346d18a02d8a4e0c59ca, type: 3}
   audJumpVol: 0.5
   audDamageVol: 0.5
   audStepsVol: 0.1
+  audThrowVol: 0.5
   isSprinting: 0
   isShooting: 0
   isAiming: 0
   HPOrig: 0
+  selectedGun: 0
 --- !u!143 &4230344895602959520
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1828,7 +1834,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5505693485916688975}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 3.61208}
@@ -1868,7 +1874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwForce: 10
   grenadePre: {fileID: 5902168408869312987, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
-  thorws: 0
+  thorws: 1
+  thorwsMax: 0
 --- !u!114 &4659342012388771201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,8 +1912,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3cf65d366bb54aa9d427f1e2642d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 0
+  dmg: 1
   box: {fileID: 4659342012388771207}
+--- !u!54 &459216352
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505693485916688975}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!23 &6298525413636354970 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
