@@ -106,7 +106,7 @@ public class playerControler : MonoBehaviour, IDamage
         spawnPlayer();
         cameracon = GetComponentInChildren<camerControl>();
         gre = GetComponentInChildren<GrenadeThrower>();
-        cShake = GetComponentInChildren<CameraShake>();
+        //cShake = GetComponentInChildren<CameraShake>();
         throws = gre.thorwsMax;
         Stamina = StaminaMax;
     }
@@ -204,7 +204,7 @@ public class playerControler : MonoBehaviour, IDamage
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
-            StartCoroutine(cShake.Shake(1f,0.2f));
+            //StartCoroutine(cShake.Shake(1f,0.2f));
             
             yield return new WaitForSeconds(sprintTimer);
             playerSpeed = OrigSpeed;
