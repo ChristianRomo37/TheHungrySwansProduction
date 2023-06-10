@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477370423894414762}
+  - component: {fileID: 7754198442653306815}
   - component: {fileID: 477370423894414763}
   m_Layer: 0
   m_Name: Point Light (1)
@@ -32,6 +33,22 @@ Transform:
   m_Father: {fileID: 477370424618760547}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7754198442653306815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477370423894414773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 477370423894414763}
+  minTime: 0.1
+  maxTime: 0.5
+  timer: 0
 --- !u!108 &477370423894414763
 Light:
   m_ObjectHideFlags: 0
@@ -103,6 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477370424522520107}
+  - component: {fileID: 8028742961517634506}
   - component: {fileID: 477370424522520104}
   m_Layer: 0
   m_Name: Point Light (2)
@@ -126,6 +144,22 @@ Transform:
   m_Father: {fileID: 477370424618760547}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8028742961517634506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477370424522520106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 477370424522520104}
+  minTime: 0.1
+  maxTime: 0.5
+  timer: 0
 --- !u!108 &477370424522520104
 Light:
   m_ObjectHideFlags: 0

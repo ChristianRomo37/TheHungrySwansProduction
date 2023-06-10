@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef4a11c1af8f1454a99a452fa1579c7c, type: 3}
-  m_Name: ShotGun
+  m_Name: Rifle
   m_EditorClassIdentifier: 
-  shootDist: 30
-  shootRate: 1.5
-  shootDamage: 2
-  magSize: 5
-  reloadTime: 4
-  shotsFired: 5
-  OrigtotalBulletCount: 10
-  totalBulletCount: 10
+  shootDist: 70
+  shootRate: 0.1
+  shootDamage: 1
+  magSize: 15
+  reloadTime: 3
+  shotsFired: 3
+  OrigtotalBulletCount: 30
+  totalBulletCount: 30
   bulletsRemaining: 0
-  Spread: 0.3
-  Recoil: 0.7
-  model: {fileID: 919132149155446097, guid: 8b36fb41929fc22429f0083d817b8040, type: 3}
-  gunShotAud: {fileID: 8300000, guid: d3247579c549643a5b3a95f9224eaf3c, type: 3}
+  Spread: 0.1
+  Recoil: 5
+  model: {fileID: 919132149155446097, guid: e525d5c90c0df01498dca09570cfb5ec, type: 3}
+  gunShotAud: {fileID: 8300000, guid: 611f65b2aba4a4af7b4ab3d6ddb5b546, type: 3}
   gunPickupAud: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
-  gunReloadAud: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
+  gunReloadAud: {fileID: 8300000, guid: b7268f01178fbda4ba41240903d96f51, type: 3}
   gunNoAmmoAud: {fileID: 8300000, guid: a8c74da7765940247bd2480ba2eb3850, type: 3}
   gunShotAudVol: 0.5
   gunPickupAudVol: 0.5
@@ -35,7 +35,7 @@ MonoBehaviour:
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   sniper: 0
   pistol: 0
-  rifle: 0
+  rifle: 1
   uzi: 0
-  shotgun: 1
+  shotgun: 0
   HoldFire: 0
