@@ -24,7 +24,7 @@ public class hkeyPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.hkey = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.holdingHKey.SetActive(true);
+            gameManager.instance.holdingKey.SetActive(true);
             //gameManager.instance.updateGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }

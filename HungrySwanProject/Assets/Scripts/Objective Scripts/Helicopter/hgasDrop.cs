@@ -23,7 +23,7 @@ public class hgasDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.blade)
+        if (other.CompareTag("Player") && gameManager.instance.hgas)
         {
             gameManager.instance.promptGasOn();
             playerInRange = true;
@@ -45,7 +45,7 @@ public class hgasDrop : MonoBehaviour
         {
             gameManager.instance.hgas = false;
             gameManager.instance.hasPart = false;
-            gameManager.instance.holdingHGas.SetActive(false);
+            gameManager.instance.holdingGas.SetActive(false);
             gameManager.instance.promptGasOff();
             //gameManager.instance.playerScript.updateUI();
         }

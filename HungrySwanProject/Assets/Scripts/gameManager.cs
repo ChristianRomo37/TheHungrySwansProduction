@@ -58,8 +58,6 @@ public class gameManager : MonoBehaviour
     public GameObject holdingKey;
     public GameObject holdingTire;
     public GameObject holdingBlade;
-    public GameObject holdingHGas;
-    public GameObject holdingHKey;
     public GameObject holdingRotor;
     public GameObject holdingSkid;
 

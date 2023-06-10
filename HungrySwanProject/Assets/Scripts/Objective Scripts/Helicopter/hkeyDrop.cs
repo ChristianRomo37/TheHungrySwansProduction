@@ -45,7 +45,7 @@ public class hkeyDrop : MonoBehaviour
         {
             gameManager.instance.hkey = false;
             gameManager.instance.hasPart = false;
-            gameManager.instance.holdingHKey.SetActive(false);
+            gameManager.instance.holdingKey.SetActive(false);
             gameManager.instance.promptKeyOff();
             //gameManager.instance.playerScript.updateUI();
         }

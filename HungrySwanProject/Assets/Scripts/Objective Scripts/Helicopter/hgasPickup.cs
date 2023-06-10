@@ -24,7 +24,7 @@ public class hgasPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.hgas = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.holdingHGas.SetActive(true);
+            gameManager.instance.holdingGas.SetActive(true);
             //gameManager.instance.updateGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }
