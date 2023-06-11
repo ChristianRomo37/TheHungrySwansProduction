@@ -11,6 +11,8 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Animator anim;
+    [SerializeField] float animTransSpeed; //Anim
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -48,6 +50,8 @@ public class Boss : MonoBehaviour, IDamage
     static public bool doubleMinions;
     static public bool dead;
     static public bool specialShoot;
+    static public bool bossMinion;
+    float speed; //Anim
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +60,8 @@ public class Boss : MonoBehaviour, IDamage
         speedOrig = agent.speed;
         HPOrig = HP;
         dead = false;
+        minionsAlive = 0;
+        minionsSpawned = 0;
     }
 
     // Update is called once per frame
@@ -63,6 +69,9 @@ public class Boss : MonoBehaviour, IDamage
     {
         if (agent.isActiveAndEnabled && !stunned)
         {
+            speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
+            anim.SetFloat("Speed", speed); //Anim
+
             canSeePlayer(); 
             
             if (doubleMinions)
@@ -89,10 +98,12 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator spawnMinions()
     {
+        anim.SetTrigger("Summon");
         Vector3 spawnPos = GetRandomSpawnPos();
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         minionsSpawned++;
         minionsAlive++;
+        bossMinion = true;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 
@@ -155,7 +166,7 @@ public class Boss : MonoBehaviour, IDamage
         {
             isShooting = true;
 
-            Instantiate(specialbullet, shootPos.position, transform.rotation);
+            anim.SetTrigger("Throw");
 
             yield return new WaitForSeconds(5);
 
@@ -170,11 +181,24 @@ public class Boss : MonoBehaviour, IDamage
         {
             isShooting = true;
 
-            Instantiate(normBullet, shootPos.position, transform.rotation);
+            anim.SetTrigger("Throw");
 
             yield return new WaitForSeconds(shootRate);
 
             isShooting = false;
+        }
+    }
+
+    public void createBullet()
+    {
+        if (specialShoot)
+        {
+            Instantiate(specialbullet, shootPos.position, transform.rotation);
+
+        }
+        else
+        {
+            Instantiate(normBullet, shootPos.position, transform.rotation);
         }
     }
 
