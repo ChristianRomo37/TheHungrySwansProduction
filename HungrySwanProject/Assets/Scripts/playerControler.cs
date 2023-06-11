@@ -58,6 +58,8 @@ public class playerControler : MonoBehaviour, IDamage
     public float Recoil;
     public int throws;
 
+    public float speed;
+
     [Header("----- Gun Locker -----")]
     [SerializeField] GameObject sniperPre;
     [SerializeField] GameObject pistolPre;
@@ -666,6 +668,18 @@ public class playerControler : MonoBehaviour, IDamage
        yield return new WaitForSeconds(5);
         Stamina = StaminaMax;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Door")
+        {
+            if (other.GetComponent<SlidingDoor>().Moving == false)
+            {
+                other.GetComponent<SlidingDoor>().Moving = true;
+            }
+        }
+    }
+
     //public IEnumerator fireDame(int damage)
     //{
     //    HP -= damage;
