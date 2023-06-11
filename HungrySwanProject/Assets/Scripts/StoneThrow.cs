@@ -33,7 +33,7 @@ public class StoneThrow : MonoBehaviour
     {
         if (enemy.see)
         {
-            enemy.facePlayer();
+            //enemy.facePlayer();
             //enemy.anim.SetTrigger("Melee");
             GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
             Rigidbody rb = stone.GetComponent<Rigidbody>();
