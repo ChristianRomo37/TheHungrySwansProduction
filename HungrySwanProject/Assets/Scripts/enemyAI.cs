@@ -88,8 +88,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 zombieSpeak();
                 agent.SetDestination(gameManager.instance.player.transform.position);
             }
-            
-           if (playerInRange && !canSeePlayer())
+
+            if (playerInRange && !canSeePlayer())
            {
                zombieSpeak();
                StartCoroutine(roam());
@@ -166,6 +166,9 @@ public class enemyAI : MonoBehaviour, IDamage
     void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        Quaternion rotY = Quaternion.LookRotation(playerDir, Vector3.up);
+
+        headPos.rotation = Quaternion.Lerp(headPos.rotation, rotY, Time.deltaTime * playerFaceSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
@@ -204,7 +207,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         HP -= damage;
         Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 1;
+        transform.position += forceDirection * Time.deltaTime * 1.0f;
         //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
