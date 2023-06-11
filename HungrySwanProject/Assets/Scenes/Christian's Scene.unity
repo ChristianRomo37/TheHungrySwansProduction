@@ -439,6 +439,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &578649497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 948866130553792324, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
+  m_PrefabInstance: {fileID: 1948604202}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426660d6f492e644396d4bc104098828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &702604740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2354,13 +2365,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1829571865, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 578649497}
     - target: {fileID: 948866130553436962, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
       propertyPath: m_Name
       value: Tank Zombie Model AI
       objectReference: {fileID: 0}
     - target: {fileID: 948866130553436962, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 948866130553792322, guid: 0c2af5d49cd60334e94e04f6f6911024, type: 3}
       propertyPath: m_RootOrder
