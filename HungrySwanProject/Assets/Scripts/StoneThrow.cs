@@ -9,11 +9,13 @@ public class StoneThrow : MonoBehaviour
     [SerializeField] float interval;
 
     public GameObject stonePre;
+    public enemyAI enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         countdown = interval;
+        //enemy = GetComponentInChildren<enemyAI>();
     }
 
     // Update is called once per frame
@@ -29,8 +31,11 @@ public class StoneThrow : MonoBehaviour
 
     void ThrowStone()
     {
-        GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
-        Rigidbody rb = stone.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        if (enemy.playerInRange)
+        {
+            GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
+            Rigidbody rb = stone.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        }
     }
 }

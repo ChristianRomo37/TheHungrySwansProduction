@@ -36,7 +36,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] float reloadTime;
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
-    [Range(0,500)][SerializeField] int bulletsRemaining;
+    [Range(0,500)][SerializeField] public int bulletsRemaining;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
     public GameObject primaryGunPOS;
@@ -301,6 +301,8 @@ public class playerControler : MonoBehaviour, IDamage
             }
         }
         cameracon.ApplyRecoil(gunList[selectedGun].Recoil);
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
+
         yield return new WaitForSeconds(shootRate);
 
         magFull = false;
@@ -388,6 +390,7 @@ public class playerControler : MonoBehaviour, IDamage
             gunList[selectedGun].totalBulletCount -= reservedAmmo;
         }
 
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
         //Debug.Log("reload");
 
         //bulletsShot = 0;
@@ -472,7 +475,7 @@ public class playerControler : MonoBehaviour, IDamage
         spread = gunStat.Spread;
         Recoil = gunStat.Recoil;
 
-
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
 
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -518,6 +521,8 @@ public class playerControler : MonoBehaviour, IDamage
         Holdfire = gunList[selectedGun].HoldFire;
         spread = gunList[selectedGun].Spread;
         Recoil = gunList[selectedGun].Recoil;
+
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;

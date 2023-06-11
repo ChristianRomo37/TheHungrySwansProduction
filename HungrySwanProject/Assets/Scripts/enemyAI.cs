@@ -49,7 +49,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     bool isShooting;
     Color colorOrg;
-    bool playerInRange;
+    public bool playerInRange;
     private int HPOrig;
     Vector3 startingPos;
     bool destinatoinChosen;
