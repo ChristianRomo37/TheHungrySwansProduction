@@ -423,26 +423,29 @@ public class playerControler : MonoBehaviour, IDamage
     {
         if (gunList.Count == 2)
         {
+            GameObject pickUp;
             if (sniper == true)
             {
-                Instantiate(sniperPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(sniperPre, transform.position, Quaternion.identity);
             }
             else if (rifle == true)
             {
-                Instantiate(RiflePre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(RiflePre, transform.position, Quaternion.identity);
             }
             else if (pistol == true)
             {
-                Instantiate(pistolPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(pistolPre, transform.position, Quaternion.identity);
             }
             else if (uzi == true)
             {
-                Instantiate(UziPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(UziPre, transform.position, Quaternion.identity);
             }
-            else if (shotgun == true)
+            ///default shotgun drop
+            else
             {
-                Instantiate(ShotGunPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(ShotGunPre, transform.position, Quaternion.identity);
             }
+            pickUp.GetComponent<GunPickup>().isFirstPickup = false;
             gunList.RemoveAt(selectedGun);
 
             gunList.Add(gunStat);

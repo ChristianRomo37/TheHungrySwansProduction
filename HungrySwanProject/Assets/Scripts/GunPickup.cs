@@ -14,14 +14,18 @@ public class GunPickup : MonoBehaviour
     bool playerInRange;
     Vector3 playerDir;
     float angleToPlayer;
+    public bool isFirstPickup = true;
 
     // Start is called before the first frame update
     void Start()
     {
         model = gun.model.GetComponent<MeshFilter>();
         mat = gun.model.GetComponent<MeshRenderer>();
-        gun.bulletsRemaining = 0;
-        gun.totalBulletCount = gun.OrigtotalBulletCount;
+        if (isFirstPickup)
+        {
+            gun.bulletsRemaining = 0;
+            gun.totalBulletCount = gun.OrigtotalBulletCount;
+        }
     }
 
     void Update()
