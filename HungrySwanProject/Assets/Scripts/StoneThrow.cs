@@ -31,8 +31,10 @@ public class StoneThrow : MonoBehaviour
 
     void ThrowStone()
     {
-        if (enemy.playerInRange)
+        if (enemy.see)
         {
+            enemy.facePlayer();
+            //enemy.anim.SetTrigger("Melee");
             GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
             Rigidbody rb = stone.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);

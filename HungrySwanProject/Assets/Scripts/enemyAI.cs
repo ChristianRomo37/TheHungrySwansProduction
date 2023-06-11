@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] AudioSource audioSource;
-    [SerializeField] Animator anim;  //Anim
+    [SerializeField] public Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
     [SerializeField] GameObject Head;
 
@@ -48,8 +49,9 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     float angleToPlayer;
     bool isShooting;
+    public bool see;
     Color colorOrg;
-    public bool playerInRange;
+    bool playerInRange;
     private int HPOrig;
     Vector3 startingPos;
     bool destinatoinChosen;
@@ -134,6 +136,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
+        see = true;
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
@@ -163,7 +166,7 @@ public class enemyAI : MonoBehaviour, IDamage
         return false;
     }
 
-    void facePlayer()
+    public void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         Quaternion rotY = Quaternion.LookRotation(playerDir, Vector3.up);
@@ -299,7 +302,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.stoppingDistance = 0;
-
+            see = false;
         }
     }
 
