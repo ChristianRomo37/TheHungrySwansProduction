@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class playerControler : MonoBehaviour, IDamage
+public class playerControler : MonoBehaviour, IDamage, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
@@ -26,6 +26,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int jumpMax;
     [Range(1, 10)][SerializeField] float sprintTimer;
     [SerializeField] GameObject flashlight;
+    [SerializeField] float pushBackResolve;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -36,7 +37,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(0, 10)][SerializeField] float reloadTime;
     [Range(0, 10)][SerializeField] int shotsFired;
     [Range(0, 500)][SerializeField] int totalBulletCount;
-    [Range(0,500)][SerializeField] int bulletsRemaining;
+    [Range(0,500)][SerializeField] public int bulletsRemaining;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMat;
     public GameObject primaryGunPOS;
@@ -79,6 +80,7 @@ public class playerControler : MonoBehaviour, IDamage
 
     private Vector3 move;
     private Vector3 playerVelocity;
+    Vector3 pushBack;
 
     private bool groundedPlayer;
     public bool isSprinting;
@@ -197,6 +199,7 @@ public class playerControler : MonoBehaviour, IDamage
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
         //StartCoroutine(resetSpeed());
     }
 
@@ -301,6 +304,8 @@ public class playerControler : MonoBehaviour, IDamage
             }
         }
         cameracon.ApplyRecoil(gunList[selectedGun].Recoil);
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
+
         yield return new WaitForSeconds(shootRate);
 
         magFull = false;
@@ -361,6 +366,11 @@ public class playerControler : MonoBehaviour, IDamage
         else StartCoroutine(DamageFlash());
     }
 
+    public void takePushBack(Vector3 dir)
+    {
+        pushBack += dir;
+    }
+
     IEnumerator DamageFlash()
     {
         gameManager.instance.playerDamageFlash.SetActive(true);
@@ -388,6 +398,7 @@ public class playerControler : MonoBehaviour, IDamage
             gunList[selectedGun].totalBulletCount -= reservedAmmo;
         }
 
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
         //Debug.Log("reload");
 
         //bulletsShot = 0;
@@ -423,26 +434,29 @@ public class playerControler : MonoBehaviour, IDamage
     {
         if (gunList.Count == 2)
         {
+            GameObject pickUp;
             if (sniper == true)
             {
-                Instantiate(sniperPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(sniperPre, transform.position, Quaternion.identity);
             }
             else if (rifle == true)
             {
-                Instantiate(RiflePre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(RiflePre, transform.position, Quaternion.identity);
             }
             else if (pistol == true)
             {
-                Instantiate(pistolPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(pistolPre, transform.position, Quaternion.identity);
             }
             else if (uzi == true)
             {
-                Instantiate(UziPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(UziPre, transform.position, Quaternion.identity);
             }
-            else if (shotgun == true)
+            ///default shotgun drop
+            else
             {
-                Instantiate(ShotGunPre, transform.position, Quaternion.identity);
+                pickUp = Instantiate(ShotGunPre, transform.position, Quaternion.identity);
             }
+            pickUp.GetComponent<GunPickup>().isFirstPickup = false;
             gunList.RemoveAt(selectedGun);
 
             gunList.Add(gunStat);
@@ -469,7 +483,7 @@ public class playerControler : MonoBehaviour, IDamage
         spread = gunStat.Spread;
         Recoil = gunStat.Recoil;
 
-
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
 
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -515,6 +529,8 @@ public class playerControler : MonoBehaviour, IDamage
         Holdfire = gunList[selectedGun].HoldFire;
         spread = gunList[selectedGun].Spread;
         Recoil = gunList[selectedGun].Recoil;
+
+        bulletsRemaining = gunList[selectedGun].bulletsRemaining;
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;

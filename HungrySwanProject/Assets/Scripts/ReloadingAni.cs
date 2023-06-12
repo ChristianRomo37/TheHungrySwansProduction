@@ -19,11 +19,41 @@ public class ReloadingAni : MonoBehaviour
         {
             if (Input.GetButtonDown("Reload"))
             {
-                anie.SetBool("Reloading", true);
+                //anie.SetBool("Reloading", true);
+                if (gameManager.instance.playerScript.sniper)
+                {
+                    anie.SetBool("Sniper", true);
+                    anie.SetBool("Reloading", true);
+                }
+                else if (gameManager.instance.playerScript.pistol)
+                {
+                    anie.SetBool("Pistol", true);
+                    anie.SetBool("Reloading", true);
+                }
+                else if (gameManager.instance.playerScript.uzi)
+                {
+                    anie.SetBool("Uzi", true);
+                    anie.SetBool("Reloading", true);
+                }
+                else if (gameManager.instance.playerScript.rifle)
+                {
+                    anie.SetBool("Rifle", true);
+                    anie.SetBool("Reloading", true);
+                }
+                else if (gameManager.instance.playerScript.shotgun)
+                {
+                    anie.SetBool("Shotgun", true);
+                    anie.SetBool("Reloading", true);
+                }
             }
             else if (Input.GetButtonUp("Reload"))
             {
                 anie.SetBool("Reloading", false);
+                anie.SetBool("Rifle", false);
+                anie.SetBool("Pistol", false);
+                anie.SetBool("Shotgun", false);
+                anie.SetBool("Uzi", false);
+                anie.SetBool("Sniper", false);
             }
         }
     }

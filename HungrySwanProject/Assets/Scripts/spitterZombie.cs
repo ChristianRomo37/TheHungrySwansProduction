@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class spitterZombie : MonoBehaviour, IDamage
+public class spitterZombie : MonoBehaviour, IDamage, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -95,6 +95,11 @@ public class spitterZombie : MonoBehaviour, IDamage
                 transform.Translate(-Vector3.up * 2f * Time.deltaTime);
             }
         }
+    }
+
+    public void takePushBack(Vector3 dir)
+    {
+        agent.velocity += dir;
     }
 
     IEnumerator roam()
