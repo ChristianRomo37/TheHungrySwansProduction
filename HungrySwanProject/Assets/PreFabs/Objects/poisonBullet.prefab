@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisonEffect: {fileID: -5249751829898318963}
   timer: 1
+  damage: 0
 --- !u!114 &3989297610480264767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4010b6874730045459ba8b8bc4b10863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   speed: 25
   timer: 3
   rb: {fileID: 8201418924383089034}
@@ -341,7 +341,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -456,9 +456,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 1
+      minMaxState: 3
+      scalar: 1.5
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -509,7 +509,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -562,7 +562,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1469,7 +1469,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1494,8 +1494,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 59174
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -1503,7 +1503,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
