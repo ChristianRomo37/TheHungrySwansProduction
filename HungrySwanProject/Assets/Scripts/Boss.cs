@@ -99,6 +99,7 @@ public class Boss : MonoBehaviour, IDamage
     IEnumerator spawnMinions()
     {
         anim.SetTrigger("Summon");
+
         Vector3 spawnPos = GetRandomSpawnPos();
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         minionsSpawned++;
@@ -227,10 +228,12 @@ public class Boss : MonoBehaviour, IDamage
         {
             stunned = true;
             agent.speed = 0;
+            anim.SetBool("Stunned", true);
 
             yield return new WaitForSeconds(stunTime);
 
             agent.speed = speedOrig;
+            anim.SetBool("Stunned", false);
             stunned = false;
         }
     }
@@ -245,6 +248,7 @@ public class Boss : MonoBehaviour, IDamage
     IEnumerator deadAI()
     {
         dead = true;
+        anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(5);
