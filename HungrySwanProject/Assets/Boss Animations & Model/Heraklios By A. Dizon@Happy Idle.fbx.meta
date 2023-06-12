@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: d620ed4e6cce4064ba6a69fcf8334417
+guid: 2c711d8d2c21f2646ac7c11027ba1358
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BattalionLeader_MAT
-    second: {fileID: 2100000, guid: 7ab55bc42ee9136458646cf4a4fe37b2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: phong1
-    second: {fileID: 2100000, guid: 2013a84f207ab2241a1801d05cac64db, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: battalion-leader-heraklios-body_diffuse
-    second: {fileID: 2800000, guid: 26ad78adbd72dc846ac44bdd4be0a32e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: battalion-leader-heraklios_diffuse
-    second: {fileID: 2800000, guid: e9cb82472b3ee0e46a96be58c83b8ea6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: battalion-leader-heraklios_normal
-    second: {fileID: 2800000, guid: 2df5b2efcd5ebb045927caec48fe7bd7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: battalion-leader-heraklios_specular
-    second: {fileID: 2800000, guid: 86e7ab9fd987740458ffdd0002a7a1f1, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -61,7 +31,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Happy Idle
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 1.05
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 1
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -105,16 +104,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 3995e0ce1413f36498de99b06dfe01b0
-  - f0a8330f721c93e4b85324b585d74708
-  - 2c711d8d2c21f2646ac7c11027ba1358
-  - d8c7a85ea0f0cf249a549f3c4879edbf
-  - 1af84994231daba44a5419a57c1237ab
-  - c45f4bde38963304fa787c7daae19723
-  - 9e5ae4445677c124daabb8bdc29bf282
-  - 9fea93de07ebf094685b9fd317ca5528
-  - f3d138f9e70d6664486081769e924ba0
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -883,11 +873,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d620ed4e6cce4064ba6a69fcf8334417, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
