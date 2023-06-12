@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] float animTransSpeed; //Anim
 
     [Header("-----Enemy Stats-----")]
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] float stunTime;
@@ -36,7 +36,7 @@ public class Boss : MonoBehaviour, IDamage
 
     bool playerInRange = false;
     Color colorOrg;
-    private int HPOrig;
+    public int HPOrig;
     Vector3 playerDir;
     float angleToPlayer;
     bool isShooting;
