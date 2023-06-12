@@ -20,9 +20,14 @@ public class RecoilAni : MonoBehaviour
             //anie.SetBool("Shooting", true);
             if (gameManager.instance.playerScript.sniper)
             {
-                anie.SetBool("Sniper", true);
-                anie.SetBool("Shooting", true);
-                StartCoroutine(wait());
+                gameManager.instance.playerScript.shootrate = true;
+                if (gameManager.instance.playerScript.shootrate)
+                {
+                    anie.SetBool("Sniper", true);
+                    anie.SetBool("Shooting", true);
+                    StartCoroutine(shootratebool());
+                }
+                //StartCoroutine(wait());
             }
             else if (gameManager.instance.playerScript.pistol)
             {
@@ -43,7 +48,7 @@ public class RecoilAni : MonoBehaviour
             {
                 anie.SetBool("Shotgun", true);
                 anie.SetBool("Shooting", true);
-                StartCoroutine (wait());
+                //StartCoroutine (wait());
             }
         }
         else if (Input.GetButtonUp("Shoot"))
@@ -61,6 +66,19 @@ public class RecoilAni : MonoBehaviour
     {
         anie.SetBool("Sniper", false);
         anie.SetBool("Shooting", false);
+        yield return new WaitForSeconds(.1f);
+    }
+
+    public void SetFalse()
+    {
+        anie.SetBool("Sniper", false);
+        anie.SetBool("Shooting", false);
+    }
+
+    IEnumerator shootratebool()
+    {
+        gameManager.instance.playerScript.shootrate = false;
         yield return new WaitForSeconds(3);
+        gameManager.instance.playerScript.shootrate = true;
     }
 }

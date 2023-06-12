@@ -57,6 +57,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     public float spread;
     public float Recoil;
     public int throws;
+    public bool shootrate;
 
     public float speed;
 
@@ -138,6 +139,18 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
                 OverallFire();
 
                 OverallReload();
+            }
+        }
+
+        if (gunList.Count > 0)
+        {
+            if (gunList[selectedGun].bulletsRemaining < gunList[selectedGun].magSize)
+            {
+                magFull = false;
+            }
+            else
+            {
+                magFull = true;
             }
         }
 
