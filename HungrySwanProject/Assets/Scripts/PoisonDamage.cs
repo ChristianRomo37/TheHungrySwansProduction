@@ -20,6 +20,13 @@ public class PoisonDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        poisoned = true;
+        dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
             while (timer > 0)
@@ -29,12 +36,6 @@ public class PoisonDamage : MonoBehaviour
                 timer--;
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        poisoned = true;
-        dam = other.GetComponent<IDamage>();
     }
 
     IEnumerator poisonDuration()
