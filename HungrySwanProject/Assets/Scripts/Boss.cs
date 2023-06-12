@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int MaxMinions;
     [SerializeField] float timeBetweenSpawns;
 
+    UIElements ui;
     bool playerInRange = false;
     Color colorOrg;
     public int HPOrig;
@@ -233,6 +234,8 @@ public class Boss : MonoBehaviour, IDamage
         {
             StartCoroutine(deadAI());
         }
+
+        ui.BossHealth();
     }
     
     IEnumerator stun()
