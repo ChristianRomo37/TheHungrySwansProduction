@@ -7,6 +7,7 @@ public class PoisonDamage : MonoBehaviour
 {
     [SerializeField] ParticleSystem poisonEffect;
     [SerializeField] int timer;
+    [SerializeField] int damage;
     bool poisoned;
 
     // Start is called before the first frame update
@@ -18,44 +19,27 @@ public class PoisonDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         poisoned = true;
-        if (other.CompareTag("Player"))
+        IDamage dam = other.GetComponent<IDamage>();
+        if (dam != null)
         {
-            StartCoroutine(poisonPlayer());
+            while (timer > 0)
+            {
+                dam.takeDamage(damage);
+                StartCoroutine(poisonDuration());
+                timer--;
+            }
         }
-        else if (other.CompareTag("Enemy"))
-        {
-            StopCoroutine(poisonEnemy());
-        }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator poisonDuration()
     {
-        poisoned = false;
-    }
-
-    IEnumerator poisonPlayer()
-    {
-        for (int i = 0; i < timer; i++)
-        {
-            gameManager.instance.playerScript.SetHP(-1);
-            yield return new WaitForSeconds(1);
-        }
-        poisoned = false;
-    }
-
-    IEnumerator poisonEnemy()
-    {
-        for (int i = 0; i < timer; i++)
-        {
-            gameManager.instance.enemyAIscript.takeDamage(-1);
-            yield return new WaitForSeconds(1);
-        }
-        poisoned = false;
+        yield return new WaitForSeconds(5);
     }
 }
