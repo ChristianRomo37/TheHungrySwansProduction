@@ -14,11 +14,18 @@ public class camerControl : MonoBehaviour
 
     float xrotation;
 
+    /*[Header("----- Shake -----")]
+    [SerializeField, Range(0.01f,1f)] float shakeX = 0.01f;
+    [SerializeField, Range(0.01f, 1f)] float shakeY = 0.01f;
+    [SerializeField, Range(0f, 3f)] float shakeSpeed;*/
+    Vector3 posOrig;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        posOrig = transform.position;
     }
 
     // Update is called once per frame
@@ -41,6 +48,14 @@ public class camerControl : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xrotation, 0, 0);
 
         transform.parent.Rotate(Vector3.up * mouseX);
+
+        /*if (gameManager.instance.playerScript.isSprinting == true)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(Random.Range(-shakeX, shakeX), Random.Range(-shakeY, shakeY), transform.position.z), Time.deltaTime * shakeSpeed);
+        }
+        else
+            transform.position = posOrig;
+            //transform.position = Vector3.Lerp(transform.position, posOrig, Time.deltaTime * shakeSpeed);*/
     }
 
     public void ApplyRecoil(float recoilAmount)
