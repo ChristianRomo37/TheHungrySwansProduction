@@ -13,7 +13,6 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource audioSource;
     camerControl cameracon;
-    [SerializeField] CameraShake cShake;
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
@@ -209,7 +208,6 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
-            //StartCoroutine(cShake.Shake(1f,0.2f));
             
             yield return new WaitForSeconds(sprintTimer);
             playerSpeed = OrigSpeed;
@@ -220,7 +218,6 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
         }
         else if (Input.GetButtonUp("Sprint") || Stamina == 0)
         {
-            
             isSprinting = false;
             playerSpeed = OrigSpeed;
             StartCoroutine(staminaReg());

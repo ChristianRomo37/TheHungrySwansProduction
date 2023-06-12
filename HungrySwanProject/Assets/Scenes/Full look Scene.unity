@@ -2051,6 +2051,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4230344895221384398, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: shakeX
+      value: 0.664
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230344895221384398, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: shakeY
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230344895221384398, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: shakeSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4230344895602959521, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2094,6 +2106,18 @@ PrefabInstance:
     - target: {fileID: 4230344895602959521, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230344895602959527, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: cShake
+      value: 
+      objectReference: {fileID: 1621022878}
+    - target: {fileID: 4230344895602959527, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: camDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230344895602959527, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+      propertyPath: camMagnitude
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4230344895602959533, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
       propertyPath: m_Name
@@ -2158,6 +2182,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f007b0251fab504b96bcc8920ce5261, type: 3}
+--- !u!1 &1621022873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4230344895221384394, guid: d2306ba1bac938c449797f501ba4d05b, type: 3}
+  m_PrefabInstance: {fileID: 1549522086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621022878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621022873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a9241b703259641aa90c1f6e91d424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7210366624120353
 GameObject:
   m_ObjectHideFlags: 0
