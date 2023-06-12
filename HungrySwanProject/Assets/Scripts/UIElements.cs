@@ -9,6 +9,11 @@ public class UIElements : MonoBehaviour
     [SerializeField] Image bossHPBar;
 
     Boss bossScript;
+
+    private void Start()
+    {
+        bossScript = GetComponent<Boss>();
+    }
     public void Level1Missions()
     {
         if (gameManager.instance.key && gameManager.instance.hasPart)
