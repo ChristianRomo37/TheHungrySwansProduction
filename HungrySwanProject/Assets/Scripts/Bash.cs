@@ -62,6 +62,7 @@ public class Bash : MonoBehaviour
         {
             return;
         }
+
         IPhysics physics = other.GetComponent<IPhysics>();
         IDamage dam = other.GetComponent<IDamage>();
 

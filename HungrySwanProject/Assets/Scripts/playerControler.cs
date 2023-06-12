@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class playerControler : MonoBehaviour, IDamage
+public class playerControler : MonoBehaviour, IDamage, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
@@ -26,6 +26,7 @@ public class playerControler : MonoBehaviour, IDamage
     [Range(1, 10)][SerializeField] int jumpMax;
     [Range(1, 10)][SerializeField] float sprintTimer;
     [SerializeField] GameObject flashlight;
+    [SerializeField] float pushBackResolve;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();
@@ -79,6 +80,7 @@ public class playerControler : MonoBehaviour, IDamage
 
     private Vector3 move;
     private Vector3 playerVelocity;
+    Vector3 pushBack;
 
     private bool groundedPlayer;
     public bool isSprinting;
@@ -197,6 +199,7 @@ public class playerControler : MonoBehaviour, IDamage
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
         //StartCoroutine(resetSpeed());
     }
 
@@ -361,6 +364,11 @@ public class playerControler : MonoBehaviour, IDamage
             gameManager.instance.youLose();
         }
         else StartCoroutine(DamageFlash());
+    }
+
+    public void takePushBack(Vector3 dir)
+    {
+        pushBack += dir;
     }
 
     IEnumerator DamageFlash()

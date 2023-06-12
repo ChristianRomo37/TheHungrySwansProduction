@@ -14,6 +14,7 @@ public class Stone : MonoBehaviour
     [SerializeField] float countdown;
     [SerializeField] float interval;
     [SerializeField] float decay;
+    [SerializeField] int pushAmount;
 
     //bool hasExploded;
     // Start is called before the first frame update
@@ -28,24 +29,28 @@ public class Stone : MonoBehaviour
         countdown -= Time.deltaTime;
         if (countdown < 0)
         {
-            StartCoroutine(Dust());
+            Dust();
             countdown = interval;
         }
     }
 
-    IEnumerator Dust()
+    void Dust()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
-        yield return new WaitForSeconds(decay);
         Destroy(gameObject);
     }
 
     public void OnTriggerEnter(Collider other)
     {
         IDamage damage = other.GetComponent<IDamage>();
+        IPhysics physics = other.GetComponent<IPhysics>();
+
         if (damage != null && other.CompareTag("Player"))
         {
             damage.takeDamage(2);
+            Vector3 dir = other.transform.position - transform.position;
+            physics.takePushBack(dir * pushAmount);
+            countdown = -1;
         }
     }
 }
