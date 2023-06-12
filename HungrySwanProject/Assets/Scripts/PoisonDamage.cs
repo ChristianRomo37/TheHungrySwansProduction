@@ -9,6 +9,7 @@ public class PoisonDamage : MonoBehaviour
     [SerializeField] int timer;
     [SerializeField] int damage;
     bool poisoned;
+    IDamage dam;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class PoisonDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         poisoned = true;
-        IDamage dam = other.GetComponent<IDamage>();
+        dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
             while (timer > 0)
@@ -35,7 +36,6 @@ public class PoisonDamage : MonoBehaviour
                 timer--;
             }
         }
-
     }
 
     IEnumerator poisonDuration()
