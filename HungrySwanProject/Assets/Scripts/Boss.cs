@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] float animTransSpeed; //Anim
 
     [Header("-----Enemy Stats-----")]
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] float stunTime;
@@ -36,7 +36,7 @@ public class Boss : MonoBehaviour, IDamage
 
     bool playerInRange = false;
     Color colorOrg;
-    private int HPOrig;
+    public int HPOrig;
     Vector3 playerDir;
     float angleToPlayer;
     bool isShooting;
@@ -52,6 +52,8 @@ public class Boss : MonoBehaviour, IDamage
     static public bool specialShoot;
     static public bool bossMinion;
     float speed; //Anim
+    bool summon;
+    bool isSpawning;
 
     // Start is called before the first frame update
     void Start()
@@ -79,34 +81,46 @@ public class Boss : MonoBehaviour, IDamage
                 MaxMinions = MaxMinions * 2;
             }
 
-            if (minionsSpawned < MaxMinions)
+            if (minionsAlive == 0)
+                summon = true;
+
+            if (!isSpawning && minionsSpawned < MaxMinions)
             {
                 StartCoroutine(spawnMinions());
                 bossShoot = false;
                 doubleMinions = false;
             }
 
-            StartCoroutine(stun());
-
             if (minionsAlive == 0)
             {
                 minionsSpawned = minionsAlive;
                 doubleMinions = true;
             }
+
+            StartCoroutine(stun());
+
         }
     }
 
     IEnumerator spawnMinions()
     {
-        anim.SetTrigger("Summon");
+        isSpawning = true;
+
+        if (summon)
+        {
+            anim.SetTrigger("Summon");
+        }
 
         Vector3 spawnPos = GetRandomSpawnPos();
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         minionsSpawned++;
         minionsAlive++;
         bossMinion = true;
+        summon = false;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
+
+        isSpawning = false;
 
     }
 
@@ -129,7 +143,7 @@ public class Boss : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone && !summon)
             {
                 if (agent.remainingDistance > agent.stoppingDistance)
                 {
@@ -195,7 +209,6 @@ public class Boss : MonoBehaviour, IDamage
         if (specialShoot)
         {
             Instantiate(specialbullet, shootPos.position, transform.rotation);
-
         }
         else
         {
@@ -224,7 +237,7 @@ public class Boss : MonoBehaviour, IDamage
     
     IEnumerator stun()
     {
-        if (minionsAlive == 0)
+        if (minionsAlive == 0 && HP != 0)
         {
             stunned = true;
             agent.speed = 0;

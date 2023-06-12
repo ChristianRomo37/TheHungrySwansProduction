@@ -2,9 +2,13 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIElements : MonoBehaviour
 {
+    [SerializeField] Image bossHPBar;
+
+    public Boss bossScript;
     public void Level1Missions()
     {
         if (gameManager.instance.key && gameManager.instance.hasPart)
@@ -46,6 +50,11 @@ public class UIElements : MonoBehaviour
             }
         }
 
+    }
+
+    public void BossHealth()
+    {
+        bossHPBar.fillAmount = (float)bossScript.HP / bossScript.HPOrig;
     }
     
     public void HealthControl()
