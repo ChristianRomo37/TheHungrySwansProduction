@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletPickup : MonoBehaviour, IInteractable
+public class BulletPickup : MonoBehaviour
 {
     [SerializeField] int AddBullet;
-    [SerializeField] AudioSource source;
-    [SerializeField] AudioClip[] clip;
-    [SerializeField][Range(0, 1)] float vol;
+    [SerializeField] GameObject audioplay;
 
     //void Start()
     //{
@@ -17,7 +15,8 @@ public class BulletPickup : MonoBehaviour, IInteractable
 
     public void interact(bool canInteract)
     {
-        source.PlayOneShot(clip[Random.Range(0, clip.Length)], vol);
+        //source.PlayOneShot(clip[Random.Range(0, clip.Length)], vol);
+        Instantiate(audioplay,transform.position, Quaternion.identity);
         gameManager.instance.playerScript.SetBullets(AddBullet);
         Destroy(gameObject);
     }

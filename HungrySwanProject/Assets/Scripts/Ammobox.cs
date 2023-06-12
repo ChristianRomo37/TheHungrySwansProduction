@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Ammobox : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
-
-    [Header("-----Audio-----")]
-    [SerializeField] AudioClip[] Pickup;
-    [SerializeField][Range(0, 1)] float PickupVol;
+    [SerializeField] GameObject audiosouce;
 
     bool playerInRange;
     public int counter;
@@ -59,7 +55,8 @@ public class Ammobox : MonoBehaviour
             {
                 counter++;
                 gameManager.instance.playerScript.SetAmmoCrate(ammo);
-                audioSource.PlayOneShot(Pickup[Random.Range(0, Pickup.Length)], PickupVol);
+                //audioSource.PlayOneShot(Pickup[Random.Range(0, Pickup.Length)], PickupVol);
+                Instantiate(audiosouce, transform.position, Quaternion.identity);
                 gameManager.instance.promptEOffBox();
                 if (counter == 3)
                 {
