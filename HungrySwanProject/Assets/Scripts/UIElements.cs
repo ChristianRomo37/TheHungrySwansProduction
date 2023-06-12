@@ -8,7 +8,7 @@ public class UIElements : MonoBehaviour
 {
     [SerializeField] Image bossHPBar;
 
-    public Boss bossScript;
+    Boss bossScript;
     public void Level1Missions()
     {
         if (gameManager.instance.key && gameManager.instance.hasPart)
