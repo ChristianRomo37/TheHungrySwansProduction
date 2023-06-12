@@ -8,6 +8,7 @@ public class Stone : MonoBehaviour
     //public float radius = 5;
     //public float effectduration;
 
+
     public GameObject explosionEffect;
 
     [SerializeField] float countdown;

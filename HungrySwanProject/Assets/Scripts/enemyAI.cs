@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -132,6 +132,11 @@ public class enemyAI : MonoBehaviour, IDamage
             //if (!dead)
             agent.SetDestination(hit.position);
         }
+    }
+
+    public void takePushBack(Vector3 dir)
+    {
+        agent.velocity += dir;
     }
 
     bool canSeePlayer()

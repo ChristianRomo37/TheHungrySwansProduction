@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class Bash : MonoBehaviour
 {
     Animator anie;
     [SerializeField] int dmg;
     [SerializeField] BoxCollider box;
+    [SerializeField] int pushAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -39,28 +39,41 @@ public class Bash : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
+    //private void OnCollisionEnter(Collision collision)
     //{
-    //    Rigidbody rb = other.GetComponent<Rigidbody>();
-    //    IDamage dam = other.GetComponent<IDamage>();
+    //    IPhysics physics = collision.gameObject.GetComponent<IPhysics>();
+    //    IDamage dam = collision.gameObject.GetComponent<IDamage>();
 
     //    if (dam != null)
     //    {
     //        dam.takeDamage(dmg);
-    //        rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
+
+    //    }
+    //    if (physics != null)
+    //    {
+    //        Vector3 dir = collision.gameObject.transform.position - transform.position;
+    //        physics.takePushBack(dir * pushAmount);
     //    }
     //}
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-        IDamage dam = collision.gameObject.GetComponent<IDamage>();
-        //SphereCollider sphere = collision.gameObject.GetComponentInChildren<SphereCollider>();
+        if (other.isTrigger)
+        {
+            return;
+        }
+        IPhysics physics = other.GetComponent<IPhysics>();
+        IDamage dam = other.GetComponent<IDamage>();
 
         if (dam != null)
         {
             dam.takeDamage(dmg);
-            rb.AddForce(Vector3.forward * 100, ForceMode.Impulse);
+
+        }
+        if (physics != null)
+        {
+            Vector3 dir = other.transform.position - transform.position;
+            physics.takePushBack(dir * pushAmount);
         }
     }
 }
