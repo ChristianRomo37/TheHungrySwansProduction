@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -79,7 +80,7 @@ public class ButtonFunctions : MonoBehaviour
     public void SSelect()
     {
         if (gameManager.instance.settings.activeSelf) gameManager.instance.settings.SetActive(false);
-        else if (gameManager.instance.levelSelect.activeSelf)
+        else if (gameManager.instance.levelSelect && gameManager.instance.levelSelect.activeSelf)
         {
             gameManager.instance.levelSelect.SetActive(false);
             gameManager.instance.settings.SetActive(true);
