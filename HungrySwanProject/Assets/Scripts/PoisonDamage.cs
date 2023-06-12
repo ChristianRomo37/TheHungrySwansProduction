@@ -29,17 +29,22 @@ public class PoisonDamage : MonoBehaviour
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
-            while (timer > 0)
+            for (int i = 0; i < timer;)
             {
-                dam.takeDamage(damage);
                 StartCoroutine(poisonDuration());
-                timer--;
+                i++;
             }
+            //StartCoroutine(poisonDuration());
+            //StartCoroutine(poisonDuration());
+            //StartCoroutine(poisonDuration());
+            //StartCoroutine(poisonDuration());
+            //StartCoroutine(poisonDuration());
         }
     }
 
     IEnumerator poisonDuration()
     {
-        yield return new WaitForSeconds(5);
+        dam.takeDamage(damage);
+        yield return new WaitForSeconds(10f);
     }
 }
