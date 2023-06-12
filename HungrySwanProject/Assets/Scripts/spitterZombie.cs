@@ -157,9 +157,11 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
     void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        Quaternion rotY = Quaternion.LookRotation(playerDir, Vector3.up);
+        //Quaternion rotY = Quaternion.LookRotation(playerDir, Vector3.right);
 
-        headPos.rotation = Quaternion.Lerp(headPos.rotation, rotY, Time.deltaTime * playerFaceSpeed);
+        headPos.LookAt(gameManager.instance.player.transform.position);
+
+        //headPos.rotation = Quaternion.Lerp(headPos.rotation, rotY, Time.deltaTime * playerFaceSpeed);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
