@@ -1412,7 +1412,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5786235312031375855, guid: 5fb58ddb2aaad3047841a828920d70a5, type: 2}
   m_audioClip: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1798,8 +1798,7 @@ MonoBehaviour:
   holdingBlade: {fileID: 0}
   holdingRotor: {fileID: 0}
   holdingSkid: {fileID: 0}
-  heart: {fileID: 1302896482580844196, guid: 6f378635e8972ab4b8be2a2c2fa340da, type: 3}
-  bullet: {fileID: 0}
+  drops: []
   levelSelect: {fileID: 8592517968398397894, guid: d55b6314c3ff9fb45b97b7f7055a9572, type: 3}
   settings: {fileID: 1142059496748810652}
   isPaused: 0
@@ -1812,11 +1811,13 @@ MonoBehaviour:
   key: 0
   tire: 0
   left: 0
+  helicopterPartsRemaining: 0
   blade: 0
   hgas: 0
   hkey: 0
   rotor: 0
   skid: 0
+  left2: 0
 --- !u!114 &885048030745759073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1841,6 +1842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8babc5761130e4e8b9c7905046a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossHPBar: {fileID: 0}
 --- !u!1 &885048031418642650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2123,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5786235312031375855, guid: 5fb58ddb2aaad3047841a828920d70a5, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 4ee168f05a4bcf44cabf647e24e50605, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 035d91e38b0b5af48a8fe9134d37146d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7211,7 +7213,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5786235312031375855, guid: 5fb58ddb2aaad3047841a828920d70a5, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 4ee168f05a4bcf44cabf647e24e50605, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 035d91e38b0b5af48a8fe9134d37146d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
