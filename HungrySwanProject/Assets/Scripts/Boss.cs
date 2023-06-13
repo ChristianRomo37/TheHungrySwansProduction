@@ -13,7 +13,6 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] Transform VshootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
-    [SerializeField] float animTransSpeed; //Anim
     [SerializeField] ParticleSystem necroEffect;
 
     [Header("-----Enemy Stats-----")]
@@ -22,10 +21,12 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int viewCone;
     [SerializeField] float stunTime;
     [SerializeField] int runAwayDist;
+    [SerializeField] float animTransSpeed; //Anim
 
     [Header("-----Enemy Weapon-----")]
     [Range(1, 300)][SerializeField] int shootDist;
-    [Range(0.1f, 3f)][SerializeField] float shootRate;
+    [Range(0.1f, 10f)] [SerializeField] float shootRate;
+    [Range(0.1f, 10f)] [SerializeField] float specialBulletDuration;
     [SerializeField] int shootAngle;
     [SerializeField] GameObject specialbullet;
     [SerializeField] GameObject normBullet;
@@ -79,7 +80,7 @@ public class Boss : MonoBehaviour, IDamage
             takeDamage(1);
         }
 
-        if (agent.isActiveAndEnabled && !stunned & !summon)
+        if (agent.isActiveAndEnabled && !stunned & !summon && canSeePlayer())
         {
             
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
@@ -171,13 +172,13 @@ public class Boss : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone && !summon)
             {
-                if (agent.remainingDistance > agent.stoppingDistance)
-                {
+                //if (agent.remainingDistance > agent.stoppingDistance)
+                //{
                     agent.SetDestination(gameManager.instance.player.transform.position);
-                }
-                else if (agent.remainingDistance < agent.stoppingDistance - 10)
+                //}
+                if (agent.remainingDistance < agent.stoppingDistance - 10)
                 {
-                    agent.SetDestination(transform.position - (playerDir * runAwayDist));
+                    StartCoroutine(runAway());
                 }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -217,8 +218,11 @@ public class Boss : MonoBehaviour, IDamage
             isShooting = true;
 
             anim.SetTrigger("Throw");
+            yield return new WaitForSeconds(shootRate);
 
-            yield return new WaitForSeconds(5);
+            specialShoot = true;
+
+            yield return new WaitForSeconds(specialBulletDuration);
 
             isShooting = false;
             specialShoot = false;
@@ -227,7 +231,7 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator shootNorm()
     {
-        if (!specialShoot)
+        if (!specialShoot && !summon)
         {
             isShooting = true;
 
@@ -274,7 +278,16 @@ public class Boss : MonoBehaviour, IDamage
         
         if (HP <= 0)
         {
-            StartCoroutine(deadAI());
+            if (stunned)
+            {
+                StopCoroutine(stun());
+                anim.SetBool("Stunned", false);
+                StartCoroutine(deadAI());
+            }
+            else
+            {
+                StartCoroutine(deadAI());
+            }
         }
 
         

@@ -67,8 +67,11 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
-        transform.Translate(-Vector3.up * 2f);
-        agent.enabled = false;
+        if (Boss.bossMinion)
+        {
+            transform.Translate(-Vector3.up * 2f);
+            agent.enabled = false;
+        }
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
@@ -76,10 +79,13 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
-        if (spawning)
+        if(spawning && Boss.bossMinion)
         {
-
             StartCoroutine(spawnRise());
+        }
+        else if (spawning)
+        {
+            spawning = false;
         }
 
         if (agent.isActiveAndEnabled && !spawning)
