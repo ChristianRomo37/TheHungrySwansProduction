@@ -25,7 +25,7 @@ public class hgasPickup : MonoBehaviour
             gameManager.instance.hgas = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingGas.SetActive(true);
-            //gameManager.instance.playerScript.updateUI();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

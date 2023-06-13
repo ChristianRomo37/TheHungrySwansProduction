@@ -261,8 +261,18 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     public void updateUI()
     {
         gameManager.instance.ui.HealthControl();
-
-        gameManager.instance.ui.Level1Missions();
+        if (gameManager.instance.context.name == "Full look Scene")
+        {
+            gameManager.instance.carPartsRemainingLabel.gameObject.SetActive(true);
+            gameManager.instance.carPartsRemainingText.gameObject.SetActive(true);
+            gameManager.instance.ui.Level1Missions();
+        }
+        else if (gameManager.instance.context.name == "Artic Scene")
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.gameObject.SetActive(true);
+            gameManager.instance.helicopterPartsRemainingText.gameObject.SetActive(true);
+            gameManager.instance.ui.Level2Missions();
+        }
     }
 
     IEnumerator shoot()

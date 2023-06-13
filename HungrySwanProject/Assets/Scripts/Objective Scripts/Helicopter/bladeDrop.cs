@@ -52,7 +52,7 @@ public class bladeDrop : MonoBehaviour
             gameManager.instance.holdingBlade.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptBladeOff();
-            //gameManager.instance.playerScript.updateUI();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

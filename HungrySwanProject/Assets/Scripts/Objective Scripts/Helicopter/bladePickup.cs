@@ -26,7 +26,7 @@ public class bladePickup : MonoBehaviour
             gameManager.instance.blade = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingBlade.SetActive(true);
-            //gameManager.instance.playerScript.updateUI();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }
