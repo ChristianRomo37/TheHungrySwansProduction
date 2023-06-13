@@ -10,13 +10,17 @@ public class Bullets : MonoBehaviour
 
     [SerializeField] Rigidbody rb;
 
+    Vector3 direction;
     int damageCrit;
 
     // Start is called before the first frame update
     void Start()
     {
+        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        direction = (player.position - transform.position).normalized;
+
         Destroy(gameObject, timer);
-        rb.velocity = transform.forward * speed;
+        rb.velocity = direction * speed;
     }
 
     private void OnTriggerEnter(Collider other)
