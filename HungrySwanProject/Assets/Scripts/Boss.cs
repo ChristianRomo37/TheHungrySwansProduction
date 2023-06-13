@@ -9,7 +9,8 @@ public class Boss : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform DMshootPos;
+    [SerializeField] Transform VshootPos;
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
     [SerializeField] float animTransSpeed; //Anim
@@ -178,12 +179,21 @@ public class Boss : MonoBehaviour, IDamage
         return false;
     }
 
+    IEnumerator runAway()
+    {
+        agent.SetDestination(transform.position - (playerDir * runAwayDist));
+
+        yield return new WaitForSeconds(1);
+
+        facePlayer();
+    }
+
     void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
-
+    
     IEnumerator shootSpecial()
     {
         if (bossShoot)
@@ -217,11 +227,17 @@ public class Boss : MonoBehaviour, IDamage
     {
         if (specialShoot)
         {
-            Instantiate(specialbullet, shootPos.position, transform.rotation);
+            DMshootPos.gameObject.SetActive(false);
+            VshootPos.gameObject.SetActive(true);
+
+            Instantiate(specialbullet, VshootPos.position, transform.rotation);
+
+            VshootPos.gameObject.SetActive(false);
+            DMshootPos.gameObject.SetActive(true);
         }
         else
         {
-            Instantiate(normBullet, shootPos.position, transform.rotation);
+            Instantiate(normBullet, DMshootPos.position, transform.rotation);
         }
     }
 
