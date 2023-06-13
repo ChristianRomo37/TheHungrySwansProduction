@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ??? (Escape)
+  m_text: Arctic (Escape)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1228,7 +1228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2684302948181272785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1 (Escape)
+  m_text: City (Escape)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2018,8 +2018,7 @@ MonoBehaviour:
   holdingBlade: {fileID: 0}
   holdingRotor: {fileID: 0}
   holdingSkid: {fileID: 0}
-  heart: {fileID: 0}
-  bullet: {fileID: 0}
+  drops: []
   levelSelect: {fileID: 2626832556111589412}
   settings: {fileID: 8583350878571437897}
   isPaused: 0
@@ -2032,11 +2031,13 @@ MonoBehaviour:
   key: 0
   tire: 0
   left: 0
+  helicopterPartsRemaining: 0
   blade: 0
   hgas: 0
   hkey: 0
   rotor: 0
   skid: 0
+  left2: 0
 --- !u!114 &6100676080277848495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2049,6 +2050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8babc5761130e4e8b9c7905046a130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossHPBar: {fileID: 0}
 --- !u!224 &6945191282510968072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2112,7 +2114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2847138560075777140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1492799805}
+        m_TargetAssemblyTypeName: LoadingScreenManager, Assembly-CSharp
+        m_MethodName: LoadLevelBtn
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Artic Scene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6977648254396200809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,7 +2147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1 (Boss)
+  m_text: Necromancer (Boss)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
