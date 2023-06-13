@@ -30,11 +30,6 @@ public class PoisonDamage : MonoBehaviour
         if (dam != null)
         {
             StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
         }
     }
 
