@@ -38,7 +38,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] float timeBetweenSpawns;
 
     public UIElements uI;
-    bool playerInRange = false;
+    bool playerInRange;
     Color colorOrg;
     public int HPOrig;
     Vector3 playerDir;
@@ -74,13 +74,9 @@ public class Boss : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
-        {
-            stunned = true;
-            takeDamage(1);
-        }
 
-        if (agent.isActiveAndEnabled && !stunned & !summon && canSeePlayer())
+
+        if (agent.isActiveAndEnabled && !stunned && !summon && playerInRange)
         {
             
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
@@ -117,6 +113,7 @@ public class Boss : MonoBehaviour, IDamage
     IEnumerator spawnMinions()
     {
         isSpawning = true;
+        //StopAllCoroutines();
 
         if (summon)
         {
@@ -144,6 +141,7 @@ public class Boss : MonoBehaviour, IDamage
     {
         necroEffect.gameObject.SetActive(true);
         necroEffect.Play();
+        
 
         yield return new WaitForSeconds(3);
 
@@ -171,12 +169,13 @@ public class Boss : MonoBehaviour, IDamage
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone && !summon)
-            {
-                //if (agent.remainingDistance > agent.stoppingDistance)
-                //{
-                    agent.SetDestination(gameManager.instance.player.transform.position);
-                //}
-                if (agent.remainingDistance < agent.stoppingDistance - 10)
+            {               
+
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                float stoppingDistRA = agent.stoppingDistance - 10;
+
+                if (agent.remainingDistance < stoppingDistRA)
                 {
                     StartCoroutine(runAway());
                 }
@@ -187,8 +186,11 @@ public class Boss : MonoBehaviour, IDamage
                 }
                 if (!isShooting && angleToPlayer <= shootAngle)
                 {
-                    StartCoroutine(shootNorm()); 
-                    StartCoroutine(shootSpecial());
+                    if (!necroEffect.gameObject.activeSelf)
+                    {
+                        StartCoroutine(shootNorm());
+                        StartCoroutine(shootSpecial());
+                    }
                 }
                 return true;
             }
@@ -198,9 +200,13 @@ public class Boss : MonoBehaviour, IDamage
 
     IEnumerator runAway()
     {
-        agent.SetDestination(transform.position - (playerDir * runAwayDist));
+        Vector3 raPosition = transform.position - (playerDir * runAwayDist);
 
-        yield return new WaitForSeconds(1);
+        agent.SetDestination(raPosition);
+
+        float waitTime = Vector3.Distance(transform.position, raPosition) / agent.speed;
+
+        yield return new WaitForSeconds(waitTime);
 
         facePlayer();
     }
@@ -218,7 +224,6 @@ public class Boss : MonoBehaviour, IDamage
             isShooting = true;
 
             anim.SetTrigger("Throw");
-            yield return new WaitForSeconds(shootRate);
 
             specialShoot = true;
 
@@ -306,6 +311,7 @@ public class Boss : MonoBehaviour, IDamage
             agent.speed = speedOrig;
             anim.SetBool("Stunned", false);
             stunned = false;
+            summon = false;
         }
     }
 

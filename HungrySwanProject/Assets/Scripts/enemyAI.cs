@@ -92,7 +92,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         {
             StartCoroutine(spawnRise());
         }
-        else if (spawning)
+        else
         {
             spawning = false;
         }
@@ -138,8 +138,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
         yield return new WaitForSeconds(2);
 
-        agent.enabled = true;
 
+        agent.enabled = true;
         spawnEffect.Stop();
         spawnEffect.gameObject.SetActive(false);
         spawning = false;
@@ -246,19 +246,22 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         //{
         //    damage *= 2;
         //}
-
-        HP -= damage;
-        Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * Time.deltaTime * 1.0f;
         //anim.SetTrigger("Damage");
 
-        audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
-        StartCoroutine(flashColor());
+        if (agent.isActiveAndEnabled)
+        {
+            HP -= damage;
+            Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
+            transform.position += forceDirection * Time.deltaTime * 1.0f;
 
-        if(!dead)
-        agent.SetDestination(gameManager.instance.player.transform.position);
+            audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
+            StartCoroutine(flashColor());
 
-        playerInRange = true;
+            if (!dead)
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+            playerInRange = true;
+        }
 
         if (HP <= 0)
         {
@@ -290,26 +293,25 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         anim.SetBool("Dead", true);
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        yield return new WaitForSeconds(2);
-        objectSpawn();
+        yield return new WaitForSeconds(0.5f);
+        //objectSpawn();
         sink = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
         Boss.minionsAlive--;
-        Boss.specialShoot = true;
 
         StopAllCoroutines();
     }
 
-    public void objectSpawn()
-    {
-        int rand = Random.Range(0, 2);
-        if (rand == 1)
-        {
-            int rand1 = Random.Range(0, 2);
-            Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
-        }
-    }
+    //public void objectSpawn()
+    //{
+    //    int rand = Random.Range(0, 2);
+    //    if (rand == 1)
+    //    {
+    //        int rand1 = Random.Range(0, 2);
+    //        Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
+    //    }
+    //}
 
     IEnumerator flashColor()
     {
