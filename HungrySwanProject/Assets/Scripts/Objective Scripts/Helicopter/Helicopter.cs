@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class Helicopter : MonoBehaviour
 {
-    // Start is called before the first frame update
+    bool playerInRange;
+
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && gameManager.instance.helicopterPartsRemaining <= 0)
+        {
+            gameManager.instance.promptLeaveOn();
+            interact();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.promptLeaveOff();
+        }
+    }
+
+    void interact()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            gameManager.instance.left2 = true;
+            gameManager.instance.update2ndGameGoal(0);
+        }
     }
 }

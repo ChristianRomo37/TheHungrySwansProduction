@@ -6,7 +6,7 @@ public class hgasPickup : MonoBehaviour
 {
     void Start()
     {
-        //gameManager.instance.updateGameGoal(1);
+        gameManager.instance.update2ndGameGoal(1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,7 @@ public class hgasPickup : MonoBehaviour
             gameManager.instance.hgas = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingGas.SetActive(true);
-            //gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.update2ndGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }
     }
