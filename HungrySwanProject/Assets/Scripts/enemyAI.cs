@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Timers;
 using TMPro;
 using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
-
-
 
 public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
@@ -22,7 +21,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] GameObject Head;
 
     [Header("-----Enemy Stats-----")]
-    [SerializeField] int HP;
+    [SerializeField] public int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
@@ -65,6 +64,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     bool takeHS;
     bool spanwed = true;
     bool dead;
+    float timerFire;
+    int fireDMG = 1;
+    public bool onfire;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +82,13 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
+        timerFire += Time.deltaTime;
+
+        if (onfire)
+        {
+            StartCoroutine(FireDMGTime());
+        }
+
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
@@ -214,6 +223,12 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         //}
 
         HP -= damage;
+
+        if (onfire)
+        {
+            StartCoroutine(FireDMGTime());
+        }
+
         Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
         transform.position += forceDirection * Time.deltaTime * 1.0f;
         //anim.SetTrigger("Damage");
@@ -250,7 +265,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         Boss.bossShoot = false;
     }
 
-    IEnumerator deadAI()
+    public IEnumerator deadAI()
     {
         dead = true;
         anim.SetBool("Dead", true);
@@ -295,9 +310,27 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+        }
+
+        if (other.CompareTag("Fire"))
+        {
+            onfire = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Fire"))
+        {
+           onfire = true;
         }
     }
 
@@ -349,6 +382,25 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(0.3f);
 
         stepIsPlaying = false;
+    }
+
+    IEnumerator FireDMGTime()
+    {
+        for (int i = 0; i < timerFire; i++)
+        {
+            if (timerFire >= 1)
+            {
+                timerFire = 0f;
+                takeDamage(fireDMG);
+                //HP -= fireDMG;
+                if (HP == 0)
+                {
+                    StartCoroutine(deadAI());
+                }
+            }
+        }
+        yield return new WaitForSeconds(4);
+        onfire = false;
     }
 
     //public IEnumerator fireDame(int damage)
