@@ -8,12 +8,14 @@ public class PoisonDamage : MonoBehaviour
     [SerializeField] ParticleSystem poisonEffect;
     [SerializeField] int timer;
     [SerializeField] int damage;
+    [SerializeField] float interval;
+    int ticks;
     bool poisoned;
     IDamage dam;
 
     void Start()
     {
-
+        ticks = 0;
     }
 
     void Update()
@@ -27,22 +29,17 @@ public class PoisonDamage : MonoBehaviour
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
-            for (int i = 0; i < timer;)
-            {
-                StartCoroutine(poisonDuration());
-                i++;
-            }
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
-            //StartCoroutine(poisonDuration());
+            StartCoroutine(poisonDuration());
         }
     }
 
     IEnumerator poisonDuration()
     {
-        dam.takeDamage(damage);
-        yield return new WaitForSecondsRealtime(5);
+        while (ticks <= timer)
+        {
+            dam.takeDamage(damage);
+            yield return new WaitForSeconds(interval);
+            ticks++;
+        }
     }
 }
