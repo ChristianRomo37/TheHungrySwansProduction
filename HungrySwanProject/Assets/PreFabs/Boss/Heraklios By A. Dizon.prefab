@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 1454130666788972128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -133.21075, y: -0.20000076, z: 4.0443373}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3236870442770521061}
@@ -278,8 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 9176498987197299269}
   agent: {fileID: 5297887218205517477}
-  DMshootPos: {fileID: 0}
-  VshootPos: {fileID: 0}
+  DMshootPos: {fileID: 8291224150772250590}
+  VshootPos: {fileID: 8291224149935086235}
   headPos: {fileID: 5262841511518678617}
   anim: {fileID: 5297887218205517472}
   animTransSpeed: 2
@@ -287,7 +287,7 @@ MonoBehaviour:
   playerFaceSpeed: 5
   viewCone: 90
   stunTime: 5
-  runAwayDist: 10
+  runAwayDist: 5
   shootDist: 30
   shootRate: 3
   shootAngle: 20
@@ -368,7 +368,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &568807187
 MonoBehaviour:
@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1796784461905949208
 Transform:
   m_ObjectHideFlags: 0

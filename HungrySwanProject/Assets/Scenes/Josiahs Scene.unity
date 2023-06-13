@@ -798,10 +798,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 222090018}
     m_Modifications:
-    - target: {fileID: 1387469558318460525, guid: 582aae8b621390347be662689ac73f2b, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 7781988834394261679, guid: a49e467d263ee6543a1a6152c2817081, type: 3}
     - target: {fileID: 3072644604151196540, guid: 582aae8b621390347be662689ac73f2b, type: 3}
       propertyPath: m_Name
       value: Spitter Zombie Model AI
@@ -1568,25 +1564,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heraklios By A. Dizon
       objectReference: {fileID: 0}
-    - target: {fileID: 1796784461905949209, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2262439304527953114, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262439304527953114, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262439304527953114, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262439304527953114, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2262439304527953114, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1628,54 +1608,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517476, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: VshootPos
-      value: 
-      objectReference: {fileID: 1796784461146984436}
-    - target: {fileID: 5297887218205517476, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: DMshootPos
-      value: 
-      objectReference: {fileID: 1796784461146984437}
-    - target: {fileID: 5297887218205517476, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: runAwayDist
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517476, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: playerFaceSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517477, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_Speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517477, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_Acceleration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517477, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517477, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297887218205517479, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-      propertyPath: m_Radius
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
---- !u!4 &1796784461146984436 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8291224149935086235, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-  m_PrefabInstance: {fileID: 1796784461146984435}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1796784461146984437 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8291224150772250590, guid: c17691ba00a20314fae5c2b464bdf7e0, type: 3}
-  m_PrefabInstance: {fileID: 1796784461146984435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2233829069376853489
 PrefabInstance:
   m_ObjectHideFlags: 0
