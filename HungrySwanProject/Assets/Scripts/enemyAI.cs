@@ -285,26 +285,24 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(2);
+        objectSpawn();
         sink = true;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
         Boss.minionsAlive--;
         Boss.specialShoot = true;
 
+        StopAllCoroutines();
+    }
+
+    public void objectSpawn()
+    {
         int rand = Random.Range(0, 2);
         if (rand == 1)
         {
             int rand1 = Random.Range(0, 2);
-            objectSpawn(gameManager.instance.drops[rand1], startingPos);
+            Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
         }
-
-        StopAllCoroutines();
-    }
-
-    public void objectSpawn(GameObject spawned, Vector3 location)
-    {
-
-        spawned.transform.position = location;
     }
 
     IEnumerator flashColor()
