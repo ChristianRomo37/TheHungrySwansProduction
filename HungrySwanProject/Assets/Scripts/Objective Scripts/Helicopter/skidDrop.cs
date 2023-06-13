@@ -22,7 +22,6 @@ public class skidDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
-
         }
     }
 
@@ -30,16 +29,16 @@ public class skidDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.skid)
         {
-            gameManager.instance.promptSkidOn();
             playerInRange = true;
-
+            gameManager.instance.promptSkidOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.skid)
         {
+            playerInRange = false;
             gameManager.instance.promptSkidOff();
         }
     }
@@ -55,6 +54,7 @@ public class skidDrop : MonoBehaviour
             leg2.enabled = true;
             Destroy(stand);
             gameManager.instance.holdingSkid.SetActive(false);
+            gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptSkidOff();
             //gameManager.instance.playerScript.updateUI();
         }

@@ -21,8 +21,9 @@ public class Helicopter : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.helicopterPartsRemaining <= 0)
         {
+            playerInRange = true;
             gameManager.instance.promptLeaveOn();
-            interact();
+            StartCoroutine(interact());
         }
     }
 
@@ -30,16 +31,20 @@ public class Helicopter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            playerInRange = false;
             gameManager.instance.promptLeaveOff();
         }
     }
 
-    void interact()
+    IEnumerator interact()
     {
         if (Input.GetButtonDown("Interact"))
         {
-            gameManager.instance.left2 = true;
-            gameManager.instance.update2ndGameGoal(0);
+            playerInRange = false;
+            yield return new WaitForSeconds(3);
+            gameManager.instance.activeMenu = gameManager.instance.winMenu;
+            gameManager.instance.activeMenu.SetActive(true);
+            gameManager.instance.pauseState();
         }
     }
 }

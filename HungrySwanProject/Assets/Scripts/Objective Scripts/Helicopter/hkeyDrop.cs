@@ -25,16 +25,16 @@ public class hkeyDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.hkey)
         {
-            gameManager.instance.promptKeyOn();
             playerInRange = true;
-
+            gameManager.instance.promptKeyOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.hkey)
         {
+            playerInRange = false;
             gameManager.instance.promptKeyOff();
         }
     }
@@ -46,6 +46,7 @@ public class hkeyDrop : MonoBehaviour
             gameManager.instance.hkey = false;
             gameManager.instance.hasPart = false;
             gameManager.instance.holdingKey.SetActive(false);
+            gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptKeyOff();
             //gameManager.instance.playerScript.updateUI();
         }

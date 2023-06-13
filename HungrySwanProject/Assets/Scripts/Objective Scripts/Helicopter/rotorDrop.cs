@@ -21,7 +21,6 @@ public class rotorDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
-
         }
     }
 
@@ -29,15 +28,16 @@ public class rotorDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.rotor)
         {
-            gameManager.instance.promptRotorOn();
             playerInRange = true;
+            gameManager.instance.promptRotorOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.rotor)
         {
+            playerInRange = false;
             gameManager.instance.promptRotorOff();
         }
     }
@@ -52,6 +52,7 @@ public class rotorDrop : MonoBehaviour
             blade1.enabled = true;
             blade2.enabled = true;
             gameManager.instance.holdingRotor.SetActive(false);
+            gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptRotorOff();
             //gameManager.instance.playerScript.updateUI();
         }

@@ -25,7 +25,6 @@ public class hkeyPickup : MonoBehaviour
             gameManager.instance.hkey = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingKey.SetActive(true);
-            gameManager.instance.update2ndGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }
     }

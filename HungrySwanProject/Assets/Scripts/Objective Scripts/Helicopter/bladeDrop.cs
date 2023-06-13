@@ -20,7 +20,6 @@ public class bladeDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
-
         }
     }
 
@@ -28,16 +27,16 @@ public class bladeDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.blade)
         {
-            gameManager.instance.promptBladeOn();
             playerInRange = true;
-
+            gameManager.instance.promptBladeOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.blade)
         {
+            playerInRange = false;
             gameManager.instance.promptBladeOff();
         }
     }
@@ -51,6 +50,7 @@ public class bladeDrop : MonoBehaviour
             blade.enabled = true;
             Destroy(ladder);
             gameManager.instance.holdingBlade.SetActive(false);
+            gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptBladeOff();
             //gameManager.instance.playerScript.updateUI();
         }

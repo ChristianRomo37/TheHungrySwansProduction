@@ -17,7 +17,6 @@ public class hgasDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
-
         }
     }
 
@@ -25,16 +24,16 @@ public class hgasDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.hgas)
         {
-            gameManager.instance.promptGasOn();
             playerInRange = true;
-
+            gameManager.instance.promptGasOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.hgas)
         {
+            playerInRange = false;
             gameManager.instance.promptGasOff();
         }
     }
@@ -46,6 +45,7 @@ public class hgasDrop : MonoBehaviour
             gameManager.instance.hgas = false;
             gameManager.instance.hasPart = false;
             gameManager.instance.holdingGas.SetActive(false);
+            gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptGasOff();
             //gameManager.instance.playerScript.updateUI();
         }
