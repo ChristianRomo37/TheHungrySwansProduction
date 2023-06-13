@@ -31,6 +31,7 @@ public class PoisonDamage : MonoBehaviour
         {
             StartCoroutine(poisonDuration());
         }
+        poisoned = false;
     }
 
     IEnumerator poisonDuration()
