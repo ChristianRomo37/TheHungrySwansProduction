@@ -10,6 +10,7 @@ public class FireDamage : MonoBehaviour
     int ticks;
     public int dmg;
     public int interval;
+    int fireDMG = 1;
 
     // Start is called before the first frame update
     //void Start()
@@ -24,37 +25,23 @@ public class FireDamage : MonoBehaviour
         //{
         //    onFire = false;
         //}
-        //timer -= Time.deltaTime;
+        timer += Time.deltaTime;
 
-        
+
+        if (onFire)
+        {
+            StartCoroutine(TakeFireDMG());
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         onFire = true;
-        ticks = 5;
-
-        IDamage dam = other.GetComponent<IDamage>();
-        if (dam != null)
+        if (onFire)
         {
-            StartCoroutine(wait());
-            for (int i = 0; i < ticks; i++)
-            {
-                dam.takeDamage(dmg);
-            }
+            StartCoroutine(TakeFireDMG());
         }
-
-        //IFire fire = other.GetComponent<IFire>();
-        //if (fire != null)
-        //{
-        //    fire.fireDame(dmg, ticks);
-        //    fire.fireTimer(timer);
-        //}
-
-        //while (onFire)
-        //{
-        //    //StartCoroutine(fire.fireDame(dmg));
-        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -62,9 +49,23 @@ public class FireDamage : MonoBehaviour
         onFire = false;
     }
 
-    IEnumerator wait()
+    IEnumerator TakeFireDMG()
     {
-        ticks-=1;
-        yield return new WaitForSeconds(timer);
+        for (int i = 0; i < timer; i++)
+        {
+            if (timer >= 1)
+            {
+                timer = 0f;
+                gameManager.instance.playerScript.HP -= fireDMG;
+                gameManager.instance.playerScript.updateUI();
+                if (gameManager.instance.playerScript.HP == 0)
+                {
+                    gameManager.instance.pauseState();
+                    gameManager.instance.activeMenu = gameManager.instance.loseMenu;
+                    gameManager.instance.activeMenu.SetActive(true);
+                }
+            }
+        }
+        yield return new WaitForSeconds(3);
     }
 }

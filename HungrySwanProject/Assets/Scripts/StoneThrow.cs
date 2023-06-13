@@ -25,6 +25,7 @@ public class StoneThrow : MonoBehaviour
         if (countdown < 0)
         {
             ThrowStone();
+            //enemy.anim.SetBool("Throw", false);
             countdown = interval;
         }
     }
@@ -33,6 +34,7 @@ public class StoneThrow : MonoBehaviour
     {
         if (enemy.see && enemy.agent.remainingDistance > 8)
         {
+            enemy.anim.SetTrigger("Throw");
             GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
             Rigidbody rb = stone.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
