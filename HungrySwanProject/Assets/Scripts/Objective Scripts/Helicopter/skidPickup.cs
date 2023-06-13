@@ -25,7 +25,7 @@ public class skidPickup : MonoBehaviour
             gameManager.instance.skid = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingSkid.SetActive(true);
-            //gameManager.instance.playerScript.updateUI();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }

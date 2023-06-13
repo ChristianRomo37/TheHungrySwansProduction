@@ -57,6 +57,48 @@ public class UIElements : MonoBehaviour
 
     }
 
+    public void Level2Missions()
+    {
+        if (gameManager.instance.hkey && gameManager.instance.hasPart)
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.SetText("Put the Key in the helicopter");
+            gameManager.instance.helicopterPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.blade && gameManager.instance.hasPart)
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.SetText("Put the Blade on the helicopter");
+            gameManager.instance.helicopterPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.skid && gameManager.instance.hasPart)
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.SetText("Put the Skid on the helicopter");
+            gameManager.instance.helicopterPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.rotor && gameManager.instance.hasPart)
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.SetText("Put the Rotor on the helicopter");
+            gameManager.instance.helicopterPartsRemainingText.SetText("");
+        }
+        else if (gameManager.instance.hgas && gameManager.instance.hasPart)
+        {
+            gameManager.instance.helicopterPartsRemainingLabel.SetText("Put Gas in the helicopter");
+            gameManager.instance.helicopterPartsRemainingText.SetText("");
+        }
+        else
+        {
+            if (gameManager.instance.helicopterPartsRemaining > 0)
+            {
+                gameManager.instance.helicopterPartsRemainingLabel.SetText("Fix the helicopter");
+                gameManager.instance.helicopterPartsRemainingText.SetText(gameManager.instance.helicopterPartsRemaining.ToString());
+            }
+            else if (gameManager.instance.helicopterPartsRemaining < 1)
+            {
+                gameManager.instance.helicopterPartsRemainingLabel.SetText("Fix the helicopter");
+
+            }
+        }
+    }
+
     public void BossHealth()
     {
         bossHPBar.fillAmount = (float)bossScript.HP / bossScript.HPOrig;

@@ -39,6 +39,8 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public TextMeshProUGUI carPartsRemainingLabel;
     public TextMeshProUGUI carPartsRemainingText;
+    public TextMeshProUGUI helicopterPartsRemainingLabel;
+    public TextMeshProUGUI helicopterPartsRemainingText;
     public GameObject ret;
 
     [Header("----- HUD Stuff-----")]
@@ -116,6 +118,7 @@ public class gameManager : MonoBehaviour
         instance.ui.updateBulletCounter();
 
         context = SceneManager.GetActiveScene();
+        updateGameGoalText();
     }
 
     // Update is called once per frame
@@ -162,6 +165,8 @@ public class gameManager : MonoBehaviour
         pauseState();
         carPartsRemainingLabel.SetText("");
         carPartsRemainingText.SetText("");
+        helicopterPartsRemainingLabel.SetText("");
+        helicopterPartsRemainingText.SetText("");
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
         //promptEOff();
@@ -194,6 +199,20 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
         //promptEOff();
         pauseState();
+    }
+
+    public void updateGameGoalText()
+    {
+        if (context.name == "Full look Scene")
+        {
+            carPartsRemainingLabel.gameObject.SetActive(true);
+            carPartsRemainingText.gameObject.SetActive(true);
+        }
+        else if (context.name == "Artic Scene")
+        {
+            helicopterPartsRemainingLabel.gameObject.SetActive(true);
+            helicopterPartsRemainingText.gameObject.SetActive(true);
+        }
     }
 
     public void promptEOn()

@@ -56,7 +56,7 @@ public class skidDrop : MonoBehaviour
             gameManager.instance.holdingSkid.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptSkidOff();
-            //gameManager.instance.playerScript.updateUI();
+            gameManager.instance.playerScript.updateUI();
         }
     }
 }
