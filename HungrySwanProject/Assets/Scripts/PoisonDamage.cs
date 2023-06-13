@@ -43,6 +43,6 @@ public class PoisonDamage : MonoBehaviour
     IEnumerator poisonDuration()
     {
         dam.takeDamage(damage);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSecondsRealtime(5);
     }
 }

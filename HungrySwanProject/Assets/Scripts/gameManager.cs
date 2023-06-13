@@ -62,8 +62,7 @@ public class gameManager : MonoBehaviour
     public GameObject holdingSkid;
 
     [Header("-----Drop-----")]
-    public GameObject heart;
-    public GameObject bullet;
+    public List<GameObject> drops;
 
     [Header("----- Main Menu -----")]
     public GameObject levelSelect;
@@ -81,11 +80,13 @@ public class gameManager : MonoBehaviour
     public bool key;
     public bool tire;
     public bool left;
+    public int helicopterPartsRemaining;
     public bool blade;
     public bool hgas;
     public bool hkey;
     public bool rotor;
     public bool skid;
+    public bool left2;
 
 
     // Start is called before the first frame update
@@ -171,6 +172,16 @@ public class gameManager : MonoBehaviour
         carPartsRemaining += amount;
         
         if (left == true)
+        {
+            StartCoroutine(youWin());
+        }
+    }
+
+    public void update2ndGameGoal(int amount)
+    {
+        helicopterPartsRemaining += amount;
+
+        if (left2 == true)
         {
             StartCoroutine(youWin());
         }

@@ -6,7 +6,7 @@ public class rotorPickup : MonoBehaviour
 {
     void Start()
     {
-        //gameManager.instance.updateGameGoal(1);
+        gameManager.instance.update2ndGameGoal(1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,7 @@ public class rotorPickup : MonoBehaviour
             gameManager.instance.rotor = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingRotor.SetActive(true);
-            //gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.update2ndGameGoal(-1);
             //gameManager.instance.playerScript.updateUI();
         }
     }
