@@ -34,7 +34,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] int MaxMinions;
     [SerializeField] float timeBetweenSpawns;
 
-    UIElements ui;
+    public UIElements uI;
     bool playerInRange = false;
     Color colorOrg;
     public int HPOrig;
@@ -59,6 +59,7 @@ public class Boss : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        uI = GetComponent<UIElements>();
         colorOrg = model.material.color;
         speedOrig = agent.speed;
         HPOrig = HP;
@@ -70,8 +71,15 @@ public class Boss : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            stunned = true;
+            takeDamage(1);
+        }
+
         if (agent.isActiveAndEnabled && !stunned)
         {
+            
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
 
@@ -223,19 +231,21 @@ public class Boss : MonoBehaviour, IDamage
         {
             damageGlob = damage;
             HP -= damage;
-
+            uI.BossHealth();
             StartCoroutine(flashColor());
         }
 
         agent.SetDestination(gameManager.instance.player.transform.position);
         playerInRange = true;
 
+        
+        
         if (HP <= 0)
         {
             StartCoroutine(deadAI());
         }
 
-        ui.BossHealth();
+        
     }
     
     IEnumerator stun()
