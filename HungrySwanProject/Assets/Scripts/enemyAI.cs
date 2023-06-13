@@ -20,6 +20,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] public Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
     [SerializeField] GameObject Head;
+    [SerializeField] ParticleSystem spawnEffect;
+
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -65,6 +67,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     bool takeHS;
     bool spanwed = true;
     bool dead;
+    public static bool spawning;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +76,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
+        transform.Translate(-Vector3.up * 2f);
+        agent.enabled = false;
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
@@ -80,10 +85,18 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
-        if (agent.isActiveAndEnabled)
+        if (spawning)
+        {
+            
+            StartCoroutine(spawnRise());
+        }
+
+        if (agent.isActiveAndEnabled && !spawning)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
+            
+
 
             if (Boss.bossMinion)
             {
@@ -109,6 +122,21 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
                 transform.Translate(-Vector3.up * 2f * Time.deltaTime);
             }
         }
+    }
+
+    IEnumerator spawnRise()
+    {
+        spawnEffect.gameObject.SetActive(true);
+        spawnEffect.Play();
+        transform.Translate(Vector3.up * 1.5f * Time.deltaTime);
+
+        yield return new WaitForSeconds(2);
+
+        agent.enabled = true;
+
+        spawnEffect.Stop();
+        spawnEffect.gameObject.SetActive(false);
+        spawning = false;
     }
 
     IEnumerator roam()

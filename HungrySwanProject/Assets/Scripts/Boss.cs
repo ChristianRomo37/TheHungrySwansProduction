@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator anim;
     [SerializeField] float animTransSpeed; //Anim
+    [SerializeField] ParticleSystem necroEffect;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] public int HP;
@@ -78,7 +79,7 @@ public class Boss : MonoBehaviour, IDamage
             takeDamage(1);
         }
 
-        if (agent.isActiveAndEnabled && !stunned)
+        if (agent.isActiveAndEnabled && !stunned & !summon)
         {
             
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
@@ -119,6 +120,8 @@ public class Boss : MonoBehaviour, IDamage
         if (summon)
         {
             anim.SetTrigger("Summon");
+            StartCoroutine(NecroGlow());
+
         }
 
         Vector3 spawnPos = GetRandomSpawnPos();
@@ -127,11 +130,24 @@ public class Boss : MonoBehaviour, IDamage
         minionsAlive++;
         bossMinion = true;
         summon = false;
+        enemyAI.spawning = true;
+        spitterZombie.spawning = true;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 
         isSpawning = false;
 
+    }
+
+    IEnumerator NecroGlow()
+    {
+        necroEffect.gameObject.SetActive(true);
+        necroEffect.Play();
+
+        yield return new WaitForSeconds(3);
+
+        necroEffect.Stop();
+        necroEffect.gameObject.SetActive(false);
     }
 
     Vector3 GetRandomSpawnPos()

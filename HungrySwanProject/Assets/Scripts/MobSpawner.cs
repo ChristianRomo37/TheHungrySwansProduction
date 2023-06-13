@@ -41,6 +41,8 @@ public class MobSpawner : MonoBehaviour, IDamage
         Instantiate(ObjectToSpawn[Random.Range(0, ObjectToSpawn.Length)], spawnPos, transform.rotation);
         enemiesSpawned++;
         Boss.bossMinion = false;
+        enemyAI.spawning = true;
+        spitterZombie.spawning = true;
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 
