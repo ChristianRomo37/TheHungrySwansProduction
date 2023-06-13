@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System.Timers;
 using TMPro;
 using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+
+
 
 public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
@@ -19,9 +20,11 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] public Animator anim;  //Anim
     [SerializeField] Collider meleeCol; //melee
     [SerializeField] GameObject Head;
+    [SerializeField] ParticleSystem spawnEffect;
+
 
     [Header("-----Enemy Stats-----")]
-    [SerializeField] public int HP;
+    [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
@@ -64,9 +67,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     bool takeHS;
     bool spanwed = true;
     bool dead;
-    float timerFire;
-    int fireDMG = 1;
-    public bool onfire;
+    public static bool spawning;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
         colorOrg = model.material.color;
+        transform.Translate(-Vector3.up * 2f);
+        agent.enabled = false;
         //spawnEnemys();
         //gameManager.instance.updateGameGoal(1);
     }
@@ -82,17 +85,18 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
-        timerFire += Time.deltaTime;
-
-        if (onfire)
+        if (spawning)
         {
-            StartCoroutine(FireDMGTime());
+            
+            StartCoroutine(spawnRise());
         }
 
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && !spawning)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //Anim
             anim.SetFloat("Speed", speed); //Anim
+            
+
 
             if (Boss.bossMinion)
             {
@@ -118,6 +122,21 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
                 transform.Translate(-Vector3.up * 2f * Time.deltaTime);
             }
         }
+    }
+
+    IEnumerator spawnRise()
+    {
+        spawnEffect.gameObject.SetActive(true);
+        spawnEffect.Play();
+        transform.Translate(Vector3.up * 1.5f * Time.deltaTime);
+
+        yield return new WaitForSeconds(2);
+
+        agent.enabled = true;
+
+        spawnEffect.Stop();
+        spawnEffect.gameObject.SetActive(false);
+        spawning = false;
     }
 
     IEnumerator roam()
@@ -223,12 +242,6 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         //}
 
         HP -= damage;
-
-        if (onfire)
-        {
-            StartCoroutine(FireDMGTime());
-        }
-
         Vector3 forceDirection = (Vector3.forward - gameManager.instance.player.transform.position).normalized;
         transform.position += forceDirection * Time.deltaTime * 1.0f;
         //anim.SetTrigger("Damage");
@@ -265,7 +278,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         Boss.bossShoot = false;
     }
 
-    public IEnumerator deadAI()
+    IEnumerator deadAI()
     {
         dead = true;
         anim.SetBool("Dead", true);
@@ -282,14 +295,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         if (rand == 1)
         {
             int rand1 = Random.Range(0, 2);
-            if (rand1 == 0)
-            {
-                objectSpawn(gameManager.instance.heart, transform.position);
-            }
-            else
-            {
-                objectSpawn(gameManager.instance.bullet, transform.position);
-            }
+            objectSpawn(gameManager.instance.drops[rand1], startingPos);
         }
 
         StopAllCoroutines();
@@ -310,27 +316,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
-        {
-            return;
-        }
-
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-        }
-
-        if (other.CompareTag("Fire"))
-        {
-            onfire = true;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Fire"))
-        {
-           onfire = true;
         }
     }
 
@@ -382,25 +370,6 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(0.3f);
 
         stepIsPlaying = false;
-    }
-
-    IEnumerator FireDMGTime()
-    {
-        for (int i = 0; i < timerFire; i++)
-        {
-            if (timerFire >= 1)
-            {
-                timerFire = 0f;
-                takeDamage(fireDMG);
-                //HP -= fireDMG;
-                if (HP == 0)
-                {
-                    StartCoroutine(deadAI());
-                }
-            }
-        }
-        yield return new WaitForSeconds(4);
-        onfire = false;
     }
 
     //public IEnumerator fireDame(int damage)

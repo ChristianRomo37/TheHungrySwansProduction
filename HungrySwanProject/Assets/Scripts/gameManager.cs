@@ -62,8 +62,7 @@ public class gameManager : MonoBehaviour
     public GameObject holdingSkid;
 
     [Header("-----Drop-----")]
-    public GameObject heart;
-    public GameObject bullet;
+    public List<GameObject> drops;
 
     [Header("----- Main Menu -----")]
     public GameObject levelSelect;
