@@ -17,7 +17,7 @@ public class BulletPickup : MonoBehaviour
     {
         //source.PlayOneShot(clip[Random.Range(0, clip.Length)], vol);
         Instantiate(audioplay,transform.position, Quaternion.identity);
-        gameManager.instance.playerScript.SetBullets(AddBullet);
+        gameManager.instance.playerScript.SetBullets(gameManager.instance.playerScript.gunList[gameManager.instance.playerScript.selectedGun].magSize);
         Destroy(gameObject);
     }
 
