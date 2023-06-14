@@ -157,7 +157,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        ui.bossBar.SetActive(false);
+        ui.hUD.SetActive(false);
         //promptEOff();
     }
 
@@ -166,7 +166,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        ui.bossBar.SetActive(true);
+        ui.hUD.SetActive(true);
         isPaused = false;
         activeMenu.SetActive(false);
         activeMenu = null;
