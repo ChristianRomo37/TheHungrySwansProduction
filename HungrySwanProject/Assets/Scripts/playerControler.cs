@@ -97,7 +97,6 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     private float OrigSpeed;
     public int selectedGun;
     private float timer;
-    private int fireDmg = 1;
 
     ReticalSpread ret;
     GrenadeThrower gre;
