@@ -5,7 +5,7 @@ using UnityEngine;
 public class lights : MonoBehaviour
 {
 
-    public Light light;
+    public Light _light;
 
     public float minTime;
     public float maxTime;
@@ -28,7 +28,7 @@ public class lights : MonoBehaviour
             timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            light.enabled = !light.enabled;
+            GetComponent<Light>().enabled = !GetComponent<Light>().enabled;
             timer = Random.Range(minTime, maxTime);
         }
 
