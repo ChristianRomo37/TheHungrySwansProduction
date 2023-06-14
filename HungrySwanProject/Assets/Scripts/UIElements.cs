@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIElements : MonoBehaviour
 {
     [SerializeField] Image bossHPBar;
-
+    [SerializeField] public GameObject bossBar;
     Boss bossScript;
 
     private void Start()
