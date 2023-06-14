@@ -294,7 +294,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        //objectSpawn();
+        objectSpawn();
         sink = true;
         yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
@@ -303,15 +303,15 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         StopAllCoroutines();
     }
 
-    //public void objectSpawn()
-    //{
-    //    int rand = Random.Range(0, 2);
-    //    if (rand == 1)
-    //    {
-    //        int rand1 = Random.Range(0, 2);
-    //        Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
-    //    }
-    //}
+    public void objectSpawn()
+    {
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            int rand1 = Random.Range(0, 2);
+            Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
+        }
+    }
 
     IEnumerator flashColor()
     {

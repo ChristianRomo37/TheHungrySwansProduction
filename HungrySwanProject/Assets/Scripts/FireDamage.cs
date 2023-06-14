@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FireDamage : MonoBehaviour
 {
-    [SerializeField] ParticleSystem playerOnFire;
+    //[SerializeField] ParticleSystem playerOnFire;
     [SerializeField] int timer;
     [SerializeField] int damage;
     [SerializeField] float interval;
     int ticks;
-    //bool onFire;
+    bool onFire;
     IDamage dam;
 
     // Start is called before the first frame update
@@ -18,33 +18,33 @@ public class FireDamage : MonoBehaviour
         ticks = 0;
     }
 
-    //// Update is called once per frame
-    //void Update()
-    //{
+    // Update is called once per frame
+    void Update()
+    {
 
-    //}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        //onFire = true;
+        onFire = true;
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
-            if (other.CompareTag("Player"))
-            {
-                playerOnFire.gameObject.SetActive(true);
-            }
+            //if (other.CompareTag("Player"))
+            //{
+            //    playerOnFire.gameObject.SetActive(true);
+            //}
             StartCoroutine(TakeFireDMG());
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerOnFire.gameObject.SetActive(true);
-        }
-        //onFire = false;
+        //if (other.CompareTag("Player"))
+        //{
+        //    playerOnFire.gameObject.SetActive(true);
+        //}
+        onFire = false;
     }
 
     IEnumerator TakeFireDMG()

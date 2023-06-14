@@ -88,16 +88,15 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     public bool isAiming;
     bool stepIsPlaying;
     bool Holdfire;
-    //bool onFire;
+    bool onFire;
 
-    //private int jumpedTimes;
+    private int jumpedTimes;
     public int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
     private float OrigSpeed;
     public int selectedGun;
-    //private float timer;
-    //private int fireDmg = 1;
+    private float timer;
 
     ReticalSpread ret;
     GrenadeThrower gre;
@@ -176,7 +175,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
             if (playerVelocity.y < 0)
             {
                 playerVelocity.y = 0f;
-                //jumpedTimes = 0;
+                jumpedTimes = 0;
             }
         }
 
