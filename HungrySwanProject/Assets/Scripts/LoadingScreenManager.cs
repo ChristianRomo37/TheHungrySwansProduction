@@ -13,8 +13,8 @@ public class LoadingScreenManager : MonoBehaviour
 
     public void LoadLevelBtn(string levelToLoad)
     {
-        mainMenu.SetActive(false);
-        loadingScreen.SetActive(true);
+        if (mainMenu) mainMenu.SetActive(false);
+        if (loadingScreen) loadingScreen.SetActive(true);
 
         StartCoroutine(LoadLevelAsync(levelToLoad));
     }

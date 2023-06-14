@@ -5,7 +5,6 @@ using UnityEngine.VFX;
 
 public class PoisonDamage : MonoBehaviour
 {
-    [SerializeField] ParticleSystem poisonEffect;
     [SerializeField] int timer;
     [SerializeField] int damage;
     [SerializeField] float interval;
@@ -35,6 +34,10 @@ public class PoisonDamage : MonoBehaviour
         {
             StartCoroutine(poisonDuration());
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
         poisoned = false;
     }
 

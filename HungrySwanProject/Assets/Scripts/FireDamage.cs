@@ -40,6 +40,10 @@ public class FireDamage : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            playerOnFire.gameObject.SetActive(true);
+        }
         onFire = false;
     }
 
@@ -51,6 +55,5 @@ public class FireDamage : MonoBehaviour
             yield return new WaitForSeconds(interval);
             ticks++;
         }
-        playerOnFire.gameObject.SetActive(false);
     }
 }
