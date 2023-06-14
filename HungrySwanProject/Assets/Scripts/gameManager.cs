@@ -198,7 +198,7 @@ public class gameManager : MonoBehaviour
     public void update2ndGameGoal(int amount)
     {
         helicopterPartsRemaining += amount;
-
+        ui.Level2Missions();
         if (left2 == true)
         {
             StartCoroutine(youWin());
