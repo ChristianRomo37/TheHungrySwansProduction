@@ -2983,6 +2983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHPBar: {fileID: 567818590}
+  hUD: {fileID: 0}
 --- !u!1001 &573421643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3390,6 +3391,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618192526}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &626679770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1088244545869635277, guid: 7b114bb1931e7ab4a9bfa8f278555609, type: 3}
+  m_PrefabInstance: {fileID: 1088244546244062717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &661747655
 GameObject:
   m_ObjectHideFlags: 0
@@ -12906,6 +12912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 6893456635700076640, guid: 7b114bb1931e7ab4a9bfa8f278555609, type: 3}
+      propertyPath: bossBar
+      value: 
+      objectReference: {fileID: 626679770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b114bb1931e7ab4a9bfa8f278555609, type: 3}
 --- !u!4 &1104307229026191389
