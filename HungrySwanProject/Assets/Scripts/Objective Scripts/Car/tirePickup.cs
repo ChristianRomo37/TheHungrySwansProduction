@@ -20,7 +20,6 @@ public class tirePickup : MonoBehaviour
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingTire.SetActive(true);
             gameManager.instance.carPartsPlaced++;
-            gameManager.instance.updateGameGoal(-1);
             gameManager.instance.playerScript.updateUI();
         }
     }

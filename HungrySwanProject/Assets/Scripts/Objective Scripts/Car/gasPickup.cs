@@ -19,7 +19,6 @@ public class gasPickup : MonoBehaviour
             gameManager.instance.gas = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingGas.SetActive(true);
-            gameManager.instance.updateGameGoal(-1);
             gameManager.instance.playerScript.updateUI();
         }
     }

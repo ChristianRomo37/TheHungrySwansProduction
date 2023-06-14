@@ -19,7 +19,6 @@ public class batteryPickup : MonoBehaviour
             gameManager.instance.battery = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingBattery.SetActive(true);
-            gameManager.instance.updateGameGoal(-1);
             gameManager.instance.playerScript.updateUI();
         }
     }

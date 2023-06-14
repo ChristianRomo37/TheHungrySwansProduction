@@ -19,7 +19,6 @@ public class keyPickup : MonoBehaviour
             gameManager.instance.key = true;
             gameManager.instance.hasPart = true;
             gameManager.instance.holdingKey.SetActive(true);
-            gameManager.instance.updateGameGoal(-1);
             gameManager.instance.playerScript.updateUI();
         }
     }
