@@ -43,7 +43,7 @@ public class UIElements : MonoBehaviour
         }
         else
         {
-            if (gameManager.instance.carPartsRemaining > 0)
+            if (gameManager.instance.carPartsRemaining >= 0)
             {
                 gameManager.instance.carPartsRemainingLabel.SetText("Fix the Car");
                 gameManager.instance.carPartsRemainingText.SetText(gameManager.instance.carPartsRemaining.ToString());
@@ -86,7 +86,7 @@ public class UIElements : MonoBehaviour
         }
         else
         {
-            if (gameManager.instance.helicopterPartsRemaining > 0)
+            if (gameManager.instance.helicopterPartsRemaining >= 0)
             {
                 gameManager.instance.helicopterPartsRemainingLabel.SetText("Fix the helicopter");
                 gameManager.instance.helicopterPartsRemainingText.SetText(gameManager.instance.helicopterPartsRemaining.ToString());
