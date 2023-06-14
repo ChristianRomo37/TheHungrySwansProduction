@@ -9,7 +9,7 @@ public class FireDamage : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float interval;
     int ticks;
-    bool onFire;
+    //bool onFire;
     IDamage dam;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class FireDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        onFire = true;
+        //onFire = true;
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
@@ -44,7 +44,7 @@ public class FireDamage : MonoBehaviour
         {
             playerOnFire.gameObject.SetActive(true);
         }
-        onFire = false;
+        //onFire = false;
     }
 
     IEnumerator TakeFireDMG()

@@ -9,7 +9,7 @@ public class PoisonDamage : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float interval;
     int ticks;
-    bool poisoned;
+    //bool poisoned;
     IDamage dam;
 
     void Start()
@@ -28,7 +28,7 @@ public class PoisonDamage : MonoBehaviour
         {
             return;
         }
-        poisoned = true;
+        //poisoned = true;
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
@@ -38,7 +38,7 @@ public class PoisonDamage : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        poisoned = false;
+        //poisoned = false;
     }
 
     IEnumerator poisonDuration()

@@ -53,7 +53,7 @@ public class skidDrop : MonoBehaviour
             leg1.enabled = true;
             leg2.enabled = true;
             Destroy(stand);
-            gameManager.instance.holdingSkid.SetActive(false);
+            gameManager.instance.playerScript.holdingSkid.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptSkidOff();
             gameManager.instance.playerScript.updateUI();
