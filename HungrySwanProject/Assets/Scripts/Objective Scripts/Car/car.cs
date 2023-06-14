@@ -8,10 +8,15 @@ public class car : MonoBehaviour
     bool playerInRange;
 
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
+
+    //void Update()
+    //{
+
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,10 +35,6 @@ public class car : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
 
     void interact()
     {
