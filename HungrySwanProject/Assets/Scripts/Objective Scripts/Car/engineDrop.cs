@@ -30,7 +30,7 @@ public class engineDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || gameManager.instance.engine)
+        if (other.CompareTag("Player") || !gameManager.instance.engine)
         {
             playerInRange = false;
             gameManager.instance.promptEngineOff();

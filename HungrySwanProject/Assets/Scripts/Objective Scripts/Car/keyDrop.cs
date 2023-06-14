@@ -30,7 +30,7 @@ public class keyDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || gameManager.instance.key)
+        if (other.CompareTag("Player") || !gameManager.instance.key)
         {
             playerInRange = false;
             gameManager.instance.promptKeyOff();
