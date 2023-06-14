@@ -16,7 +16,7 @@ public class MobSpawner : MonoBehaviour, IDamage
     bool isSpawning;
     Color colorOrg;
     private int HPOrig;
-    bool isAlive = false;
+    //bool isAlive = false;
 
     void Start()
     {
@@ -66,7 +66,7 @@ public class MobSpawner : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             Destroy(gameObject);
-            isAlive = false;
+            //isAlive = false;
         }
     }
     IEnumerator flashColor()

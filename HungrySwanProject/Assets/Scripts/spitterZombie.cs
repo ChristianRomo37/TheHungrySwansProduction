@@ -51,7 +51,7 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying;
+    //bool stepIsPlaying;
     float speed; //animation
     int damageGlob;
     bool sink;
@@ -325,13 +325,13 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator playSteps()
     {
-        stepIsPlaying = true;
+        //stepIsPlaying = true;
 
         zombieSpeak();
         // audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
 
         yield return new WaitForSeconds(0.3f);
 
-        stepIsPlaying = false;
+        //stepIsPlaying = false;
     }
 }
