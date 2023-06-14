@@ -578,9 +578,9 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
     public void SetAmmoCrate(int amount)
     {
-        amount = gunList[selectedGun].magSize;
         if (gunList.Count > 0)
         {
+            amount = gunList[selectedGun].magSize;
             gunList[selectedGun].totalBulletCount += amount;
             gameManager.instance.ui.updateBulletCounter();
         }

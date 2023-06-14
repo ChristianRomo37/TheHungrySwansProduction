@@ -51,7 +51,7 @@ public class Ammobox : MonoBehaviour
         {
             //Debug.Log("on");
             gameManager.instance.promptEOnBox();
-            if (Input.GetButtonDown("Interact") && counter <= 3)
+            if (Input.GetButtonDown("Interact") && counter <= 3 && gameManager.instance.playerScript.gunList.Count > 0)
             {
                 counter++;
                 gameManager.instance.playerScript.SetAmmoCrate(ammo);
