@@ -3503,7 +3503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 661747657}
+  _light: {fileID: 0}
   minTime: 0.45
   maxTime: 0.8
   timer: 0
@@ -5966,10 +5966,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1257851478076349178, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
       propertyPath: m_Name
       value: FX_Fire
@@ -5977,14 +5973,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
       propertyPath: m_RootOrder
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.4497
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6025,34 +6013,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.startSize.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
@@ -8396,7 +8356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1425074061}
+  _light: {fileID: 0}
   minTime: 0.75
   maxTime: 1.1
   timer: 0
@@ -9643,7 +9603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1748129824}
+  _light: {fileID: 0}
   minTime: 0.55
   maxTime: 0.9
   timer: 0
@@ -10941,7 +10901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1961758751}
+  _light: {fileID: 0}
   minTime: 0.6
   maxTime: 0.9
   timer: 0
@@ -19977,7 +19937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 5736647459018048226}
+  _light: {fileID: 0}
   minTime: 0.2
   maxTime: 0.45
   timer: 0
@@ -20088,7 +20048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7527dde9c62414298fd6cc1c89a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 5736647459633570145}
+  _light: {fileID: 0}
   minTime: 0.4
   maxTime: 0.6
   timer: 0

@@ -7,15 +7,15 @@ public class Helicopter : MonoBehaviour
     //bool playerInRange;
 
 
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
 
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +23,8 @@ public class Helicopter : MonoBehaviour
         {
             //playerInRange = true;
             gameManager.instance.promptLeaveOn();
+            gameManager.instance.left2 = true;
+            gameManager.instance.update2ndGameGoal(0);
             interact();
         }
     }
