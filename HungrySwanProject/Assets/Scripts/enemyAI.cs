@@ -305,11 +305,11 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void objectSpawn()
     {
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 1);
         if (rand == 1)
         {
-            int rand1 = Random.Range(0, 2);
-            Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity, null);
+            int rand1 = Random.Range(0, 1);
+            Instantiate(gameManager.instance.drops[rand1], transform.position, Quaternion.identity);
         }
     }
 
