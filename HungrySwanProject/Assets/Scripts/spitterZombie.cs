@@ -93,6 +93,12 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed); //for animation ~ Colyn
             anim.SetFloat("Speed", speed); //animation
 
+            if (Boss.bossMinion)
+            {
+                zombieSpeak();
+                agent.SetDestination(gameManager.instance.player.transform.position);
+            }
+
             if (playerInRange && !canSeePlayer())
             {
                 zombieSpeak();

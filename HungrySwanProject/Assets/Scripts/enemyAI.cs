@@ -103,14 +103,13 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
             anim.SetFloat("Speed", speed); //Anim
             
 
+           if (Boss.bossMinion)
+           {
+               zombieSpeak();
+               agent.SetDestination(gameManager.instance.player.transform.position);
+           }
 
-            if (Boss.bossMinion)
-            {
-                zombieSpeak();
-                agent.SetDestination(gameManager.instance.player.transform.position);
-            }
-
-            if (playerInRange && !canSeePlayer())
+           if (playerInRange && !canSeePlayer())
            {
                zombieSpeak();
                StartCoroutine(roam());
