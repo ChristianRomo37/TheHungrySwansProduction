@@ -139,7 +139,7 @@ public class gameManager : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.KeypadMultiply)) StartCoroutine(youWin());
 
         string stringname = context.name;
-        if (Input.GetButtonDown("Cancel") && activeMenu == null && stringname != ("Main Menu"))
+        if (Input.GetButtonDown("Cancel") && activeMenu == null && stringname != ("Main Menu") || Input.GetKeyDown(KeyCode.Tab) && activeMenu == null && stringname != ("Main Menu"))
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
