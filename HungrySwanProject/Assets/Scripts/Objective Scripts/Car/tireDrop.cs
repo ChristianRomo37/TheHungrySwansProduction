@@ -19,7 +19,6 @@ public class tireDrop : MonoBehaviour
         if (playerInRange)
         {
             interact();
-            
         }
     }
 
@@ -27,16 +26,16 @@ public class tireDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.tire)
         {
-            gameManager.instance.promptTireOn();
             playerInRange = true;
-            
+            gameManager.instance.promptTireOn();            
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.tire)
         {
+            playerInRange = false;
             gameManager.instance.promptTireOff();
         }
     }
