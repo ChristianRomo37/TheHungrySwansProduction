@@ -18,7 +18,7 @@ public class gasPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.gas = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.holdingGas.SetActive(true);
+            gameManager.instance.playerScript.holdingGas.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }
