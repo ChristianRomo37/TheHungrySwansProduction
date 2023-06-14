@@ -642,7 +642,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
                 if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
                 {
-                    Debug.Log("shooting");
+                    //Debug.Log("shooting");
                     StartCoroutine(shoot());
                 }
             }
