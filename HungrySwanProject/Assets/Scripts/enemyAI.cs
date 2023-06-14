@@ -58,7 +58,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     Vector3 startingPos;
     bool destinatoinChosen;
     float stoppingDistOrig;
-    bool stepIsPlaying = false;
+    //bool stepIsPlaying = false;
     float speed; //Anim
     bool sink = false;
     float roamPauseTime2;
@@ -368,14 +368,14 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator playSteps()
     {
-        stepIsPlaying = true;
+        //stepIsPlaying = true;
 
         zombieSpeak();
         // audioSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
 
         yield return new WaitForSeconds(0.3f);
 
-        stepIsPlaying = false;
+        //stepIsPlaying = false;
     }
 
     //public IEnumerator fireDame(int damage)

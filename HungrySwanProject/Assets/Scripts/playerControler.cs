@@ -90,7 +90,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     bool Holdfire;
     bool onFire;
 
-    private int jumpedTimes;
+    //private int jumpedTimes;
     public int HPOrig;
     private int bulletsShot;
     private int OrigBullet;
@@ -175,7 +175,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
             if (playerVelocity.y < 0)
             {
                 playerVelocity.y = 0f;
-                jumpedTimes = 0;
+                //jumpedTimes = 0;
             }
         }
 
