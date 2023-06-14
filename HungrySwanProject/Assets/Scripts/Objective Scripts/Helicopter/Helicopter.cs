@@ -23,7 +23,7 @@ public class Helicopter : MonoBehaviour
         {
             //playerInRange = true;
             gameManager.instance.promptLeaveOn();
-            StartCoroutine(interact());
+            interact();
         }
     }
 
@@ -36,15 +36,16 @@ public class Helicopter : MonoBehaviour
         }
     }
 
-    IEnumerator interact()
+    void interact()
     {
         if (Input.GetButtonDown("Interact"))
         {
             //playerInRange = false;
-            yield return new WaitForSeconds(3);
-            gameManager.instance.activeMenu = gameManager.instance.winMenu;
-            gameManager.instance.activeMenu.SetActive(true);
-            gameManager.instance.pauseState();
+            gameManager.instance.left2 = true;
+            gameManager.instance.update2ndGameGoal(0);
+            //gameManager.instance.activeMenu = gameManager.instance.winMenu;
+            //gameManager.instance.activeMenu.SetActive(true);
+            //gameManager.instance.pauseState();
         }
     }
 }

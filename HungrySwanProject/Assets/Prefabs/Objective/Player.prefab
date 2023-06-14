@@ -5971,9 +5971,9 @@ MonoBehaviour:
   jumpHeight: 1
   gravityValue: 10
   jumpMax: 1
-  sprintTimer: 3
+  sprintTimer: 2
   flashlight: {fileID: 1203305222}
-  pushBackResolve: 0
+  pushBackResolve: 5
   gunList: []
   shootDist: 0
   shootRate: 0
@@ -6010,14 +6010,6 @@ MonoBehaviour:
   RiflePre: {fileID: 3461408943251789218, guid: ac293a42f4c8fd049880cc236a609b6d, type: 3}
   ShotGunPre: {fileID: 3944852616029856283, guid: c52f063592566594fb559aadf13f9888, type: 3}
   UziPre: {fileID: 8637772268547548125, guid: 201ccae1ddeb910419f422cfadff4359, type: 3}
-  holdingBattery: {fileID: 0}
-  holdingEngine: {fileID: 0}
-  holdingGas: {fileID: 0}
-  holdingKey: {fileID: 0}
-  holdingTire: {fileID: 0}
-  holdingBlade: {fileID: 0}
-  holdingRotor: {fileID: 0}
-  holdingSkid: {fileID: 0}
   audJump:
   - {fileID: 8300000, guid: 3dbd3367a5c3d0348a8ee31217ad3c7f, type: 3}
   - {fileID: 8300000, guid: abfed18f550a5d64ba9441aefd719753, type: 3}
@@ -6550,9 +6542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3cf65d366bb54aa9d427f1e2642d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 0
+  dmg: 1
   box: {fileID: 1658489556}
-  pushAmount: 0
+  pushAmount: 3
 --- !u!114 &1151273941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6568,7 +6560,7 @@ MonoBehaviour:
   throwForce: 10
   grenadePre: {fileID: 5902168408869312987, guid: 04bdac251f0125a4487641e0bdd52a3c, type: 3}
   thorws: 0
-  thorwsMax: 0
+  thorwsMax: 2
 --- !u!114 &1658489553
 MonoBehaviour:
   m_ObjectHideFlags: 0

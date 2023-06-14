@@ -116,6 +116,15 @@ public class gameManager : MonoBehaviour
         FEnemySpawnPos = GameObject.FindGameObjectWithTag("FEnemy Spawn Pos");
         TEnemySpawnPos = GameObject.FindGameObjectWithTag("TEnemy Spawn Pos");
 
+        holdingBattery = playerScript.holdingBattery;
+        holdingEngine = playerScript.holdingEngine;
+        holdingGas = playerScript.holdingGas;
+        holdingKey = playerScript.holdingKey;
+        holdingTire = playerScript.holdingTire;
+        holdingBlade = playerScript.holdingBlade;
+        holdingRotor = playerScript.holdingRotor;
+        holdingSkid = playerScript.holdingSkid;
+
         instance.ui.updateBulletCounter();
 
         context = SceneManager.GetActiveScene();

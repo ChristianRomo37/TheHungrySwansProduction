@@ -68,15 +68,15 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     [SerializeField] GameObject ShotGunPre;
     [SerializeField] GameObject UziPre;
 
-    //[Header("-----Objective-----")]
-    //public GameObject holdingBattery;
-    //public GameObject holdingEngine;
-    //public GameObject holdingGas;
-    //public GameObject holdingKey;
-    //public GameObject holdingTire;
-    //public GameObject holdingBlade;
-    //public GameObject holdingRotor;
-    //public GameObject holdingSkid;
+    [Header("-----Objective-----")]
+    public GameObject holdingBattery;
+    public GameObject holdingEngine;
+    public GameObject holdingGas;
+    public GameObject holdingKey;
+    public GameObject holdingTire;
+    public GameObject holdingBlade;
+    public GameObject holdingRotor;
+    public GameObject holdingSkid;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] audJump;
