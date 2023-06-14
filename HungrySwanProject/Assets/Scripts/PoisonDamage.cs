@@ -24,6 +24,10 @@ public class PoisonDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
         poisoned = true;
         dam = other.GetComponent<IDamage>();
         if (dam != null)

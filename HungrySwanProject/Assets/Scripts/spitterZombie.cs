@@ -159,8 +159,8 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        Debug.DrawRay(transform.position, playerDir);
-        Debug.Log(angleToPlayer);
+        //Debug.DrawRay(transform.position, playerDir);
+        //Debug.Log(angleToPlayer);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
