@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireDamage : MonoBehaviour
 {
-    [SerializeField] ParticleSystem playerOnFire;
+    //[SerializeField] ParticleSystem playerOnFire;
     [SerializeField] int timer;
     [SerializeField] int damage;
     [SerializeField] float interval;
@@ -30,10 +30,10 @@ public class FireDamage : MonoBehaviour
         dam = other.GetComponent<IDamage>();
         if (dam != null)
         {
-            if (other.CompareTag("Player"))
-            {
-                playerOnFire.gameObject.SetActive(true);
-            }
+            //if (other.CompareTag("Player"))
+            //{
+            //    playerOnFire.gameObject.SetActive(true);
+            //}
             StartCoroutine(TakeFireDMG());
         }
     }
@@ -51,6 +51,6 @@ public class FireDamage : MonoBehaviour
             yield return new WaitForSeconds(interval);
             ticks++;
         }
-        playerOnFire.gameObject.SetActive(false);
+        //playerOnFire.gameObject.SetActive(false);
     }
 }
