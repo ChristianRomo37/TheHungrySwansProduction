@@ -97,7 +97,6 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     private float OrigSpeed;
     public int selectedGun;
     private float timer;
-    private int fireDmg = 1;
 
     ReticalSpread ret;
     GrenadeThrower gre;
@@ -578,9 +577,9 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
     public void SetAmmoCrate(int amount)
     {
-        amount = gunList[selectedGun].magSize;
         if (gunList.Count > 0)
         {
+            amount = gunList[selectedGun].magSize;
             gunList[selectedGun].totalBulletCount += amount;
             gameManager.instance.ui.updateBulletCounter();
         }

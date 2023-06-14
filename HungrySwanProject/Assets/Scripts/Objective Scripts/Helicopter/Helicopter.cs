@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Helicopter : MonoBehaviour
 {
-    bool playerInRange;
+    //bool playerInRange;
 
 
     void Start()
@@ -21,7 +21,7 @@ public class Helicopter : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.helicopterPartsRemaining <= 0)
         {
-            playerInRange = true;
+            //playerInRange = true;
             gameManager.instance.promptLeaveOn();
             StartCoroutine(interact());
         }
@@ -31,7 +31,7 @@ public class Helicopter : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
+            //playerInRange = false;
             gameManager.instance.promptLeaveOff();
         }
     }
@@ -40,7 +40,7 @@ public class Helicopter : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            playerInRange = false;
+            //playerInRange = false;
             yield return new WaitForSeconds(3);
             gameManager.instance.activeMenu = gameManager.instance.winMenu;
             gameManager.instance.activeMenu.SetActive(true);
