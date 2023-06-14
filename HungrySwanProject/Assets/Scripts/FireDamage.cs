@@ -42,7 +42,7 @@ public class FireDamage : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerOnFire.gameObject.SetActive(false);
+            playerOnFire.gameObject.SetActive(true);
         }
         onFire = false;
     }
