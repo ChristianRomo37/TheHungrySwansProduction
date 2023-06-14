@@ -30,7 +30,7 @@ public class gasDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || gameManager.instance.gas)
+        if (other.CompareTag("Player") || !gameManager.instance.gas)
         {
             playerInRange = false;
             gameManager.instance.promptGasOff();
