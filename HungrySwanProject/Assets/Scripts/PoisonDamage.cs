@@ -30,6 +30,10 @@ public class PoisonDamage : MonoBehaviour
         {
             StartCoroutine(poisonDuration());
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
         poisoned = false;
     }
 
