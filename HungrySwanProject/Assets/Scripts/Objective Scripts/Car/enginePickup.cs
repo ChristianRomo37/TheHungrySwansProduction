@@ -18,7 +18,7 @@ public class enginePickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.engine = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.playerScript.holdingEngine.SetActive(true);
+            gameManager.instance.holdingEngine.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }

@@ -18,7 +18,7 @@ public class tirePickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.tire = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.playerScript.holdingTire.SetActive(true);
+            gameManager.instance.holdingTire.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }

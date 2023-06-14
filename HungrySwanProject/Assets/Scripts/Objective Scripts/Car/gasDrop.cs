@@ -43,7 +43,7 @@ public class gasDrop : MonoBehaviour
         {
             gameManager.instance.gas = false;
             gameManager.instance.hasPart = false;
-            gameManager.instance.playerScript.holdingGas.SetActive(false);
+            gameManager.instance.holdingGas.SetActive(false);
             gameManager.instance.carPartsPlaced++;
             gameManager.instance.updateGameGoal(-1);
             gameManager.instance.promptGasOff();

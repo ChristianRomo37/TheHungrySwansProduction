@@ -43,7 +43,7 @@ public class engineDrop : MonoBehaviour
         {
             gameManager.instance.engine = false;
             gameManager.instance.hasPart = false;
-            gameManager.instance.playerScript.holdingEngine.SetActive(false);
+            gameManager.instance.holdingEngine.SetActive(false);
             gameManager.instance.carPartsPlaced++;
             gameManager.instance.updateGameGoal(-1);
             gameManager.instance.promptEngineOff();

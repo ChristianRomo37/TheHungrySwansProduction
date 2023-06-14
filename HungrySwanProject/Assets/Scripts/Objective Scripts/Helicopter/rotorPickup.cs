@@ -24,7 +24,7 @@ public class rotorPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.rotor = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.playerScript.holdingRotor.SetActive(true);
+            gameManager.instance.holdingRotor.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }

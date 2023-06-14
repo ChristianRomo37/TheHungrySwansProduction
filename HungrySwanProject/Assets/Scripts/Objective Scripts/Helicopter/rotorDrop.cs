@@ -51,7 +51,7 @@ public class rotorDrop : MonoBehaviour
             mest.enabled = true;
             blade1.enabled = true;
             blade2.enabled = true;
-            gameManager.instance.playerScript.holdingRotor.SetActive(false);
+            gameManager.instance.holdingRotor.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptRotorOff();
             gameManager.instance.playerScript.updateUI();

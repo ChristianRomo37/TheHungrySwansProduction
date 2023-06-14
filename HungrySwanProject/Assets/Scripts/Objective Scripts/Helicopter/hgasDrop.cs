@@ -44,7 +44,7 @@ public class hgasDrop : MonoBehaviour
         {
             gameManager.instance.hgas = false;
             gameManager.instance.hasPart = false;
-            gameManager.instance.playerScript.holdingGas.SetActive(false);
+            gameManager.instance.holdingGas.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptGasOff();
             gameManager.instance.playerScript.updateUI();

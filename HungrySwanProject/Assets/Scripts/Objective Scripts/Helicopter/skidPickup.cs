@@ -24,7 +24,7 @@ public class skidPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.skid = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.playerScript.holdingSkid.SetActive(true);
+            gameManager.instance.holdingSkid.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }

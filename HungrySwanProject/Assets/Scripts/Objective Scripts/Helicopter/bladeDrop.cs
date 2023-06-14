@@ -49,7 +49,7 @@ public class bladeDrop : MonoBehaviour
             gameManager.instance.hasPart = false;
             blade.enabled = true;
             Destroy(ladder);
-            gameManager.instance.playerScript.holdingBlade.SetActive(false);
+            gameManager.instance.holdingBlade.SetActive(false);
             gameManager.instance.update2ndGameGoal(-1);
             gameManager.instance.promptBladeOff();
             gameManager.instance.playerScript.updateUI();

@@ -18,7 +18,7 @@ public class keyPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.key = true;
             gameManager.instance.hasPart = true;
-            gameManager.instance.playerScript.holdingKey.SetActive(true);
+            gameManager.instance.holdingKey.SetActive(true);
             gameManager.instance.playerScript.updateUI();
         }
     }
