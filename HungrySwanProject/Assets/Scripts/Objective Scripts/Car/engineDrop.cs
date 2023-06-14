@@ -23,16 +23,16 @@ public class engineDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.engine)
         {
-            gameManager.instance.promptEngineOn();
             playerInRange = true;
-            gameManager.instance.playerScript.updateUI();
+            gameManager.instance.promptEngineOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.engine)
         {
+            playerInRange = false;
             gameManager.instance.promptEngineOff();
         }
     }

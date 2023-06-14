@@ -23,15 +23,16 @@ public class keyDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.key)
         {
-            gameManager.instance.promptKeyOn();
             playerInRange = true;
+            gameManager.instance.promptKeyOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.key)
         {
+            playerInRange = false;
             gameManager.instance.promptKeyOff();
         }
     }

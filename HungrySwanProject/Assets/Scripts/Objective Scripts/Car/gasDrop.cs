@@ -23,15 +23,16 @@ public class gasDrop : MonoBehaviour
     {
         if (other.CompareTag("Player") && gameManager.instance.gas)
         {
-            gameManager.instance.promptGasOn();
             playerInRange = true;
+            gameManager.instance.promptGasOn();
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || !gameManager.instance.gas)
         {
+            playerInRange = false;
             gameManager.instance.promptGasOff();
         }
     }

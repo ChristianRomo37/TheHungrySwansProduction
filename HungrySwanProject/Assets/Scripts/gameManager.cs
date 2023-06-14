@@ -127,7 +127,7 @@ public class gameManager : MonoBehaviour
     {
         //Debug Command
         //Automatically Triggers Win State on pressing * button
-        if (Input.GetKeyDown(KeyCode.KeypadMultiply)) StartCoroutine(youWin());
+        //if (Input.GetKeyDown(KeyCode.KeypadMultiply)) StartCoroutine(youWin());
 
         string stringname = context.name;
         if (Input.GetButtonDown("Cancel") && activeMenu == null && stringname != ("Main Menu"))
@@ -176,7 +176,7 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         carPartsRemaining += amount;
-        
+        ui.Level1Missions();
         if (left == true)
         {
             StartCoroutine(youWin());
