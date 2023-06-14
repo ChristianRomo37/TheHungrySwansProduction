@@ -148,6 +148,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        ui.bossBar.SetActive(false);
         //promptEOff();
     }
 
@@ -156,6 +157,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        ui.bossBar.SetActive(true);
         isPaused = false;
         activeMenu.SetActive(false);
         activeMenu = null;
@@ -164,12 +166,13 @@ public class gameManager : MonoBehaviour
     public void youLose()
     {
         pauseState();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(true);
         carPartsRemainingLabel.SetText("");
         carPartsRemainingText.SetText("");
         helicopterPartsRemainingLabel.SetText("");
         helicopterPartsRemainingText.SetText("");
-        activeMenu = loseMenu;
-        activeMenu.SetActive(true);
+        
         //promptEOff();
     }
 
