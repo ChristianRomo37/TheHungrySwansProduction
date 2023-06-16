@@ -146,6 +146,11 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
             pauseState();
         }
+
+        if (HPBar.fillAmount <= 0)
+        {
+            youLose();
+        }
         //if (playerScript.getMagSize() < 0)
         //{
         //    totalMagSize.text = "0";
