@@ -45,6 +45,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
+    public TextMeshProUGUI aPrompt;
     public TextMeshProUGUI totalMagSize;
     public TextMeshProUGUI bulletsLeft;
     public Image HPBar;
@@ -241,8 +242,8 @@ public class gameManager : MonoBehaviour
 
     public void promptEOnBox()
     {
-        ePrompt.enabled = true;
-        ePrompt.text = "Press E To Pick Up Ammo";
+        aPrompt.enabled = true;
+        aPrompt.text = "Press E To Pick Up Ammo";
     }
 
     public void promptEOff()
@@ -252,7 +253,7 @@ public class gameManager : MonoBehaviour
 
     public void promptEOffBox()
     {
-        ePrompt.enabled = false;
+        aPrompt.enabled = false;
     }
 
     public void promptReloadOn()
