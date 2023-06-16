@@ -15,45 +15,48 @@ public class ReloadingAni : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.instance.playerScript.magFull)
+        if (gameManager.instance.playerScript.gunList.Count > 0)
         {
-            if (Input.GetButtonDown("Reload"))
+            if (!gameManager.instance.playerScript.magFull && gameManager.instance.playerScript.gunList[gameManager.instance.playerScript.selectedGun].totalBulletCount > 0)
             {
-                //anie.SetBool("Reloading", true);
-                if (gameManager.instance.playerScript.sniper)
+                if (Input.GetButtonDown("Reload"))
                 {
-                    anie.SetBool("Sniper", true);
-                    anie.SetBool("Reloading", true);
+                    //anie.SetBool("Reloading", true);
+                    if (gameManager.instance.playerScript.sniper)
+                    {
+                        anie.SetBool("Sniper", true);
+                        anie.SetBool("Reloading", true);
+                    }
+                    else if (gameManager.instance.playerScript.pistol)
+                    {
+                        anie.SetBool("Pistol", true);
+                        anie.SetBool("Reloading", true);
+                    }
+                    else if (gameManager.instance.playerScript.uzi)
+                    {
+                        anie.SetBool("Uzi", true);
+                        anie.SetBool("Reloading", true);
+                    }
+                    else if (gameManager.instance.playerScript.rifle)
+                    {
+                        anie.SetBool("Rifle", true);
+                        anie.SetBool("Reloading", true);
+                    }
+                    else if (gameManager.instance.playerScript.shotgun)
+                    {
+                        anie.SetBool("Shotgun", true);
+                        anie.SetBool("Reloading", true);
+                    }
                 }
-                else if (gameManager.instance.playerScript.pistol)
+                else if (Input.GetButtonUp("Reload"))
                 {
-                    anie.SetBool("Pistol", true);
-                    anie.SetBool("Reloading", true);
+                    anie.SetBool("Reloading", false);
+                    anie.SetBool("Rifle", false);
+                    anie.SetBool("Pistol", false);
+                    anie.SetBool("Shotgun", false);
+                    anie.SetBool("Uzi", false);
+                    anie.SetBool("Sniper", false);
                 }
-                else if (gameManager.instance.playerScript.uzi)
-                {
-                    anie.SetBool("Uzi", true);
-                    anie.SetBool("Reloading", true);
-                }
-                else if (gameManager.instance.playerScript.rifle)
-                {
-                    anie.SetBool("Rifle", true);
-                    anie.SetBool("Reloading", true);
-                }
-                else if (gameManager.instance.playerScript.shotgun)
-                {
-                    anie.SetBool("Shotgun", true);
-                    anie.SetBool("Reloading", true);
-                }
-            }
-            else if (Input.GetButtonUp("Reload"))
-            {
-                anie.SetBool("Reloading", false);
-                anie.SetBool("Rifle", false);
-                anie.SetBool("Pistol", false);
-                anie.SetBool("Shotgun", false);
-                anie.SetBool("Uzi", false);
-                anie.SetBool("Sniper", false);
             }
         }
     }
