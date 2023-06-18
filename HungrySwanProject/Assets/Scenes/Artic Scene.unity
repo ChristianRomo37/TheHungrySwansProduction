@@ -7546,6 +7546,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Main
       objectReference: {fileID: 0}
+    - target: {fileID: 8306668630176935189, guid: 880d94d1268ef23428b3bdf8d38ba7dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306668630196368501, guid: 880d94d1268ef23428b3bdf8d38ba7dd, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 880d94d1268ef23428b3bdf8d38ba7dd, type: 3}
 --- !u!1 &281182073
@@ -27662,6 +27670,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: e6ec39770b6dbe04f9cbd7ea19e0c7ef, type: 3}
+--- !u!198 &903181133 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8306668630196368501, guid: 880d94d1268ef23428b3bdf8d38ba7dd, type: 3}
+  m_PrefabInstance: {fileID: 280027218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &905075466
 GameObject:
   m_ObjectHideFlags: 0
@@ -45360,7 +45373,7 @@ PrefabInstance:
     - target: {fileID: 3597202852407494245, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
       propertyPath: playerOnFire
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 903181133}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
 --- !u!1001 &1672417770

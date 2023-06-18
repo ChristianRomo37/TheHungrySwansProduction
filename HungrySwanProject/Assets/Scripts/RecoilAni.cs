@@ -72,11 +72,11 @@ public class RecoilAni : MonoBehaviour
         yield return new WaitForSeconds(.1f);
     }
 
-    public void SetFalse()
-    {
-        anie.SetBool("Sniper", false);
-        anie.SetBool("Shooting", false);
-    }
+    //public void SetFalse()
+    //{
+    //    anie.SetBool("Sniper", false);
+    //    anie.SetBool("Shooting", false);
+    //}
 
     IEnumerator shootratebool()
     {
