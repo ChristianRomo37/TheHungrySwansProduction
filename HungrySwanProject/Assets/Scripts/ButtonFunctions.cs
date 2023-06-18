@@ -25,13 +25,19 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
+    
+
     public void EndGame()
     {
+
         gameManager.instance.unPauseState();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
+
+    
+    
     public void respawnPlayer()
     {
         gameManager.instance.unPauseState();
@@ -41,6 +47,17 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.playerScript.spawnPlayer();
         //gameManager.instance.enemyAIscript.spawnEnemys();
 
+    }
+
+    public void OpenConfirm()
+    {
+        gameManager.instance.confirmManager.SetActive(true);
+
+    }
+
+    public void CloseConfrim()
+    {
+        gameManager.instance.confirmManager.SetActive(false);
     }
 
     public void promptE()

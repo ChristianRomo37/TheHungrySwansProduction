@@ -118,9 +118,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Shooting
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Pistol
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
   m_Solo: 0
@@ -145,9 +142,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: Reloading
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Uzi
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
@@ -198,9 +192,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: Shooting
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Uzi
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
@@ -306,18 +297,15 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Shooting
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Shotgun
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.08277181
+  m_TransitionDuration: 0.16133332
   m_TransitionOffset: 0
-  m_ExitTime: 0.4713691
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -334,18 +322,15 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Shooting
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Sniper
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.09787292
-  m_TransitionOffset: 0.8491414
-  m_ExitTime: 0.11369485
+  m_TransitionDuration: 0.14488761
+  m_TransitionOffset: 0
+  m_ExitTime: 0.113694824
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1091,9 +1076,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: Shooting
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Rifle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1064738568849737103}
