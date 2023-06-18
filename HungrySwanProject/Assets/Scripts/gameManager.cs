@@ -70,6 +70,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Main Menu -----")]
     public GameObject levelSelect;
     public GameObject settings;
+    public GameObject confirmManager;
 
 
     public bool isPaused;
