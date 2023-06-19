@@ -13,7 +13,7 @@ public class gasDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.gas)
         {
             interact();
         }
@@ -21,7 +21,7 @@ public class gasDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.gas)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptGasOn();
@@ -30,7 +30,7 @@ public class gasDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.gas)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptGasOff();

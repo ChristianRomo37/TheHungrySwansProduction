@@ -18,7 +18,7 @@ public class rotorDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.rotor)
         {
             interact();
         }
@@ -26,7 +26,7 @@ public class rotorDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.rotor)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptRotorOn();
@@ -35,7 +35,7 @@ public class rotorDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.rotor)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptRotorOff();

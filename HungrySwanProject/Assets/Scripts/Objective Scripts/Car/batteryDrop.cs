@@ -13,7 +13,7 @@ public class batteryDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.battery)
         {
             interact();
         }
@@ -21,7 +21,7 @@ public class batteryDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.battery)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptBatteryOn();
@@ -30,7 +30,7 @@ public class batteryDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.battery)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptBatteryOff();

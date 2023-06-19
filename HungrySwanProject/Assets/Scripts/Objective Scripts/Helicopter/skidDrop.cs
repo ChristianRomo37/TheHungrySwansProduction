@@ -19,7 +19,7 @@ public class skidDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.skid)
         {
             interact();
         }
@@ -27,7 +27,7 @@ public class skidDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.skid)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptSkidOn();
@@ -36,7 +36,7 @@ public class skidDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.skid)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptSkidOff();

@@ -17,7 +17,7 @@ public class bladeDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.blade)
         {
             interact();
         }
@@ -25,7 +25,7 @@ public class bladeDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.blade)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptBladeOn();
@@ -34,7 +34,7 @@ public class bladeDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.blade)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptBladeOff();

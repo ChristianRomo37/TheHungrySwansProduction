@@ -14,7 +14,7 @@ public class hgasDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.hgas)
         {
             interact();
         }
@@ -22,7 +22,7 @@ public class hgasDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.hgas)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptGasOn();
@@ -31,7 +31,7 @@ public class hgasDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.hgas)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptGasOff();
