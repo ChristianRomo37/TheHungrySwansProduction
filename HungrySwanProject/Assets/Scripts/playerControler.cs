@@ -26,6 +26,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     [Range(1, 10)][SerializeField] float sprintTimer;
     [SerializeField] GameObject flashlight;
     [SerializeField] float pushBackResolve;
+    [SerializeField] public GameObject fireeffect;
 
     [Header("-----Weapon Stats-----")]
     public List<gunStats> gunList = new List<gunStats>();

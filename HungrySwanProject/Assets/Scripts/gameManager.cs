@@ -91,6 +91,7 @@ public class gameManager : MonoBehaviour
     public bool rotor;
     public bool skid;
     public bool left2;
+    public bool restart;
 
 
     // Start is called before the first frame update

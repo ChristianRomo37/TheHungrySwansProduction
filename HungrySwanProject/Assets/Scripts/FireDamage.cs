@@ -5,10 +5,10 @@ using UnityEngine;
 public class FireDamage : MonoBehaviour
 {
     [SerializeField] ParticleSystem playerOnFire;
-    [SerializeField] int timer;
+    [SerializeField] public int timer;
     [SerializeField] int damage;
     [SerializeField] float interval;
-    int ticks;
+    public int ticks;
     //bool onFire;
     IDamage dam;
 
@@ -21,7 +21,11 @@ public class FireDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (gameManager.instance.restart == true)
+        {
+            ticks = 0;
+            timer = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -63,6 +63,7 @@ MonoBehaviour:
   sprintTimer: 2
   flashlight: {fileID: 7630064905135618183}
   pushBackResolve: 5
+  fireeffect: {fileID: 8306668630176935189}
   gunList: []
   shootDist: 0
   shootRate: 0
@@ -1286,6 +1287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFire
       objectReference: {fileID: 0}
+    - target: {fileID: 4955768896756491062, guid: d02d2cc62cb4d754eb96aaf2e26a86e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4955768896756793110, guid: d02d2cc62cb4d754eb96aaf2e26a86e4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1332,6 +1337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02d2cc62cb4d754eb96aaf2e26a86e4, type: 3}
+--- !u!1 &8306668630176935189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4955768896756491062, guid: d02d2cc62cb4d754eb96aaf2e26a86e4, type: 3}
+  m_PrefabInstance: {fileID: 3999577543308611107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8306668630176969013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4955768896756793110, guid: d02d2cc62cb4d754eb96aaf2e26a86e4, type: 3}
