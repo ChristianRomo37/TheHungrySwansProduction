@@ -17,7 +17,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.restart = true;
         gameManager.instance.unPauseState();
         gameManager.instance.ui.updateBulletCounter();
-        StartCoroutine(reset());
+        StartCoroutine(resetFire());
         // not good code if you decide to make a bigger game since it will take time to reload back to restart
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -112,7 +112,7 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene("Credit Scene", LoadSceneMode.Single);
     }
 
-    IEnumerator reset()
+    IEnumerator resetFire()
     {
         yield return new WaitForSeconds(1);
         gameManager.instance.restart = false;

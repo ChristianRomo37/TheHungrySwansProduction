@@ -393,7 +393,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         
         updateUI();
-        if (HP <= 0)
+        if (HP <= 0 || gameManager.instance.HPBar.fillAmount <= 0)
         {
             gameManager.instance.youLose();
         }
