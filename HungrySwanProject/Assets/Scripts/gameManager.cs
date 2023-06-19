@@ -150,10 +150,10 @@ public class gameManager : MonoBehaviour
             pauseState();
         }
 
-        if (HPBar.fillAmount <= 0)
-        {
-            youLose();
-        }
+        //if (HPBar.fillAmount <= 0)
+        //{
+        //    youLose();
+        //}
         //if (playerScript.getMagSize() < 0)
         //{
         //    totalMagSize.text = "0";
