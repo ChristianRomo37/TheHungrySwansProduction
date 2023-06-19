@@ -149,6 +149,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
             changeGun();
             if (gunList.Count > 0)
             {
+                if (gameManager.instance.activeMenu != gameManager.instance.pauseMenu || gameManager.instance.activeMenu != null)
                 OverallFire();
 
                 OverallReload();
