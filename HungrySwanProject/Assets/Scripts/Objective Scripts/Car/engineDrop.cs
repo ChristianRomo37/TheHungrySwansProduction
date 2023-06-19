@@ -13,7 +13,7 @@ public class engineDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.engine)
         {
             interact();
         }
@@ -21,7 +21,7 @@ public class engineDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.engine)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptEngineOn();
@@ -30,7 +30,7 @@ public class engineDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.engine)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptEngineOff();

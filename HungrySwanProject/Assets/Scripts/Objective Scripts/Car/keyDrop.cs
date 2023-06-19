@@ -13,7 +13,7 @@ public class keyDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.key)
         {
             interact();
         }
@@ -21,7 +21,7 @@ public class keyDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.key)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptKeyOn();
@@ -30,7 +30,7 @@ public class keyDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.key)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptKeyOff();

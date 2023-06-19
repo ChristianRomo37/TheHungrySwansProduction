@@ -14,7 +14,7 @@ public class hkeyDrop : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange && gameManager.instance.hkey)
         {
             interact();
 
@@ -23,7 +23,7 @@ public class hkeyDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.hkey)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             gameManager.instance.promptKeyOn();
@@ -32,7 +32,7 @@ public class hkeyDrop : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || !gameManager.instance.hkey)
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             gameManager.instance.promptKeyOff();
