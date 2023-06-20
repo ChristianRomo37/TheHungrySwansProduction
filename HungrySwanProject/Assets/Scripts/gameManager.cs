@@ -162,6 +162,9 @@ public class gameManager : MonoBehaviour
 
     public void pauseState()
     {
+        playerScript.primaryGunPOS.SetActive(true);
+        playerScript.secondaryGunPOS.SetActive(false);
+        playerScript.isAiming = false;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;

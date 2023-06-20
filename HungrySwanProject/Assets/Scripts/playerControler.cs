@@ -624,7 +624,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
     public void ADS()
     {
-        if (sniper)
+        if (sniper && gameManager.instance.activeMenu == null)
         {
             if (Input.GetMouseButtonDown(1))
             {
