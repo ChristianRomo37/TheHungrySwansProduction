@@ -63,6 +63,11 @@ public class Bash : MonoBehaviour
             return;
         }
 
+        if (other.CompareTag("Tank Zombie"))
+        {
+            return;
+        }
+
         IPhysics physics = other.GetComponent<IPhysics>();
         IDamage dam = other.GetComponent<IDamage>();
 
