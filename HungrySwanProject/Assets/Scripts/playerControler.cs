@@ -16,7 +16,8 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
     [Header("-----Player Stats-----")]
     [Range(1, 20)][SerializeField] public int HP;
-    [Range(1, 10)][SerializeField] float playerSpeed;
+    [Range(1, 10)][SerializeField] float FowardSpeed;
+    [Range(1, 10)][SerializeField] float BackSpeed;
     [Range(1, 10)][SerializeField] float sprintMod;
     [Range(0, 10)][SerializeField] float Stamina;
     [Range(1, 10)][SerializeField] float StaminaMax;
@@ -119,7 +120,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         HPOrig = HP;
-        OrigSpeed = playerSpeed;
+        OrigSpeed = FowardSpeed;
         spawnPlayer();
         cameracon = GetComponentInChildren<camerControl>();
         gre = GetComponentInChildren<GrenadeThrower>();
@@ -193,27 +194,48 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
         move = (transform.right * Input.GetAxis("Horizontal")) +
             (transform.forward * Input.GetAxis("Vertical"));
-        if (Input.GetButtonDown("Horizontal"))
+        //if (Input.GetButtonDown("Horizontal"))
+        //{
+        //    playerSpeed = OrigSpeed;
+        //    playerSpeed /= 2;
+        //}
+        //else if (Input.GetButtonUp("Horizontal"))
+        //{
+        //    playerSpeed = OrigSpeed;
+        //}
+
+        //if (Input.GetButtonDown("BackStep"))
+        //{
+        //    playerSpeed = OrigSpeed;
+        //    playerSpeed /= 2;
+        //}
+        //else if (Input.GetButtonUp("BackStep"))
+        //{
+        //    playerSpeed = OrigSpeed;
+        //}
+        float speed;
+
+        float dot = Vector3.Dot(move, transform.forward);
+        if (dot > 0.9)
         {
-            playerSpeed = OrigSpeed;
-            playerSpeed /= 2;
+            speed = FowardSpeed;
         }
-        else if (Input.GetButtonUp("Horizontal"))
+        else
         {
-            playerSpeed = OrigSpeed;
+            speed = BackSpeed;
         }
 
-        if (Input.GetButtonDown("BackStep"))
-        {
-            playerSpeed = OrigSpeed;
-            playerSpeed /= 2;
-        }
-        else if (Input.GetButtonUp("BackStep"))
-        {
-            playerSpeed = OrigSpeed;
-        }
+        //Vector3 cross = Vector3.Cross(move, transform.forward);
+        //if (cross.y < 0)
+        //{
+        //    playerSpeed /= 2;
+        //}
+        //else
+        //{
+        //    playerSpeed /= 2;
+        //}
 
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * speed);
 
         //if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         //{
@@ -234,10 +256,10 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
         if (Input.GetButtonDown("Sprint") && Stamina == 10)
         {
             isSprinting = true;
-            playerSpeed *= sprintMod;
+            FowardSpeed *= sprintMod;
             
             yield return new WaitForSeconds(sprintTimer);
-            playerSpeed = OrigSpeed;
+            FowardSpeed = OrigSpeed;
             StartCoroutine(staminaReg());
             isSprinting = false;
 
@@ -246,7 +268,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
         else if (Input.GetButtonUp("Sprint") || Stamina == 0)
         {
             isSprinting = false;
-            playerSpeed = OrigSpeed;
+            FowardSpeed = OrigSpeed;
             StartCoroutine(staminaReg());
         }
     }
