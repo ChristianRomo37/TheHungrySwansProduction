@@ -21,7 +21,7 @@ public class keyDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.key)
         {
             playerInRange = true;
             gameManager.instance.promptKeyOn();

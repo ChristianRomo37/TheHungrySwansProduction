@@ -25,7 +25,7 @@ public class bladeDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.blade)
         {
             playerInRange = true;
             gameManager.instance.promptBladeOn();

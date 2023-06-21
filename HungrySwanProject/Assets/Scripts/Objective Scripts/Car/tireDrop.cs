@@ -24,7 +24,7 @@ public class tireDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.tire)
         {
             playerInRange = true;
             gameManager.instance.promptTireOn();            

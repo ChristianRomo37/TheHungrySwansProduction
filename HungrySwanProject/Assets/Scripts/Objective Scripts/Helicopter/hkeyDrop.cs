@@ -23,7 +23,7 @@ public class hkeyDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.hkey)
         {
             playerInRange = true;
             gameManager.instance.promptKeyOn();

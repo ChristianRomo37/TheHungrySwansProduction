@@ -21,7 +21,7 @@ public class engineDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.engine)
         {
             playerInRange = true;
             gameManager.instance.promptEngineOn();

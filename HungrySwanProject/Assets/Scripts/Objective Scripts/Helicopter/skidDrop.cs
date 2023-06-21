@@ -27,7 +27,7 @@ public class skidDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gameManager.instance.skid)
         {
             playerInRange = true;
             gameManager.instance.promptSkidOn();
