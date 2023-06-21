@@ -33,7 +33,7 @@ public class grenade : MonoBehaviour
 
     void Explode()
     {
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(explosionEffect, transform.position, Quaternion.Euler(0,0,0));
         
         Destroy(gameObject);
     }
