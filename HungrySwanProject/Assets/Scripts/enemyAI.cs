@@ -66,7 +66,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     Collision headShot;
     bool takeHS;
     //bool spanwed = true;
-    bool dead;
+    public static bool dead;
     public static bool spawning;
 
     // Start is called before the first frame update
@@ -222,6 +222,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
             anim.SetTrigger("Melee"); //Anim
             audioSource.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
+            //Vector3 pushDirection = (Vector3.forward - agent.transform.position).normalized;
+            //gameManager.instance.player.transform.position = pushDirection * Time.deltaTime * 1.0f;
+
             yield return new WaitForSeconds(shootRate);
 
             isShooting = false;
@@ -288,6 +291,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator deadAI()
     {
+        StopCoroutine(shoot());
         dead = true;
         anim.SetBool("Dead", true);
         agent.enabled = false;
@@ -298,7 +302,6 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
         Boss.minionsAlive--;
-
         StopAllCoroutines();
     }
 
