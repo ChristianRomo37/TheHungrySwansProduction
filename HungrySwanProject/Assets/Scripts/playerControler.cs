@@ -568,7 +568,11 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
 
         gunModel.mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunMat.material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-        
+
+        primaryGunPOS.SetActive(true);
+        secondaryGunPOS.SetActive(false);
+        isAiming = false;
+
         gameManager.instance.ui.updateBulletCounter();
     }
 
@@ -645,16 +649,17 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     {
         if (gunList[selectedGun].HoldFire == true && !isShooting && !isReloading)
         {
-            if (Input.GetMouseButton(0))
+            if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
             {
-                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining == 0 && !isReloading)
+                if (Input.GetButtonDown("Shoot"))
                 {
                     audioSource.PlayOneShot(gunList[selectedGun].gunNoAmmoAud, gunList[selectedGun].gunNoAmmoAudVol);
                 }
-
-                if (gunList.Count > 0 && gunList[selectedGun].bulletsRemaining > 0 && !isReloading)
+            }
+            else
+            {
+                if (Input.GetButton("Shoot"))
                 {
-                    //Debug.Log("shooting");
                     StartCoroutine(shoot());
                 }
             }

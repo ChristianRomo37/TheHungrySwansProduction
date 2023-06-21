@@ -15,11 +15,11 @@ public class RecoilAni : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.instance.playerScript.gunList.Count > 0)
+        if (gameManager.instance.playerScript.gunList.Count > 0 && gameManager.instance.activeMenu != gameManager.instance.pauseMenu)
         {
             if (Input.GetButtonDown("Shoot") && gameManager.instance.playerScript.bulletsRemaining > 0)
             {
-                //anie.SetBool("Shooting", true);
+                anie.SetBool("Shooting", true);
                 if (gameManager.instance.playerScript.sniper)
                 {
                     gameManager.instance.playerScript.shootrate = true;
