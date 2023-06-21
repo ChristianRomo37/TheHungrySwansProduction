@@ -38,24 +38,6 @@ public class Bash : MonoBehaviour
             }
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    IPhysics physics = collision.gameObject.GetComponent<IPhysics>();
-    //    IDamage dam = collision.gameObject.GetComponent<IDamage>();
-
-    //    if (dam != null)
-    //    {
-    //        dam.takeDamage(dmg);
-
-    //    }
-    //    if (physics != null)
-    //    {
-    //        Vector3 dir = collision.gameObject.transform.position - transform.position;
-    //        physics.takePushBack(dir * pushAmount);
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
