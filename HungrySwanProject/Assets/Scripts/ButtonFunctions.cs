@@ -49,7 +49,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.playerScript.spawnPlayer();
         //gameManager.instance.enemyAIscript.spawnEnemys();
         
-        //gameManager.instance.respawnCount++;
+        gameManager.instance.respawnCount++;
         //if (gameManager.instance.respawnCount >= 3)
         //{
             
