@@ -48,7 +48,12 @@ public class ButtonFunctions : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.playerScript.spawnPlayer();
         //gameManager.instance.enemyAIscript.spawnEnemys();
-
+        
+        //gameManager.instance.respawnCount++;
+        //if (gameManager.instance.respawnCount >= 3)
+        //{
+            
+        //}
     }
 
     public void OpenConfirm()

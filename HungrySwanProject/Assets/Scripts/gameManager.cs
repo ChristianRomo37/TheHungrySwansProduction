@@ -92,6 +92,7 @@ public class gameManager : MonoBehaviour
     public bool skid;
     public bool left2;
     public bool restart;
+    public int respawnCount;
 
 
     // Start is called before the first frame update
@@ -127,6 +128,7 @@ public class gameManager : MonoBehaviour
         holdingBlade = playerScript.holdingBlade;
         holdingRotor = playerScript.holdingRotor;
         holdingSkid = playerScript.holdingSkid;
+        respawnCount = 0;
 
         instance.ui.updateBulletCounter();
 
