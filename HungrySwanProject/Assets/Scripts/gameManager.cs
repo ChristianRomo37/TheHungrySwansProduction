@@ -155,7 +155,7 @@ public class gameManager : MonoBehaviour
 
         if (respawnCount == 3)
         {
-            respawn.gameObject.SetActive(false);
+            respawn.interactable = false;
         }
 
         //if (HPBar.fillAmount <= 0)
