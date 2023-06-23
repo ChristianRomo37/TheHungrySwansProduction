@@ -50,10 +50,7 @@ public class ButtonFunctions : MonoBehaviour
         //gameManager.instance.enemyAIscript.spawnEnemys();
         
         gameManager.instance.respawnCount++;
-        //if (gameManager.instance.respawnCount >= 3)
-        //{
-            
-        //}
+        
     }
 
     public void OpenConfirm()

@@ -42,6 +42,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI helicopterPartsRemainingLabel;
     public TextMeshProUGUI helicopterPartsRemainingText;
     public GameObject ret;
+    public Button respawn;
 
     [Header("----- HUD Stuff-----")]
     public TextMeshProUGUI ePrompt;
@@ -150,6 +151,11 @@ public class gameManager : MonoBehaviour
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
             pauseState();
+        }
+
+        if (respawnCount == 3)
+        {
+            respawn.gameObject.SetActive(false);
         }
 
         //if (HPBar.fillAmount <= 0)
