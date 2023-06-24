@@ -72,6 +72,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     // Start is called before the first frame update
     void Start()
     {
+        dead = false;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
@@ -88,6 +89,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
+        
+
         if (spawning && Boss.bossMinion)
         {
             StartCoroutine(spawnRise());
@@ -162,7 +165,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
             playSteps();
 
-            //if (!dead)
+            if (!dead)
             agent.SetDestination(hit.position);
         }
     }
