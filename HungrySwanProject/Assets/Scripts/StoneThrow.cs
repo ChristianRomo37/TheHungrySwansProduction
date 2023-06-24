@@ -11,6 +11,7 @@ public class StoneThrow : MonoBehaviour
 
     public GameObject stonePre;
     public enemyAI enemy;
+    public static int throwDist;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +23,21 @@ public class StoneThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countdown -= Time.deltaTime;
-        if (countdown < 0)
-        {
-            ThrowStone();
-            //enemy.anim.SetBool("Throw", false);
-            countdown = interval;
-        }
+        //if (!enemyAI.dead)
+        //{
+            countdown -= Time.deltaTime;
+            if (countdown < 0)
+            {
+                ThrowStone();
+                //enemy.anim.SetBool("Throw", false);
+                countdown = interval;
+            }
+        //}
     }
 
     void ThrowStone()
     {
-        if (enemy.see && enemy.agent.remainingDistance >= 8 && !enemyAI.dead)
+        if (enemy.see && enemy.agent.remainingDistance > 8)
         {
             enemy.anim.SetTrigger("Throw");
             GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);
