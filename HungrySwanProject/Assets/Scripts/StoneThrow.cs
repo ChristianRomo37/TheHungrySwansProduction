@@ -11,6 +11,7 @@ public class StoneThrow : MonoBehaviour
 
     public GameObject stonePre;
     public enemyAI enemy;
+    public static int throwDist;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class StoneThrow : MonoBehaviour
 
     void ThrowStone()
     {
-        if (enemy.see && enemy.agent.remainingDistance >= 8)
+        if (enemy.see && enemy.agent.remainingDistance > 8)
         {
             enemy.anim.SetTrigger("Throw");
             GameObject stone = Instantiate(stonePre, transform.position, transform.rotation);

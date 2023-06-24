@@ -295,6 +295,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator deadAI()
     {
         StopCoroutine(shoot());
+        see = false;
         dead = true;
         anim.SetBool("Dead", true);
         agent.enabled = false;
