@@ -247,11 +247,11 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void takeDamage(int damage)
     {
-        //if (headShot.collider.gameObject == Head)
+        //if ( == Head)
         //{
         //    damage *= 2;
         //}
-        //anim.SetTrigger("Damage");
+        anim.SetTrigger("Damage");
 
         if (agent.isActiveAndEnabled)
         {

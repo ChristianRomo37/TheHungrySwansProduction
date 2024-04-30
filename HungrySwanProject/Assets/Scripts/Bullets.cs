@@ -11,7 +11,6 @@ public class Bullets : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     Vector3 direction;
-    int damageCrit;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +25,17 @@ public class Bullets : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamage damageable = other.GetComponent<IDamage>();
-
+        //
         if (damageable != null)
         {
-            damageable.takeDamage(damage);
+            if (other.CompareTag("Head"))
+            {
+                damageable.takeDamage(damage * 2);
+            }
+            else
+            {
+                damageable.takeDamage(damage);
+            }
         }
 
         Destroy(gameObject);

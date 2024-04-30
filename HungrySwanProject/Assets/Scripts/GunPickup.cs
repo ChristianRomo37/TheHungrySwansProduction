@@ -23,7 +23,19 @@ public class GunPickup : MonoBehaviour
         mat = gun.model.GetComponent<MeshRenderer>();
         if (isFirstPickup)
         {
-            gun.bulletsRemaining = 0;
+            //
+            if (gun.ToString() == "Pistol (gunStats)")
+                gun.bulletsRemaining = 20;
+            else if (gun.ToString() == "Rifle (gunStats)")
+                gun.bulletsRemaining = 30;
+            else if (gun.ToString() == "ShotGun (gunStats)")
+                gun.bulletsRemaining = 25;
+            else if (gun.ToString() == "Sniper (gunStats)")
+                gun.bulletsRemaining = 5;
+            else if (gun.ToString() == "Uzi (gunStats)")
+                gun.bulletsRemaining = 25;
+            //
+
             gun.totalBulletCount = gun.OrigtotalBulletCount;
         }
     }
