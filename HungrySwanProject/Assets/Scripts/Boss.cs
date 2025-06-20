@@ -276,9 +276,11 @@ public class Boss : MonoBehaviour, IDamage
             StartCoroutine(flashColor());
         }
 
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        playerInRange = true;
-
+        if (!dead && HP > 0)
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            playerInRange = true;
+        }
         
         
         if (HP <= 0)

@@ -617,7 +617,7 @@ public class playerControler : MonoBehaviour, IDamage, IPhysics
     {
         if (gunList.Count > 0)
         {
-            amount = gunList[selectedGun].magSize;
+            amount = gunList[selectedGun].magSize + 20;
             gunList[selectedGun].totalBulletCount += amount;
             gameManager.instance.ui.updateBulletCounter();
         }

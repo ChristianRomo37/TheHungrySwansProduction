@@ -226,16 +226,18 @@ public class spitterZombie : MonoBehaviour, IDamage, IPhysics
         //{
         //    damage *= 2;
         //}
-
-        HP -= damage;
-        Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
-        transform.position += forceDirection * 1;
+        if (HP > 0)
+        {
+            HP -= damage;
+            Vector3 forceDirection = (transform.position - gameManager.instance.player.transform.position).normalized;
+            transform.position += forceDirection * 1;
+        }
         //anim.SetTrigger("Damage");
 
         audioSource.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         StartCoroutine(flashColor());
 
-        if(!dead)
+        if(!dead && HP > 0 && !spawning)
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         playerInRange = true;

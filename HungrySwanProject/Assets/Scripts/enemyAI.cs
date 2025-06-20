@@ -112,16 +112,20 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
                agent.SetDestination(gameManager.instance.player.transform.position);
            }
 
-           if (playerInRange && !canSeePlayer())
-           {
-               zombieSpeak();
-               StartCoroutine(roam());
-           }
-           else if (agent.destination != gameManager.instance.player.transform.position)
-           {
-              zombieSpeak();
-              StartCoroutine(roam());
-           }
+            if (playerInRange && !canSeePlayer())
+            {
+                zombieSpeak();
+                StartCoroutine(roam());
+            }
+            else if (agent.destination != gameManager.instance.player.transform.position && agent.isOnNavMesh)
+            {
+                zombieSpeak();
+                StartCoroutine(roam());
+            }
+            else if (!agent.isOnNavMesh)
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
